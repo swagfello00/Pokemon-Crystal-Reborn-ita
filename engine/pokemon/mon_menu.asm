@@ -449,6 +449,7 @@ ComposeMailMessage:
 	ld de, wTempMailAuthor
 	ld bc, NAME_LENGTH - 1
 	call CopyBytes
+	ld a, "I"	
 	ld hl, wPlayerID
 	ld bc, 2
 	call CopyBytes
