@@ -683,7 +683,7 @@ _BattleStatWentWayUpText::
 	prompt
 
 _BattleStatWentUpText::
-
+	text_start
 	cont "sale!"
 	prompt
 
@@ -701,7 +701,7 @@ _BattleStatSharplyFellText::
 	prompt
 
 _BattleStatFellText::
-
+	text_start
 	cont "cala!"
 	prompt
 
