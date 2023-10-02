@@ -114,12 +114,12 @@ AcademyBlackboard:
 	dbw BANK(@), NULL
 
 .Text:
-	db "PSN@"
+	db "VLN@"
 	db "PAR@"
-	db "SLP@"
-	db "BRN@"
-	db "FRZ@"
-	db "QUIT@"
+	db "DRM@"
+	db "BRU@"
+	db "GEL@"
+	db "ESCI@"
 
 AcademyNotebook:
 	opentext
