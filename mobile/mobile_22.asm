@@ -3810,9 +3810,9 @@ MenuHeader_0x8a9f2:
 MenuData_0x8a9fa:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 3 ; items
-	db "EDIT@"
-	db "VIEW@"
-	db "QUIT@"
+	db "Edit@"
+	db "View@"
+	db "Quit@"
 
 Function8aa09:
 	ret
