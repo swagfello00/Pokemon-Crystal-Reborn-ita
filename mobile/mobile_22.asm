@@ -1085,7 +1085,82 @@ FunctionLine:
 	ld a, $e
 	ld [hl], a
 	ret	
+	
+FunctionMessageExtra:
+	ld a, $2b
+	ld [hl], a
+	ret		
 
+FunctionWhiteTile:
+	ld a, $2e
+	ld [hl], a
+	ret		
+
+FunctionChecker1:
+	ld a, $17
+	ld [hl], a
+	ret				
+
+FunctionChecker2:
+	ld a, $17
+	ld [hl], a
+	ret			
+
+FunctionChecker3:
+	ld a, $17
+	ld [hl], a
+	ret	
+	
+FunctionChecker4:
+	ld a, $17
+	ld [hl], a
+	ret	
+
+FunctionChecker5:
+	ld a, $17
+	ld [hl], a
+	ret	
+
+FunctionChecker6:
+	ld a, $17
+	ld [hl], a
+	ret	
+
+FunctionChecker7:
+	ld a, $17
+	ld [hl], a
+	ret	
+
+FunctionChecker8:
+	ld a, $17
+	ld [hl], a
+	ret	
+
+FunctionChecker9:
+	ld a, $17
+	ld [hl], a
+	ret	
+
+FunctionChecker10:
+	ld a, $17
+	ld [hl], a
+	ret	
+
+FunctionChecker11:
+	ld a, $17
+	ld [hl], a
+	ret	
+
+FunctionChecker12:
+	ld a, $17
+	ld [hl], a
+	ret	
+
+FunctionChecker13:
+	ld a, $17
+	ld [hl], a
+	ret		
+	
 Function8975b:
 	ld a, $1d
 	ld [hli], a
@@ -1112,7 +1187,7 @@ Function89771:
 	ret
 
 Function8977a:
-	ld e, $4
+	ld e, $5
 	ld d, $13
 .asm_8977e
 	ld a, d
@@ -1123,7 +1198,7 @@ Function8977a:
 	inc d
 	dec e
 	jr nz, .asm_8977e
-	ld e, $e
+	ld e, $d
 .asm_8978c
 	ld a, d
 	ld [hl], a
@@ -1511,12 +1586,42 @@ Function899d3:
 	call Function89771 ; phone icon
 	hlcoord 1, 11
 	call Function8977a ; "message" text and gfx
-	hlcoord 1, 6
+	hlcoord 5, 11
+	call FunctionMessageExtra ; "additional" text
+	hlcoord 1, 6	
 	call Function89797 ; arrow gfx
 	hlcoord 2, 4
 	call Function89962 ; "name/" text
 	hlcoord 2, 9 
 	call Function89915 ; "phone number" text
+	hlcoord 9, 9
+	call FunctionWhiteTile ; Loads white tile
+	hlcoord 6, 11
+	call FunctionChecker1 ; Force loads checkerboard
+	hlcoord 7, 11
+	call FunctionChecker2 ; Force loads checkerboard
+	hlcoord 8, 11
+	call FunctionChecker3 ; Force loads checkerboard
+	hlcoord 9, 11
+	call FunctionChecker4 ; Force loads checkerboard
+	hlcoord 10, 11
+	call FunctionChecker5 ; Force loads checkerboard
+	hlcoord 11, 11
+	call FunctionChecker6 ; Force loads checkerboard
+	hlcoord 12, 11
+	call FunctionChecker7 ; Force loads checkerboard
+	hlcoord 13, 11
+	call FunctionChecker8 ; Force loads checkerboard
+	hlcoord 14, 11
+	call FunctionChecker9 ; Force loads checkerboard
+	hlcoord 15, 11
+	call FunctionChecker10 ; Force loads checkerboard
+	hlcoord 16, 11
+	call FunctionChecker11 ; Force loads checkerboard
+	hlcoord 17, 11
+	call FunctionChecker12 ; Force loads checkerboard
+	hlcoord 18, 11
+	call FunctionChecker13 ; Force loads checkerboard	
 	ret
 
 Function899fe:
@@ -2748,9 +2853,9 @@ MenuHeader_0x8a19a:
 MenuData_0x8a1a2:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING | STATICMENU_WRAP ; flags
 	db 3 ; items
-	db "Open@" ; "ひらく@"
-	db "Delete@" ; "すてる@"
-	db "Cancel@" ; "もどる@"
+	db "OPEN@" ; "ひらく@"
+	db "DELETE@" ; "すてる@"
+	db "CANCEL@" ; "もどる@"
 
 Function8a1b0:
 	hlcoord 0, 12
@@ -3050,10 +3155,10 @@ MenuHeader_CardFolderLayout:
 MenuData_0x8a417:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 4 ; items
-	db "Cards@" ;"めいしりスト@"
-	db "My Card@" ;"じぶんの　めいし@"
-	db "Trade@" ;"めいしこうかん@"
-	db "Cancel@" ;"やめる@"
+	db "CARDS@" ;"めいしりスト@"
+	db "MY CARD@" ;"じぶんの　めいし@"
+	db "TRADE@" ;"めいしこうかん@"
+	db "CANCEL@" ;"やめる@"
 
 MenuHeader_0x8a435:
 	db MENU_BACKUP_TILES ; flags
@@ -3064,9 +3169,9 @@ MenuHeader_0x8a435:
 MenuData_0x8a43d:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 3 ; items
-	db "Cards@" ;"めいしりスト@"
-	db "My Card@" ;"じぶんの　めいし@"
-	db "Cancel@" ;"やめる@"
+	db "CARDS@" ;"めいしりスト@"
+	db "MY CARD@" ;"じぶんの　めいし@"
+	db "CANCEL@" ;"やめる@"
 
 Function8a453:
 	hlcoord 0, 12
@@ -3810,9 +3915,9 @@ MenuHeader_0x8a9f2:
 MenuData_0x8a9fa:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 3 ; items
-	db "Edit@"
-	db "View@"
-	db "Quit@"
+	db "EDIT@"
+	db "VIEW@"
+	db "QUIT@"
 
 Function8aa09:
 	ret
