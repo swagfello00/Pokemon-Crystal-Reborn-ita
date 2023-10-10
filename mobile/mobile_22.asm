@@ -1091,11 +1091,6 @@ FunctionMessageExtra:
 	ld [hl], a
 	ret		
 
-FunctionWhiteTile:
-	ld a, $2e
-	ld [hl], a
-	ret		
-
 FunctionChecker1:
 	ld a, $17
 	ld [hl], a
@@ -1438,7 +1433,7 @@ Function89915:
 	push bc
 	push hl
 	ld de, Unknown_89942
-	ld c, $8
+	ld c, $7
 .asm_8991c
 	ld a, [de]
 	ld [hl], a
@@ -1594,8 +1589,6 @@ Function899d3:
 	call Function89962 ; "name/" text
 	hlcoord 2, 9 
 	call Function89915 ; "phone number" text
-	hlcoord 9, 9
-	call FunctionWhiteTile ; Loads white tile
 	hlcoord 6, 11
 	call FunctionChecker1 ; Force loads checkerboard
 	hlcoord 7, 11
