@@ -556,6 +556,12 @@ Function89455: ; load card folder gfx
 	ld bc, (8 + 65) tiles ; large card sprite + folder
 	ld a, BANK(MobileAdapterGFX)
 	call FarCopyBytes
+
+	ld hl, MobileAdapterGFX + ($7d + 73 + 4) tiles
+	ld de, vTiles2 tile ($0c + 73)
+	ld bc, 4 tiles
+	ld a, BANK(MobileAdapterGFX)
+	call FarCopyBytes	
 	ret
 
 Function89464: ; load card gfx
@@ -3148,10 +3154,10 @@ MenuHeader_CardFolderLayout:
 MenuData_0x8a417:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 4 ; items
-	db "Cards@" ;"めいしりスト@"
-	db "My Card@" ;"じぶんの　めいし@"
-	db "Trade@" ;"めいしこうかん@"
-	db "Cancel@" ;"やめる@"
+	db "CARDS@" ;"めいしりスト@"
+	db "MY CARD@" ;"じぶんの　めいし@"
+	db "TRADE@" ;"めいしこうかん@"
+	db "CANCEL@" ;"やめる@"
 
 MenuHeader_0x8a435:
 	db MENU_BACKUP_TILES ; flags
@@ -3162,9 +3168,10 @@ MenuHeader_0x8a435:
 MenuData_0x8a43d:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 3 ; items
-	db "Cards@" ;"めいしりスト@"
-	db "My Card@" ;"じぶんの　めいし@"
-	db "Cancel@" ;"やめる@"
+	db "CARDS@" ;"めいしりスト@"
+	db "MY CARD@" ;"じぶんの　めいし@"
+	db "CANCEL@" ;"やめる@"
+
 Function8a453:
 	hlcoord 0, 12
 	ld b, $4
@@ -3261,12 +3268,17 @@ asm_8a529:
 
 DisplayCardFolderHeader:
 	push hl
+; Part A
 	ld a, $15
 	ld c, $8
 	ld de, $14
 	call Function8a573
+	ld a, $55
+	ld c, 2
+	call Function8a573	
+; Part B	
 	ld a, $1d
-	ld c, $9
+	ld c, 7
 	call Function8a57c
 	inc a
 	ld [hl], a
@@ -3279,11 +3291,11 @@ DisplayCardFolderHeader:
 	dec hl
 	ld a, $51
 	ld [hli], a
-	ld a, $26
-	ld c, $1
-	call Function8a57c
-	ld a, $52
-	ld c, $3
+	ld a, $57
+	ld c, 2
+	call Function8a573	
+	ld a, $53
+	ld c, $2
 	call Function8a573
 	ld a, $27
 	ld c, $6
