@@ -477,10 +477,10 @@ Route36NationalParkGateOfficer1AskToParticipateText:
 	text "Oggi è @"
 	text_ram wStringBuffer3
 	text "."
-	line "Ciò significa che"
+	line "Quindi oggi"
 
-	para "oggi c'è la Gara"
-	line "Pigliamosche!"
+	para "c'è la Gara"
+	line "Pigliamosche."
 
 	para "Le regole?"
 	line "Semplicissime."
@@ -492,7 +492,7 @@ Route36NationalParkGateOfficer1AskToParticipateText:
 	line "coleottero che"
 	cont "sarà giudicato."
 
-	para "Vuoi provare?"
+	para "Vuoi provare?"`
 	done
 
 Route36NationalParkGateOfficer1GiveParkBallsText:
@@ -509,42 +509,43 @@ Route36NationalParkGatePlayerReceivedParkBallsText:
 Route36NationalParkGateOfficer1ExplainsRulesText:
 	text "Vince chi cattura"
 	line "il #MON"
-	cont "coleottero più"
-	cont "forte."
+	cont "tipo coleottero"
+	cont "più forte."
 
-	para "Hai {d:BUG_CONTEST_MINUTES} minuti di"
-	line "tempo."
+	para "Hai {d:BUG_CONTEST_MINUTES}"
+	line "minuti di tempo."
 
 	para "Se finisci le"
-	line "PARK BALL, termina"
-	cont "anche la gara."
+	line "PARK BALL, sei"
+	cont "fuori."
 
-	para "Potrai tenere"
-	line "l'ultimo #MON"
-	cont "che catturerai."
+	para "L'ultimo #MON"
+	line "che hai catturato"
+	cont "diventa tuo."
 
-	para "Vai, e prendi il"
-	line "#MON"
+	para "Ora vai e cattura"
+	line "il #MON "
 
-	para "coleottero"
-	line "più forte!"
+	para "coleottero più"
+	line "forte che trovi!"
 	done
 
 Route36NationalParkGateOfficer1AskToUseFirstMonText:
-	text "Ah…"
+	text "Ops…"
 
-	para "Vedo che hai più"
-	line "di un #MON."
+	para "Hai più di un"
+	line "#MON."
 
 	para "Dovrai usare"
 	line "@"
 	text_ram wStringBuffer3
-	text ", il"
+	text ","
 
-	para "primo #MON"
-	line "in squadra."
+	para "il primo #MON"
+	line "della squadra."
 
-	para "Ti va bene?"
+	para "È ok"
+	line "per te?"
 	done
 
 Route36NationalParkGateOfficer1WellHoldYourMonText:
@@ -575,48 +576,47 @@ Route36NationalParkGateOfficer1TakePartInFutureText:
 	done
 
 Route36NationalParkGateOfficer1FirstMonCantBattleText:
-	text "Oh…"
-	line "Il primo #MON"
+	text "Il primo #MON"
+	line "della tua squadra"
 
-	para "della tua squadra"
-	line "non può lottare."
+	para "non può"
+	line "combattere."
 
-	para "Scambialo di posto"
-	line "con il #MON che"
+	para "Sostituiscilo"
+	line "con il #MON"
 
-	para "intendi usare, e"
-	line "poi torna qui."
+	para "che vuoi usare,"
+	line "e poi torna qui."
 	done
 
 Route36NationalParkGateOfficer1MakeRoomText:
-	text "Oh…"
-	line "Sia la tua squadra"
+	text "Non hai più posto"
 
-	para "che il BOX del tuo"
-	line "PC sono pieni."
+	para "né in squadra né"
+	line "nel BOX del PC."
 
-	para "Non hai spazio per"
+	para "Non hai posto per"
 	line "il #MON che"
 	cont "catturerai."
 
-	para "Fai spazio nella"
-	line "tua squadra o nel"
+	para "Libera un posto"
+	line "in squadra o"
 
-	para "BOX del PC e poi"
-	line "torna a trovarmi!"
+	para "nel BOX del PC,"
+	line "poi torna qui."
 	done
 
 Route36NationalParkGateOfficer1EggAsFirstMonText:
 	text "Oh…"
-	line "Il tuo primo"
-
-	para "#MON è un"
-	line "UOVO."
-
+	line "Il primo #MON"
+	
+	para "nella tua squadra"
+	line "è un UOVO."
+	
 	para "Sostituiscilo con"
-	line "il #MON che"
-
-	para "intendi usare, e"
+	line "il #MON"
+	
+	para "che vuoi usare,"
 	line "poi torna qui."
 	done
 

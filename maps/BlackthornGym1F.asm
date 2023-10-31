@@ -246,9 +246,9 @@ BlackthornGymClairText_DescribeTM24:
 	line "a che fare col mio"
 	cont "respiro."
 
-	para "Se non la vuoi"
+	para "Se non lo vuoi"
 	line "puoi anche non"
-	cont "prenderla."
+	cont "prenderlo."
 	done
 
 BlackthornGymClairText_BagFull:
