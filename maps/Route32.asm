@@ -745,7 +745,7 @@ YoungsterAlbertSeenText:
 	done
 
 YoungsterAlbertBeatenText:
-	text "Ma sei forte!"
+	text "Sì, sei forte!"
 	done
 
 YoungsterAlbertAfterText:
