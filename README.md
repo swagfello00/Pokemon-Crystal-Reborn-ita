@@ -55,6 +55,7 @@ https://github.com/gb-mobile/pokecrystal-mobile-en/wiki/Pok%C3%A9mon-Crystal-Mob
 
 - Pret           : Initial disassembly
 - Matze          : Mobile Restoration & Japanese Code Disassembly
+- Lorenzooone    : Italian Mobile Translation
 - Damien         : Code
 - DS             : GFX & Code
 - Ryuzac         : Code & Japanese Translation
