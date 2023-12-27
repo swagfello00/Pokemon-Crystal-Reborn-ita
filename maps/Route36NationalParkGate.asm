@@ -492,7 +492,7 @@ Route36NationalParkGateOfficer1AskToParticipateText:
 	line "coleottero che"
 	cont "sarà giudicato."
 
-	para "Vuoi provare?"`
+	para "Vuoi provare?"
 	done
 
 Route36NationalParkGateOfficer1GiveParkBallsText:
