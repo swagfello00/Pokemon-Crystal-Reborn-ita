@@ -162,7 +162,7 @@ CreditsScript:
 	db         TETSUJI_OOTA, 1
 	db        KOHJI_NISHINO, 2
 	db        NOBUHIRO_SEYA, 3
-	
+
 	db CREDITS_WAIT, 12	
 
 	db    MOBILE_PRJ_LEADER, 0
@@ -215,7 +215,7 @@ CreditsScript:
 	db      HIROYUKI_UESUGI, 3
 
 	db CREDITS_WAIT, 12
-	
+
 	db      US_COORDINATION, 1
 	db       JUNICHI_MASUDA, 2
 	db        KOHJI_NISHINO, 3
@@ -268,7 +268,7 @@ CreditsScript:
 	db          KENJI_SAIKI, 2
 	db         ATSUSHI_TADA, 3
 	db          MIYUKI_SATO, 4
-	
+
 	db CREDITS_WAIT, 12
 
 	db         PAAD_TESTING, 0

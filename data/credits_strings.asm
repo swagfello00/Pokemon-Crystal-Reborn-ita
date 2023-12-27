@@ -74,6 +74,8 @@ CreditsStringsPointers:
 	dw .MatthewMawer
 	dw .AkiraYano
 	dw .HiroshiAkune
+	dw .KaiZeh
+	dw .HiroyukiUesugi
 	dw .End
 	dw .Unknown
 	dw .Staff
@@ -108,6 +110,7 @@ CreditsStringsPointers:
 	dw .TextTranslation
 	dw .PaadTesting
 	dw .ItalianTestingTeam
+	assert_table_length NUM_CREDITS_STRINGS
 
 .SatoshiTajiri:       db "   SATOSHI TAJIRI@"         ; "たじり　さとし@"
 .JunichiMasuda:       db "   JUNICHI MASUDA@"         ; "ますだ　じゅんいち@"
@@ -214,7 +217,7 @@ CreditsStringsPointers:
 .PokedexText:         db "   Testo #DEX@"             ; "ずかん　テキスト@"
 .MobilePrjLeader:     db " Capo Prog. Mobile@"      ; "モバイルプロジェクト　りーダー@"
 .MobileSystemAd:      db "Cons. Sistema Mobile@"      ; "モバイル　システムアドバイザー@"
-.MobileStadiumDir:    db " Dir. STADIO MOBILE@"      ; "モバイルスタジアム　ディレクター@"
+.MobileStadiumDir:    db " Dir. Stadio Mobile@"      ; "モバイルスタジアム　ディレクター@"
 .Coordination:        db "   Coordinazione@"          ; "コーディネーター@"
 .UsVersionStaff:      db "   Alla  versione"
                     next "   italiana hanno"
@@ -222,7 +225,7 @@ CreditsStringsPointers:
 .UsCoordination:      db "Coordinamento Europa@"
 .TextTranslation:     db "   Testo italiano@"
 .PaadTesting:         db "  Controllo testo@"
-.ItalianTestingTeam   db "ITALIAN TESTING TEAM"
+.ItalianTestingTeam   db "ITALIAN TESTING TEAM@"
 
 .Copyright:
 	;    (C) 1  9  9  5 - 2  0  0  1     N  i  n  t  e  n  d  o
