@@ -1,5 +1,6 @@
 	db "ELETTRICO@" ; species name
-	dw 6, 235 ; height, weight
+		db 6
+	dw 235 ; height, weight
 
 	db   "Ama i violenti"
 	next "tuoni. Quando"

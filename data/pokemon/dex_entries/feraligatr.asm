@@ -1,5 +1,6 @@
 	db "MASCELLONE@" ; species name
-	dw 23, 888 ; height, weight
+		db 23
+	dw 888 ; height, weight
 
 	db   "Nonostante il"
 	next "corpo pesante, con"

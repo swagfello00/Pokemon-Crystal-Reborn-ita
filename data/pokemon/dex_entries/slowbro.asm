@@ -1,5 +1,6 @@
 	db "PAGURO@" ; species name
-	dw 16, 785 ; height, weight
+		db 16
+	dw 785 ; height, weight
 
 	db   "Lo SHELLDER che"
 	next "gli sta attaccato"

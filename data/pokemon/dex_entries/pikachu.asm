@@ -1,5 +1,6 @@
 	db "TOPO@" ; species name
-	dw 4, 60 ; height, weight
+		db 4
+	dw 60 ; height, weight
 
 	db   "Quando s'arrabbia,"
 	next "libera subito"

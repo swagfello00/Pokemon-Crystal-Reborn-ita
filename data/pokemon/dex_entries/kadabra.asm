@@ -1,5 +1,6 @@
 	db "PSICO@" ; species name
-	dw 13, 565 ; height, weight
+		db 13
+	dw 565 ; height, weight
 
 	db   "Quando chiude gli"
 	next "occhi, le onde"

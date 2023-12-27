@@ -1,5 +1,6 @@
 	db "FIAMMA@" ; species name
-	dw 17, 905 ; height, weight
+		db 17
+	dw 905 ; height, weight
 
 	db   "Spiega le ali per"
 	next "volare alto. La"

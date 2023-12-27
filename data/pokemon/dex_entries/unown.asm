@@ -1,5 +1,6 @@
 	db "SIMBOLO@" ; species name
-	dw 5, 50 ; height, weight
+		db 5
+	dw 50 ; height, weight
 
 	db   "Poiché esistono"
 	next "molti tipi diversi"

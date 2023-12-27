@@ -1,5 +1,6 @@
 	db "RATTO@" ; species name
-	dw 7, 185 ; height, weight
+		db 7
+	dw 185 ; height, weight
 
 	db   "Atrraversa i fiumi"
 	next "con le zampe"

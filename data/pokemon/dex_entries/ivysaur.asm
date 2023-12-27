@@ -1,5 +1,6 @@
 	db "SEME@" ; species name
-	dw 10, 130 ; height, weight
+		db 10
+	dw 130 ; height, weight
 
 	db   "Per crescere, il"
 	next "bocciolo sul dorso"

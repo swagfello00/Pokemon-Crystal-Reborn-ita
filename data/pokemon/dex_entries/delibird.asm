@@ -1,5 +1,6 @@
 	db "CONSEGNA@" ; species name
-	dw 9, 160 ; height, weight
+		db 9
+	dw 160 ; height, weight
 
 	db   "Ovunque vada,"
 	next "porta con sé il"

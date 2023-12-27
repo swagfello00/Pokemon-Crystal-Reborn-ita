@@ -1,5 +1,6 @@
 	db "VELENAGO@" ; species name
-	dw 9, 195 ; height, weight
+		db 9
+	dw 195 ; height, weight
 
 	db   "S'innervosisce"
 	next "facilmente e"

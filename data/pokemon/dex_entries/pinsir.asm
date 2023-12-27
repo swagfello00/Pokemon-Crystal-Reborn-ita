@@ -1,5 +1,6 @@
 	db "CERVOLANTE@" ; species name
-	dw 15, 550 ; height, weight
+		db 15
+	dw 550 ; height, weight
 
 	db   "Di notte, quando"
 	next "fa più freddo, si"

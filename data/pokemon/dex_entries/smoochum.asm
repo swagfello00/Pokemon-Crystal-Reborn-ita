@@ -1,5 +1,6 @@
 	db "BACIO@" ; species name
-	dw 4, 60 ; height, weight
+		db 4
+	dw 60 ; height, weight
 
 	db   "La sensibilità"
 	next "delle labbra si"

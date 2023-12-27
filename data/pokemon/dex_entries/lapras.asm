@@ -1,5 +1,6 @@
 	db "TRASPORTO@" ; species name
-	dw 25, 2200 ; height, weight
+		db 25
+	dw 2200 ; height, weight
 
 	db   "Questo #MON"
 	next "generoso si offre"

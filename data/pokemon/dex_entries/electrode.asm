@@ -1,5 +1,6 @@
 	db "BALL@" ; species name
-	dw 12, 666 ; height, weight
+		db 12
+	dw 666 ; height, weight
 
 	db   "L'energia che"
 	next "immagazzina lo fa"

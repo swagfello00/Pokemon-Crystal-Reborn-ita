@@ -1,5 +1,6 @@
 	db "STRIDO@" ; species name
-	dw 7, 10 ; height, weight
+		db 7
+	dw 10 ; height, weight
 
 	db   "Si diverte a far"
 	next "spaventare la"

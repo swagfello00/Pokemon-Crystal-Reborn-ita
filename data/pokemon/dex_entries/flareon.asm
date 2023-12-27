@@ -1,5 +1,6 @@
 	db "FIAMMA@" ; species name
-	dw 9, 250 ; height, weight
+		db 9
+	dw 250 ; height, weight
 
 	db   "Quando immagazzina"
 	next "abbastanza calore,"

@@ -1,5 +1,6 @@
 	db "ATROCE@" ; species name
-	dw 65, 2350 ; height, weight
+		db 65
+	dw 2350 ; height, weight
 
 	db   "Appare in tutte le"
 	next "guerre importanti,"

@@ -1,5 +1,6 @@
 	db "GRAFFIMIAO@" ; species name
-	dw 4, 42 ; height, weight
+		db 4
+	dw 42 ; height, weight
 
 	db   "Ama gli oggetti"
 	next "scintillanti. Se"

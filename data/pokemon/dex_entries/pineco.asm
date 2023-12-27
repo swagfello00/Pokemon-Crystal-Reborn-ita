@@ -1,5 +1,6 @@
 	db "LARVA@" ; species name
-	dw 6, 72 ; height, weight
+		db 6
+	dw 72 ; height, weight
 
 	db   "Sputa un liquido"
 	next "che gli serve per"

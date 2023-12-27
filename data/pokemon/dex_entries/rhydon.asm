@@ -1,5 +1,6 @@
 	db "TRAPANO@" ; species name
-	dw 19, 1200 ; height, weight
+		db 19
+	dw 1200 ; height, weight
 
 	db   "Facendo ruotare"
 	next "leggermente il"

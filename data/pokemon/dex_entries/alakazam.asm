@@ -1,5 +1,6 @@
 	db "PSICO@" ; species name
-	dw 15, 480 ; height, weight
+		db 15
+	dw 480 ; height, weight
 
 	db   "Il suo quoziente"
 	next "intellettivo è"

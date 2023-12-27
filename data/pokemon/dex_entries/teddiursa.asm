@@ -1,5 +1,6 @@
 	db "ORSETTO@" ; species name
-	dw 6, 88 ; height, weight
+		db 6
+	dw 88 ; height, weight
 
 	db   "Non fa che leccare"
 	next "miele. Il suo"

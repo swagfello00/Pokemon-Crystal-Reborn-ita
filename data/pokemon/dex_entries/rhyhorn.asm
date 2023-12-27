@@ -1,5 +1,6 @@
 	db "PUNZONI@" ; species name
-	dw 10, 1150 ; height, weight
+		db 10
+	dw 1150 ; height, weight
 
 	db   "Non può ricordare"
 	next "più di una sola"

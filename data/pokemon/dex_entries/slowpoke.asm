@@ -1,5 +1,6 @@
 	db "RONFONE@" ; species name
-	dw 12, 360 ; height, weight
+		db 12
+	dw 360 ; height, weight
 
 	db   "È sempre talmente"
 	next "distratto che non"

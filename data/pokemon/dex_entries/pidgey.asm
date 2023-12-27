@@ -1,5 +1,6 @@
 	db "UCCELLINO@" ; species name
-	dw 3, 18 ; height, weight
+		db 3
+	dw 18 ; height, weight
 
 	db   "Agitando le ali"
 	next "nell'erba, solleva"

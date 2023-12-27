@@ -1,5 +1,6 @@
 	db "LUCE@" ; species name
-	dw 14, 615 ; height, weight
+		db 14
+	dw 615 ; height, weight
 
 	db   "Di notte, la luce"
 	next "intensa e lampeg-"

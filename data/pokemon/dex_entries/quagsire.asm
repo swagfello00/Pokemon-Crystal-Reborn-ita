@@ -1,5 +1,6 @@
 	db "ACQUAPESCE@" ; species name
-	dw 14, 750 ; height, weight
+		db 14
+	dw 750 ; height, weight
 
 	db   "Ha un corpo molto"
 	next "vischioso. Spesso,"

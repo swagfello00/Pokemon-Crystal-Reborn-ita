@@ -1,5 +1,6 @@
 	db "LETARGO@" ; species name
-	dw 18, 1258 ; height, weight
+		db 18
+	dw 1258 ; height, weight
 
 	db   "Nonostante la"
 	next "stazza, è abile"

@@ -1,5 +1,6 @@
 	db "PALLONE@" ; species name
-	dw 3, 10 ; height, weight
+		db 3
+	dw 10 ; height, weight
 
 	db   "Anziché camminare"
 	next "sulle sue corte"

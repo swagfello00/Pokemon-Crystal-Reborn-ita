@@ -1,5 +1,6 @@
 	db "OSCURITÀ@" ; species name
-	dw 5, 21 ; height, weight
+		db 5
+	dw 21 ; height, weight
 
 	db   "Nasconde in un"
 	next "luogo segreto"

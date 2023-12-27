@@ -1,5 +1,6 @@
 	db "FUNGO@" ; species name
-	dw 3, 54 ; height, weight
+		db 3
+	dw 54 ; height, weight
 
 	db   "Il fungo tochukaso"
 	next "che gli cresce sul"

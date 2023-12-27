@@ -1,5 +1,6 @@
 	db "LARVA@" ; species name
-	dw 12, 1258 ; height, weight
+		db 12
+	dw 1258 ; height, weight
 
 	db   "Spesso lo si vede"
 	next "appeso al tronco"

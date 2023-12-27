@@ -1,5 +1,6 @@
 	db "TRAPANO@" ; species name
-	dw 14, 620 ; height, weight
+		db 14
+	dw 620 ; height, weight
 
 	db   "Colpisce"
 	next "violentemente con"

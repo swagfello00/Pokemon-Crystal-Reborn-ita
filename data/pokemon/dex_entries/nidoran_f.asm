@@ -1,5 +1,6 @@
 	db "VELENAGO@" ; species name
-	dw 4, 70 ; height, weight
+		db 4
+	dw 70 ; height, weight
 
 	db   "Molto docile e"
 	next "minuto, se viene"

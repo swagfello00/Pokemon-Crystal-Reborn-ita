@@ -1,5 +1,6 @@
 	db "MUFFA@" ; species name
-	dw 6, 205 ; height, weight
+		db 6
+	dw 205 ; height, weight
 
 	db   "Secerne un liquido"
 	next "con cui scava il"

@@ -1,5 +1,6 @@
 	db "LUCELUNARE@" ; species name
-	dw 10, 270 ; height, weight
+		db 10
+	dw 270 ; height, weight
 
 	db   "Nelle notti di"
 	next "luna piena e"

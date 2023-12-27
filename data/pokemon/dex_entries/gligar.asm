@@ -1,5 +1,6 @@
 	db "ALISCORPIO@" ; species name
-	dw 11, 648 ; height, weight
+		db 11
+	dw 648 ; height, weight
 
 	db   "Si fa il nido su"
 	next "ripide scogliere."

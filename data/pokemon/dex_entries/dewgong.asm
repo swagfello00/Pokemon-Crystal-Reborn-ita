@@ -1,5 +1,6 @@
 	db "OTARIA@" ; species name
-	dw 17, 1200 ; height, weight
+		db 17
+	dw 1200 ; height, weight
 
 	db   "Di giorno dorme"
 	next "nell'oceano, a"

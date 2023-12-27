@@ -1,5 +1,6 @@
 	db "BOLLAJET@" ; species name
-	dw 10, 290 ; height, weight
+		db 10
+	dw 290 ; height, weight
 
 	db   "Grazie alle pinne"
 	next "sulla punta della"

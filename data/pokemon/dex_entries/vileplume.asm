@@ -1,5 +1,6 @@
 	db "FIORE@" ; species name
-	dw 12, 186 ; height, weight
+		db 12
+	dw 186 ; height, weight
 
 	db   "Scuotendo i grandi"
 	next "petali, diffonde"

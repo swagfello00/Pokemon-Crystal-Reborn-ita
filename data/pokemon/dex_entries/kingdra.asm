@@ -1,5 +1,6 @@
 	db "DRAGO@" ; species name
-	dw 18, 1520 ; height, weight
+		db 18
+	dw 1520 ; height, weight
 
 	db   "Accumula energia"
 	next "dormendo sott'"

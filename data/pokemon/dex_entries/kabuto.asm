@@ -1,5 +1,6 @@
 	db "CROSTACEO@" ; species name
-	dw 5, 115 ; height, weight
+		db 5
+	dw 115 ; height, weight
 
 	db   "Visse 300 milioni"
 	next "di anni fa sul"

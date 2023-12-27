@@ -1,5 +1,6 @@
 	db "FATA@" ; species name
-	dw 6, 78 ; height, weight
+		db 6
+	dw 78 ; height, weight
 
 	db   "Ringhia spavaldo"
 	next "per nascondere la"

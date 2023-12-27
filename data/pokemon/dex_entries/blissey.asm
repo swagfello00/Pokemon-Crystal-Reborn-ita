@@ -1,5 +1,6 @@
 	db "FELICITÀ@" ; species name
-	dw 15, 468 ; height, weight
+		db 15
+	dw 468 ; height, weight
 
 	db   "Addentare un"
 	next "delizioso uovo che"

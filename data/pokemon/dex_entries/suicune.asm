@@ -1,5 +1,6 @@
 	db "AURORA@" ; species name
-	dw 20, 1870 ; height, weight
+		db 20
+	dw 1870 ; height, weight
 
 	db   "#MON divino che"
 	next "gira per il mondo"

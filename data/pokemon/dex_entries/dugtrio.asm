@@ -1,5 +1,6 @@
 	db "TALPA@" ; species name
-	dw 7, 333 ; height, weight
+		db 7
+	dw 333 ; height, weight
 
 	db   "Questo trio di"
 	next "DIGLETT giunge a"

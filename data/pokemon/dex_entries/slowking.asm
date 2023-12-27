@@ -1,5 +1,6 @@
 	db "REALE@" ; species name
-	dw 20, 795 ; height, weight
+		db 20
+	dw 795 ; height, weight
 
 	db   "Ogni volta che"
 	next "sbadiglia SHELLDER"

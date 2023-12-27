@@ -1,5 +1,6 @@
 	db "RANA@" ; species name
-	dw 11, 339 ; height, weight
+		db 11
+	dw 339 ; height, weight
 
 	db   "I POLIWAG e i"
 	next "POLIWHIRL si"

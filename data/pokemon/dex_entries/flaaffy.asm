@@ -1,5 +1,6 @@
 	db "LANA@" ; species name
-	dw 8, 133 ; height, weight
+		db 8
+	dw 133 ; height, weight
 
 	db   "Grazie alla pelle"
 	next "gommosa e isolante"

@@ -1,5 +1,6 @@
 	db "CALAMITA@" ; species name
-	dw 3, 60 ; height, weight
+		db 3
+	dw 60 ; height, weight
 
 	db   "È un potente"
 	next "magnete, grazie"

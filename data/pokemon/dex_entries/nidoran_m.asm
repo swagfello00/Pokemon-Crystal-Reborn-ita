@@ -1,5 +1,6 @@
 	db "VELENAGO@" ; species name
-	dw 5, 90 ; height, weight
+		db 5
+	dw 90 ; height, weight
 
 	db   "Muove le grandi"
 	next "orecchie in"

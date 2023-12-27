@@ -1,5 +1,6 @@
 	db "GUFO@" ; species name
-	dw 16, 408 ; height, weight
+		db 16
+	dw 408 ; height, weight
 
 	db   "Mentre vola, le"
 	next "morbide penne sono"

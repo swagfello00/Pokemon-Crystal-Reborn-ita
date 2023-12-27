@@ -1,5 +1,6 @@
 	db "LUNGOCOLLO@" ; species name
-	dw 15, 415 ; height, weight
+		db 15
+	dw 415 ; height, weight
 
 	db   "Se si sente in"
 	next "pericolo, usa i"

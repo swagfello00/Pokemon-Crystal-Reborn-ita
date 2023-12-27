@@ -1,5 +1,6 @@
 	db "NOCECOCCO@" ; species name
-	dw 20, 1200 ; height, weight
+		db 20
+	dw 1200 ; height, weight
 
 	db   "Se si trova in un"
 	next "ambiente adatto,"

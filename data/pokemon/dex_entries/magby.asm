@@ -1,5 +1,6 @@
 	db "CARBONVIVO@" ; species name
-	dw 7, 214 ; height, weight
+		db 7
+	dw 214 ; height, weight
 
 	db   "Sputa fiamme a 600"
 	next "gradi. Se ne"

@@ -1,5 +1,6 @@
 	db "LUNGOCORPO@" ; species name
-	dw 18, 325 ; height, weight
+		db 18
+	dw 325 ; height, weight
 
 	db   "Vive in strette"
 	next "buche, adatte al"

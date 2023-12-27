@@ -1,5 +1,6 @@
 	db "TEMPOVIA@" ; species name
-	dw 6, 50 ; height, weight
+		db 6
+	dw 50 ; height, weight
 
 	db   "CELEBI è venerato"
 	next "come custode"

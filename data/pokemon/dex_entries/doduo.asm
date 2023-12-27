@@ -1,5 +1,6 @@
 	db "BIUCCELLO@" ; species name
-	dw 14, 392 ; height, weight
+		db 14
+	dw 392 ; height, weight
 
 	db   "Vive in praterie,"
 	next "dove può vedere"

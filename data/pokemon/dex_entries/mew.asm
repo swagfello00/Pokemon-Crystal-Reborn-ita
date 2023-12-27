@@ -1,5 +1,6 @@
 	db "NOVASPECIE@" ; species name
-	dw 4, 40 ; height, weight
+		db 4
+	dw 40 ; height, weight
 
 	db   "Poiché apprende"
 	next "qualsiasi mossa,"

@@ -1,5 +1,6 @@
 	db "MEGATONE@" ; species name
-	dw 14, 3000 ; height, weight
+		db 14
+	dw 3000 ; height, weight
 
 	db   "Il suo corpo è"
 	next "così resistente"

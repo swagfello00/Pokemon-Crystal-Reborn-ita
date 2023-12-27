@@ -1,5 +1,6 @@
 	db "GRANCORNO@" ; species name
-	dw 14, 712 ; height, weight
+		db 14
+	dw 712 ; height, weight
 
 	db   "Le corna cadute"
 	next "hanno sfere che"

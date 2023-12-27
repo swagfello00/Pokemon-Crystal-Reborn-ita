@@ -1,5 +1,6 @@
 	db "LANA@" ; species name
-	dw 6, 78 ; height, weight
+		db 6
+	dw 78 ; height, weight
 
 	db   "L'aria che"
 	next "raccoglie nella"

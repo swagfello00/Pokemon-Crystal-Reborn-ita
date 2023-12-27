@@ -1,5 +1,6 @@
 	db "PAPERO@" ; species name
-	dw 8, 196 ; height, weight
+		db 8
+	dw 196 ; height, weight
 
 	db   "Può usare i suoi"
 	next "poteri magici solo"

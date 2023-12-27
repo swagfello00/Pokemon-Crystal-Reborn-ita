@@ -1,5 +1,6 @@
 	db "TALPA@" ; species name
-	dw 2, 8 ; height, weight
+		db 2
+	dw 8 ; height, weight
 
 	db   "Scava nel terreno"
 	next "per mangiare le"

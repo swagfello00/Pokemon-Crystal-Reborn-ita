@@ -1,5 +1,6 @@
 	db "PALLONE@" ; species name
-	dw 10, 120 ; height, weight
+		db 10
+	dw 120 ; height, weight
 
 	db   "Il suo folto pelo"
 	next "è così morbido che"

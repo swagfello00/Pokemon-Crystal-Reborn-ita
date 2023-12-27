@@ -1,5 +1,6 @@
 	db "BUIO@" ; species name
-	dw 6, 108 ; height, weight
+		db 6
+	dw 108 ; height, weight
 
 	db   "All'alba, i suoi"
 	next "sinistri urli"

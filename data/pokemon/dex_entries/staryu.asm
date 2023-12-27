@@ -1,5 +1,6 @@
 	db "STELLA@" ; species name
-	dw 8, 345 ; height, weight
+		db 8
+	dw 345 ; height, weight
 
 	db   "Nelle notti"
 	next "stellate riemerge"

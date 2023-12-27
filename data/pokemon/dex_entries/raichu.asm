@@ -1,5 +1,6 @@
 	db "TOPO@" ; species name
-	dw 8, 300 ; height, weight
+		db 8
+	dw 300 ; height, weight
 
 	db   "Quando le tasche"
 	next "elettriche sono"

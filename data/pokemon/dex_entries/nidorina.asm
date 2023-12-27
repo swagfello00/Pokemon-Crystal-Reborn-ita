@@ -1,5 +1,6 @@
 	db "VELENAGO@" ; species name
-	dw 8, 200 ; height, weight
+		db 8
+	dw 200 ; height, weight
 
 	db   "Di natura docile,"
 	next "se avverte la"

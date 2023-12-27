@@ -1,5 +1,6 @@
 	db "SONNO@" ; species name
-	dw 21, 4600 ; height, weight
+		db 21
+	dw 4600 ; height, weight
 
 	db   "Questo #MON ha"
 	next "uno stomaco così"

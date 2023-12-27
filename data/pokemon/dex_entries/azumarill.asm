@@ -1,5 +1,6 @@
 	db "ACQUNIGLIO@" ; species name
-	dw 8, 285 ; height, weight
+		db 8
+	dw 285 ; height, weight
 
 	db   "Le bolle disegnate"
 	next "sulla pancia gli"

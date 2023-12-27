@@ -1,5 +1,6 @@
 	db "UMANOIDE@" ; species name
-	dw 14, 406 ; height, weight
+		db 14
+	dw 406 ; height, weight
 
 	db   "Può emettere"
 	next "molti versi"

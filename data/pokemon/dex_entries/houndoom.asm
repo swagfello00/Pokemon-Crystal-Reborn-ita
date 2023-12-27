@@ -1,5 +1,6 @@
 	db "BUIO@" ; species name
-	dw 14, 350 ; height, weight
+		db 14
+	dw 350 ; height, weight
 
 	db   "L'odore acre delle"
 	next "fiamme che gli"

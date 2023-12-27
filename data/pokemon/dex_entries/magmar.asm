@@ -1,5 +1,6 @@
 	db "SPUTAFUOCO@" ; species name
-	dw 13, 445 ; height, weight
+		db 13
+	dw 445 ; height, weight
 
 	db   "Predilige i luoghi"
 	next "caldi. È solito"

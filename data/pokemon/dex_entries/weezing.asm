@@ -1,5 +1,6 @@
 	db "VELENUVOLA@" ; species name
-	dw 12, 95 ; height, weight
+		db 12
+	dw 95 ; height, weight
 
 	db   "Quando inspira gas"
 	next "velenosi dai"

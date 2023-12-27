@@ -1,5 +1,6 @@
 	db "VELENUVOLA@" ; species name
-	dw 6, 10 ; height, weight
+		db 6
+	dw 10 ; height, weight
 
 	db   "Se ci si avvicina"
 	next "mentre espelle il"

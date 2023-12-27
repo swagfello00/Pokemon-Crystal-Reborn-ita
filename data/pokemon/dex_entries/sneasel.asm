@@ -1,5 +1,6 @@
 	db "LAMARTIGLI@" ; species name
-	dw 9, 280 ; height, weight
+		db 9
+	dw 280 ; height, weight
 
 	db   "Questo #MON"
 	next "scaltro si"

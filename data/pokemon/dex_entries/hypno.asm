@@ -1,5 +1,6 @@
 	db "IPNOSI@" ; species name
-	dw 16, 756 ; height, weight
+		db 16
+	dw 756 ; height, weight
 
 	db   "Più a lungo fa"
 	next "oscillare il"

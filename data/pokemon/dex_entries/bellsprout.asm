@@ -1,5 +1,6 @@
 	db "FIORE@" ; species name
-	dw 7, 40 ; height, weight
+		db 7
+	dw 40 ; height, weight
 
 	db   "Appena vede"
 	next "qualcosa muoversi,"

@@ -1,5 +1,6 @@
 	db "JET@" ; species name
-	dw 9, 285 ; height, weight
+		db 9
+	dw 285 ; height, weight
 
 	db   "Usa nascondersi"
 	next "nelle buche."

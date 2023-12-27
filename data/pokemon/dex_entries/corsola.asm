@@ -1,5 +1,6 @@
 	db "CORALLO@" ; species name
-	dw 6, 50 ; height, weight
+		db 6
+	dw 50 ; height, weight
 
 	db   "Le punte sulla"
 	next "testa assorbono"

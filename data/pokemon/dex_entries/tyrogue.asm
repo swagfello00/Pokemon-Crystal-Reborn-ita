@@ -1,5 +1,6 @@
 	db "BARUFFA@" ; species name
-	dw 7, 210 ; height, weight
+		db 7
+	dw 210 ; height, weight
 
 	db   "Sfida chiunque per"
 	next "mettere alla prova"

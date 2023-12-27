@@ -1,5 +1,6 @@
 	db "CROSTACEO@" ; species name
-	dw 16, 855 ; height, weight
+		db 16
+	dw 855 ; height, weight
 
 	db   "Punta i piedi"
 	next "saldamente al"

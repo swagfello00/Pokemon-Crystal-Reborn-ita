@@ -1,5 +1,6 @@
 	db "BOZZOLO@" ; species name
-	dw 6, 100 ; height, weight
+		db 6
+	dw 100 ; height, weight
 
 	db   "Quasi incapace di"
 	next "muoversi, resta"

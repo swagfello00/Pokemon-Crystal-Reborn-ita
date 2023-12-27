@@ -1,5 +1,6 @@
 	db "LUNGACODA@" ; species name
-	dw 8, 115 ; height, weight
+		db 8
+	dw 115 ; height, weight
 
 	db   "Usa la coda per"
 	next "appendersi ai"

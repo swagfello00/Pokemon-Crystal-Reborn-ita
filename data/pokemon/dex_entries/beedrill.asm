@@ -1,5 +1,6 @@
 	db "VELENAPE@" ; species name
-	dw 10, 295 ; height, weight
+		db 10
+	dw 295 ; height, weight
 
 	db   "Sconfigge la preda"
 	next "con gli aculei"

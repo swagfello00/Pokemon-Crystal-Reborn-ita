@@ -1,5 +1,6 @@
 	db "ROCCIA@" ; species name
-	dw 10, 1050 ; height, weight
+		db 10
+	dw 1050 ; height, weight
 
 	db   "Si muove rotolando"
 	next "per i sentieri di"

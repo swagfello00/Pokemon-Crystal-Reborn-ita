@@ -1,5 +1,6 @@
 	db "VOLPE@" ; species name
-	dw 6, 99 ; height, weight
+		db 6
+	dw 99 ; height, weight
 
 	db   "Mentre gli cresce"
 	next "il corpo, le sei"

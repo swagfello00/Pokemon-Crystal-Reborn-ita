@@ -1,5 +1,6 @@
 	db "TOPINO@" ; species name
-	dw 3, 20 ; height, weight
+		db 3
+	dw 20 ; height, weight
 
 	db   "Non è ancora bravo"
 	next "ad immagazzinare"

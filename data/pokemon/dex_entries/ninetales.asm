@@ -1,5 +1,6 @@
 	db "VOLPE@" ; species name
-	dw 11, 199 ; height, weight
+		db 11
+	dw 199 ; height, weight
 
 	db   "Dicono che viva"
 	next "un millennio, e"

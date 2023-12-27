@@ -1,5 +1,6 @@
 	db "ELETTRICO@" ; species name
-	dw 16, 526 ; height, weight
+		db 16
+	dw 526 ; height, weight
 
 	db   "I lampi che questo"
 	next "#MON uccello"

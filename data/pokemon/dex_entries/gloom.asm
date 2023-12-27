@@ -1,5 +1,6 @@
 	db "MALERBA@" ; species name
-	dw 8, 86 ; height, weight
+		db 8
+	dw 86 ; height, weight
 
 	db   "Il puzzo della"
 	next "bava e del polline"

@@ -1,5 +1,6 @@
 	db "TERRASERPE@" ; species name
-	dw 15, 140 ; height, weight
+		db 15
+	dw 140 ; height, weight
 
 	db   "Si nasconde nel"
 	next "fondo delle"

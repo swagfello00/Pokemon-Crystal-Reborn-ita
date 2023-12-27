@@ -1,5 +1,6 @@
 	db "TRIUCCELLO@" ; species name
-	dw 18, 852 ; height, weight
+		db 18
+	dw 852 ; height, weight
 
 	db   "Occorre fare"
 	next "attenzione a tutte"

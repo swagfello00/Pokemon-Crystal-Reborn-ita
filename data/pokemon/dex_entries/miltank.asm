@@ -1,5 +1,6 @@
 	db "BOVINO@" ; species name
-	dw 12, 755 ; height, weight
+		db 12
+	dw 755 ; height, weight
 
 	db   "Mungere MILTANK"
 	next "non è facile:"

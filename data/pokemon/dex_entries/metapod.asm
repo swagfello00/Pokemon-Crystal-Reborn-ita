@@ -1,5 +1,6 @@
 	db "BOZZOLO@" ; species name
-	dw 7, 99 ; height, weight
+		db 7
+	dw 99 ; height, weight
 
 	db   "In questa forma"
 	next "preevoluta può"

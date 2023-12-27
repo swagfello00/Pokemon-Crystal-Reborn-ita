@@ -1,5 +1,6 @@
 	db "CROSTACEO@" ; species name
-	dw 13, 405 ; height, weight
+		db 13
+	dw 405 ; height, weight
 
 	db   "Poteva nuotare"
 	next "rapidamente"

@@ -1,5 +1,6 @@
 	db "IPNOSI@" ; species name
-	dw 10, 324 ; height, weight
+		db 10
+	dw 324 ; height, weight
 
 	db   "Storcendo il naso"
 	next "può leggere i"

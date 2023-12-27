@@ -1,5 +1,6 @@
 	db "MAIALE@" ; species name
-	dw 4, 65 ; height, weight
+		db 4
+	dw 65 ; height, weight
 
 	db   "Scava con la punta"
 	next "del muso alla"

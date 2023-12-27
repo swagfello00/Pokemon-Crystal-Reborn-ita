@@ -1,5 +1,6 @@
 	db "BACO@" ; species name
-	dw 3, 29 ; height, weight
+		db 3
+	dw 29 ; height, weight
 
 	db   "Strisciando tra la"
 	next "vegetazione, si"

@@ -1,5 +1,6 @@
 	db "MALERBA@" ; species name
-	dw 5, 54 ; height, weight
+		db 5
+	dw 54 ; height, weight
 
 	db   "Di giorno vive nel"
 	next "freddo sottosuolo,"

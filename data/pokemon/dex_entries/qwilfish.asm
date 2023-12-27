@@ -1,5 +1,6 @@
 	db "PALLONE@" ; species name
-	dw 5, 39 ; height, weight
+		db 5
+	dw 39 ; height, weight
 
 	db   "Se incontra un"
 	next "nemico più grande,"

@@ -1,5 +1,6 @@
 	db "MELMA@" ; species name
-	dw 9, 300 ; height, weight
+		db 9
+	dw 300 ; height, weight
 
 	db   "Quando due di"
 	next "questi #MON"

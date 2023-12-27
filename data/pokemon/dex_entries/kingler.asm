@@ -1,5 +1,6 @@
 	db "CHELA@" ; species name
-	dw 13, 600 ; height, weight
+		db 13
+	dw 600 ; height, weight
 
 	db   "Le enormi chele,"
 	next "molto potenti,"

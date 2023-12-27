@@ -1,5 +1,6 @@
 	db "TOROBRADO@" ; species name
-	dw 14, 884 ; height, weight
+		db 14
+	dw 884 ; height, weight
 
 	db   "#MON violenti,"
 	next "che lottano con"

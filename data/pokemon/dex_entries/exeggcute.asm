@@ -1,5 +1,6 @@
 	db "UOVO@" ; species name
-	dw 4, 25 ; height, weight
+		db 4
+	dw 25 ; height, weight
 
 	db   "L'energia che lega"
 	next "il gruppo è così"

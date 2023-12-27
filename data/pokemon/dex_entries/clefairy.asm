@@ -1,5 +1,6 @@
 	db "FATA@" ; species name
-	dw 6, 75 ; height, weight
+		db 6
+	dw 75 ; height, weight
 
 	db   "È raro"
 	next "incontrarlo, ma"

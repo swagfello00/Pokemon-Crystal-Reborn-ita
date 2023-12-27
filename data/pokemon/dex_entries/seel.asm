@@ -1,5 +1,6 @@
 	db "OTARIA@" ; species name
-	dw 11, 900 ; height, weight
+		db 11
+	dw 900 ; height, weight
 
 	db   "Il pelo azzurro"
 	next "che lo ricopre lo"

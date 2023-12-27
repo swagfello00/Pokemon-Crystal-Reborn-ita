@@ -1,5 +1,6 @@
 	db "PIPISTREL.@" ; species name
-	dw 8, 75 ; height, weight
+		db 8
+	dw 75 ; height, weight
 
 	db   "Durante il giorno"
 	next "riposano insieme,"

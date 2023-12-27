@@ -1,5 +1,6 @@
 	db "LEGGENDA@" ; species name
-	dw 19, 1550 ; height, weight
+		db 19
+	dw 1550 ; height, weight
 
 	db   "Dal disegno su un'"
 	next "antica pergamena"

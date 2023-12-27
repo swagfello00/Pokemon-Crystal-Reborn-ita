@@ -1,5 +1,6 @@
 	db "GRAMIGNA@" ; species name
-	dw 4, 5 ; height, weight
+		db 4
+	dw 5 ; height, weight
 
 	db   "Anche la brezza"
 	next "leggera può"

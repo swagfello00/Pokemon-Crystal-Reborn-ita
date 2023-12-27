@@ -1,5 +1,6 @@
 	db "IMMERSIONE@" ; species name
-	dw 52, 2160 ; height, weight
+		db 52
+	dw 2160 ; height, weight
 
 	db   "Ha un'incredibile"
 	next "capacità di far"

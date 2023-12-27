@@ -1,5 +1,6 @@
 	db "GIRINO@" ; species name
-	dw 13, 540 ; height, weight
+		db 13
+	dw 540 ; height, weight
 
 	db   "Può usare i suoi"
 	next "arti ben"

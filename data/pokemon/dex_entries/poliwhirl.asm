@@ -1,5 +1,6 @@
 	db "GIRINO@" ; species name
-	dw 10, 200 ; height, weight
+		db 10
+	dw 200 ; height, weight
 
 	db   "Sulla terraferma"
 	next "si muove bene, ma"

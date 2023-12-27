@@ -1,5 +1,6 @@
 	db "ELETTRICO@" ; species name
-	dw 11, 300 ; height, weight
+		db 11
+	dw 300 ; height, weight
 
 	db   "Stando vicini,"
 	next "due ELECTABUZZ"

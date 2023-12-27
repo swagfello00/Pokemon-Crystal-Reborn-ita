@@ -1,5 +1,6 @@
 	db "VIRTUALE@" ; species name
-	dw 6, 325 ; height, weight
+		db 6
+	dw 325 ; height, weight
 
 	db   "#MON prodotto"
 	next "dall'uomo con la"

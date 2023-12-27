@@ -1,5 +1,6 @@
 	db "PELDISASSO@" ; species name
-	dw 6, 720 ; height, weight
+		db 6
+	dw 720 ; height, weight
 
 	db   "Nasce nel profondo"
 	next "sottosuolo; dopo"

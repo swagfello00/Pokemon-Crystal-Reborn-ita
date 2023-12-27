@@ -1,5 +1,6 @@
 	db "SEME@" ; species name
-	dw 3, 18 ; height, weight
+		db 3
+	dw 18 ; height, weight
 
 	db   "Debolissimo, la"
 	next "sua unica difesa"

@@ -1,5 +1,6 @@
 	db "MELMA@" ; species name
-	dw 12, 300 ; height, weight
+		db 12
+	dw 300 ; height, weight
 
 	db   "Muovendosi lascia"
 	next "cadere un veleno"

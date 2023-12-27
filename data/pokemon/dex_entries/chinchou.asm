@@ -1,5 +1,6 @@
 	db "PESCATORE@" ; species name
-	dw 5, 120 ; height, weight
+		db 5
+	dw 120 ; height, weight
 
 	db   "Tra le antenne,"
 	next "evoluzione di"

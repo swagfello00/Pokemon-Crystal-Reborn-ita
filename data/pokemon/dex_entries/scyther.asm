@@ -1,5 +1,6 @@
 	db "MANTIDE@" ; species name
-	dw 15, 560 ; height, weight
+		db 15
+	dw 560 ; height, weight
 
 	db   "Va molto fiero"
 	next "della propria"

@@ -1,5 +1,6 @@
 	db "VELENTARMA@" ; species name
-	dw 15, 125 ; height, weight
+		db 15
+	dw 125 ; height, weight
 
 	db   "Sparge scaglie che"
 	next "paralizzano"

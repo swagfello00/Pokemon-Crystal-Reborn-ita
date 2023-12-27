@@ -1,5 +1,6 @@
 	db "FIORE@" ; species name
-	dw 4, 58 ; height, weight
+		db 4
+	dw 58 ; height, weight
 
 	db   "Quando danzano"
 	next "insieme, sfregano"

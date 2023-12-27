@@ -1,5 +1,6 @@
 	db "ROCCIA@" ; species name
-	dw 4, 200 ; height, weight
+		db 4
+	dw 200 ; height, weight
 
 	db   "Fieri dei loro"
 	next "corpi robusti, si"

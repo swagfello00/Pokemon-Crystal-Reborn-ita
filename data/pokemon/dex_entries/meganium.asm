@@ -1,5 +1,6 @@
 	db "ERBE@" ; species name
-	dw 18, 1005 ; height, weight
+		db 18
+	dw 1005 ; height, weight
 
 	db   "Chiunque gli stia"
 	next "vicino si ritempra"

@@ -1,5 +1,6 @@
 	db "SOLE@" ; species name
-	dw 9, 265 ; height, weight
+		db 9
+	dw 265 ; height, weight
 
 	db   "Mentre predice la"
 	next "prossima mossa del"

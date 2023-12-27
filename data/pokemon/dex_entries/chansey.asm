@@ -1,5 +1,6 @@
 	db "UOVO@" ; species name
-	dw 11, 346 ; height, weight
+		db 11
+	dw 346 ; height, weight
 
 	db   "Molti provano a"
 	next "catturarlo per le"

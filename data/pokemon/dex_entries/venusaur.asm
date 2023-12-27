@@ -1,5 +1,6 @@
 	db "SEME@" ; species name
-	dw 20, 1000 ; height, weight
+		db 20
+	dw 1000 ; height, weight
 
 	db   "Mentre si riscalda"
 	next "assorbendo la luce"

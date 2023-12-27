@@ -1,5 +1,6 @@
 	db "NASONE@" ; species name
-	dw 5, 335 ; height, weight
+		db 5
+	dw 335 ; height, weight
 
 	db   "Nella quiete"
 	next "del mattino"

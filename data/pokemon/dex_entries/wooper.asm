@@ -1,5 +1,6 @@
 	db "ACQUAPESCE@" ; species name
-	dw 4, 85 ; height, weight
+		db 4
+	dw 85 ; height, weight
 
 	db   "Il suo corpo è"
 	next "ricoperto da una"

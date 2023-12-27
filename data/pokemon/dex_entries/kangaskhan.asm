@@ -1,5 +1,6 @@
 	db "GENITORE@" ; species name
-	dw 22, 800 ; height, weight
+		db 22
+	dw 800 ; height, weight
 
 	db   "Dorme sempre in"
 	next "piedi per non"

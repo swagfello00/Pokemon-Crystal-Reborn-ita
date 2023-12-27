@@ -1,5 +1,6 @@
 	db "PENTASTRA@" ; species name
-	dw 10, 108 ; height, weight
+		db 10
+	dw 108 ; height, weight
 
 	db   "Timidi, stanno"
 	next "sempre uniti."

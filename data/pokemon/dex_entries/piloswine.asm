@@ -1,5 +1,6 @@
 	db "SUINO@" ; species name
-	dw 11, 558 ; height, weight
+		db 11
+	dw 558 ; height, weight
 
 	db   "Ha le zampe corte,"
 	next "ma grazie agli"

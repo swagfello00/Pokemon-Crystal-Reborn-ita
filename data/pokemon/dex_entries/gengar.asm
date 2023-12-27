@@ -1,5 +1,6 @@
 	db "OMBRA@" ; species name
-	dw 15, 405 ; height, weight
+		db 15
+	dw 405 ; height, weight
 
 	db   "Di notte si cela"
 	next "nell'ombra delle"

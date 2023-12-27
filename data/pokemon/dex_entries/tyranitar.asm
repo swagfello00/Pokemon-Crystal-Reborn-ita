@@ -1,5 +1,6 @@
 	db "ARMATURA@" ; species name
-	dw 20, 2020 ; height, weight
+		db 20
+	dw 2020 ; height, weight
 
 	db   "Anche una sola"
 	next "delle sue mani può"

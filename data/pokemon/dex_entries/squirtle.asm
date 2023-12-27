@@ -1,5 +1,6 @@
 	db "TARTAGHINA@" ; species name
-	dw 5, 90 ; height, weight
+		db 5
+	dw 90 ; height, weight
 
 	db   "Se si sente"
 	next "minacciato, ritira"

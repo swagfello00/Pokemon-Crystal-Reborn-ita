@@ -1,5 +1,6 @@
 	db "ARCOBALENO@" ; species name
-	dw 38, 1990 ; height, weight
+		db 38
+	dw 1990 ; height, weight
 
 	db   "Può mostrarsi ad"
 	next "un allenatore puro"

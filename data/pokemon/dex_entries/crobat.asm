@@ -1,5 +1,6 @@
 	db "PIPISTREL.@" ; species name
-	dw 18, 750 ; height, weight
+		db 18
+	dw 750 ; height, weight
 
 	db   "Gli è cresciuto un"
 	next "altro paio di ali,"

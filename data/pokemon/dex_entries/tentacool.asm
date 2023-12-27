@@ -1,5 +1,6 @@
 	db "MEDUSA@" ; species name
-	dw 9, 455 ; height, weight
+		db 9
+	dw 455 ; height, weight
 
 	db   "Galleggiando tra"
 	next "le onde, usa i"

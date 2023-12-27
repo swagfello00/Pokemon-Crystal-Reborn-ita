@@ -1,5 +1,6 @@
 	db "SUINPANZé@" ; species name
-	dw 5, 280 ; height, weight
+		db 5
+	dw 280 ; height, weight
 
 	db   "Vivono in branchi,"
 	next "in cima agli"

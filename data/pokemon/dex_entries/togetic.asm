@@ -1,5 +1,6 @@
 	db "FELICITÀ@" ; species name
-	dw 6, 32 ; height, weight
+		db 6
+	dw 32 ; height, weight
 
 	db   "Pur non battendo"
 	next "molto le ali,"

@@ -1,5 +1,6 @@
 	db "PESCEROSSO@" ; species name
-	dw 13, 390 ; height, weight
+		db 13
+	dw 390 ; height, weight
 
 	db   "In autunno i"
 	next "maschi sorvegliano"

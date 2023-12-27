@@ -1,5 +1,6 @@
 	db "FORBICI@" ; species name
-	dw 18, 1180 ; height, weight
+		db 18
+	dw 1180 ; height, weight
 
 	db   "Le chele, che"
 	next "contengono"

@@ -1,5 +1,6 @@
 	db "PAZIENZA@" ; species name
-	dw 13, 285 ; height, weight
+		db 13
+	dw 285 ; height, weight
 
 	db   "Vive in grotte"
 	next "buie per"

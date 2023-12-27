@@ -1,5 +1,6 @@
 	db "MEGAFORZA@" ; species name
-	dw 16, 1300 ; height, weight
+		db 16
+	dw 1300 ; height, weight
 
 	db   "Le quattro braccia"
 	next "sono più rapide"

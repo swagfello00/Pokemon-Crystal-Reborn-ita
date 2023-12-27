@@ -1,5 +1,6 @@
 	db "GUARDAOSSI@" ; species name
-	dw 10, 450 ; height, weight
+		db 10
+	dw 450 ; height, weight
 
 	db   "Da qualche parte"
 	next "nel mondo vi è un"

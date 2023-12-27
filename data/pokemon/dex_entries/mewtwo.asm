@@ -1,5 +1,6 @@
 	db "GENETICO@" ; species name
-	dw 20, 1220 ; height, weight
+		db 20
+	dw 1220 ; height, weight
 
 	db   "#MON creato"
 	next "esclusivamente per"

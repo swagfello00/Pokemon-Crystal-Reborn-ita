@@ -1,5 +1,6 @@
 	db "GUFO@" ; species name
-	dw 7, 212 ; height, weight
+		db 7
+	dw 212 ; height, weight
 
 	db   "Emettono il loro"
 	next "verso ogni giorno"

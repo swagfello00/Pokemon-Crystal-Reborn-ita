@@ -1,5 +1,6 @@
 	db "BECCO@" ; species name
-	dw 12, 380 ; height, weight
+		db 12
+	dw 380 ; height, weight
 
 	db   "Attacca usando il"
 	next "lungo becco. Ha un"

@@ -1,5 +1,6 @@
 	db "PALLONE@" ; species name
-	dw 5, 55 ; height, weight
+		db 5
+	dw 55 ; height, weight
 
 	db   "Fa ruotare i dolci"
 	next "occhi cantando una"

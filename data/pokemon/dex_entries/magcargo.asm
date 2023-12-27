@@ -1,5 +1,6 @@
 	db "LAVA@" ; species name
-	dw 8, 550 ; height, weight
+		db 8
+	dw 550 ; height, weight
 
 	db   "Il corpo caldo"
 	next "come lava è sempre"
