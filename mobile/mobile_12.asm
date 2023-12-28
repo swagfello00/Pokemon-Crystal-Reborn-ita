@@ -291,14 +291,14 @@ GenderPressed:
 	ld hl, MenuHeader_0x484f1
 	call LoadMenuHeader
 	call SetCursorParameters_Gender
-	hlcoord 12, 2 ; Gender menu position
+	hlcoord 10, 2 ; Gender menu position
 	ld b, $4
-	ld c, $6
+	ld c, $8
 	call DisplayBlankGoldenBox
-	hlcoord 14, 4 ; Position of Male Gender string in Gender menu
+	hlcoord 12, 4 ; Position of Male Gender string in Gender menu
 	ld de, String_484fb
 	call PlaceString
-	hlcoord 14, 6 ; Position of Female Gender string in Gender menu
+	hlcoord 12, 6 ; Position of Female Gender string in Gender menu
 	ld de, String_484ff
 	call PlaceString
 	call WaitBGMap
@@ -328,7 +328,7 @@ GenderPressed:
 .asm_482f1
 	ld d, h
 	ld e, l
-	hlcoord 14, 5 ; Gender position
+	hlcoord 11, 5 ; Gender position
 	call PlaceString
 	ld a, [wMobileProfileParametersFilled]
 	set 0, a
@@ -461,7 +461,7 @@ DisplayRegionCodesList:
 	ld c, $8
 	hlcoord 11, 8 ; ??? Clears the surrounding tiles when prefecture is selected, needs to be moved with preferectures
 	call ClearBox
-	hlcoord 19 - REGION_CODE_STRING_LENGTH, 9 ; Prefectures position when selected
+	hlcoord 18 - REGION_CODE_STRING_LENGTH, 9 ; Prefectures position when selected
 	call PlaceString
 	ret
 
@@ -624,8 +624,8 @@ Strings_484fb:
 String_484fb: db "Bambino@"
 String_484ff: db "Bambina@"
 Strings_484fc:
-String_484fc: db " Boy@"
-String_48500: db "Girl@"
+String_484fc: db "Bambino@"
+String_48500: db "Bambino@"
 
 MenuHeader_0x48504:
 	db MENU_BACKUP_TILES ; flags
@@ -910,7 +910,7 @@ SetCursorParameters_Gender:
 	ld hl, w2DMenuCursorInitY
 	ld a, 4
 	ld [hli], a
-	ld a, 13 ; x axis position of the gender cursor
+	ld a, 11 ; x axis position of the gender cursor
 	ld [hli], a ; init x
 	ld a, 2
 	ld [hli], a ; num rows
