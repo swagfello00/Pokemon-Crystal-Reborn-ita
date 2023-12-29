@@ -16,7 +16,7 @@ https://github.com/gb-mobile/pokecrystal-mobile-ita/wiki/Potentially-misplaced-o
 
 - Adjust any menus to match those of the original Italian games (currently set to English sizing and formatting)
 - Check for any untranslated menus missed by the find/replace script.
-- Translate any of mobile features. (Anything English under /mobile/, /maps/GoldenrodPokecenter1F.asm, maps/PokecomCenterAdminOfficeMobile.asm, data/text/common_1.asmm data/text/common_3.asm and data/text/battle.asm).
+- Translate any of mobile features. (Anything English under /mobile/, /maps/GoldenrodPokecenter1F.asm, maps/PokecomCenterAdminOfficeMobile.asm, data/text/common_1.asmm data/text/common_3.asm, data/text/battle.asm and maps/DayCare.asm).
 - Also refer to the English build for 'Text_BattleReceptionistIntro:', 'Text_TradeReceptionistIntro:' and 'Text_TimeCapsuleReceptionistIntro:' for proper mobile translations of the PokeCOM Club reception dialogue.
 - Update gfx\sgb\gbc_only.png splash screen to load correctly and match Italian (CRISTALLO), as well gfx\intro\crystal_unowns.png in the intro.
 - Fix the known issues.
