@@ -866,7 +866,7 @@ Function100597:
 
 MenuHeader_1005b2:
 	db MENU_BACKUP_TILES ; flags
-	db 6, 14
+	db 6, 15
 	db 10, 19
 	dw MenuData_1005ba
 	db 1 ; default option
@@ -874,7 +874,7 @@ MenuHeader_1005b2:
 MenuData_1005ba:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2
-	db "YES@"	; "はい@"
+	db "SÌ@"	; "はい@"
 	db "NO@"	; "いいえ@"
 
 Function1005c3:
