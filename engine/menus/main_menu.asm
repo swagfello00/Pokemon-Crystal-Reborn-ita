@@ -70,7 +70,7 @@ MainMenu:
 	db "OPZIONI@"
 	db "DON SEGRETO@"
 	db "MOBILE@"
-	db "MOBILE STADIUM@"
+	db "STADIO MOBILE@"
 if DEF(_DEBUG)
 	db "DEBUG ROOM@"
 endc
@@ -404,10 +404,11 @@ MainMenu_PrintCurrentTimeAndDay:
 
 .Days:
 	db "DOMENICA@"
-	db "LUNED@"
-	db "MARTED@"
-	db "MERCOLED@"
-	db "VENERD@"
+	db "LUNEDÌ@"
+	db "MARTEDÌ@"
+	db "MERCOLEDÌ@"
+	db "GIOVEDÌ@"
+	db "VENERDÌ@"
 	db "SABATO@"
 .Day:
 	db "@"
