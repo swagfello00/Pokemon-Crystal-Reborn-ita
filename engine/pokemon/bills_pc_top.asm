@@ -83,7 +83,7 @@ _BillsPC:
 	db "RITIRA <PK><MN>@"
 	db "DEPOSITA <PK><MN>@"
 	db "CAMBIA BOX@"
-	db "SPOSTA <PK><MN> SN MESS"
+	db "SPOSTA <PK><MN> SN MESS@"
 	db "CIAO!@"
 
 .Jumptable:

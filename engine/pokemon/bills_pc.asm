@@ -1799,7 +1799,7 @@ DepositPokemon:
 	ld h, b
 	ld de, wStringBuffer1
 	call PlaceString
-	ld a, "!"
+	ld a, "."
 	ld [bc], a
 	ld c, 50
 	call DelayFrames
@@ -1854,7 +1854,7 @@ TryWithdrawPokemon:
 	ld h, b
 	ld de, wStringBuffer1
 	call PlaceString
-	ld a, "!"
+	ld a, "."
 	ld [bc], a
 	ld c, 50
 	call DelayFrames
@@ -1913,7 +1913,7 @@ ReleasePKMN_ByePKMN:
 	call PlaceString
 	ld l, c
 	ld h, b
-	ld [hl], "!"
+	ld [hl], "."
 	ld c, 50
 	call DelayFrames
 	ret

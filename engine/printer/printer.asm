@@ -618,7 +618,7 @@ PlacePrinterStatusStringBorderless: ; unreferenced
 	ret
 
 String_PressBToCancel:
-	db "  B per annullare@"
+	db " B per annullare@"
 
 PrinterStatusStringPointers:
 	dw GBPrinterString_Null ; @

@@ -423,8 +423,8 @@ Pokedex_ReinitDexEntryScreen:
 DexEntryScreen_ArrowCursorData:
 	db D_RIGHT | D_LEFT, 4
 	dwcoord 1, 17  ; PAGE
-	dwcoord 6, 17  ; AREA
-	dwcoord 11, 17 ; CRY
+	dwcoord 5, 17  ; AREA
+	dwcoord 10, 17 ; CRY
 	dwcoord 15, 17 ; PRNT
 
 DexEntryScreen_MenuActionJumptable:
