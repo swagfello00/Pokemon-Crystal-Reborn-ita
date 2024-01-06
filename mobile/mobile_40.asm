@@ -7534,8 +7534,8 @@ MenuHeader_103747:
 MenuData_10374f:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 3
-	db "YES@"		; "はい@"
-	db "CANCEL@"	; "やめる@"
+	db "SÌ@"		; "はい@"
+	db "ESCI@"	; "やめる@"
 	db "INFO@"		; "せつめい@"
 
 MobileBattleMustPickThreeMonText:
