@@ -107,13 +107,13 @@ Landmarks:
 	assert_table_length NUM_LANDMARKS
 
 NewBarkTownName:     	db "BORGO¯FOGLIANOVA@"
-CherrygroveCityName: 	db "FIORPESCO-POLI@"
+CherrygroveCityName: 	db "FIORPESCO-%POLI@"
 VioletCityName:      	db "VIOLAPOLI@"
 AzaleaTownName:      	db "AZALINA@"
-GoldenrodCityName:   	db "FIORDORO-POLI@"
-EcruteakCityName:    	db "AMARANTO-POLI@"
-OlivineCityName:     	db "OLIVINO-POLI@"
-CianwoodCityName:    	db "FIORLISO-POLI@"
+GoldenrodCityName:   	db "FIORDORO-%POLI@"
+EcruteakCityName:    	db "AMARANTO-%POLI@"
+OlivineCityName:     	db "OLIVINO-%POLI@"
+CianwoodCityName:    	db "FIORLISO-%POLI@"
 MahoganyTownName:    	db "MOGANIA@"
 BlackthornCityName:  	db "EBANOPOLI@"
 LakeOfRageName:      	db "LAGO D'IRA@"
