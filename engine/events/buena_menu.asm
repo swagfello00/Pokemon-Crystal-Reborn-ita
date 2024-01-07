@@ -9,7 +9,7 @@ AskRememberPassword:
 	ret
 
 .DoMenu:
-	lb bc, 14, 7
+	lb bc, 15, 7
 	push bc
 	ld hl, YesNoMenuHeader
 	call CopyMenuHeader

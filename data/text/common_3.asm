@@ -47,7 +47,7 @@ _ClockSetWithControlPadText::
 	done
 
 _ClockIsThisOKText::
-	text "È ok?"
+	text "Va bene?"
 	done
 
 _ClockHasResetText::

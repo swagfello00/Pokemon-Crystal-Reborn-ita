@@ -29,10 +29,11 @@ PrintDayOfWeek:
 
 .Days:
 	db "DOMENICA@"
-	db "LUNED@"
-	db "MARTED@"
-	db "MERCOLED@"
-	db "VENERD@"
+	db "LUNEDÌ@"
+	db "MARTEDÌ@"
+	db "MERCOLEDÌ@"
+	db "GIOVEDÌ@"
+	db "VENERDÌ@"
 	db "SABATO@"
 
 .Day:

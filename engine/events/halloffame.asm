@@ -375,11 +375,11 @@ _HallOfFamePC:
 
 .print_num_hof
 	ld de, .TimeFamer
-	hlcoord 1, 2
+	hlcoord 3, 2
 	call PlaceString
 	hlcoord 2, 2
 	ld de, wHallOfFameTempWinCount
-	lb bc, 1, 3
+	lb bc, 1, 2
 	call PrintNum
 	hlcoord 11, 2
 

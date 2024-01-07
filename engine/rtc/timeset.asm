@@ -53,15 +53,15 @@ InitClock:
 .loop
 	ld hl, OakTimeWhatTimeIsItText
 	call PrintText
-	hlcoord 3, 7
+	hlcoord 5, 7
 	ld b, 2
-	ld c, 15
+	ld c, 13
 	call Textbox
 	hlcoord 11, 7
 	ld [hl], $1
 	hlcoord 11, 10
 	ld [hl], $2
-	hlcoord 4, 9
+	hlcoord 6, 9
 	call DisplayHourOClock
 	ld c, 10
 	call DelayFrames
@@ -169,11 +169,11 @@ SetHour:
 	ld [hl], a
 
 .okay
-	hlcoord 4, 9
+	hlcoord 6, 9
 	ld a, " "
-	ld bc, 15
+	ld bc, 13
 	call ByteFill
-	hlcoord 4, 9
+	hlcoord 6, 9
 	call DisplayHourOClock
 	call WaitBGMap
 	and a
@@ -298,7 +298,7 @@ OakTimeWhatTimeIsItText:
 	text_end
 
 String_oclock:
-	db "ora@"
+	db "(ora)@"
 
 OakTimeWhatHoursText:
 	; What?@ @
