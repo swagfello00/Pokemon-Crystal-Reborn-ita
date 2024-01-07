@@ -203,11 +203,11 @@ PrintBlueCardBalance:
 	ret
 
 .Points_string:
-	db "Points@"
+	db "Punti@"
 
 BlueCardBalanceMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 0, 11, 11, 13
+	menu_coords 0, 11, 10, 13
 
 Buena_PlacePrizeMenuBox:
 	ld hl, .MenuHeader

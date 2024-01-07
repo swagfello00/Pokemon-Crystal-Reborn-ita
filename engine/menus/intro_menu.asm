@@ -499,17 +499,17 @@ DisplaySaveInfoOnContinue:
 	call CheckRTCStatus
 	and %10000000
 	jr z, .clock_ok
-	lb de, 4, 8
+	lb de, 5, 8
 	call DisplayContinueDataWithRTCError
 	ret
 
 .clock_ok
-	lb de, 4, 8
+	lb de, 5, 8
 	call DisplayNormalContinueData
 	ret
 
 DisplaySaveInfoOnSave:
-	lb de, 4, 0
+	lb de, 5, 0
 	jr DisplayNormalContinueData
 
 DisplayNormalContinueData:
@@ -545,7 +545,7 @@ Continue_LoadMenuHeader:
 
 .MenuHeader_Dex:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 0, 0, 15, 9
+	menu_coords 0, 0, 14, 9
 	dw .MenuData_Dex
 	db 1 ; default option
 
@@ -559,7 +559,7 @@ Continue_LoadMenuHeader:
 
 .MenuHeader_NoDex:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 0, 0, 15, 9
+	menu_coords 0, 0, 14, 9
 	dw .MenuData_NoDex
 	db 1 ; default option
 
@@ -574,17 +574,17 @@ Continue_LoadMenuHeader:
 Continue_DisplayBadgesDexPlayerName:
 	call MenuBoxCoord2Tile
 	push hl
-	decoord 13, 4, 0
+	decoord 12, 4, 0
 	add hl, de
 	call Continue_DisplayBadgeCount
 	pop hl
 	push hl
-	decoord 12, 6, 0
+	decoord 11, 6, 0
 	add hl, de
 	call Continue_DisplayPokedexNumCaught
 	pop hl
 	push hl
-	decoord 8, 2, 0
+	decoord 7, 2, 0
 	add hl, de
 	ld de, .Player
 	call PlaceString
@@ -595,7 +595,7 @@ Continue_DisplayBadgesDexPlayerName:
 	db "<PLAYER>@"
 
 Continue_PrintGameTime:
-	decoord 9, 8, 0
+	decoord 8, 8, 0
 	add hl, de
 	call Continue_DisplayGameTime
 	ret
@@ -799,7 +799,7 @@ NamePlayer:
 	ret
 
 .Chris:
-		db "CHRIS@@@@@@"
+	db "CHRIS@@@@@@"
 .Kris:
 	db "KRISTY@@@@@"
 
