@@ -13,9 +13,15 @@ _ResetClock:
 	call VerticalMenu
 	ret c
 	ld a, [wMenuCursorY]
-	cp 1
+	cp $1
 	ret z
 	call ClockResetPassword
+	push af
+	hlcoord 7, 6
+	ld bc, 5
+	ld a, " "
+	call ByteFill
+	pop af
 	jr c, .wrongpassword
 	ld a, BANK(sRTCStatusFlags)
 	call OpenSRAM
@@ -45,7 +51,7 @@ _ResetClock:
 
 .NoYes_MenuHeader:
 	db 0 ; flags
-	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 15, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .NoYes_MenuData
 	db 1 ; default option
 
@@ -62,7 +68,7 @@ ClockResetPassword:
 	ld bc, 5
 	xor a
 	call ByteFill
-	ld a, 4
+	ld a, $4
 	ld [wStringBuffer2 + 5], a
 	ld hl, .PasswordAskEnterText
 	call PrintText
@@ -103,7 +109,7 @@ ClockResetPassword:
 	text_end
 
 .updateIDdisplay
-	hlcoord 14, 15
+	hlcoord 7, 5
 	ld de, wStringBuffer2
 	ld c, 5
 .loop3
@@ -113,14 +119,14 @@ ClockResetPassword:
 	inc de
 	dec c
 	jr nz, .loop3
-	hlcoord 14, 16
+	hlcoord 7, 6
 	ld bc, 5
 	ld a, " "
 	call ByteFill
-	hlcoord 14, 16
+	hlcoord 7, 6
 	ld a, [wStringBuffer2 + 5]
 	ld e, a
-	ld d, 0
+	ld d, $0
 	add hl, de
 	ld [hl], "▲"
 	ret
@@ -150,7 +156,7 @@ ClockResetPassword:
 
 .right
 	ld a, [wStringBuffer2 + 5]
-	cp 4
+	cp $4
 	ret z
 	inc a
 	ld [wStringBuffer2 + 5], a
@@ -166,7 +172,7 @@ ClockResetPassword:
 	ret
 
 .wraparound_up
-	ld [hl], 0
+	ld [hl], $0
 	ret
 
 .down
@@ -185,7 +191,7 @@ ClockResetPassword:
 .getcurrentdigit
 	ld a, [wStringBuffer2 + 5]
 	ld e, a
-	ld d, 0
+	ld d, $0
 	ld hl, wStringBuffer2
 	add hl, de
 	ret
@@ -219,13 +225,13 @@ ClockResetPassword:
 	call OpenSRAM
 	ld de, 0
 	ld hl, sPlayerData + (wPlayerID - wPlayerData)
-	ld c, 2
+	ld c, $2
 	call .ComponentFromNumber
 	ld hl, sPlayerData + (wPlayerName - wPlayerData)
 	ld c, NAME_LENGTH_JAPANESE - 1
 	call .ComponentFromString
 	ld hl, sPlayerData + (wMoney - wPlayerData)
-	ld c, 3
+	ld c, $3
 	call .ComponentFromNumber
 	call CloseSRAM
 	ret
@@ -234,7 +240,7 @@ ClockResetPassword:
 	ld a, [hli]
 	add e
 	ld e, a
-	ld a, 0
+	ld a, $0
 	adc d
 	ld d, a
 	dec c
@@ -247,7 +253,7 @@ ClockResetPassword:
 	ret z
 	add e
 	ld e, a
-	ld a, 0
+	ld a, $0
 	adc d
 	ld d, a
 	dec c
