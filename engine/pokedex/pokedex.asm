@@ -1200,7 +1200,7 @@ Pokedex_DrawOptionScreenBG:
 	ret
 
 .Title:
-	db $3b, " OPZIONI", $3c, -1
+	db $3b, " OPZIONI ", $3c, -1
 
 .Modes:
 	db   "NUOVA MODALITÀ"
