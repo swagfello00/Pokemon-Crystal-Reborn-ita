@@ -1064,7 +1064,7 @@ _KarpGuruRecordText::
 	line "@"
 	text_ram wMagikarpRecordHoldersName
 	text "."
-	text_promptbutton
+	prompt
 	text_end
 
 	text_end ; unreferenced
