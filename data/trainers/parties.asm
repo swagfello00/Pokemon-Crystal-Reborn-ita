@@ -659,7 +659,7 @@ BirdKeeperGroup:
 	db -1 ; end
 
 	; BIRD_KEEPER (15)
-		db "GREG@", TRAINERTYPE_NORMAL
+		db "IVAN@", TRAINERTYPE_NORMAL
 	db 34, FARFETCH_D
 	db -1 ; end
 
@@ -803,7 +803,7 @@ JanineGroup:
 
 CooltrainerMGroup:
 	; COOLTRAINERM (1)
-		db "PLATO@", TRAINERTYPE_MOVES
+	db "NICO@", TRAINERTYPE_MOVES
 	db 26, CHARMANDER, EMBER, SMOKESCREEN, RAGE, SCARY_FACE
 	db 26, SQUIRTLE,   WITHDRAW, WATER_GUN, BITE, CURSE
 	db 26, BULBASAUR,  LEECH_SEED, POISONPOWDER, SLEEP_POWDER, RAZOR_LEAF
@@ -830,7 +830,7 @@ CooltrainerMGroup:
 	db -1 ; end
 
 	; COOLTRAINERM (5)
-		db "KEKO@", TRAINERTYPE_NORMAL
+	db "MIKI@", TRAINERTYPE_NORMAL
 	db 37, DRAGONAIR
 	db -1 ; end
 
@@ -868,7 +868,7 @@ CooltrainerMGroup:
 	db -1 ; end
 
 	; COOLTRAINERM (11)
-		db "LUPO@", TRAINERTYPE_MOVES
+	db "NED@", TRAINERTYPE_MOVES
 	db 33, MAGNETON,   THUNDERBOLT, SUPERSONIC, SWIFT, SCREECH
 	db 31, QUAGSIRE,   WATER_GUN, SLAM, AMNESIA, EARTHQUAKE
 	db 31, EXEGGCUTE,  LEECH_SEED, CONFUSION, SLEEP_POWDER, SOLARBEAM
@@ -880,7 +880,7 @@ CooltrainerMGroup:
 	db -1 ; end
 
 	; COOLTRAINERM (13)
-		db "CIRO@", TRAINERTYPE_NORMAL
+	db "ERIC@", TRAINERTYPE_NORMAL
 	db 10, BULBASAUR
 	db 10, CHARMANDER
 	db 10, SQUIRTLE
@@ -1212,7 +1212,7 @@ PokemaniacGroup:
 	db -1 ; end
 
 	; POKEMANIAC (11)
-		db "SIM@", TRAINERTYPE_MOVES
+	db "TIM@", TRAINERTYPE_MOVES
 	db 12, LICKITUNG,  LICK, SUPERSONIC, CUT, NO_MOVE
 	db -1 ; end
 
@@ -1608,7 +1608,7 @@ BugCatcherGroup:
 	db -1 ; end
 
 	; BUG_CATCHER (19)
-		db "VALTER@", TRAINERTYPE_NORMAL
+	db "REX@", TRAINERTYPE_NORMAL
 	db  8, LEDYBA
 	db 10, PARAS
 	db -1 ; end
@@ -2065,7 +2065,7 @@ SailorGroup:
 	db -1 ; end
 
 	; SAILOR (7)
-		db "ROCCO@", TRAINERTYPE_NORMAL
+		db "ALBERT@", TRAINERTYPE_NORMAL
 	db 34, KINGLER
 	db -1 ; end
 
@@ -2260,7 +2260,7 @@ GuitaristGroup:
 	db -1 ; end
 
 	; GUITARIST (2)
-		db "CIRO@", TRAINERTYPE_NORMAL
+		db "ERIC@", TRAINERTYPE_NORMAL
 	db 27, MAGNEMITE
 	db 33, VOLTORB
 	db 32, MAGNEMITE
@@ -2282,7 +2282,7 @@ HikerGroup:
 	db -1 ; end
 
 	; HIKER (3)
-		db "FILI@", TRAINERTYPE_NORMAL
+		db "SAM@", TRAINERTYPE_NORMAL
 	db 23, GEODUDE
 	db 23, GEODUDE
 	db 23, GRAVELER
@@ -2301,7 +2301,7 @@ HikerGroup:
 	db -1 ; end
 
 	; HIKER (6)
-		db "GENIO@", TRAINERTYPE_NORMAL
+		db "TOM@", TRAINERTYPE_NORMAL
 	db 14, DIGLETT
 	db 14, GEODUDE
 	db 16, DUGTRIO
@@ -2334,7 +2334,7 @@ HikerGroup:
 	db -1 ; end
 
 	; HIKER (11)
-		db "EUGE@", TRAINERTYPE_NORMAL
+		db "PAT@", TRAINERTYPE_NORMAL
 	db 13, GEODUDE
 	db 13, GEODUDE
 	db 13, GEODUDE
@@ -2363,13 +2363,13 @@ HikerGroup:
 	db -1 ; end
 
 	; HIKER (15)
-		db "NEO@", TRAINERTYPE_NORMAL
+		db "SID@", TRAINERTYPE_NORMAL
 	db 34, DUGTRIO
 	db 32, ONIX
 	db -1 ; end
 
 	; HIKER (16)
-		db "BEATO@", TRAINERTYPE_NORMAL
+		db "BOB@", TRAINERTYPE_NORMAL
 	db 27, SANDSLASH
 	db 29, GRAVELER
 	db 31, GOLEM
@@ -3158,7 +3158,7 @@ MediumGroup:
 	db -1 ; end
 
 	; MEDIUM (2)
-		db "GIUSI@", TRAINERTYPE_NORMAL
+		db "EMMA@", TRAINERTYPE_NORMAL
 	db 20, HAUNTER
 	db 20, HAUNTER
 	db -1 ; end

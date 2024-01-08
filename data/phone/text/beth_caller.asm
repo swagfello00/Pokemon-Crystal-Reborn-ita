@@ -80,8 +80,8 @@ BethHangUpText:
 	done
 
 BethLetsBattleAgainSometimeText:
-	text "Lotteremo di nuovo"
-	line "prima o poi!"
+	text "Prima o poi"
+	line "ti risfido, ok?"
 	done
 
 BethReminderText:
