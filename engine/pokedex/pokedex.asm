@@ -1281,7 +1281,7 @@ Pokedex_DrawSearchResultsScreenBG:
 
 .BottomWindowText:
 	db   "RISULTATI RICERA"
-	next "TIPO:"
+	next "  TIPO"
 	next "    TROVATO(I)!"
 	db   "@"
 
@@ -1298,7 +1298,7 @@ Pokedex_PlaceSearchResultsTypeStrings:
 	jr z, .done
 	hlcoord 2, 15
 	call Pokedex_PlaceTypeString
-	hlcoord 1, 15
+	hlcoord 1, 14
 	ld [hl], "/"
 .done
 	ret
