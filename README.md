@@ -1,5 +1,5 @@
 # NOTE
-## This repository is a work in progress, you may experience bugs, glitches and general oddities. Should these occur please report them as issues. It is not actively being worked on and will require community assistance to finish.
+## This repository will require community assistance to finish.
 
 # Information
 An Italian translation of https://github.com/gb-mobile/pokecrystal-mobile-eng
@@ -13,9 +13,6 @@ Due to this translation being performed using a find/replace script, several lin
 To complete the translation of non-mobile features into French, the following lines need to be identified and placed accordingly:
 https://github.com/gb-mobile/pokecrystal-mobile-ita/wiki/Potentially-misplaced-or-Missing-lines
 
-
-- Adjust any menus to match those of the original Italian games (currently set to English sizing and formatting)
-- Check for any untranslated menus missed by the find/replace script.
 - Translate any of mobile features. (Anything English under /mobile/, /maps/GoldenrodPokecenter1F.asm, maps/PokecomCenterAdminOfficeMobile.asm, data/text/common_1.asmm data/text/common_3.asm, data/text/battle.asm and maps/DayCare.asm).
 - Also refer to the English build for 'Text_BattleReceptionistIntro:', 'Text_TradeReceptionistIntro:' and 'Text_TimeCapsuleReceptionistIntro:' for proper mobile translations of the PokeCOM Club reception dialogue.
 - Update gfx\sgb\gbc_only.png splash screen to load correctly and match Italian (CRISTALLO), as well gfx\intro\crystal_unowns.png in the intro.
