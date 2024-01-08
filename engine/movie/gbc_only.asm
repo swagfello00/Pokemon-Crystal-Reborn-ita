@@ -20,7 +20,7 @@ GBCOnlyScreen:
 
 	ld de, wGBCOnlyDecompressBuffer
 	ld hl, vTiles2
-	lb bc, BANK(GBCOnlyGFX), 84
+	lb bc, BANK(GBCOnlyGFX), 91
 	call Get2bpp
 
 	ld de, Font
@@ -48,8 +48,8 @@ DrawGBCOnlyScreen:
 	call DrawGBCOnlyGraphic
 
 	; Crystal
-	hlcoord 5, 6
-	ld b, 10
+	hlcoord 4, 6
+	ld b, 14
 	ld c, 2
 	ld a, $40
 	call DrawGBCOnlyGraphic
