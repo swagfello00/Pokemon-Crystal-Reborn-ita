@@ -1113,8 +1113,7 @@ _PlayersPCTurnOnText::
 	prompt
 
 _PlayersPCAskWhatDoText::
-	text "Che cosa vuoi"
-	line "fare?"
+	text "Cosa vuoi fare?"
 	done
 
 _PlayersPCHowManyWithdrawText::
