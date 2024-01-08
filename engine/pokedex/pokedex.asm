@@ -1245,7 +1245,7 @@ Pokedex_DrawSearchScreenBG:
 	db   "@"
 
 .Menu:
-	db   "INIZIA RICERCA!!"
+	db   "INIZIA RICERCA"
 	next "ESCI"
 	db   "@"
 
