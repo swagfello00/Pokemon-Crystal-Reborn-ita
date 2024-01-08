@@ -580,7 +580,7 @@ HOF_AnimatePlayerPic:
 	ld [hli], a
 	ld a, "<ID>"
 	ld [hli], a
-	ld [hl], "/"
+	ld [hl], "<DOT>"
 	hlcoord 4, 6
 	ld de, wPlayerID
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5

@@ -282,7 +282,7 @@ DayToTextScript:
 .TuesdayText:
 	db "MARTEDÌ@"
 .WednesdayText:
-	db "WEDNESDAY@"
+	db "MERCOLEDÌ@"
 .ThursdayText:
 	db "GIOVEDÌ@"
 .FridayText:
