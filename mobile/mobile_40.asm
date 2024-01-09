@@ -925,12 +925,12 @@ MenuData_100604:
 	db "WAIT@"		; "まつ@"
 
 Mobile_CommunicationStandby:
-	hlcoord 3, 10
+	hlcoord 4, 10
 	ld b, 1
-	ld c, 12
+	ld c, 10
 	call Function3eea
 	ld de, .String
-	hlcoord 4, 11
+	hlcoord 5, 11
 	call PlaceString
 	ret
 
@@ -6526,16 +6526,16 @@ Function102e07:
 
 .link_battle
 ; the next three operations are pointless
-	hlcoord 3, 10
+	hlcoord 4, 10
 	ld b,  1
-	ld c, 11
+	ld c, 10
 	ld d, h
 	ld e, l
 	farcall _LinkTextbox
 
 .okay
 	ld de, .waiting
-	hlcoord 4, 11
+	hlcoord 5, 11
 	call PlaceString
 	ret
 
