@@ -516,10 +516,10 @@ Function1178e8:
 	ret nz
 	inc a
 	ld [wcd4e], a
-	hlcoord 15, 8
+	hlcoord 16, 8
 	ld a, " "
 	ld [hl], a
-	hlcoord 15, 10
+	hlcoord 16, 10
 	ld a, "▶"
 	ld [hl], a
 	ret
