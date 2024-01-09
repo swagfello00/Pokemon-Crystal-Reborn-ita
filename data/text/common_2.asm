@@ -1062,9 +1062,8 @@ _KarpGuruRecordText::
 	line "@"
 	text_ram wMagikarpRecordHoldersName
 	text "."
-	prompt
+	text_promptbutton
 	text_end
-
 	text_end ; unreferenced
 
 _LuckyNumberMatchPartyText::
