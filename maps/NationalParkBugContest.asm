@@ -217,9 +217,8 @@ NationalParkBugContestBattleNoticeText:
 
 NationalParkBugContestTrainerTipsText:
 	text "CONSIGLI UTILI"
-
-	para "Vuoi stampare un"
-	line "MESSAGGIO? Aprilo"
+	para "Per stampare un"
+	line "MESSAGGIO, aprilo"
 	cont "e premi START!"
 	done
 

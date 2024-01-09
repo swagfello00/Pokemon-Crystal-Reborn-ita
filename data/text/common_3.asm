@@ -523,10 +523,11 @@ _HerbalLadyHowManyText::
 	done
 
 _HerbalLadyFinalPriceText::
+	text_decimal wItemQuantityChange, 1, 2
+	text " @"
 	text_ram wStringBuffer2
 	text ":"
-	line "in tutto fa"
-	cont "¥@"
+	line "spendi ¥@"
 	text_decimal hMoneyTemp, 3, 6
 	text "."
 	done
@@ -700,7 +701,7 @@ _SlotsBetHowManyCoinsText::
 	done
 
 _SlotsStartText::
-	text "Partenza!"
+	text "Via!"
 	done
 
 _SlotsNotEnoughCoinsText::
@@ -1253,9 +1254,8 @@ _NewDexDataText::
 	text_end ; unreferenced
 
 _AskGiveNicknameText::
-	text "Vuoi dare un"
-	line "soprannome a"
-	cont "@"
+	text "Dai un soprannome"
+	line "a @"
 	text_ram wStringBuffer1
 	text "?"
 	done
@@ -1369,7 +1369,7 @@ _ItemCantUseOnEggText::
 _ItemOakWarningText::
 	text "OAK: <PLAYER>!"
 	line "Questo non è il"
-	cont "momento adatto!"
+	cont "momento opportuno!"
 	prompt
 
 _ItemBelongsToSomeoneElseText::
@@ -1418,16 +1418,16 @@ _ItemUsedText::
 	done
 
 _ItemGotOnText::
-	text "<PLAYER> got on the@"
+	text "<PLAYER> sale su@"
 	text_low
 	text_ram wStringBuffer2
 	text "."
 	prompt
 
 _ItemGotOffText::
-	text "<PLAYER> got off@"
+	text "<PLAYER> scende@"
 	text_low
-	text "the @"
+	text "da @"
 	text_ram wStringBuffer2
 	text "."
 	prompt

@@ -52,6 +52,6 @@ ChadPhoneFullText:
 	done
 
 ChadRematchText:
-	text "T'aspettavo! Dai,"
-	line "lottiamo!"
+	text "Ehi, ti aspettavo!"
+	line "Ora lottiamo, dai!"
 	done

@@ -456,7 +456,7 @@ SupernerdShawnAfterBattleText:
 
 SSAquaHasArrivedVermilionText:
 	text "La NAVE VELOCE M/N"
-	line "ACQUA è approdata"
+	line "ACQUA è giunta"
 	cont "ad ARANCIOPOLI."
 	done
 

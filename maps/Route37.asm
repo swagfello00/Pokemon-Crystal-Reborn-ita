@@ -184,8 +184,8 @@ SunnyGivesGiftText1:
 	done
 
 SunnyGivesGiftText2:
-	text "Mi han detto di"
-	line "darti questo se"
+	text "Mi hanno detto di"
+	line "darti questo, se"
 	cont "ti vedevo!"
 	done
 

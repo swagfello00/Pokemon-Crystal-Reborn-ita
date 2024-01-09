@@ -97,8 +97,9 @@ GoldenrodDeptStore6FElevatorButton:
 	jumpstd ElevatorButtonScript
 
 GoldenrodVendingText:
-	text "Un distributore:"
-	line "ecco i prodotti."
+	text "Un distributore"
+	line "automatico:"
+	cont "vediamo cosa c'è!"
 	done
 
 GoldenrodClangText:

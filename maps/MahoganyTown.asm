@@ -162,8 +162,8 @@ RageCandyBarMerchantSavorItText:
 	done
 
 RageCandyBarMerchantNotEnoughMoneyText:
-	text "Non hai abbastanza"
-	line "denaro."
+	text "Non ti bastano"
+	line "i soldi."
 	done
 
 RageCandyBarMerchantRefusedText:

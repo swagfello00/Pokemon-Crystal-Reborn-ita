@@ -246,7 +246,7 @@ VermilionPortAskBoardingText:
 
 VermilionPortAskTicketText:
 	text "Posso vedere il"
-	line "BIGLIETTO NAVE?"
+	line "BIGL.NAVE?"
 	done
 
 VermilionPortComeAgainText:

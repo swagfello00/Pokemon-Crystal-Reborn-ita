@@ -339,7 +339,7 @@ GoldenrodGameCornerPrizeVendorConfirmPrizeText:
 	done
 
 GoldenrodGameCornerPrizeVendorHereYouGoText:
-	text "Ecco a te!"
+	text "Ecco qui!"
 	done
 
 GoldenrodGameCornerPrizeVendorNeedMoreCoinsText:
@@ -360,8 +360,8 @@ GoldenrodGameCornerPrizeVendorQuitText:
 	done
 
 GoldenrodGameCornerPrizeVendorNoCoinCaseText:
-	text "Non hai un"
-	line "SALVADANAIO!"
+	text "Come? Ti manca il"
+	line "SALVADANAIO."
 	done
 
 GoldenrodGameCornerPharmacistText:

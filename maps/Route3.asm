@@ -77,7 +77,8 @@ YoungsterWarrenSeenText:
 	done
 
 YoungsterWarrenBeatenText:
-	text "Lo sapevo…"
+	text "Sapevo che avrei"
+	line "perso…"
 	done
 
 YoungsterWarrenAfterBattleText:

@@ -738,8 +738,9 @@ Text_SaveBeforeReentry:
 	done
 
 Text_CancelYourBattleRoomChallenge:
-	text "Annulli la sfida"
-	line "nella SALA LOTTA?"
+	text "Vuoi annullare la"
+	line "sfida nella SALA"
+	cont "LOTTA?"
 	done
 
 Text_RegisterRecordOnFile_Mobile: ; unreferenced

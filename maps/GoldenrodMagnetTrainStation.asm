@@ -134,7 +134,7 @@ GoldenrodMagnetTrainStationOfficerYouDontHaveARailPassText:
 	done
 
 GoldenrodMagnetTrainStationOfficerHopeToSeeYouAgainText:
-	text "Arrivederci!"
+	text "Arrivederci."
 	done
 
 GoldenrodMagnetTrainStationOfficerArrivedInGoldenrodText:

@@ -1316,7 +1316,7 @@ _PlayerFoundItemText::
 	text "<PLAYER> trova"
 	line "@"
 	text_ram wStringBuffer3
-	text "!"
+	text "."
 	done
 
 _ButNoSpaceText::
@@ -1815,7 +1815,7 @@ _HaveNoRoomText::
 
 _NotEnoughMoneyText::
 	text "Non hai abbastanza"
-	line "denaro."
+	line "soldi."
 	prompt
 
 _OhFineThenText::

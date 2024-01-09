@@ -239,7 +239,7 @@ RuinsOfAlphKabutoChamberWallPatternRightText:
 
 RuinsOfAlphKabutoChamberWallHoleText:
 	text "C'è un grosso buco"
-	line "nella parete!"
+	line "nella parete."
 	done
 
 RuinsOfAlphKabutoChamberAncientReplicaText:

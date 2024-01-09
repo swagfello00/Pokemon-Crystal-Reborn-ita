@@ -77,9 +77,9 @@ PlayersNeighborText:
 	done
 
 PlayerNeighborRadioText1:
-	text "Prossimamente: il"
-	line "#MON TALK"
-	cont "del PROF.OAK!"
+	text "Il #MON TALK"
+	line "del PROF.OAK! Non"
+	cont "perdetevelo!"
 	done
 
 PlayerNeighborRadioText2:
@@ -87,13 +87,14 @@ PlayerNeighborRadioText2:
 	done
 
 PlayerNeighborRadioText3:
-	text "Presentato da LORI"
-	line "e il PROF.OAK!"
+	text "Sono la DJ LORI,"
+	line "e presento con"
+	cont "il PROF.OAK!"
 	done
 
 PlayerNeighborRadioText4:
 	text "#MON!"
-	line "RADIO #MON!"
+	line "RADIO #MON…"
 	done
 
 PlayersNeighborsHouse_MapEvents:

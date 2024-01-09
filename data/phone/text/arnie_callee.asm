@@ -17,11 +17,10 @@ ArnieAnswerPhoneDayText:
 	done
 
 ArnieAnswerPhoneNiteText:
-	text "Sì, pronto. Parli"
-	line "con @"
+	text "Sì, pronto."
+	line "Qui è @"
 	text_ram wStringBuffer3
 	text "."
-
 	para "<PLAY_G>? Ciao!"
 	done
 

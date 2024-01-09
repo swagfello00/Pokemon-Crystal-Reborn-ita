@@ -151,7 +151,7 @@ SaffronMagnetTrainStationOfficerYouDontHaveAPassText:
 	done
 
 SaffronMagnetTrainStationOfficerHopeToSeeYouAgainText:
-	text "Arrivederci!"
+	text "Arrivederci."
 	done
 
 SaffronMagnetTrainStationOfficerArrivedInSaffronText:

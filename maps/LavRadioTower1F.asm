@@ -196,14 +196,12 @@ LavRadioTower1FSuperNerd2Text_GotExpnCard:
 	done
 
 LavRadioTower1FDirectoryText:
-	text "PT  RECEPTION"
+	text "PT RECEPTION"
 	line "1ºP VENDITA"
-
-	para "2ºP PERSONALE"
-	line "3ºP PRODUZIONE"
-
-	para "4ºP UFFICIO DEL"
-	line "    DIRETTORE"
+	cont "2ºP PERSONALE"
+	cont "3ºP PRODUZIONE"
+	cont "4ºP UFFICIO DEL"
+	cont " DIRETTORE"
 	done
 
 LavRadioTower1FPokeFluteSignText:

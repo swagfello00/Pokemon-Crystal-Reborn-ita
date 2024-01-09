@@ -496,9 +496,9 @@ Route36NationalParkGateOfficer1AskToParticipateText:
 	done
 
 Route36NationalParkGateOfficer1GiveParkBallsText:
-	text "Ecco qui le PARK"
-	line "BALL per la"
-	cont "Gara."
+	text "Ecco le PARK"
+	line "BALL che servono"
+	cont "per la Gara."
 	done
 
 Route36NationalParkGatePlayerReceivedParkBallsText:
@@ -549,30 +549,29 @@ Route36NationalParkGateOfficer1AskToUseFirstMonText:
 	done
 
 Route36NationalParkGateOfficer1WellHoldYourMonText:
-	text "Ti terremo noi gli"
-	line "altri #MON"
-	cont "durante la gara."
+	text "Ok. Penseremo noi"
+	line "agli altri tuoi"
+	cont "#MON"
+	cont "mentre gareggi."
 	done
 
 Route36NationalParkGatePlayersMonLeftWithHelperText:
-	text "I #MON di"
-	line "<PLAYER> sono stati"
-	cont "lasciati con"
+	text "<PLAYER> lascia i"
+	line "#MON con"
 	cont "l'ASSISTENTE GARA."
 	done
 
 Route36NationalParkGateOfficer1ChooseMonAndComeBackText:
-	text "Scegli il #MON"
-	line "che vuoi usare per"
-
-	para "la Gara, e poi"
-	line "ritorna qui."
+	text "Allora ritorna"
+	line "quando avrai"
+	para "scelto il #MON"
+	line "da usare in gara."
 	done
 
 Route36NationalParkGateOfficer1TakePartInFutureText:
-	text "Come vuoi. Sarà"
-	line "per la prossima"
-	cont "volta."
+	text "Ok. Speriamo che"
+	line "parteciperai"
+	cont "in futuro."
 	done
 
 Route36NationalParkGateOfficer1FirstMonCantBattleText:

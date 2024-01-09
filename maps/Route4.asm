@@ -115,9 +115,7 @@ PicnickerSharonAfterBattleText:
 
 MtMoonSquareSignText:
 	text "PIAZZA MONTELUNA"
-
-	para "Si prega di salire"
-	line "le scale."
+	line "Salire le scale."
 	done
 
 Route4_MapEvents:

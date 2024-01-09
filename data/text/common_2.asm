@@ -416,8 +416,7 @@ _BouldersMoveText::
 
 _BouldersMayMoveText::
 	text "Forse un #MON"
-	line "è in grado di"
-	cont "spostarlo."
+	line "può spostarlo."
 	done
 
 _UseWhirlpoolText::
@@ -469,8 +468,7 @@ _UseRockSmashText::
 
 _MaySmashText::
 	text "Forse un #MON"
-	line "è in grado di"
-	cont "frantumarla."
+	line "può frantumarla."`
 	done
 
 _AskRockSmashText::
@@ -537,7 +535,7 @@ _FoundItemText::
 _CantCarryItemText::
 	text "Ma <PLAYER> non"
 	line "può trasportare"
-	cont "altri strumenti."
+	cont "altri strumenti!"
 	done
 
 _WhitedOutText::
@@ -936,7 +934,7 @@ _PCGottaHavePokemonText::
 	prompt
 
 _PCWhatText::
-	text "Come?"
+	text "Cosa?"
 	done
 
 _PCMonHoldingMailText::
@@ -1400,11 +1398,10 @@ _ItemsTossOutHowManyText::
 	done
 
 _ItemsThrowAwayText::
-	text "Buttare @"
-	text_decimal wItemQuantityChange, 1, 2
-	text_start
-	line "@"
 	text_ram wStringBuffer2
+	text ":"
+	line "ne butti @"
+	text_decimal wItemQuantityChange, 1, 2
 	text "?"
 	done
 
@@ -1419,9 +1416,9 @@ _ItemsTooImportantText::
 	prompt
 
 _ItemsOakWarningText::
-	text "OAK: <PLAYER>!"
-	line "Questo non è il"
-	cont "momento adatto!"
+	text "OAK: <PLAYER>! Non"
+	line "puoi usare quello"
+	cont "strumento ora!"
 	done
 
 _PokemonSwapItemText::
