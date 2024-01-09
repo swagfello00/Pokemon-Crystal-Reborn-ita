@@ -605,8 +605,8 @@ MenuHeader_1179bd:
 	db 0 ; default option
 
 YessNoString_1179c5:
-	db "SÌ@";"はい@"
-	db "NO@";"いいえ@"
+	db "SÌ";"はい@"
+	next "NO@";"いいえ@"
 
 AskSavePasswordString:
 	db   "Save this";"こ<NO>パスワード¯ほぞんして"
