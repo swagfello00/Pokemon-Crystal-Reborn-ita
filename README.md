@@ -9,13 +9,9 @@ It is possible that some menus were missed by the find/replace script, and need 
 
 ## TO-DO
 
-Due to this translation being performed using a find/replace script, several lines which are duplicated in English but have differences between them in other languages get skipped over.
-To complete the translation of non-mobile features into French, the following lines need to be identified and placed accordingly:
-https://github.com/gb-mobile/pokecrystal-mobile-ita/wiki/Potentially-misplaced-or-Missing-lines
-
 - Translate any of mobile features. (Anything English under /mobile/, /maps/GoldenrodPokecenter1F.asm, maps/PokecomCenterAdminOfficeMobile.asm, data/text/common_1.asmm data/text/common_3.asm, data/text/battle.asm and maps/DayCare.asm).
 - Also refer to the English build for 'Text_BattleReceptionistIntro:', 'Text_TradeReceptionistIntro:' and 'Text_TimeCapsuleReceptionistIntro:' for proper mobile translations of the PokeCOM Club reception dialogue.
-- Update gfx\sgb\gbc_only.png splash screen to load correctly and match Italian (CRISTALLO), as well gfx\intro\crystal_unowns.png in the intro.
+- Update gfx\intro\crystal_unowns.png in the intro to match Italian.
 - Fix the known issues.
 
 
