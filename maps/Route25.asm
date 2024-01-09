@@ -300,8 +300,9 @@ LassEllenBeatenText:
 	done
 
 LassEllenAfterBattleText:
-	text "Ho fatto del mio"
-	line "meglio! Pazienza!"
+	text "Ho fatto il"
+	line "massimo,"
+	cont "non ho rimpianti."
 	done
 
 SchoolboyJoeSeenText:
@@ -314,8 +315,8 @@ SchoolboyJoeBeatenText:
 	done
 
 SchoolboyJoeAfterBattleText:
-	text "Ho fatto del mio"
-	line "meglio! Pazienza!"
+	text "Ho dato il meglio,"
+	line "non ho rimpianti."
 	done
 
 LassLauraSeenText:
@@ -328,8 +329,8 @@ LassLauraBeatenText:
 	done
 
 LassLauraAfterBattleText:
-	text "Ho fatto del mio"
-	line "meglio! Pazienza!"
+	text "Non potevo fare di"
+	line "più: pazienza!"
 	done
 
 CamperLloydSeenText:
@@ -357,8 +358,8 @@ LassShannonBeatenText:
 	done
 
 LassShannonAfterBattleText:
-	text "Ho fatto del mio"
-	line "meglio! Pazienza!"
+	text "È andata: di più"
+	line "non potevo fare!"
 	done
 
 SupernerdPatSeenText:
