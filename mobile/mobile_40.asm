@@ -935,7 +935,7 @@ Mobile_CommunicationStandby:
 	ret
 
 .String:
-	db "PLEASE WAIT!@"	; "つうしんたいきちゅう！@"
+	db "ATTENDERE!@"	; "つうしんたいきちゅう！@"
 
 AdvanceMobileInactivityTimerAndCheckExpired:
 	push bc
@@ -6637,8 +6637,8 @@ Function102ee7:
 	ret
 
 String_102ef4:
-	db   "Too bad! The trade"
-	next "was canceled!"
+	db   "Peccato! Scambio"
+	next "annullato!"
 	db   "@"
 
 Function102f15:
@@ -6661,7 +6661,7 @@ Function102f32:
 	ret
 
 .TradeCompleted:
-	db "Trade completed!@"
+	db "SCAMBIO TERMINATO@"
 
 Function102f50:
 	call Function102dc3
