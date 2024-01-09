@@ -6540,7 +6540,7 @@ Function102e07:
 	ret
 
 .waiting
-	db "Waiting...!@"
+	db "ATTENDERE!@"
 
 Function102e3e:
 	ld de, .CancelString
