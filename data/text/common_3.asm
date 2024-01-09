@@ -1110,12 +1110,12 @@ _BuenaIsThatRightText::
 
 _BuenaHereYouGoText::
 	text "Ecco qui!"
-	done
+	prompt
 
 _BuenaNotEnoughPointsText::
 	text "Non hai abbastanza"
 	line "punti."
-	done
+	prompt
 
 _BuenaNoRoomText::
 	text "Non hai spazio."
@@ -1128,7 +1128,7 @@ _BuenaComeAgainText::
 
 _BTExcuseMeText::
 	text "Scusami!"
-	done
+	prompt
 
 _ExcuseMeYoureNotReadyText::
 	text "Qualcosa non va:"
@@ -1147,18 +1147,18 @@ _BattleTowerReturnWhenReadyText::
 _NeedAtLeastThreeMonText::
 	text "Devi avere almeno"
 	line "tre #MON."
-	done
+	prompt
 
 _EggDoesNotQualifyText::
 	text "Un UOVO non può"
 	line "partecipare."
-	done
+	prompt
 
 _OnlyThreeMonMayBeEnteredText::
 	text "Devi avere"
 	line "esattamente tre"
 	cont "#MON."
-	done
+	prompt
 
 _TheMonMustAllBeDifferentKindsText::
 	text "I @"
@@ -1183,7 +1183,7 @@ _TheMonMustNotHoldTheSameItemsText::
 _YouCantTakeAnEggText::
 	text "Non puoi portare"
 	line "un UOVO!"
-	done
+	prompt
 
 _BallDodgedText::
 	text "Ha schivato la"
@@ -1411,8 +1411,8 @@ _BallBoxFullText::
 	prompt
 
 _ItemUsedText::
-	text "<PLAYER> usa@"
-	text_low
+	text "<PLAYER> usa"
+	line "@"
 	text_ram wStringBuffer2
 	text "."
 	done
