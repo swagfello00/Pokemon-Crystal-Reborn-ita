@@ -16,7 +16,7 @@ AskRememberPassword:
 	pop bc
 	ld a, b
 	ld [wMenuBorderLeftCoord], a
-	add $5
+	add $4
 	ld [wMenuBorderRightCoord], a
 	ld a, c
 	ld [wMenuBorderTopCoord], a
