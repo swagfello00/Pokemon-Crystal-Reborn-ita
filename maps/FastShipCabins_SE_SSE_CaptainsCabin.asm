@@ -378,7 +378,7 @@ TwinsMegandpeg2SeenText:
 	done
 
 TwinsMegandpeg2BeatenText:
-	text "No, abbiamo perso!"
+	text "Che sconfitta!"
 	done
 
 TwinsMegandpeg2AfterBattleText:

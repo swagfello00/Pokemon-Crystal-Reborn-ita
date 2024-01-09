@@ -564,12 +564,12 @@ GrowthDescription:
 	next "ATT.SPEC.@"
 
 RazorLeafDescription:
-	db   "Può essere un"
+	db   "Può assestare un"
 	next "brutto colpo.@"
 
 SolarbeamDescription:
-	db   "1ºturno: Prepara"
-	next "2ºturno: Attacca@"
+	db   "1ºturno: Carica" 
+	next "2ºturno: Attacco@"
 
 PoisonpowderDescription:
 	db   "Può causare"
@@ -600,11 +600,11 @@ FireSpinDescription:
 	next "nemico 2-5 turni.@"
 
 ThundershockDescription:
-	db   "Attacco che può"
+	db   "Un attacco che può" 
 	next "causare paralisi.@"
 
 ThunderboltDescription:
-	db   "Attacco che può"
+	db   "Un attacco che può" 
 	next "causare paralisi.@"
 
 ThunderWaveDescription:
@@ -612,7 +612,7 @@ ThunderWaveDescription:
 	next "causare paralisi.@"
 
 ThunderDescription:
-	db   "Attacco che può"
+	db   "Un attacco che può" 
 	next "causare paralisi.@"
 
 RockThrowDescription:
@@ -752,7 +752,7 @@ EggBombDescription:
 	next "contro il nemico.@"
 
 LickDescription:
-	db   "Attacco che può"
+	db   "Un attacco che può" 
 	next "causare paralisi.@"
 
 SmogDescription:
@@ -784,8 +784,8 @@ SwiftDescription:
 	next "va mai a vuoto.@"
 
 SkullBashDescription:
-	db   "1ºturno: Prepara"
-	next "2ºturno: Attacca@"
+	db   "1ºturno: Carica" 
+	next "2ºturno: Attacco@"
 
 SpikeCannonDescription:
 	db   "Lance di fuoco:"
@@ -832,12 +832,12 @@ LeechLifeDescription:
 	next "1/2 del danno.@"
 
 LovelyKissDescription:
-	db   "Può far addormen-"
-	next "tare il nemico.@"
+	db   "Può far addor-"
+	next "mentare il nemico.@"
 
 SkyAttackDescription:
-	db   "1ºturno: Prepara"
-	next "2ºturno: Attacca@"
+	db   "1ºturno: Carica" 
+	next "2ºturno: Attacco@"
 
 TransformDescription:
 	db   "Chi lo usa diventa"
@@ -872,7 +872,7 @@ AcidArmorDescription:
 	next "propria DIFESA.@"
 
 CrabhammerDescription:
-	db   "Può essere un"
+	db   "Può assestare un"
 	next "brutto colpo.@"
 
 ExplosionDescription:
@@ -916,7 +916,7 @@ SuperFangDescription:
 	next "nemico.@"
 
 SlashDescription:
-	db   "Può essere un"
+	db   "Può assestare un"
 	next "brutto colpo.@"
 
 SubstituteDescription:
@@ -972,7 +972,7 @@ Conversion2Description:
 	next "di chi lo usa.@"
 
 AeroblastDescription:
-	db   "Può essere un"
+	db   "Può assestare un"
 	next "brutto colpo.@"
 
 CottonSporeDescription:
@@ -1100,7 +1100,7 @@ MilkDrinkDescription:
 	next "dei PS max.@"
 
 SparkDescription:
-	db   "Attacco che può"
+	db   "Un attacco che può" 
 	next "causare paralisi.@"
 
 FuryCutterDescription:
@@ -1216,7 +1216,7 @@ HiddenPowerDescription:
 	next "con il #MON.@"
 
 CrossChopDescription:
-	db   "Può essere un"
+	db   "Può assestare un"
 	next "brutto colpo.@"
 
 TwisterDescription:

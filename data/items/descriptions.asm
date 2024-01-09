@@ -800,8 +800,8 @@ CharcoalDesc:
 	next "di fuoco.(DAI)@"
 
 BerryJuiceDesc:
-	db   "Restituisce 20 PS"
-	next "al #MON.@"
+	db   "Restituisce al" 
+	next "#MON 20 PS.@"
 
 ScopeLensDesc:
 	db   "Aumenta i brutti"
