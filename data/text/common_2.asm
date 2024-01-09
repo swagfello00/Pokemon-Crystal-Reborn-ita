@@ -468,7 +468,7 @@ _UseRockSmashText::
 
 _MaySmashText::
 	text "Forse un #MON"
-	line "può frantumarla."`
+	line "può frantumarla."
 	done
 
 _AskRockSmashText::
