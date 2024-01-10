@@ -1061,9 +1061,10 @@ _KarpGuruRecordText::
 	text " cm preso da"
 	line "@"
 	text_ram wMagikarpRecordHoldersName
-	text "."
-	text_promptbutton
+	text ".@"
+	text_waitbutton
 	text_end
+	
 	text_end ; unreferenced
 
 _LuckyNumberMatchPartyText::
