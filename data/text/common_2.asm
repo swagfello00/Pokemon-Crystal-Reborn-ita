@@ -1062,7 +1062,7 @@ _KarpGuruRecordText::
 	line "@"
 	text_ram wMagikarpRecordHoldersName
 	text ".@"
-	text_waitbutton
+	text_linkwaitbutton
 	text_end
 	
 	text_end ; unreferenced

@@ -986,7 +986,7 @@ TextCommand_WAIT_BUTTON::
 ; wait for button press; don't show arrow
 	push hl
 	push bc
-	call PromptButton
+	call WaitButton
 	pop bc
 	pop hl
 	ret

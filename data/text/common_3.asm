@@ -284,7 +284,7 @@ _PocketIsFullText::
 	text_ram wStringBuffer3
 	text_start
 	line "è piena…"
-	text_promptbutton
+	text_linkwaitbutton
 	text_end
 
 _SeerSeeAllText::
