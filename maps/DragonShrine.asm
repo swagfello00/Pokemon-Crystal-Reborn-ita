@@ -265,16 +265,16 @@ DragonShrineElder3Script:
 
 DragonShrineQuestion1_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 8, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 10, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 
 .MenuData:
 	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
-	db "Pal@"
-	db "Underling@"
-	db "Friend@"
+	db "Compagno@"
+	db "Sudditi@"
+	db "Amici@"
 
 DragonShrineQuestion2_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
@@ -285,22 +285,22 @@ DragonShrineQuestion2_MenuHeader:
 .MenuData:
 	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
-	db "Strategy@"
-	db "Raising@"
-	db "Cheating@"
+	db "Strategia@"
+	db "Allevare@"
+	db "Ingannare@"
 
 DragonShrineQuestion3_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 5, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 10, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 
 .MenuData:
 	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
-	db "Weak person@"
-	db "Tough person@"
-	db "Anybody@"
+	db "I deboli@"
+	db "I forti@"
+	db "Tutti@"
 
 DragonShrineQuestion4_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
@@ -311,22 +311,22 @@ DragonShrineQuestion4_MenuHeader:
 .MenuData:
 	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
-	db "Love@"
-	db "Violence@"
-	db "Knowledge@"
+	db "Amore@"
+	db "Violenza@"
+	db "Conoscenza@"
 
 DragonShrineQuestion5_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 12, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 10, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 
 .MenuData:
 	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
-	db "Tough@"
-	db "Both@"
-	db "Weak@"
+	db "Forti@"
+	db "Entrambi@"
+	db "Deboli@"
 
 DragonShrinePlayerWalkInMovement:
 	slow_step UP
