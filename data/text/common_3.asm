@@ -956,7 +956,7 @@ _LearnedMoveText::
 	text_ram wStringBuffer2
 	text "!@"
 	sound_dex_fanfare_50_79
-	text_promptbutton
+	text_waitbutton
 	text_end
 
 	text_end ; unreferenced
@@ -1230,7 +1230,7 @@ Text_BallCaught::
 	text_end ; unreferenced
 
 _WaitButtonText::
-	text_promptbutton
+	text_waitbutton
 	text_end
 
 	text_end ; unreferenced
@@ -1297,7 +1297,7 @@ _FluteWakeUpText::
 Text_PlayedPokeFlute::
 	text "<PLAYER> suona"
 	line "il # FLAUTO.@"
-	text_promptbutton
+	text_waitbutton
 	text_end
 
 	text_end ; unreferenced

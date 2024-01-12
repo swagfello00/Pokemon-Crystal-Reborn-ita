@@ -108,11 +108,11 @@ PsychicHermanSeenText:
 	done
 
 PsychicHermanBeatenText:
-	text "…"
+	text "<……>"
 	done
 
 PsychicHermanAfterBattleText:
-	text "…"
+	text "<……>"
 
 	para "Ho perso perché"
 	line "avevo gli occhi"

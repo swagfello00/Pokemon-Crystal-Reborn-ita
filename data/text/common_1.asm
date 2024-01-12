@@ -543,6 +543,8 @@ _OPT_MaryText1::
 	line "LORI: @"
 	text_ram wStringBuffer1
 	text_end
+	
+	text_end ; unused	
 
 _OPT_SweetAdorablyText::
 	text_start
@@ -1092,10 +1094,12 @@ _BuenaRadioMidnightText8::
 	done
 
 _BuenaRadioMidnightText9::
+	text_start
 	text "Ora devo andare!"
 	done
 
 _BuenaRadioMidnightText10::
+	text_start
 	text "…"
 	done
 

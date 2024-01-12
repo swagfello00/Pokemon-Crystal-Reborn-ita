@@ -545,9 +545,7 @@ Text_PleaseConfirmOnThisMonitor:
 
 Text_ThankYou: ; unreferenced
 	text "Grazie!"
-
-	para ""
-	done
+	prompt
 
 Text_ThanksForVisiting:
 	text "Grazie per la"

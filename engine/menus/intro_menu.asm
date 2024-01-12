@@ -602,7 +602,7 @@ Continue_PrintGameTime:
 	ret
 
 Continue_UnknownGameTime:
-	decoord 9, 8, 0
+	decoord 8, 8, 0
 	add hl, de
 	ld de, .three_question_marks
 	call PlaceString

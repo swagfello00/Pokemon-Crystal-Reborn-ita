@@ -284,7 +284,7 @@ OlivineLighthouseSignText:
 	done
 	
 OlivineCityBattleTowerSignPreMobileText:
-	text "BATTLE TOWER AHEAD"
+	text "Per la TORRE LOTTA"
 	done	
 
 OlivineCityBattleTowerSignMobileText:

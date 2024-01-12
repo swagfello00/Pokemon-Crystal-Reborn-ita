@@ -316,7 +316,7 @@ _CutNothingText::
 _BlindingFlashText::
 	text "Un forte FLASH"
 	line "illumina l'area!@"
-	text_promptbutton
+	text_waitbutton
 	text_end
 
 	text_end ; unreferenced

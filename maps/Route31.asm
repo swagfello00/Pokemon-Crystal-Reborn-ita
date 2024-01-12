@@ -241,8 +241,8 @@ Route31MailRecipientScript:
 	end
 
 ReceivedSpearowMailText:
-	db   "DARK CAVE leads"
-	next "to another road@"
+	db   "GR.SCURA va ad"
+	next "un altro PERC.@"
 
 Route31YoungsterScript:
 	jumptextfaceplayer Route31YoungsterText

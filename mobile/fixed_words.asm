@@ -2075,7 +2075,7 @@ EZChatString_EraseMenu: ; Erase words string, accessed from erase command on ent
 	next "be erased. OK?@";"けしても　よろしいですか？@"
 
 EZChatString_EraseConfirmation: ; Erase words confirmation string
-	db   "YES";"はい"
+	db   "SÌ";"はい"
 	next "NO@";"いいえ@"
 
 EZChatMenu_EraseWordsAccept:
