@@ -944,7 +944,7 @@ MenuHeader_117cc4:
 	db 0 ; default item
 
 YesNo117ccc:
-	db "SÌ@";"はい@"
+	db "SÌ";"はい@"
 	next "NO@";"いいえ@"
 
 MobileStadiumEntryText:
