@@ -64,8 +64,8 @@ RandyScript:
 
 GiftSpearowMail:
 	db FLOWER_MAIL
-	db   "GR.SCURA va ad"
-	next "un altro PERC.@"
+	db   "GR.SCURA va ad "
+	next "un altro PERC. @"
 
 GiftSpearowName:
 	db "SPEAPI@"
