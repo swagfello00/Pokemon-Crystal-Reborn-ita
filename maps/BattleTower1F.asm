@@ -539,8 +539,8 @@ Text_ReceivedAListOfLeadersOnTheHonorRoll:
 	done
 
 Text_PleaseConfirmOnThisMonitor:
-	text "Please confirm on"
-	line "this monitor."
+	text "Conferma su"
+	line "questo schermo."
 	done
 
 Text_ThankYou: ; unreferenced
@@ -553,20 +553,22 @@ Text_ThanksForVisiting:
 	done
 
 Text_BeatenAllTheTrainers_Mobile: ; unreferenced
-	text "Congratulations!"
-
-	para "You've beaten all"
-	line "the trainers!"
-
-	para "Your feat may be"
-	line "worth registering,"
-
-	para "<PLAYER>. With your"
-	line "results, you may"
-
-	para "be chosen as a"
-	line "ROOM LEADER."
-
+	text "Congratulazioni!"
+	
+	para "Hai battuto tutti"
+	line "gli allenatori!"
+	
+	para "Varrebbe la pena"
+	line "di registrare la"
+	cont "tua impresa."
+	
+	para "<PLAYER>. Con i"
+	line "tuoi risultati,"
+	
+	para "potresti essere"
+	line "scelto come"
+	cont "CAPOSALA."
+	
 	para ""
 	done
 
@@ -606,10 +608,9 @@ Text_YourPackIsStuffedFull:
 	done
 
 Text_YourRegistrationIsComplete: ; unreferenced
-	text "Your registration"
-	line "is complete."
-
-	para "Please come again!"
+	text "La registrazione"
+	line "è stata completata."
+	para "Torna a trovarci!"
 	done
 
 Text_WeHopeToServeYouAgain:
@@ -728,11 +729,11 @@ Text_SaveAndEndTheSession:
 	done
 
 Text_SaveBeforeReentry:
-	text "Your record will"
-	line "be SAVED before"
+	text "Il tuo record"
+	line "verrà SALVATO."
 
-	para "you go back into"
-	line "the previous ROOM."
+	para "Ritornerai alla"
+	line "SALA precedente."
 	done
 
 Text_CancelYourBattleRoomChallenge:
@@ -760,7 +761,7 @@ Text_WeveBeenWaitingForYou:
 
 Text_FiveDayBattleLimit_Mobile:
 	text "Puoi entrare solo"
-	line "in cinque SALE"
+	line "in cinque SALA"
 	cont "LOTTA al giorno."
 
 	para "Torna domani, va"
