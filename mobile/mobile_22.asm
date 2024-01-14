@@ -3154,10 +3154,10 @@ MenuHeader_CardFolderLayout:
 MenuData_0x8a417:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 4 ; items
-	db "Cards@" ;"めいしりスト@"
+	db "Schede@" ;"めいしりスト@"
 	db "My Card@" ;"じぶんの　めいし@"
-	db "Trade@" ;"めいしこうかん@"
-	db "Cancel@" ;"やめる@"
+	db "Scambio@" ;"めいしこうかん@"
+	db "Esci@" ;"やめる@"
 
 MenuHeader_0x8a435:
 	db MENU_BACKUP_TILES ; flags
@@ -3168,9 +3168,9 @@ MenuHeader_0x8a435:
 MenuData_0x8a43d:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 3 ; items
-	db "Cards@" ;"めいしりスト@"
+	db "Schede@" ;"めいしりスト@"
 	db "My Card@" ;"じぶんの　めいし@"
-	db "Cancel@" ;"やめる@"
+	db "Esci@" ;"やめる@"
 
 Function8a453:
 	hlcoord 0, 12

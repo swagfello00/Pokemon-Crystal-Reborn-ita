@@ -152,8 +152,9 @@ BattleTowerOutsideSignText:
 
 BattleTowerOutsideText_DoorsClosed: ; unreferenced
 ; originally shown when the Battle Tower was closed
-	text "The BATTLE TOWER's"
-	line "doors are closed…"
+	text "Le porte della"
+	line "TORRE LOTTA"
+	cont "sono chiuse…"
 	done
 
 BattleTowerOutsideText_DoorsOpen: ; unreferenced
