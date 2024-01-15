@@ -531,7 +531,7 @@ Text_BattleTowerIntroduction_2:
 	done
 
 Text_ReceivedAListOfLeadersOnTheHonorRoll:
-	text "Ricevuto una lista"
+	text "Ricevuta una lista"
 	line "dei CAPI nella"
 	cont "ALBO D'ORO."
 
@@ -649,7 +649,7 @@ Text_CantBeRegistered_PreviousRecordDeleted:
 
 Text_CheckTheLeaderHonorRoll: ; unreferenced
 	text "Controllare il"
-	line "CAPO della ALBO"
+	line "CAPO dell'ALBO"
 	cont "D'ORO?"
 	done
 
