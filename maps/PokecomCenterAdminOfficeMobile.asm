@@ -148,7 +148,7 @@ PokecomCenterAdminOfficeMobileScientist3Text:
 	done
 
 PokecomCenterAdminOfficeMobileComputer1Text:
-	text "È una avviso su"
+	text "È un avviso su"
 	line "dove usare gli"
 	para "ADATTATORI MOBILE…"
 	done
@@ -193,7 +193,7 @@ PokecomCenterAdminOfficeMobileComputer1Text_MobileCenter:
 	done
 
 PokecomCenterAdminOfficeMobileComputer2Text:
-	text "È una avviso"
+	text "È un avviso"
 	line "sull'uso del"
 	cont "telefono…"
 	done
@@ -206,7 +206,7 @@ PokecomCenterAdminOfficeMobileComputer2Text_UsePhone:
 	line "TATORE MOBILE"
 
 	para "siano connessi"
-	line "coerettamente."
+	line "correttamente."
 
 	para "Assicueati che il"
 	line "segnale wireless"
@@ -238,15 +238,17 @@ PokecomCenterAdminOfficeMobileComputer2Text_DontUsePhone:
 	para "capisci o messaggi"
 	line "di errore, chiama"
 
-	para "un centro di"
-	line "supporto o leggi"
+	para "il supporto"
+	line "tecnico o leggi"
 	cont "le istruzioni."
 	done
 
 PokecomCenterAdminOfficeMobileComputer3Text:
-	text "L'UFFICIO AMMIN-"
-	line "ISTRATIVO ha ricevuto"
-	cont "e-mail. Dice…"
+	text "L'UFFICIO"
+	line "AMMINISTRATIVO"
+	
+	para "ha ricevuto un"
+	line "e-mail. Dice…"
 
 	para "<……> <……> <……>"
 
@@ -264,14 +266,16 @@ PokecomCenterAdminOfficeMobileComputer3Text:
 	cont "nazione."
 
 	para "Continuiamo a"
-	line "lavorare fino al"
+	line "lavorare fino"
 
-	para "giorno in cui"
-	line "tutti gli allena-"
+	para "al giorno in"
+	line "cui tutti gli"
 	
-	para "tori nel mondo"
-	line "possano collegarsi"
-	cont "senza barriere!"
+	para "allenatori del"
+	line "mondo potranno"
+	
+	para "collegarsi senza"
+	line "barriere!"
 
 	para "<……> <……> <……>"
 	done

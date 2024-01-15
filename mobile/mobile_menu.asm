@@ -102,11 +102,11 @@ Function49f16:
 	jp .joy_loop
 
 MobileString1:
-	db   "L'album Schede"
+	db   "Album Schede"
 	next "Greetings"
 	next "Profilo"
 	next "Opzioni"
-	next "Anulla"
+	next "Annulla"
 	db   "@"
 
 MobileStrings2:
@@ -333,8 +333,8 @@ asm_4a19d:
 
 String_4a1ef:
 	db   "Centro Mobile";"モバイルセンター¯えらぶ"
-	next "Password D'accesso";"ログインパスワード¯いれる"
-	next "Anulla@";"もどる@"
+	next "Password Accesso";"ログインパスワード¯いれる"
+	next "Annulla@";"もどる@"
 
 Function4a20e:
 	ld a, $1
@@ -771,7 +771,7 @@ String_4a5da:
 String_4a5e6:
 	db "Lotta Persa@";"たいせん　<NI>まけたとき@"
 String_4a5f2:
-	db "Anulla@";"もどる@"
+	db "Annulla@";"もどる@"
 
 Strings_4a5f6:
 	db "Shown on your@";"めいし　や　ニュース　<NI>のせる@"

@@ -515,7 +515,7 @@ MenuData_17d272:
 	db "Ricevi Notizie@" 	; "ニュース¯よみこむ@"
 	db "Vedi Notizie@" 	; "ニュース¯みる@"
 	db "Spiegazione@" 	; "せつめい@"
-	db "Anulla@" 		; "やめる@"
+	db "Annulla@" 		; "やめる@"
 
 MenuHeader_ChallengeExplanationCancel:
 	db MENU_BACKUP_TILES ; flags
@@ -529,7 +529,7 @@ MenuData_ChallengeExplanationCancel:
 	db "Sfida@"
 	db "Albo D'oro@" ; check leaders?
 	db "Spiegazione@"
-	db "Anulla@"
+	db "Annulla@"
 
 MenuHeader_ChallengeRegisterExplanationCancel:
 	db MENU_BACKUP_TILES ; flags
@@ -544,7 +544,7 @@ MenuData_ChallengeRegisterExplanationCancel:
 	db "Albo D'oro@" ; check leaders?
 	db "Sala Precedente@"
 	db "Spiegazione@"
-	db "Anulla@"
+	db "Annulla@"
 
 Function17d2b6:
 	call Function17d2c0

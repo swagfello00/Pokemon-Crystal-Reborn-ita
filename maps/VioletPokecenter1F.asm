@@ -188,9 +188,9 @@ VioletPokecenterGameboyKidMobileText:
 
 	para "Se colleghi"
 	line "l'ADATTATORE"
-	para "MOBILE, puoiline" 
-	line "con un amico"
-	cont "lontano."
+	para "MOBILE, puoi" 
+	line "collegarti con un"
+	cont "amico lontano."
 	done
 
 VioletPokecenter1FGameboyKidText: ; unreferenced
