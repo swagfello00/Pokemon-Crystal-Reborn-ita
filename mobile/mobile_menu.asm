@@ -103,7 +103,7 @@ Function49f16:
 
 MobileString1:
 	db   "Album Schede"
-	next "Greetings"
+	next "Saluti"
 	next "Profilo"
 	next "Opzioni"
 	next "Annulla"
