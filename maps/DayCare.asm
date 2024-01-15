@@ -83,7 +83,7 @@ Text_DayCareManTalksAboutEggTicket: ; unreferenced
 	para "C'è una cosa nuova"
 	line "a FIORDOROPOLI,"
 
-	para "chiama l'ANGOLO"
+	para "chiamata l'ANGOLO"
 	line "DELLO SCAMBIO."
 
 	para "Mi hanno dato un"

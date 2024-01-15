@@ -783,18 +783,17 @@ Text_TooMuchTimeElapsedNoRegister:
 
 Text_RegisterRecordTimedOut_Mobile: ; unreferenced
 ; duplicate of Text_TooMuchTimeElapsedNoRegister
-	text "Siamo spiacenti/Ci"
-	line "dispiace, ma non è"
+	text "Siamo spiacenti"
+	line "ma non è possibile"
 
-	para "possibile regi-"
-	line "strare il tuo"
+	para "registrare il tuo"
+	line "record più recente"
 
-	para "record più recente"
-	line "al CENTRO perchè è"
-
-	para "passato troppo"
-	line "tempo dall'inizio"
-	cont "della tua lotta."
+	para "al CENTRO perchè è"
+	line "passato troppo"
+	
+	para "tempo dall'inizio"
+	line "della tua lotta."
 	done
 
 Text_AMonLevelExceeds:
