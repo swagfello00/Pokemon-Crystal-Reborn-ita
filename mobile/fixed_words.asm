@@ -2327,20 +2327,20 @@ EZChatString_MessageDescription: ; Message usage strings
 	dw EZChatString_MessageBattleLoseDescription
 
 EZChatString_MessageIntroDescription:
-	db   "Presentazioni";"じこしょうかい　は"
-	next "mostrate. Va bene?@";"この　あいさつで　いいですか？@"
+	db   "Presentazioni da";"じこしょうかい　は"
+	next "mostrare. Va bene?@";"この　あいさつで　いいですか？@"
 
 EZChatString_MessageBattleStartDescription:
-	db   "Inizio lotta";"たいせん　<GA>はじまるとき　は"
-	next "mostrato. Va bene?@";"この　あいさつで　いいですか？@"
+	db   "Apparirà se inizi";"たいせん　<GA>はじまるとき　は"
+	next "a lotta. Va bene?@";"この　あいさつで　いいですか？@"
 
 EZChatString_MessageBattleWinDescription:
-	db   "Lotte vinte";"たいせん　<NI>かったとき　は"
-	next "mostrate. Va bene?@";"この　あいさつで　いいですか？@"
+	db   "Apparirà se vinci";"たいせん　<NI>かったとき　は"
+	next "la lotta. Va bene?@";"この　あいさつで　いいですか？@"
 
 EZChatString_MessageBattleLoseDescription:
-	db   "Sconfitte";"たいせん　<NI>まけたとき　は"
-	next "mostrate. Va bene?@";"この　あいさつで　いいですか？@"
+	db   "Apparirà se perdi ";"たいせん　<NI>まけたとき　は"
+	next "la lotta. Va bene?@";"この　あいさつで　いいですか？@"
 
 EZChatString_MessageSet: ; message accept strings, one for each type of message.
 	dw EZChatString_MessageIntroSet

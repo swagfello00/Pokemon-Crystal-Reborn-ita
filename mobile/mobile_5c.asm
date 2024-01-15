@@ -399,8 +399,9 @@ Function171a95:
 	jp Function171c66
 
 String_171aa7:
-	db   "Connecting to";"モバイルアダプタに"
-	next "MOBILE ADAPTER…";"せつぞく　しています"
+	db   "Connessione all'";"モバイルアダプタに"
+	next "ADATTATORE";"せつぞく　しています"
+	next "MOBILE…"
 	;next "しばらく　おまちください"
 	db   "@"
 
@@ -782,8 +783,8 @@ String_172e4e:
 String_172e58:
 	db "OK@";"けってい@"
 String_172e5d:
-	db   "Connect to a";"せつぞくする　モバイルセンターを"
-	next "MOBILE CENTER@";"えらんで　ください@"
+	db   "Connettiti a un";"せつぞくする　モバイルセンターを"
+	next "CENTRO MOBILE@";"えらんで　ください@"
 
 Function172e78:
 	ld a, $7f
