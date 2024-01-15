@@ -798,7 +798,7 @@ Text_RegisterRecordTimedOut_Mobile: ; unreferenced
 
 Text_AMonLevelExceeds:
 	text "Il livello di uno"
-	line "o più dei tuoi""
+	line "o più dei tuoi"
 	cont "#MON eccede @"
 	text_decimal wScriptVar, 1, 3
 	text "."

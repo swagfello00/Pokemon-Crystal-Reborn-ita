@@ -13,11 +13,11 @@ Function49f16:
 	call MobileMenu_InitMenuBuffers
 	ld c, 12
 	call DelayFrames
-	hlcoord 3, 0 ;4, 0
+	hlcoord 2, 0 ;4, 0
 	ld b, 10 ; menu height
-	ld c, 12 ;10 ; menu width
+	ld c, 14 ;10 ; menu width
 	call DisplayBlankGoldenBox
-	hlcoord 5, 2 ;6, 2 ; menu text position
+	hlcoord 4, 2 ;6, 2 ; menu text position
 	ld de, MobileString1
 	call PlaceString
 	hlcoord 0, 12
@@ -97,7 +97,7 @@ Function49f16:
 	ld [hl], b
 	ld b, $a
 	ld c, $1
-	hlcoord 4, 1
+	hlcoord 3, 1
 	call ClearBox
 	jp .joy_loop
 
@@ -135,7 +135,7 @@ MobileMenu_InitMenuBuffers:
 	ld hl, w2DMenuCursorInitY
 	ld a, 2
 	ld [hli], a
-	ld a, 4 ;5 ; w2DMenuCursorInitX
+	ld a, 3 ;5 ; w2DMenuCursorInitX
 	ld [hli], a
 	ld a, 5 ; w2DMenuNumRows
 	ld [hli], a
@@ -221,7 +221,7 @@ Function4a118:
 	ld hl, w2DMenuCursorInitY
 	ld a, $1
 	ld [hli], a
-	ld a, $c;$d
+	ld a, $b;$d
 	ld [hli], a
 	ld a, $3
 	ld [hli], a
@@ -251,11 +251,11 @@ Function4a13b:
 
 MobileSettingsMenu:
 	call LoadTilesAndDisplayMobileMenuBackground
-	hlcoord 1, 2
+	hlcoord 0, 2
 	ld b, $6
-	ld c, $10
+	ld c, $12
 	call DisplayBlankGoldenBox
-	hlcoord 3, 4
+	hlcoord 2, 4
 	ld de, String_4a1ef
 	call PlaceString
 	hlcoord 0, 12
@@ -327,7 +327,7 @@ asm_4a19d:
 	ld hl, wMenuCursorY
 	ld [hl], b
 	lb bc, 6, 1
-	hlcoord 2, 3
+	hlcoord 1, 3
 	call ClearBox
 	jp Function4a195
 
@@ -487,7 +487,7 @@ Function4a373:
 	ld hl, w2DMenuCursorInitY
 	ld a, $4
 	ld [hli], a
-	ld a, $2
+	ld a, $1
 	ld [hli], a
 	ld a, $3
 	ld [hli], a
@@ -782,7 +782,7 @@ Strings_4a5f6:
     db "a mobile battle.@";"あいて<NI>みえる　あいさつです@"
     db "Seen upon losing@";"モバイル　たいせんで　まけたとき@"
     db "a mobile battle.@";"あいて<NI>みえる　あいさつです@"
-	db "Ritorna al menù";"まえ<NO>がめん　<NI>もどります@"
+	db "Ritorna al menù@";"まえ<NO>がめん　<NI>もどります@"
 	db "precedente.@"
 
 Function4a680:

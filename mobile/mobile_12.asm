@@ -275,7 +275,7 @@ Function48272:
 	jp ReturnToMobileProfileMenu
 
 MobileString_PersonalInfo:
-	db "Personal Info@"
+	db "Info Personali@"
 
 ClearMobileProfileBottomTextBox:
 	lb bc, 2, 18
