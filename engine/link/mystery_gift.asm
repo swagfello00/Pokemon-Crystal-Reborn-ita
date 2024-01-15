@@ -165,7 +165,7 @@ endc
 	db   "Premi A per"
 	next "Com. a Infrar."
 	next "Premi B per"
-	next "anullare.@"
+	next "annullare.@"
 
 .MysteryGiftCanceledText:
 	text_far _MysteryGiftCanceledText
@@ -1695,7 +1695,7 @@ endr
 	db   "Premi A per"
 	next "Com. a Infrar."
 	next "Premi B per"
-	next "anullare.@"
+	next "annullare.@"
 
 .NameCardReceivedCardText:
 	text_far _NameCardReceivedCardText
