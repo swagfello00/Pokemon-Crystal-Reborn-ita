@@ -2071,8 +2071,8 @@ Function11ca19:
 	ret
 
 EZChatString_EraseMenu: ; Erase words string, accessed from erase command on entry menu for EZ chat
-	db   "All words will";"とうろくちゅう<NO>あいさつ¯ぜんぶ"
-	next "be erased. OK?@";"けしても　よろしいですか？@"
+	db   "Eliminerà le";"とうろくちゅう<NO>あいさつ¯ぜんぶ"
+	next "parole. Va bene?@";"けしても　よろしいですか？@"
 
 EZChatString_EraseConfirmation: ; Erase words confirmation string
 	db   "SÌ";"はい"
@@ -2198,8 +2198,8 @@ EZChatMenu_ExitSubmenu: ; Exit Message menu
 	ret
 
 EZChatString_ExitPrompt: ; Exit menu string
-	db   "Want to stop";"あいさつ<NO>とうろく¯ちゅうし"
-	next "setting a message?@";"しますか？@"
+	db   "Vuoi smettere ";"あいさつ<NO>とうろく¯ちゅうし"
+	next "di scrivere?@";"しますか？@"
 
 EZChatString_ExitConfirmation: ; Exit menu confirmation string
 	db   "Quit without";"とうろくちゅう<NO>あいさつ<WA>ほぞん"
@@ -2327,20 +2327,20 @@ EZChatString_MessageDescription: ; Message usage strings
 	dw EZChatString_MessageBattleLoseDescription
 
 EZChatString_MessageIntroDescription:
-	db   "Shown as an";"じこしょうかい　は"
-	next "introduction. OK?@";"この　あいさつで　いいですか？@"
+	db   "Presentazioni";"じこしょうかい　は"
+	next "mostrate. Va bene?@";"この　あいさつで　いいですか？@"
 
 EZChatString_MessageBattleStartDescription:
-	db   "Shown when a";"たいせん　<GA>はじまるとき　は"
-	next "battle starts. OK?@";"この　あいさつで　いいですか？@"
+	db   "Inizio lotta";"たいせん　<GA>はじまるとき　は"
+	next "mostrato. Va bene?@";"この　あいさつで　いいですか？@"
 
 EZChatString_MessageBattleWinDescription:
-	db   "Shown if you";"たいせん　<NI>かったとき　は"
-	next "win a battle. OK?@";"この　あいさつで　いいですか？@"
+	db   "Lotte vinte";"たいせん　<NI>かったとき　は"
+	next "mostrate. Va bene?@";"この　あいさつで　いいですか？@"
 
 EZChatString_MessageBattleLoseDescription:
-	db   "Shown if you";"たいせん　<NI>まけたとき　は"
-	next "lose a battle. OK?@";"この　あいさつで　いいですか？@"
+	db   "Sconfitte";"たいせん　<NI>まけたとき　は"
+	next "mostrate. Va bene?@";"この　あいさつで　いいですか？@"
 
 EZChatString_MessageSet: ; message accept strings, one for each type of message.
 	dw EZChatString_MessageIntroSet
