@@ -467,7 +467,7 @@ Text_BattleTowerIntroduction_1: ; unreferenced
 	line "sempre nell'ALBO"
 	cont "D'ORO."
 
-	para "You may challenge"
+	para "Puoi sfidare fino"
 	line "in up to five"
 
 	para "BATTLE ROOMS each"
@@ -531,9 +531,9 @@ Text_BattleTowerIntroduction_2:
 	done
 
 Text_ReceivedAListOfLeadersOnTheHonorRoll:
-	text "Received a list of"
-	line "LEADERS on the"
-	cont "HONOR ROLL."
+	text "Ricevuto una lista"
+	line "dei CAPI nella"
+	cont "ALBO D'ORO."
 
 	para ""
 	done
@@ -583,11 +583,9 @@ Text_CongratulationsYouveBeatenAllTheTrainers:
 	done
 
 Text_AskRegisterRecord_Mobile: ; unreferenced
-	text "Would you like to"
-	line "register your"
-
-	para "record with the"
-	line "CENTER?"
+	text "Vuoi registrare"
+	line "il tuo record"
+	cont "al CENTRO?"
 	done
 
 Text_PlayerGotFive:
@@ -650,8 +648,9 @@ Text_CantBeRegistered_PreviousRecordDeleted:
 	done
 
 Text_CheckTheLeaderHonorRoll: ; unreferenced
-	text "Check the LEADER"
-	line "HONOR ROLL?"
+	text "Controllare il"
+	line "CAPO della ALBO"
+	cont "D'ORO?"
 	done
 
 Text_ReadBattleTowerRules:
@@ -743,12 +742,12 @@ Text_CancelYourBattleRoomChallenge:
 	done
 
 Text_RegisterRecordOnFile_Mobile: ; unreferenced
-	text "We have your"
-	line "previous record on"
+	text "Abbiamo il tuo"
+	line "record precedente-"
 
-	para "file. Would you"
-	line "like to register"
-	cont "it at the CENTER?"
+	para "mente salvato."
+	line "Vuoi registrarlo"
+	cont "al CENTRO?"
 	done
 
 Text_WeveBeenWaitingForYou:
@@ -784,36 +783,37 @@ Text_TooMuchTimeElapsedNoRegister:
 
 Text_RegisterRecordTimedOut_Mobile: ; unreferenced
 ; duplicate of Text_TooMuchTimeElapsedNoRegister
-	text "Sorry, but it's"
-	line "not possible to"
+	text "Siamo spiacenti/Ci"
+	line "dispiace, ma non è"
 
-	para "register your most"
-	line "recent record at"
+	para "possibile regi-"
+	line "strare il tuo"
 
-	para "the CENTER because"
-	line "too much time has"
+	para "record più recente"
+	line "al CENTRO perchè è"
 
-	para "elapsed since the"
-	line "start of your"
-	cont "challenge."
+	para "passato troppo"
+	line "tempo dall'inizio"
+	cont "della tua lotta."
 	done
 
 Text_AMonLevelExceeds:
-	text "One or more of"
-	line "your #MON's"
-	cont "levels exceeds @"
+	text "Il livello di uno"
+	line "o più dei tuoi""
+	cont "#MON eccede @"
 	text_decimal wScriptVar, 1, 3
 	text "."
 	done
 
 Text_MayNotEnterABattleRoomUnderL70:
 	text_ram wcd49
-	text " may not"
-	line "enter a BATTLE"
-	cont "ROOM under L70."
+	text " non può"
+	line "entrare nella SALA"
+	cont "LOTTA al di sotto"
+	cont "del L.70."
 
-	para "This BATTLE ROOM"
-	line "is for L@"
+	para "Questa SALA LOTTA"
+	line "è per L."
 	text_decimal wScriptVar, 1, 3
 	text "."
 	done

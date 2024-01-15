@@ -505,21 +505,21 @@ Function17d246:
 
 MenuHeader_17d26a:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 0, 0, 14, 9
+	menu_coords 0, 0, 16, 9
 	dw MenuData_17d272
 	db 1 ; default option
 
 MenuData_17d272:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 4
-	db "Receive News@" 	; "ニュース¯よみこむ@"
-	db "View News@" 	; "ニュース¯みる@"
+	db "Ricevi Notizie@" 	; "ニュース¯よみこむ@"
+	db "Vedi Notizie@" 	; "ニュース¯みる@"
 	db "Spiegazione@" 	; "せつめい@"
 	db "Anulla@" 		; "やめる@"
 
 MenuHeader_ChallengeExplanationCancel:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 0, 0, 14, 9;14, 7
+	menu_coords 0, 0, 16, 9;14, 7
 	dw MenuData_ChallengeExplanationCancel
 	db 1 ; default option
 
@@ -527,13 +527,13 @@ MenuData_ChallengeExplanationCancel:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 4
 	db "Sfida@"
-	db "Honor Roll@" ; check leaders?
+	db "Albo D'oro@" ; check leaders?
 	db "Spiegazione@"
 	db "Anulla@"
 
 MenuHeader_ChallengeRegisterExplanationCancel:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 0, 0, 14, 11
+	menu_coords 0, 0, 16, 11
 	dw MenuData_ChallengeRegisterExplanationCancel
 	db 1 ; default option
 
@@ -541,8 +541,8 @@ MenuData_ChallengeRegisterExplanationCancel:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 5
 	db "Sfida@"
-	db "Honor Roll@" ; check leaders?
-	db "Previous Room@"
+	db "Albo D'oro@" ; check leaders?
+	db "Sala Precedente@"
 	db "Spiegazione@"
 	db "Anulla@"
 

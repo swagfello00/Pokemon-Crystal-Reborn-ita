@@ -77,26 +77,27 @@ Text_GrampsLookingForYou:
 	done
 
 Text_DayCareManTalksAboutEggTicket: ; unreferenced
-	text "I'm the DAY-CARE"
-	line "MAN."
+	text "Sono il padrone"
+	line "della PENSIONE."
 
-	para "There's something"
-	line "new in GOLDENROD"
+	para "C'è una cosa nuova"
+	line "a FIORDOROPOLI,"
 
-	para "called the TRADE"
-	line "CORNER."
+	para "chiama l'ANGOLO"
+	line "DELLO SCAMBIO."
 
-	para "I was given an EGG"
-	line "TICKET that can be"
+	para "Mi hanno dato un"
+	line "BIGLIETTO UOVO che"
 
-	para "traded in for a"
-	line "ODD EGG."
+	para "essere scambiato"
+	line "per un UOVO"
+	cont "STRANO."
 
-	para "But since we run a"
-	line "DAY-CARE, we don't"
+	para "Ma poichè gestiamo"
+	line "una PENSIONE,"
 
-	para "need it. You may"
-	line "as well have it."
+	para "a noi non serve."
+	line "Puoi prenderlo."
 	done
 
 DayCareManText_GiveOddEgg:

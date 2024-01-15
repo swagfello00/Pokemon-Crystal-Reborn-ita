@@ -951,14 +951,14 @@ EZChatDrawBKG_ChatWords:
 	ret
 
 EZChatString_ChatExplanation: ; Explanation string
-	db   "Combine four words";"６つのことば¯くみあわせます"
-	next "or phrases.";"かえたいところ¯えらぶと　でてくる"
-	next "Select a space";"ことばのグループから　いれかえたい"
-	next "and choose a word.";"たんご¯えらんでください"
+	db   "Abbina quattro";"６つのことば¯くみあわせます"
+	next "parole o frasi.";"かえたいところ¯えらぶと　でてくる"
+	next "Scegli uno spazio";"ことばのグループから　いれかえたい"
+	next "e una parola.";"たんご¯えらんでください"
 	db   "@"
 
 EZChatString_ChatExplanationBottom: ; Explanation commands string
-	db "RESET　QUIT  　OK@";"ぜんぶけす　やめる　　　けってい@"
+	db "RESET　ESCI  　OK@";"ぜんぶけす　やめる　　　けってい@"
 
 EZChatDraw_CategoryMenu: ; Open category menu
 ; might need no change here

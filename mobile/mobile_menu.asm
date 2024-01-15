@@ -102,11 +102,11 @@ Function49f16:
 	jp .joy_loop
 
 MobileString1:
-	db   "Card Folder"
+	db   "L'album Schede"
 	next "Greetings"
-	next "Profile"
-	next "Option"
-	next "Cancel"
+	next "Profilo"
+	next "Opzioni"
+	next "Anulla"
 	db   "@"
 
 MobileStrings2:
@@ -128,8 +128,8 @@ String_0x4a042:
 	next "used to connect.@";"ひつような　こと¯きめます@"
 
 String_0x4a062:
-	db   "Return to the";"まえ<NO>がめん　<NI>もどります"
-	next "previous screen.@";"@"
+	db   "Ritorna al menù";"まえ<NO>がめん　<NI>もどります"
+	next "precedente.@";"@"
 
 MobileMenu_InitMenuBuffers:
 	ld hl, w2DMenuCursorInitY
@@ -332,9 +332,9 @@ asm_4a19d:
 	jp Function4a195
 
 String_4a1ef:
-	db   "Mobile Center";"モバイルセンター¯えらぶ"
-	next "Log-in Password";"ログインパスワード¯いれる"
-	next "Cancel@";"もどる@"
+	db   "Centro Mobile";"モバイルセンター¯えらぶ"
+	next "Password D'accesso";"ログインパスワード¯いれる"
+	next "Anulla@";"もどる@"
 
 Function4a20e:
 	ld a, $1
@@ -362,14 +362,14 @@ Function4a239:
 	jp Function4a13b
 
 Strings_4a23d:
-	db   "Choose the MOBILE";"いつも　せつぞく¯する"
-	next "CENTER to use.@";"モバイルセンター¯えらびます@"
+	db   "Scegli il CENTRO";"いつも　せつぞく¯する"
+	next "MOBILE da usare.@";"モバイルセンター¯えらびます@"
 
-	db   "The PASSWORD used";"モバイルセンター<NI>せつぞくするとき"
-	next "to connect.@";"つかうパスワード¯ほぞんできます@"
+	db   "La PASSWORD usata";"モバイルセンター<NI>せつぞくするとき"
+	next "per connetterti.@";"つかうパスワード¯ほぞんできます@"
 
-	db   "Return to the";"まえ<NO>がめん　<NI>もどります@"
-	next "previous screen.@"
+	db   "Ritorna al menù";"まえ<NO>がめん　<NI>もどります@"
+	next "precedente.@"
 
 	db   "@"
 
@@ -763,15 +763,15 @@ Function4a5b0:
 	jp Function4a545
 
 String_4a5c5:
-	db "Introduction@";"じこしょうかい@"
+	db "Presentazioni@";"じこしょうかい@"
 String_4a5cd:
-	db "Begin Battle@";"たいせん　<GA>はじまるとき@"
+	db "Inizio Lotta@";"たいせん　<GA>はじまるとき@"
 String_4a5da:
-	db "Win Battle@";"たいせん　<NI>かったとき@"
+	db "Lotta Vinta@";"たいせん　<NI>かったとき@"
 String_4a5e6:
-	db "Lose Battle@";"たいせん　<NI>まけたとき@"
+	db "Lotta Persa@";"たいせん　<NI>まけたとき@"
 String_4a5f2:
-	db "Cancel@";"もどる@"
+	db "Anulla@";"もどる@"
 
 Strings_4a5f6:
 	db "Shown on your@";"めいし　や　ニュース　<NI>のせる@"
@@ -782,8 +782,8 @@ Strings_4a5f6:
     db "a mobile battle.@";"あいて<NI>みえる　あいさつです@"
     db "Seen upon losing@";"モバイル　たいせんで　まけたとき@"
     db "a mobile battle.@";"あいて<NI>みえる　あいさつです@"
-	db "Return to the@";"まえ<NO>がめん　<NI>もどります@"
-	db "previous screen.@"
+	db "Ritorna al menù";"まえ<NO>がめん　<NI>もどります@"
+	db "precedente.@"
 
 Function4a680:
 	ld hl, w2DMenuCursorInitY

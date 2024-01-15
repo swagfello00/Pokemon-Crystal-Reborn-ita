@@ -56,21 +56,23 @@ SaffronPokecenter1FTeacherText:
 	done
 
 SaffronPokecenter1FTeacherMobileText:
-	text "What are JOHTO's"
-	line "#MON CENTERS"
-	cont "like?"
+	text "Come sono fatti"
+	line "I CENTRI #MON"
+	cont "di JOHTO?"
 
-	para "…Oh, I see."
-	line "So they let you"
+	para "…Ah, capisco."
+	line "Quindi ti permet-"
 
-	para "link with people"
-	line "far away?"
+	para "tono di connet-"
+	line "terti con persone"
+	cont "lontane?"
 
-	para "Then I'll get my"
-	line "friend in JOHTO to"
+	para "Allora chiederò al"
+	line "mio amico si JOHTO"
 
-	para "catch a MARILL and"
-	line "trade it to me!"
+	para "di catturare un"
+	line "MARILL e scambiar-"
+	cont "melo!"
 	done
 
 SaffronPokecenter1FFisherText:

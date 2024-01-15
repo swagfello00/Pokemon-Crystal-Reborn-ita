@@ -162,10 +162,10 @@ endc
 	ret
 
 .String_PressAToLink_BToCancel:
-	db   "Pulsa A para"
-	next "enlace IR."
-	next "Pulsa B para"
-	next "cancelar.@"
+	db   "Premi A per"
+	next "Com. a Infrar."
+	next "Premi B per"
+	next "anullare.@"
 
 .MysteryGiftCanceledText:
 	text_far _MysteryGiftCanceledText
@@ -1692,10 +1692,10 @@ endr
 	ret
 
 .String_PressAToLink_BToCancel_JP:
-	db   "Pulsa A para"
-	next "enlace IR."
-	next "Pulsa B para"
-	next "cancelar.@"
+	db   "Premi A per"
+	next "Com. a Infrar."
+	next "Premi B per"
+	next "anullare.@"
 
 .NameCardReceivedCardText:
 	text_far _NameCardReceivedCardText

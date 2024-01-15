@@ -901,7 +901,7 @@ GoldenrodPokecenter1FMobileOnSuperNerdText:
 	text "Ho pensato ad una"
 	line "cosa molto"
 	cont "divertente per il"
-	line "CENTRO SCAMBI…"
+	cont "CENTRO SCAMBI…"
 
 	para "Faccio tenere un"
 	line "MESSAGGIO a"
@@ -1005,7 +1005,7 @@ GoldenrodPokecenter1FGameboyKidText:
 	text "Il COLOSSEO, al"
 	line "piano superiore, è"
 	cont "per giocare via"
-	line "cavo."
+	cont "cavo."
 
 	para "I risultati sono"
 	line "appesi al muro:"
