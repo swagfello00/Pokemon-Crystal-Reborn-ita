@@ -68,7 +68,7 @@ SaffronPokecenter1FTeacherMobileText:
 	cont "lontane?"
 
 	para "Allora chiederò al"
-	line "mio amico si JOHTO"
+	line "mio amico di JOHTO"
 
 	para "di catturare un"
 	line "MARILL e scambiar-"
