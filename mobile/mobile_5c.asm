@@ -645,8 +645,8 @@ MenuHeader_171c6b:
 	db 0 ; default option
 
 String_171c73:
-	db   "MOBILE CENTER";"モバイルセンターを　けってい"
-	next "set.@";"しました@"
+	db   "CENTRO MOBILE";"モバイルセンターを　けってい"
+	next "impostato.@";"しました@"
 
 Function171c87:
 	call DisableLCD

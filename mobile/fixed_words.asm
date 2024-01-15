@@ -1148,7 +1148,7 @@ EZChat_SortMenuBackground:
 	ret
 
 EZChatString_Stop_Mode_Cancel:
-	db "DEL  　MODE　　QUIT@";"けす　　　　モード　　　やめる@"
+	db "CANC 　MODAL　ESCI@";"けす　　　　モード　　　やめる@"
 
 EZChatCoord_Categories: ; Category Coordinates
 	dwcoord  1,  7 ; PKMN
@@ -1732,13 +1732,13 @@ BCD2String: ; unreferenced
 	ret
 
 MobileString_Page: ; unreferenced
-	db "PAGE@";"ぺージ@"
+	db "PAG@";"ぺージ@"
 
 MobileString_Prev:
-	db "PREV@";"まえ@"
+	db "PREC@";"まえ@"
 
 MobileString_Next:
-	db "NEXT@";"つぎ@"
+	db "SUCC@";"つぎ@"
 
 EZChat_VerifyWordPlacement:
 ; make sure that if one row contains a mon name
@@ -2349,20 +2349,20 @@ EZChatString_MessageSet: ; message accept strings, one for each type of message.
 	dw EZChatString_MessageBattleLoseSet
 
 EZChatString_MessageIntroSet:
-	db   "Introduction"		;"じこしょうかい　の"
-	next "greeting set!@"	;next "あいさつ¯とうろくした！@"
+	db   "Impostati i saluti"		;"じこしょうかい　の"
+	next "di Presentazione!@"	;next "あいさつ¯とうろくした！@"
 
 EZChatString_MessageBattleStartSet:
-	db   "Begin battle"		;"たいせん　<GA>はじまるとき　の"
-	next "greeting set!@"	;next "あいさつ¯とうろくした！@"
+	db   "Impostati i saluti"		;"たいせん　<GA>はじまるとき　の"
+	next "di Inizio Lotta!@"	;next "あいさつ¯とうろくした！@"
 
 EZChatString_MessageBattleWinSet:
-	db   "Win battle"		;"たいせん　<NI>かったとき　の"
-	next "greeting set!@"	;next "あいさつ¯とうろくした！@"
+	db   "Impostati i saluti"		;"たいせん　<NI>かったとき　の"
+	next "di Lotta Vinta!@"	;next "あいさつ¯とうろくした！@"
 
 EZChatString_MessageBattleLoseSet:
-	db   "Lose battle"		;"たいせん　<NI>まけたとき　の"
-	next "greeting set!@"	;next "あいさつ¯とうろくした！@"
+	db   "Impostati i saluti"		;"たいせん　<NI>まけたとき　の"
+	next "di Lotta Persa!@"	;next "あいさつ¯とうろくした！@"
 
 EZChatMenu_WarnEmptyMessage:
 	ld de, EZChatBKG_SortBy
@@ -2383,8 +2383,8 @@ Function11cd04:
 	ret
 
 EZChatString_EnterSomeWords:
-	db 	 "Please enter a";"なにか　ことば¯いれてください@"
-	next "phrase or word.@"
+	db 	 "Scrivi una frase";"なにか　ことば¯いれてください@"
+	next "o una parola.@"
 
 EZChatDraw_SortByMenu: ; Draws/Opens Sort By Menu
 	call EZChat_ClearBottom12Rows
@@ -2490,17 +2490,17 @@ Function11cdaa:
 
 EZChatString_SortByCategory:
 ; Words will be displayed by category
-	db   "Display words";"ことば¯しゅるいべつに"
-	next "by category@";"えらべます@"
+	db   "Mostra parole";"ことば¯しゅるいべつに"
+	next "per categoria@";"えらべます@"
 
 EZChatString_SortByAlphabetical:
 ; Words will be displayed in alphabetical order
-	db   "Display words in";"ことば¯アイウエオ　の"
-	next "alphabetical order@";"じゅんばんで　ひょうじ　します@"
+	db   "Mostra parole in";"ことば¯アイウエオ　の"
+	next "ordine alfabetico@";"じゅんばんで　ひょうじ　します@"
 
 EZChatString_SortByMenu:
-	db   "GROUP MODE";"しゅるいべつ　モード"  ; Category mode
-	next "ABC MODE@";"アイウエオ　　モード@" ; ABC mode
+	db   "MODALITÀ GRUPPO";"しゅるいべつ　モード"  ; Category mode
+	next "Dalla A alla Z@";"アイウエオ　　モード@" ; ABC mode
 
 EZChatDraw_SortByCharacter: ; Sort by Character Menu
 	call EZChat_ClearBottom12Rows
