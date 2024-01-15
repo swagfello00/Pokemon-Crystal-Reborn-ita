@@ -148,8 +148,8 @@ PokecomCenterAdminOfficeMobileScientist3Text:
 	done
 
 PokecomCenterAdminOfficeMobileComputer1Text:
-	text "È una avviso"
-	line "cazione usare"
+	text "È una avviso su"
+	line "dove usare gli"
 	para "ADATTATORI MOBILE…"
 	done
 
