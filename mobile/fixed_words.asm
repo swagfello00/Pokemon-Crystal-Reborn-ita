@@ -2332,7 +2332,7 @@ EZChatString_MessageIntroDescription:
 
 EZChatString_MessageBattleStartDescription:
 	db   "Apparirà se inizi";"たいせん　<GA>はじまるとき　は"
-	next "a lotta. Va bene?@";"この　あいさつで　いいですか？@"
+	next "la lotta. Va bene?@";"この　あいさつで　いいですか？@"
 
 EZChatString_MessageBattleWinDescription:
 	db   "Apparirà se vinci";"たいせん　<NI>かったとき　は"
