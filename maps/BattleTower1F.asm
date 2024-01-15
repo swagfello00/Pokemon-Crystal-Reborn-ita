@@ -532,8 +532,8 @@ Text_BattleTowerIntroduction_2:
 
 Text_ReceivedAListOfLeadersOnTheHonorRoll:
 	text "Ricevuta una lista"
-	line "dei CAPI nella"
-	cont "ALBO D'ORO."
+	line "dei CAPI nell'ALBO"
+	cont "D'ORO."
 
 	para ""
 	done
