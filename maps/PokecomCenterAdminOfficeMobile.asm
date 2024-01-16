@@ -166,7 +166,7 @@ PokecomCenterAdminOfficeMobileComputer1Text_PokeComClub:
 	para "lottare con un"
 	line "amico lontano"
 	para "usando l'ADAT-"
-	cont "TATORE MOBILE."
+	line "TATORE MOBILE."
 
 	para "Per collegarsi,"
 	line "il tuo amico deve"
@@ -178,12 +178,12 @@ PokecomCenterAdminOfficeMobileComputer1Text_PokeComClub:
 
 PokecomCenterAdminOfficeMobileComputer1Text_MobileCenter:
 	text "Per usare l'ANGOLO"
-	line "DELLO SCAMBIO o"
+	line "SCAMBI o leggere"
 
-	para "leggere le NOTIZIE"
+	para "le NOTIZIE"
 	line "#MON, devi"
-	cont "chiamare il CENTRO"
-	cont "MOBILE."
+	cont "chiamare il "
+	cont "CENTRO MOBILE."
 
 	para "Devi registrarti"
 	line "al CENTRO MOBILE"

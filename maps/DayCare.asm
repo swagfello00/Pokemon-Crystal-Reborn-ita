@@ -84,7 +84,7 @@ Text_DayCareManTalksAboutEggTicket: ; unreferenced
 	line "a FIORDOROPOLI,"
 
 	para "chiamata l'ANGOLO"
-	line "DELLO SCAMBIO."
+	line "SCAMBI."
 
 	para "Mi hanno dato un"
 	line "BIGLIETTO UOVO che"
