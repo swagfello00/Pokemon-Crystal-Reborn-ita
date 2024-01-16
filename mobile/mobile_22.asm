@@ -5,15 +5,15 @@ String_EmptyIDNo:
 	db "-----@"
 
 String_8911c:
-	db   "Please enter a";"でんわばんごうが　ただしく" ; Phone number is not
-	next "phone number.@";"はいって　いません！@"   ; entered correctly!
+	db   "Immetti un numero.@";"でんわばんごうが　ただしく" ; Phone number is not
+;	next "phone number.@";"はいって　いません！@"   ; entered correctly!
 
 String_89135:
-	db   "Discard changes to";"データが　かわって　いますが"  ; The data has changed.
-	next "this CARD?@";"かきかえないで　やめますか？@" ; Quit anyway?
+	db   "Scartare modifiche";"データが　かわって　いますが"  ; The data has changed.
+	next "alla SCHEDA?@";"かきかえないで　やめますか？@" ; Quit anyway?
 
 String_89153:
-	db   "No message.@";"メッセージは　ありません@"    ; No message
+	db   "Nessun messaggio.@";"メッセージは　ありません@"    ; No message
 
 OpenSRAMBank4:
 	push af
@@ -1672,10 +1672,10 @@ Function89a2e:
 	ret
 
 String_89a4e:
-	db "SAVE@";"けってい@"
+	db "SALVA@";"けってい@"
 
 String_89a53:
-	db "CANCEL@";"やめる@"
+	db "ESCI@";"やめる@"
 
 Function89a57:
 	call JoyTextDelay_ForcehJoyDown ; joypad
@@ -2871,16 +2871,16 @@ Function8a1b0:
 	ret
 
 Strings_8a1cc:
-	db   "Open the" ;"めいし<NO>せいりと　へんしゅうを"
-	next "CARD FOLDER." ;"おこないます"
+	db   "Apri l'ALBUM" ;"めいし<NO>せいりと　へんしゅうを"
+	next "SCHEDE." ;"おこないます"
 	db   "@"
 
-	db   "Delete the" ;"めいしフォルダー<NO>めいしと"
-	next "CARD FOLDER." ;"あんしょうばんごう<WO>けします"
+	db   "Cancella l'ALBUM" ;"めいしフォルダー<NO>めいしと"
+	next "SCHEDE." ;"あんしょうばんごう<WO>けします"
 	db   "@"
 
-	db   "Return to the";"まえ<NO>がめん<NI>もどります@"
-	next "previous screen.@"
+	db   "Ritorna al menù";"まえ<NO>がめん<NI>もどります@"
+	next "precedente.@"
 	db   "@"
 
 Function8a20d:
@@ -3191,8 +3191,8 @@ Function8a453:
 	ret
 
 String_8a476:
-	db   "Return to the";"まえ<NO>がめん<NI>もどります@"
-	next "previous screen.@"
+	db   "Ritorna al menù";"まえ<NO>がめん<NI>もどります@"
+	next "precedente.@"
 
 Strings_8a483:
 	db   "Friends' CARDS";"おともだち<NO>めいしは"
@@ -3720,8 +3720,8 @@ Function8a818:
 	ret
 
 .string_8a868
-	db   "The CARD was";"めいし<WO>かきかえ　まし<TA!>@"
-	next "updated.@"
+	db   "La SCHEDA è stata";"めいし<WO>かきかえ　まし<TA!>@"
+	next "aggiornata.@"
 
 .asm_8a875
 	ld de, String_8a88b
@@ -3737,8 +3737,8 @@ Function8a818:
 	ret
 
 String_8a88b:
-	db   "Please enter a";"おともだち<NO>なまえが"
-	next "name.@";"かかれて　いません！@"
+	db   "Immetti un nome.@";"おともだち<NO>なまえが"
+;	next "name.@";"かかれて　いません！@"
 
 Function8a8a1:
 	call OpenSRAMBank4
@@ -3793,11 +3793,12 @@ Function8a8c3:
 	ret
 
 String_8a919:
-	db "Delete this CARD?@";"このデータ<WO>けしますか？@"	
+	db   "Cancellare questa@";"このデータ<WO>けしますか？@"	
+	next "SCHEDA?@"	
 
 String_8a926:
-	db   "The CARD has";"データ<WO>けしまし<TA!>@"
-	next "been deleted.@"
+	db   "La SCHEDA è stata";"データ<WO>けしまし<TA!>@"
+	next "cancellata.@"
 
 Mobile22_SwapEntries: ; switch entries.
 	ld a, [wMenuSelection]
@@ -4033,8 +4034,8 @@ Function8aab6:
 	ret
 
 String_8aaf0:
-	db 	 "Your CARD was";"あたらしい　めいし<PKMN>できまし<LF>@"
-	next "updated.@"
+	db 	 "La tua SCHEDA è";"あたらしい　めいし<PKMN>できまし<LF>@"
+	next "stata aggiornata.@"
 
 Function8ab00:
 	ld de, String_8911c
@@ -4187,8 +4188,8 @@ Function8aba9: ; pick a friend to call
 	ret
 
 String_8ac3b:
-	db   "Call this";"こ<NO>ともだち<NI>でんわを"
-	next "friend?@";"かけますか？@"
+	db   "Chiamare questo";"こ<NO>ともだち<NI>でんわを"
+	next "amico?@";"かけますか？@"
 
 Function8ac4e:
 	xor a
@@ -4368,12 +4369,12 @@ Mobile22_AskOverwriteCardEntry:
 	ret
 
 String_AskOverwriteCard:
-	db   "Overwrite";"こ<NO>めいし<WO>けして"
-	next "this data?@";"いれかえますか？@"
+	db   "Sovrascrivere";"こ<NO>めいし<WO>けして"
+	next "questi dati?@";"いれかえますか？@"
 
 String_KeepFriendsName:
-	db   "Keep the";"おともだち<NO>なまえを"
-	next "friend's name?@";"のこして　おきますか？@"
+	db   "Conservare il";"おともだち<NO>なまえを"
+	next "nome dell'amico?@";"のこして　おきますか？@"
 
 Function8adb3:
 	call Mobile22_ClearScreen

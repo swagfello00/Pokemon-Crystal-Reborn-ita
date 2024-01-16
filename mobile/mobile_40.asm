@@ -333,12 +333,12 @@ Function100232:
 	ret
 
 String10024d:
-	db   "Communication"	; "つうしんを　キャンセル　しました@"
-	next "canceled.@"
+	db   "Comunicazione"	; "つうしんを　キャンセル　しました@"
+	next "interrotta.@"
 
 String10025e:
-	db   "The chosen rooms"	; "おともだちと　えらんだ　へやが"
-	next "differ!@"			; "ちがうようです@"
+	db   "Le stanze scelte"	; "おともだちと　えらんだ　へやが"
+	next "non coincidono!@"			; "ちがうようです@"
 
 Function100276:
 	ld a, [wcd2b]
@@ -1051,7 +1051,7 @@ String1006c2:
 String1006c6:
 	db " sec.@"			; "びょう@" Second
 String1006ca:
-	db "1 hour or more @" 		; "１じかんいじょう@" More than 1 hour
+	db "1 ora o più    @" 		; "１じかんいじょう@" More than 1 hour
 
 Function1006d3:
 	call UpdateTime
@@ -1333,7 +1333,7 @@ String_10088e:
 	; "じかん@"
 
 String_10089f:
-	db "UNLIMITED@" 		; "　むせいげん@"
+	db "ILLIMITATA@" 		; "　むせいげん@"
 
 MobileBattleGetRemainingTime:
 ; Calculates the difference between 10 minutes and sMobileBattleTimer
@@ -1430,9 +1430,9 @@ Function100902:
 	ret
 
 .string_10095a
-	db "Time's up!@"		;"たいせん　しゅうりょう@"
+	db "Tempo scaduto!@"		;"たいせん　しゅうりょう@"
 .string_100966
-	db "min. remaining!@"	;"のこり　　　ふん！@"
+	db "min. rimanenti!@"	;"のこり　　　ふん！@"
 
 Function100970:
 	hlcoord 0, 0
@@ -4536,8 +4536,8 @@ String_101f13:
 	db "@"
 
 String_101f14:
-	db   "Communicate"	; "モバイルアダプタを　つかって"
-	next "with a friend!@"	; "おともだちと　つうしんします"
+	db   "Comunica con"	; "モバイルアダプタを　つかって"
+	next "un amico!@"	; "おともだちと　つうしんします"
 
 String_101f32:
 	db   "The caller will"	; "でんわを　かけるひとには"
@@ -4548,44 +4548,46 @@ String_101f4f:
 	next "ADAPTER ready?@"	; "できて　いますか？@"
 
 String_101f69:
-	db   "Want to call"		; "あなたが　おともだちに"
-	next "your friend?@"	; "でんわを　かけますか？@"
+	db   "Vuoi chiamare"		; "あなたが　おともだちに"
+	next "il tuo amico?@"	; "でんわを　かけますか？@"
 
 String_101f81:
-	db   "Use the"			; "めいしフォルダーを"
-	next "CARD FOLDER?@"	; "つかいますか？@"
+	db   "Usare l'ALBUM"			; "めいしフォルダーを"
+	next "SCHEDE?@"	; "つかいますか？@"
 
 String_101f93:
 	db   "Please enter a"	; "でんわばんごうを　にゅうりょく"
 	next "phone number.@"	; "してください@"
 
 String_101faa:
-	db   "Waiting for"		; "それでは　おともだちからの"
-	next "a call…@"			; "でんわを　おまちします⋯@"
+	db   "Attendo la"		; "それでは　おともだちからの"
+	next "chiamata…@"			; "でんわを　おまちします⋯@"
 
 String_101fc5:
-	db 	"Call this no.?@"	; "に　でんわを　かけます@"
+	db 	"Chiamare questo N°?@"	; "に　でんわを　かけます@"
 
 String_101fd2:
-	db 	"Calling…@"			; "に　でんわを　かけています@"
+	db 	  "Chiamata in"			; "に　でんわを　かけています@"
+	next  "corso…@"
 
 String_101fe1:
-	db   "Call connected!@"	; "でんわが　つながりました!@"
+	db   "Chiamata@"	; "でんわが　つながりました!@"
+	next "agganciata!"
 
 String_101fef:
-	db   "Ending call…@"	; "つうわを"
+	db   "Fine chiamata…@"	; "つうわを"
 	;next 					; "しゅうりょう　します⋯@"
 
 String_102000:
-	db   "Communication"	; "つうしん　しゅうりょう@"
-	next "ended.@"
+	db   "Fine"	; "つうしん　しゅうりょう@"
+	next "comunicazione!@"
 
 String_10200c:
-	db   "CALL TIME@"		; "つうわ　じかん@"
+	db   "DURATA CHIAMATA@"		; "つうわ　じかん@"
 
 String_102014:
-	db   "Please choose"	; "それでは　つうしんの"
-	next "the settings.@"	; "せっていを　してください@"
+	db   "Scegli le"	; "それでは　つうしんの"
+	next "impostazioni.@"	; "せっていを　してください@"
 
 Function10202c:
 	farcall Function115d99
@@ -6649,8 +6651,8 @@ Function102f15:
 	ret
 
 .TooBadTheTradeWasCanceled:
-	db   "Canceling the"		; "こうかんを　キャンセルしました@"
-	next "trade..."
+	db   "Annullamento"		; "こうかんを　キャンセルしました@"
+	next "scambio..."
 	db   "@"
 
 Function102f32:
@@ -6671,8 +6673,8 @@ Function102f50:
 	ret
 
 .PleaseWait:
-	db   "Please wait a"		; "しょうしょう　おまち　ください@"
-	next "moment...@"
+	db   "Aspetta un"		; "しょうしょう　おまち　ください@"
+	next "momento...@"
 
 Function102f6d:
 	call Function102dc3
@@ -6682,7 +6684,8 @@ Function102f6d:
 	ret
 
 .Finished:
-	db "Finishing trade...@"	; "しゅうりょう　します@"
+	db   "Termino lo"	; "しゅうりょう　します@"
+	next "scambio...@"
 
 Function102f85:
 	ld a, [wd003]
