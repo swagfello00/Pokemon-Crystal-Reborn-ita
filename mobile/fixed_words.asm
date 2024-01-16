@@ -2495,8 +2495,8 @@ EZChatString_SortByCategory:
 
 EZChatString_SortByAlphabetical:
 ; Words will be displayed in alphabetical order
-	db   "Parole in";"ことば¯アイウエオ　の"
-	next "ordine alfabetico.@";"じゅんばんで　ひょうじ　します@"
+	db   "Parole in ordine";"ことば¯アイウエオ　の"
+	next "alfabetico.@";"じゅんばんで　ひょうじ　します@"
 
 EZChatString_SortByMenu:
 	db   "MODALITÀ GRUPPO";"しゅるいべつ　モード"  ; Category mode
