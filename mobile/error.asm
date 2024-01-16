@@ -572,7 +572,6 @@ String_17fcff:
 String_17fd47:
 	db   "Il CENTRO MOBILE" ; "げんざい　モバイルセンターの"
 	next "è in manutenzione." ; "てんけんを　しているので"
-	next "maintenance." ; "つうしんが　できません"
 	next "Riprova più" ; "しばらく　まって"
 	next "tardi." ; "かけなおして　ください"
 	db   "@" 
