@@ -824,8 +824,7 @@ Text_ThisWayToMobileRoom: ; unreferenced
 Text_BattleReceptionistIntro:
 	text "Ti do il benvenuto"
 	line "nel COLOSSEO del"
-	cont "CLUB #COM"
-	cont "VIA CAVO."
+	cont "CLUB #COM."
 	
 	para "Qui puoi sfidare"
 	line "un amico."
@@ -837,8 +836,7 @@ Text_BattleReceptionistIntro:
 Text_TradeReceptionistIntro:
 	text "Ti do il benvenuto"
 	line "nel CENTRO SCAMBI"
-	cont "del CLUB #COM"
-	cont "VIA CAVO."
+	cont "del CLUB #COM."
 
 	para "Qui puoi scambiare"
 	line "i tuoi #MON con"
@@ -851,8 +849,7 @@ Text_TradeReceptionistIntro:
 Text_TimeCapsuleReceptionistIntro:
 	text "Ti do il benvenuto"
 	line "nella TEMPOCAPSULA"
-	cont "del CLUB #COM"
-	cont "VIA CAVO."
+	cont "del CLUB #COM."
 
 	para "Puoi viaggiare nel"
 	line "passato per scam-"
