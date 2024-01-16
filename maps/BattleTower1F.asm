@@ -468,25 +468,23 @@ Text_BattleTowerIntroduction_1: ; unreferenced
 	cont "D'ORO."
 
 	para "Puoi sfidare fino"
-	line "in up to five"
+	line "a cinque SALA"
+	cont "LOTTA al giorno."
 
-	para "BATTLE ROOMS each"
-	line "day."
+	para "Però puoi lottare"
+	line "solo una volta"
 
-	para "However, you may"
-	line "battle only once a"
+	para "al giorno in ogni"
+	line "SALA."
 
-	para "day in any given"
-	line "ROOM."
+	para "Per interrompere"
+	line "una sessione, devi"
 
-	para "To interrupt a"
-	line "session, you must"
+	para "SALVARE. Altrimenti"
+	line "non sarai in grado"
 
-	para "SAVE. If not, you"
-	line "won't be able to"
-
-	para "resume your ROOM"
-	line "challenge."
+	para "di continuare le"
+	line "sfide nella SALA."
 
 	para ""
 	done
