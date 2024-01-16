@@ -115,7 +115,7 @@ _ExpPointsText::
 	prompt
 
 _GoMonText::
-	text "Los! @"
+	text "Vai! @"
 	text_end
 
 _DoItMonText::

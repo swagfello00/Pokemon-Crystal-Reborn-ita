@@ -3195,14 +3195,14 @@ String_8a476:
 	next "precedente.@"
 
 Strings_8a483:
-	db   "Friends' CARDS";"おともだち<NO>めいしは"
-	next "are stored here.@";"ここ<NI>いれておきます@"
+	db   "Le SCHEDE degli";"おともだち<NO>めいしは"
+	next "amici sono qui.@";"ここ<NI>いれておきます@"
 
-	db   "Enter your number";"でんわばんごう<WO>いれると"
-	next "to trade CARDS.@";"めいしこうかん<GA>できます@"
+	db   "Immetti il tuo Nº";"でんわばんごう<WO>いれると"
+	next "per scamb. SCHEDE.@";"めいしこうかん<GA>できます@"
 
-	db   "Trade CARDS with";"ともだちと　じぶん<NO>めいしを"
-	next "friends via IR.@";"せきがいせんで　こうかん　します@"
+	db   "Scambia le SCHEDE";"ともだちと　じぶん<NO>めいしを"
+	next "con amici via IR.@";"せきがいせんで　こうかん　します@"
 
 Function8a4d3:
 	ld a, [wMenuSelection]

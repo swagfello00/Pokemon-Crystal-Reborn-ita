@@ -106,7 +106,7 @@ PokecomCenterAdminOfficeMobileComputer3:
 
 PokecomCenterAdminOfficeMobileScientist1Text:
 	text "Il CENTRO #COM"
-	line "E IL CENTRO MOBILE"
+	line "e il CENTRO MOBILE"
 
 	para "sono stati costru-"
 	line "iti per soddisfare"

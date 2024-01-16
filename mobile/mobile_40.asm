@@ -1329,7 +1329,7 @@ Function100846:
 	ret
 
 String_10088e:
-	db   "MOBILE BATTLE TIME@" 	; "モバイルたいせん　できる"
+	db   "DURATA LOTTA MOB.@" 	; "モバイルたいせん　できる"
 	; "じかん@"
 
 String_10089f:
@@ -4540,12 +4540,12 @@ String_101f14:
 	next "un amico!@"	; "おともだちと　つうしんします"
 
 String_101f32:
-	db   "The caller will"	; "でんわを　かけるひとには"
-	next "be charged.@"		; "つうわりょうきんが　かかります@"
+	db   "È previsto"	; "でんわを　かけるひとには"
+	next "un addebito.@"		; "つうわりょうきんが　かかります@"
 
 String_101f4f:
-	db   "Is the MOBILE"	; "モバイルアダプタの　じゅんびは"
-	next "ADAPTER ready?@"	; "できて　いますか？@"
+	db   "L'ADATT. MOB."	; "モバイルアダプタの　じゅんびは"
+	next "è pronto?@"	; "できて　いますか？@"
 
 String_101f69:
 	db   "Vuoi chiamare"		; "あなたが　おともだちに"
@@ -4556,15 +4556,15 @@ String_101f81:
 	next "SCHEDE?@"	; "つかいますか？@"
 
 String_101f93:
-	db   "Please enter a"	; "でんわばんごうを　にゅうりょく"
-	next "phone number.@"	; "してください@"
+	db   "Immetti un Nº"	; "でんわばんごうを　にゅうりょく"
+	next "di telefono.@"	; "してください@"
 
 String_101faa:
 	db   "Attendo la"		; "それでは　おともだちからの"
 	next "chiamata…@"			; "でんわを　おまちします⋯@"
 
 String_101fc5:
-	db 	"Chiamare questo N°?@"	; "に　でんわを　かけます@"
+	db 	"Chiamare il Nº?@"	; "に　でんわを　かけます@"
 
 String_101fd2:
 	db 	  "Chiamata in"			; "に　でんわを　かけています@"
