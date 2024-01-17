@@ -2825,12 +2825,12 @@ Function8a116:
 
 MenuHeader_0x8a176:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 11, 0, SCREEN_WIDTH - 1, 6
+	menu_coords 9, 0, SCREEN_WIDTH - 1, 6
 
 Function8a17b:
-	decoord 11, 0
+	decoord 9, 0
 	ld b, $5
-	ld c, $7
+	ld c, $9
 	call SetBGAndDisplayBlankGoldenBox_DE
 	ld hl, MenuHeader_0x8a19a
 	ld a, [wd030]
@@ -2845,16 +2845,16 @@ Function8a17b:
 
 MenuHeader_0x8a19a:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 11, 0, SCREEN_WIDTH - 1, 6
+	menu_coords 9, 0, SCREEN_WIDTH - 1, 6
 	dw MenuData_0x8a1a2
 	db 1 ; default option
 
 MenuData_0x8a1a2:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING | STATICMENU_WRAP ; flags
 	db 3 ; items
-	db "Open@" ; "ひらく@"
-	db "Delete@" ; "すてる@"
-	db "Cancel@" ; "もどる@"
+	db "Apri@" ; "ひらく@"
+	db "Cancella@" ; "すてる@"
+	db "Annulla@" ; "もどる@"
 
 Function8a1b0:
 	hlcoord 0, 12
@@ -3155,9 +3155,9 @@ MenuData_0x8a417:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 4 ; items
 	db "Schede@" ;"めいしりスト@"
-	db "My Card@" ;"じぶんの　めいし@"
+	db "Scheda@" ;"じぶんの　めいし@"
 	db "Scambio@" ;"めいしこうかん@"
-	db "Esci@" ;"やめる@"
+	db "Annulla@" ;"やめる@"
 
 MenuHeader_0x8a435:
 	db MENU_BACKUP_TILES ; flags
@@ -3169,8 +3169,8 @@ MenuData_0x8a43d:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 3 ; items
 	db "Schede@" ;"めいしりスト@"
-	db "My Card@" ;"じぶんの　めいし@"
-	db "Esci@" ;"やめる@"
+	db "Scheda@" ;"じぶんの　めいし@"
+	db "Annulla@" ;"やめる@"
 
 Function8a453:
 	hlcoord 0, 12
@@ -3886,13 +3886,13 @@ Jumptable_8a9c5:
 
 MenuHeader_0x8a9c9:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 11, 4, 18, TEXTBOX_Y - 1
+	menu_coords 7, 4, 18, TEXTBOX_Y - 1
 
 Function8a9ce:
 	push bc
-	decoord 11, 4
+	decoord 7, 4
 	ld b, $6
-	ld c, $6
+	ld c, $a
 	call SetBGAndDisplayBlankGoldenBox_DE
 	pop bc
 	ld a, c
@@ -3913,16 +3913,16 @@ Function8a9ce:
 
 MenuHeader_0x8a9f2:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 11, 4, 18, TEXTBOX_Y - 1
+	menu_coords 7, 4, 18, TEXTBOX_Y - 1
 	dw MenuData_0x8a9fa
 	db 1 ; default option
 
 MenuData_0x8a9fa:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 3 ; items
-	db "Edit@"
-	db "View@"
-	db "Quit@"
+	db "Modifica@"
+	db "Vedi@"
+	db "Annulla@"
 
 Function8aa09:
 	ret

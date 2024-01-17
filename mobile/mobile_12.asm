@@ -211,14 +211,14 @@ Function48187:
 	bit 0, a
 	jr nz, .asm_48201
 .asm_481f8
-	hlcoord 8, 11 ; Position of 'Tell Later' after selecting
+	hlcoord 11, 11 ; Position of 'Tell Later' after selecting
 	ld de, .String_TellLater
 	call PlaceString
 .asm_48201
 	ret
 
 .String_TellLater:
-	db "Tell Later@"
+	db "Dì Dopo@"
 
 MobileProfileOptionPressed:
 	call PlaceHollowCursor
@@ -1423,15 +1423,15 @@ TellNowTellLaterMenu:
 	call SetCursorParameters_Gender
 	ld a, $a
 	ld [w2DMenuCursorInitY], a
-	ld a, $7 ; Y Placement of 'Tell Now' 'Tell Later' Cursor
+	ld a, $9 ; Y Placement of 'Tell Now' 'Tell Later' Cursor
 	ld [w2DMenuCursorInitX], a
 	ld a, $1 ; X Placement of 'Later' Cursor
 	ld [wMenuCursorY], a
-	hlcoord 6, 8 ; Placement of 'Tell Now' 'Tell Later' Box
+	hlcoord 8, 8 ; Placement of 'Tell Now' 'Tell Later' Box
 	ld b, $4
-	ld c, $c
+	ld c, $a
 	call DisplayBlankGoldenBox
-	hlcoord 8, 10 ; Placement of 'Tell Now' 'Tell Later' Text
+	hlcoord 10, 10 ; Placement of 'Tell Now' 'Tell Later' Text
 	ld de, TellNowLaterStrings
 	call PlaceString
 	call StaticMenuJoypad ; Waits for a user input from the input filter.
@@ -1465,11 +1465,11 @@ TellNowTellLaterMenu:
 
 MenuHeader_0x48a9c:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 5, 8, SCREEN_WIDTH - 1, 13 ; For clearing the 'Tell Later' 'Tell Now' Box
+	menu_coords 8, 8, SCREEN_WIDTH - 1, 13 ; For clearing the 'Tell Later' 'Tell Now' Box
 
 TellNowLaterStrings:
-	db   "Tell Now"
-	next "Tell Later@"
+	db   "Di' Ora "
+	next "Di' Dopo@"
 
 InputZipcodeCharacters: ; Function48ab5. Zip code menu controls.
 	ldh a, [hJoyPressed]

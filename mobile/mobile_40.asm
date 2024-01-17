@@ -913,7 +913,7 @@ Function1005e1:
 
 MenuHeader_1005fc:
 	db MENU_BACKUP_TILES ; flags
-	db 6, 13;14
+	db 6, 10;14
 	db 10, 19
 	dw MenuData_100604
 	db 1 ; default option
@@ -921,8 +921,8 @@ MenuHeader_1005fc:
 MenuData_100604:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2
-	db "CALL@"		; "かける@"
-	db "WAIT@"		; "まつ@"
+	db "CHIAMA@"		; "かける@"
+	db "ATTENDI@"		; "まつ@"
 
 Mobile_CommunicationStandby:
 	hlcoord 4, 10
@@ -2032,9 +2032,9 @@ Function100d67:
 .MenuData:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 3
-	db "SWITCH@"	; "いれかえる@"  ; TRADE
-	db "STATS@"		; "つよさをみる@" ; STATS
-	db "CANCEL@"	; "キャンセル@"  ; CANCEL
+	db "ORDINA@"	; "いれかえる@"  ; TRADE
+	db "STAT.@"		; "つよさをみる@" ; STATS
+	db "ESCI@"	; "キャンセル@"  ; CANCEL
 
 Function100da5:
 	ld hl, wcd2a

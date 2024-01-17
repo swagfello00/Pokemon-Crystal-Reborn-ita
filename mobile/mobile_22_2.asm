@@ -1041,16 +1041,16 @@ Mobile22_CardListEntryMenu:
 	call LoadMenuHeader
 	call Mobile22_CheckIfCardEntryIsFilled
 	jr c, .existing_entry
-	hlcoord 10, 0
+	hlcoord 8, 0
 	ld b, $6
-	ld c, $8
+	ld c, $a
 	call Function8b703
 	ld hl, MenuHeader_CardListEmptyEntry
 	jr .menu_selected
 .existing_entry
-	hlcoord 10, 0
+	hlcoord 8, 0
 	ld b, $a
-	ld c, $8
+	ld c, $a
 	call Function8b703
 	ld hl, MenuHeader_CardListExistingEntry
 .menu_selected
@@ -1087,31 +1087,31 @@ MenuHeader_0x8b9ac:
 
 MenuHeader_CardListEmptyEntry:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 10, 0, SCREEN_WIDTH - 1, 7
+	menu_coords 8, 0, SCREEN_WIDTH - 1, 7
 	dw MenuData_CardListEmptyEntry
 	db 1 ; default option
 
 MenuData_CardListEmptyEntry:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 3 ; items
-	db "EDIT@" ; EDIT
-	db "SWITCH@"   ; REPLACE
-	db "CANCEL@"     ; QUIT
+	db "MODIFICA@" ; EDIT
+	db "ORDINA@"   ; REPLACE
+	db "ESCI@"     ; QUIT
 
 MenuHeader_CardListExistingEntry:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 10, 0, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 8, 0, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw MenuData_CardListExistingEntry
 	db 1 ; default option
 
 MenuData_CardListExistingEntry:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 5 ; items
-	db "VIEW@"       ; VIEW
-	db "EDIT@" ; EDIT
-	db "SWITCH@"   ; REPLACE
-	db "DELETE@"       ; ERASE
-	db "CANCEL@"     ; QUIT
+	db "VEDI@"       ; VIEW
+	db "MODIFICA@" ; EDIT
+	db "ORDINA@"   ; REPLACE
+	db "CANCELLA@"       ; ERASE
+	db "ESCI@"     ; QUIT
 
 ; Returns carry is entry exists/is filled.
 Mobile22_CheckIfCardEntryIsFilled: ; check if entry is filled out?
