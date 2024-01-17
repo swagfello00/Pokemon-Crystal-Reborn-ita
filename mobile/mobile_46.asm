@@ -5647,37 +5647,37 @@ Function11a63c:
 	ret
 
 String_11a661:
-	db   "Dialing the"
-	next "MOBILE CENTER…@"
+	db   "Chiamata al"
+	next "CENTRO MOBILE…@"
 
 String_11a679:
-	db   "Is the MOBILE"
-	next "ADAPTER ready?@"
+	db   "L'ADATT. MOB."
+	next "è pronto?@"
 
 String_11a692:
-	db   "Please wait"
-	next "a moment…@"
+	db   "Attendere,"
+	next "prego…@"
 
 String_11a6aa:
 	db   "Charges will"
 	next "apply.@"
 
 String_11a6c8:
-	db   "Connected.@";"せつぞく　しました@"
+	db   "Connesso.@";"せつぞく　しました@"
 
 String_11a6d2:
-	db   "Communicating…@";"つうしん　ちゅう@"
+	db   "Comunicazione…@";"つうしん　ちゅう@"
 
 String_11a6db:
-	db   "Communication";"つうしん　ちゅう"
-	next "canceled.@";"セレクト　エーでちゅうし@"
+	db   "Comunicazione";"つうしん　ちゅう"
+	next "interrotta.@";"セレクト　エーでちゅうし@"
 
 String_11a6f1:
 	db   "This is a";"この　サービスには"
 	next "paid service.@";"つうわりょう<NO>ほかに@"
 
 String_11a706:
-	db   "Cost:@";"おかね<GA>@"
+	db   "Prezza:@";"おかね<GA>@"
 
 String_11a71e:
 	db   "Communication";"つうしん　しゅうりょう@" ; ???
@@ -5688,20 +5688,20 @@ String_11a72a:
 	next "   min.    sec.@"
 
 String_11a743:
-    db   "There is no";"もっていない　データが"
-    next "stored data!@";"あります！@"
+    db   "Non ci sono";"もっていない　データが"
+    next "dati salvati!@";"あります！@"
 	
 String_11a755:
-    db   "Read the";"データ<WO>よみこみますか？@"
-    next "data?@"
+    db   "Leggere i";"データ<WO>よみこみますか？@"
+    next "dati?@"
 	
 String_11a762:
-    db   "Read the";"おなじ　データ<WO>よみこんだ"
-    next "same data.@";"こと<GA>ありますが@"
+    db   "Leggere gli";"おなじ　データ<WO>よみこんだ"
+    next "stessi dati.@";"こと<GA>ありますが@"
 	
 String_11a779:
-    db   "The data is";"そのデータ<WA>なくなっているか"
-    next "corrupted.@";"こわれて　います@"
+    db   "I dati sono";"そのデータ<WA>なくなっているか"
+    next "corrotti.@";"こわれて　います@"
 	
 String_11a791:
     db   "This data";"もっている　データと"
@@ -5712,8 +5712,8 @@ String_11a7ac:
     next "data?@";"ちゅうし しますか？""
 
 String_11a7c1:
-	db   "There was no"
-	next "more NEWS.@"
+	db   "Non ci sono"
+	next "altre NOTIZIE.@"
 
 String_11a7d7:
 	db   "Receive the"
@@ -5972,8 +5972,8 @@ Function11a9f4: ; unreferenced
 	ret
 
 Text_SaveFileWillBeSent:
-	text "SAVE FILE will be"
-	line "sent."
+	text "Il SALVATAGGIO"
+	line "verrà inviato."
 	done
 
 Text_SentSaveFileReadingNews:
@@ -5982,29 +5982,30 @@ Text_SentSaveFileReadingNews:
 	done
 
 Text_ReadingNews:
-	text "Reading NEWS…"
+	text "Lettura NOTIZIE…"
 	done
 
 Text_ReceivedNews:
-	text "Received NEWS!"
+	text "NOTIZIE ricevute!"
 	done
 
 Text_QuitReadingNews:
-	text "Quit reading NEWS?"
+	text "Smetti di leggere"
+	line "le NOTIZIE?"
 	done
 
 Text_CanceledSendingSaveFile: ; unreferenced
-	text "Canceled sending"
-	line "SAVE FILE."
+	text "Invio SALVATAGGIO"
+	line "annullato."
 	done
 
 Text_ReceivedOddEgg: ; unreferenced
-	text "ODD EGG"
-	line "was received!"
+	text "Ricevuto"
+	line "UOVO STRANO!"
 	done
 
 Text_RegisteringRecord:
-	text "Registering your"
+	text "Registrazione"
 	line "record…"
 	done
 
@@ -6545,12 +6546,12 @@ MenuHeader_11afe8:
 	db 0 ; default option
 
 String_11aff0:
-	db   "Is this OK?@"
+	db   "Va bene?@"
 	;next ""
 
 String_11b003:
-	db   "Cancel the"
-	next "trade?@"
+	db   "Annullare lo"
+	next "scambio?@"
 
 MenuHeader_11b013:
 	db MENU_BACKUP_TILES ; flags

@@ -6729,9 +6729,9 @@ Function102fce:
 	ret
 
 String_102fdb:
-	db   "Your friend's"		; "あいてがわ<NO>せんたくに"
-	next "#MON appears"			; "いじょう<PKMN>あるようです！！"
-	cont "to be abnormal!"
+	db   "#MON del tuo"		; "あいてがわ<NO>せんたくに"
+	next "amico sembra"			; "いじょう<PKMN>あるようです！！"
+	cont "irregolare."
 	done
 
 Function102ff5:
@@ -6742,9 +6742,9 @@ Function102ff5:
 	ret
 
 String_103002:
-	db   "If you trade that"	; "その#を　こうかんすると"
-	next "#MON, you won't"		; "せんとう　できなく　なっちゃうよ！"
-	cont "be able to battle."
+	db   "Se scambi quel"
+	next "#MON non"
+	cont "potrai lottare."
 	db   "@"
 
 Function103021:
@@ -6755,9 +6755,9 @@ Function103021:
 	ret
 
 String_10302e:
-	db   "Your friend"		; "あいてが　ちゅうしを　えらんだので"
-	next "chose to end"		; "こうかんを　ちゅうし　します"
-	cont "the trade."
+	db  "Il tuo amico ha"
+	next "interrotto lo"
+	cont "scambio."
 	db   "@"
 
 Function10304f:
@@ -7290,18 +7290,18 @@ Unknown_103522:
 	dw String_103545
 
 String_103545: db "@"
-String_103546: db " BATTLE SCENE@"			; "せんとう　アニメ@"
-String_10354f: db " PHONE NUMBER@"			; "でんわばんごう@"
-String_103557: db " CARD TRADE@"			; "めいしこうかん@"
+String_103546: db " ANIMAZIONE LOTTA@"			; "せんとう　アニメ@"
+String_10354f: db " NUMERO TELEFONICO@"			; "でんわばんごう@"
+String_103557: db " SCAMBIO SCHEDE@"			; "めいしこうかん@"
 String_10355f: db "Caller decides.@"		; "でんわを　かけるひとが　きめられる@"
 String_103571: db "Input method.@"			; "でんわばんごうの　にゅうりょくのしかた@" ; Entering a phone number
-String_103585: db "Replace old CARD.@"		; "あたらしいめいしが　あれば　こうかん@" ; Replace if there is a new card
-String_103598: db "<LF>:OFF@"				; "とばして　みる@"; Skip to see
-String_1035a0: db "<LF>:ON @"				; "じっくり　みる@" ; Watch carefully
-String_1035a8: db "<LF>:CARD@"				; "めいしからえらぶ@" ; Choose from cards
-String_1035b1: db "<LF>:DIAL@"				; "すうじで　いれる@"
-String_1035ba: db "<LF>:ON @"				; "する@"
-String_1035bd: db "<LF>:OFF@"				; "しない@"
+String_103585: db "Cambia SCHEDA.@"		; "あたらしいめいしが　あれば　こうかん@" ; Replace if there is a new card
+String_103598: db "<LF>:NO@"				; "とばして　みる@"; Skip to see
+String_1035a0: db "<LF>:SÌ @"				; "じっくり　みる@" ; Watch carefully
+String_1035a8: db "<LF>:SCHEDA@"				; "めいしからえらぶ@" ; Choose from cards
+String_1035b1: db "<LF>:CHIAMA@"				; "すうじで　いれる@"
+String_1035ba: db "<LF>:SÌ @"				; "する@"
+String_1035bd: db "<LF>:NO@"				; "しない@"
 String_1035c1: db " OK@"					; "けってい@"
 
 Function1035c6:
@@ -7389,7 +7389,7 @@ MenuData_103648:
 	db STATICMENU_CURSOR ; flags
 	db 2
 	db "MOBILE@"	; "モバイル@"
-	db "CABLE@"		; "ケーブル@"
+	db "CAVO@"		; "ケーブル@"
 
 Function103654:
 	farcall Mobile_AlwaysReturnNotCarry
