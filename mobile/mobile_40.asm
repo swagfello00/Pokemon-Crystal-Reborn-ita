@@ -7171,7 +7171,7 @@ Function10343c:
 
 .asm_10347d
 	call Function10350f
-	ld bc, 14;11
+	ld bc, 12;11
 	call Function103487
 	ret
 
