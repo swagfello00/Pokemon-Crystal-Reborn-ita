@@ -81,7 +81,7 @@ StringOptions:
 	db "        :<LF>"
 	db "STILE LOTTA<LF>"
 	db "        :<LF>"
-	db "SUNO<LF>"
+	db "SUONO<LF>"
 	db "        :<LF>"
 	db "STAMPA<LF>"
 	db "        :<LF>"
@@ -266,7 +266,7 @@ Options_BattleStyle:
 	ret
 
 .Shift: db "SCEGLI@"
-.Set:   db "FISSO@"
+.Set:   db "FISSO @"
 
 Options_Sound:
 	ld hl, wOptions
