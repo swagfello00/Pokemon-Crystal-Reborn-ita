@@ -6755,9 +6755,9 @@ Function103021:
 	ret
 
 String_10302e:
-	db  "Il tuo amico ha"
-	next "interrotto lo"
-	cont "scambio."
+	db   "Il tuo amico"
+	next "ha interrotto"
+	cont "lo scambio."
 	db   "@"
 
 Function10304f:
