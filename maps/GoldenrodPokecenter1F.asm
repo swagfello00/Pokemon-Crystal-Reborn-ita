@@ -510,7 +510,7 @@ GoldenrodPokeCenter1FLassWalkRightAroundPlayerMovement:
 GoldenrodPokecomCenterWelcomeToTradeCornerText:
 	text "Ti do il benvenuto"
 	line "all'ANGOLO SCAMBI"
-	cont "COM!"
+	cont "#COM!"
 
 	para "Qui puoi scambiare"
 	line "i tuoi #MON con"
@@ -533,8 +533,8 @@ GoldenrodPokecomCenterWhatMonDoYouWantText:
 	done
 
 GoldenrodPokecomCenterWeWillTradeYourMonForMonText:
-	text "Va bene. Scambi-"
-	line "ere il tuo"
+	text "Va bene."
+	line "Scambieremo il tuo"
 
 	para "@"
 	text_ram wStringBuffer3
@@ -553,8 +553,8 @@ GoldenrodPokecomCenterWeWillTradeYourMonForMonText:
 	done
 
 GoldenrodPokecomCenterWeWillTradeYourMonForNewText:
-	text "Va bene. Scambi-"
-	line "ere il tuo"
+	text "Va bene."
+	line "Scambieremo il tuo"
 
 	para "@"
 	text_ram wStringBuffer3
@@ -722,7 +722,7 @@ GoldenrodPokecomCenterRecentlyLeftYourMonText:
 GoldenrodPokecomCenterSaveBeforeTradeCornerText:
 	text "Il gioco sarà"
 	line "salvato prima di"
-	para "connetterti al."
+	para "connetterti al"
 	line "CENTRO."
 	done
 
@@ -732,8 +732,8 @@ GoldenrodPokecomCenterWhichMonToTradeText:
 	done
 
 GoldenrodPokecomCenterTradeCanceledText:
-	text "Spiacente, dobbi-"
-	line "amo. annullare lo"
+	text "Spiacente, bisogna"
+	line "annullare lo"
 	cont "scambio."
 	done
 

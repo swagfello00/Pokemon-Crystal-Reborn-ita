@@ -6406,7 +6406,7 @@ Function11af04:
 	ld hl, MenuHeader_11afe8
 	call LoadMenuHeader
 	call MenuBox
-	hlcoord 8, 14 ;10, 14
+	hlcoord 7, 14 ;10, 14
 	ld de, String_11b003
 	call PlaceString
 	ld hl, MenuHeader_11b013
@@ -6418,8 +6418,8 @@ Function11af04:
 	hlcoord 14, 7, wAttrmap
 	lb bc, 5, 6
 	call Function11afd6
-	hlcoord 7, 12, wAttrmap ;9, 12, wAttrmap
-	lb bc, 6, 13 ;11
+	hlcoord 6, 12, wAttrmap ;9, 12, wAttrmap
+	lb bc, 6, 14 ;11
 	call Function11afd6
 	farcall ReloadMapPart
 	call MobileIncJumptableIndex
@@ -6541,7 +6541,7 @@ Function11afd6:
 
 MenuHeader_11afe8:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 7, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	menu_coords 6, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw NULL
 	db 0 ; default option
 

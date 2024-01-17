@@ -413,7 +413,7 @@ String_17f891: ; 18 max!
 	next "MOBILE non è" ; "さしこまれていません"
 	next "collegato" ; "とりあつかいせつめいしょを"
 	next "correttamente." ; "ごらんのうえ　しっかりと"
-	next "consulta il" ; "さしこんで　ください"
+	next "Consulta il" ; "さしこんで　ください"
 	next "manuale."
 	db   "@"
 
