@@ -117,11 +117,11 @@ String_0x49fe9:
 
 String_0x4a004:
 	db   "Scrivi la SCHEDA e";"モバイルたいせんや　じぶんのめいしで"
-	next "i saluti lotta@";"つかう　あいさつ¯つくります@"
+	next "i saluti lotta.@";"つかう　あいさつ¯つくります@"
 
 String_0x4a026:
-	db   "Modifica età";"あなた<NO>じゅうしょや　ねんれいの"
-	next "e indirizzo.@";"せ<TTE>い¯かえられます@"
+	db   "Modifica età e";"あなた<NO>じゅうしょや　ねんれいの"
+	next "indirizzo.@";"せ<TTE>い¯かえられます@"
 
 String_0x4a042:
 	db   "Impostazioni di";"モバイルセンター<NI>せつぞくするとき"

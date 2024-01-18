@@ -6309,7 +6309,7 @@ Function11ae4e:
 	ld hl, MenuHeader_11afe8
 	call LoadMenuHeader
 	call MenuBox
-	hlcoord 8, 14 ;10, 14
+	hlcoord 7, 14 ;10, 14
 	ld de, String_11aff0
 	call PlaceString
 	ld hl, MenuHeader_11b013
@@ -6321,8 +6321,8 @@ Function11ae4e:
 	hlcoord 14, 7, wAttrmap
 	lb bc, 5, 6
 	call Function11afd6
-	hlcoord 7, 12, wAttrmap ;9, 12, wAttrmap
-	lb bc, 6, 13 ;11
+	hlcoord 6, 12, wAttrmap ;9, 12, wAttrmap
+	lb bc, 6, 14 ;11
 	call Function11afd6
 	farcall ReloadMapPart
 	call MobileIncJumptableIndex
