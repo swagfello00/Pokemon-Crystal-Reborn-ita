@@ -459,7 +459,7 @@ MenuHeader_0x4a346: ; unreferenced
 	menu_coords 9, 0, SCREEN_WIDTH - 1, 6;12, 0, SCREEN_WIDTH - 1, 6
 
 String_4a34b:
-	db   "Cambio";"いれなおす"
+	db   "Cambia";"いれなおす"
 	next "Cancella";"けす"
 	next "Annulla@";"もどる@"
 
