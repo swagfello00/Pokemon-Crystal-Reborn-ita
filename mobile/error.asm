@@ -1,4 +1,4 @@
-BattleTowerMobileError: ; all of this moved from mobile_5f
+BattleTowerMobileError: ; all of this moved from Mobile_5f
 	call FadeToMenu
 	xor a
 	ld [wc303], a
@@ -409,8 +409,8 @@ Unknown_17f844: db 19
 	dbbw $ff, $ff, String_17fa49
 
 String_17f891: ; 18 max!
-	db   "L'ADATTATORE " ; "モバイルアダプタが　ただしく"
-	next "MOBILE non è" ; "さしこまれていません"
+	db   "L'Adattatore " ; "モバイルアダプタが　ただしく"
+	next "Mobile non è" ; "さしこまれていません"
 	next "collegato" ; "とりあつかいせつめいしょを"
 	next "correttamente." ; "ごらんのうえ　しっかりと"
 	next "Consulta il" ; "さしこんで　ください"
@@ -435,7 +435,7 @@ String_17f913:
 
 String_17f946:
 	db   "Errore dell' " ; "モバイルアダプタの　エラーです"
-	next "ADATTATORE MOBILE." ; "しばらく　まって"
+	next "Adattatore Mobile." ; "しばらく　まって"
 	next "Riprova. Se il" ; "かけなおして　ください"
 	next "problema persiste," ; "なおらない　ときは"
 	next "contatta" ; "モバイルサポートセンターへ"
@@ -470,14 +470,14 @@ String_17fa14:
 String_17fa49:
 	db   "Errore di" ; "モバイルセンターの"
 	next "connessione al" ; "つうしんエラーです"
-	next "CENTRO MOBILE." ; "しばらくまって"
+	next "CENTRO Mobile." ; "しばらくまって"
 	next "Riprova più" ; "しばらくまって"
 	next "tardi." ; "かけなおして　ください"
 	db   "@" 
 
 String_17fa71:
-	db   "L'ADATTATORE " ; "モバイルアダプタに"
-	next "MOBILE non è" ; "とうろくされた　じょうほうが"
+	db   "L'Adattatore " ; "モバイルアダプタに"
+	next "Mobile non è" ; "とうろくされた　じょうほうが"
 	next "configurato" ; "ただしく　ありません"
 	next "correttamente." ; "モバイルトレーナーで"
 	next "Registrati dal" ; "しょきとうろくを　してください"
@@ -485,7 +485,7 @@ String_17fa71:
 	db   "@" 
 
 String_17fab0:
-	db   "Il CENTRO MOBILE" ; "モバイルセンターが"
+	db   "Il CENTRO Mobile" ; "モバイルセンターが"
 	next "è occupato." ; "こんでいて　つながりません"
 	next "Consulta il" ; "しばらくまって"
 	next "manuale e" ; "かけなおして　ください"
@@ -511,7 +511,7 @@ String_17fb2a:
 String_17fb6e:
 	db   "Password errata o" ; "ログインパスワードに"
 	next "errore del" ; "まちがいが　あるか"
-	next "CENTRO MOBILE." ; "モバイルセンターの　エラーです"
+	next "CENTRO Mobile." ; "モバイルセンターの　エラーです"
 	next "Riprova più" ; "パスワードを　かくにんして"
 	next "tardi." ; "しばらく　まって"
 	db   "@" 
@@ -555,7 +555,7 @@ String_17fcbf:
 	db   "Si è verificato" ; "でんわかいせんが　こんでいるか"
 	next "un errore col" ; "モバイルセンターの　エラーで"
 	next "telefono o con il" ; "つうしんが　できません"
-	next "CENTRO MOBILE" ; "しばらく　まって"
+	next "CENTRO Mobile" ; "しばらく　まって"
 	next "Riprova più" ; "かけなおして　ください"
 	next "tardi." ; "かけなおして　ください"	
 	db   "@" 
@@ -570,7 +570,7 @@ String_17fcff:
 	db   "@" 
 
 String_17fd47:
-	db   "Il CENTRO MOBILE" ; "げんざい　モバイルセンターの"
+	db   "Il CENTRO Mobile" ; "げんざい　モバイルセンターの"
 	next "è in manutenzione." ; "てんけんを　しているので"
 	next "Riprova più" ; "しばらく　まって"
 	next "tardi." ; "かけなおして　ください"
@@ -618,7 +618,7 @@ String_17fe4b:
 String_17fe63:
 	db   "Il tuo amico usa" ; "あいての　モバイルアダプタと"
 	next "un altro tipo di " ; "タイプが　ちがいます"
-	next "ADATTATORE MOBILE." ; "くわしくは　とりあつかい"
+	next "Adattatore Mobile." ; "くわしくは　とりあつかい"
 	next "Consulta il" ; "せつめいしょを　ごらんください"
 	next "manuale per altri" 
 	next "dettagli." 
