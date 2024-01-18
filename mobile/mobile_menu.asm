@@ -221,7 +221,7 @@ Function4a118:
 	ld hl, w2DMenuCursorInitY
 	ld a, $1
 	ld [hli], a
-	ld a, $b;$d
+	ld a, $a;$d
 	ld [hli], a
 	ld a, $3
 	ld [hli], a
@@ -374,8 +374,8 @@ Strings_4a23d:
 	db   "@"
 
 Function4a28a:
-	hlcoord 2, 3
-	lb bc, 6, 1
+	hlcoord 10, 0
+	lb bc, 6, 6
 	ld a, " "
 	call MobileMenu_FillBGArea
 	call PlaceHollowCursor
@@ -391,11 +391,11 @@ Function4a28a:
 	call CloseSRAM
 	and a
 	jr z, .asm_4a2df
-	hlcoord 11, 0;12, 0
+	hlcoord 9, 0;12, 0
 	ld b, $5
-	ld c, $7;$6
+	ld c, $9;$6
 	call DisplayBlankGoldenBox
-	hlcoord 13, 1;14, 1
+	hlcoord 11, 1;14, 1
 	ld de, String_4a34b
 	call PlaceString
 	farcall Mobile_OpenAndCloseMenu_HDMATransferTilemapAndAttrmap
@@ -456,12 +456,12 @@ Function4a28a:
 
 MenuHeader_0x4a346: ; unreferenced
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 11, 0, SCREEN_WIDTH - 1, 6;12, 0, SCREEN_WIDTH - 1, 6
+	menu_coords 9, 0, SCREEN_WIDTH - 1, 6;12, 0, SCREEN_WIDTH - 1, 6
 
 String_4a34b:
-	db   "Change";"いれなおす"
-	next "Delete";"けす"
-	next "Cancel@";"もどる@"
+	db   "Cambio";"いれなおす"
+	next "Cancella";"けす"
+	next "Annulla@";"もどる@"
 
 DeleteSavedLoginPasswordText:
 	text_far _DeleteSavedLoginPasswordText
