@@ -5651,16 +5651,16 @@ String_11a661:
 	next "CENTRO MOBILE…@"
 
 String_11a679:
-	db   "L'ADATT. MOB."
-	next "è pronto?@"
+	db   "L'ADATTATORE"
+	next "MOB. è pronto?@"
 
 String_11a692:
 	db   "Attendere,"
 	next "prego…@"
 
 String_11a6aa:
-	db   "Charges will"
-	next "apply.@"
+	db   "Previsti costi"
+	next "aggiuntivi.@"
 
 String_11a6c8:
 	db   "Connesso.@";"せつぞく　しました@"
@@ -5670,21 +5670,21 @@ String_11a6d2:
 
 String_11a6db:
 	db   "Comunicazione";"つうしん　ちゅう"
-	next "interrotta.@";"セレクト　エーでちゅうし@"
+	next "annullato.@";"セレクト　エーでちゅうし@"
 
 String_11a6f1:
-	db   "This is a";"この　サービスには"
-	next "paid service.@";"つうわりょう<NO>ほかに@"
+	db   "Questo servizio";"この　サービスには"
+	next "è a pagamento.@";"つうわりょう<NO>ほかに@"
 
 String_11a706:
 	db   "Prezza:@";"おかね<GA>@"
 
 String_11a71e:
-	db   "Communication";"つうしん　しゅうりょう@" ; ???
-	next "ended.@"
+	db   "Comunicazione";"つうしん　しゅうりょう@" ; ???
+	next "interrotta.@"
 
 String_11a72a:
-	db   "CALL TIME";"つないだ　じかん"
+	db   "DURATA TEL.";"つないだ　じかん"
 	next "   min.    sec.@"
 
 String_11a743:
@@ -5704,20 +5704,20 @@ String_11a779:
     next "corrotti.@";"こわれて　います@"
 	
 String_11a791:
-    db   "This data";"もっている　データと"
-    next "already exists!@";"おなじデータしか　ありません！@"
+    db   "Dati già";"もっている　データと"
+    next "presenti!@";"おなじデータしか　ありません！@"
 	
 String_11a7ac:
-    db   "Quit reading";"データの よみこみを"
-    next "data?@";"ちゅうし しますか？""
+    db   "Stop lettura";"データの よみこみを"
+    next "dati?@";"ちゅうし しますか？""
 
 String_11a7c1:
 	db   "Non ci sono"
 	next "altre NOTIZIE.@"
 
 String_11a7d7:
-	db   "Receive the"
-	next "latest NEWS?@"
+	db   "Ricevere le"
+	next "ultime NOTIZIE?@"
 
 String_11a7f4:
 	db   "　　　　　　　　　　　　　　　@"
@@ -5977,8 +5977,8 @@ Text_SaveFileWillBeSent:
 	done
 
 Text_SentSaveFileReadingNews:
-	text "Sent SAVE FILE."
-	line "Reading NEWS…"
+	text "SALVAT. inviato."
+	line "Lettura NOTIZIE…"
 	done
 
 Text_ReadingNews:
@@ -6075,20 +6075,13 @@ Text_WhichBattleRoom: ; unreferenced
 	done
 
 Text_ThisBattleRoomPleaseWait:
-;	text_ram wStringBuffer3
-;	text "'s ROOM"
-;	line "@"
-;	text_ram wStringBuffer4
-;	text "?"
-;	cont "Please wait…"
-;	done
-
-	; less awkward
-	text_ram wStringBuffer3
-	text "'s ROOM "
+	text "La SALA@"
 	text_ram wStringBuffer4
+	text_start
+	line "di @"
+	text_ram wStringBuffer3
 	text "?"
-	line "Please wait…"
+	cont "Attendere, prego…"
 	done
 
 Function11ac3e:

@@ -140,8 +140,8 @@ _FourZerosInvalidText::
 	done
 
 _EnterPasscodeText::
-	text "Enter the CARD"
-	next "FOLDER PASSCODE."
+	text "Immetti il CODICE"
+	next "dell'ALBUM SCHEDE."
 	done
 
 _IncorrectPasscodeText::

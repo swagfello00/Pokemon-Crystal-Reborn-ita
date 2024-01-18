@@ -4544,8 +4544,8 @@ String_101f32:
 	next "un addebito.@"		; "つうわりょうきんが　かかります@"
 
 String_101f4f:
-	db   "L'ADATT. MOB."	; "モバイルアダプタの　じゅんびは"
-	next "è pronto?@"	; "できて　いますか？@"
+	db   "L'ADATTATORE"	; "モバイルアダプタの　じゅんびは"
+	next "MOB. è pronto?@"	; "できて　いますか？@"
 
 String_101f69:
 	db   "Vuoi chiamare"		; "あなたが　おともだちに"
@@ -7293,9 +7293,9 @@ String_103545: db "@"
 String_103546: db " ANIMAZIONE LOTTA@"			; "せんとう　アニメ@"
 String_10354f: db " NUMERO TELEFONICO@"			; "でんわばんごう@"
 String_103557: db " SCAMBIO SCHEDE@"			; "めいしこうかん@"
-String_10355f: db "Caller decides.@"		; "でんわを　かけるひとが　きめられる@"
-String_103571: db "Input method.@"			; "でんわばんごうの　にゅうりょくのしかた@" ; Entering a phone number
-String_103585: db "Cambia SCHEDA.@"		; "あたらしいめいしが　あれば　こうかん@" ; Replace if there is a new card
+String_10355f: db "Decide chiamante.@"		; "でんわを　かけるひとが　きめられる@"
+String_103571: db "Metodo ins.@"			; "でんわばんごうの　にゅうりょくのしかた@" ; Entering a phone number
+String_103585: db "Aggiorna SCHEDA.@"		; "あたらしいめいしが　あれば　こうかん@" ; Replace if there is a new card
 String_103598: db "<LF>:NO@"				; "とばして　みる@"; Skip to see
 String_1035a0: db "<LF>:SÌ @"				; "じっくり　みる@" ; Watch carefully
 String_1035a8: db "<LF>:SCHEDA@"				; "めいしからえらぶ@" ; Choose from cards

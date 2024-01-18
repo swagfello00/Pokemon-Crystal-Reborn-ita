@@ -785,16 +785,17 @@ GoldenrodPokecomCenterPleaseWaitAMomentText:
 	done
 
 GoldenrodPokecomCenterHereIsYourOddEggText:
-	text "Thank you for"
-	line "waiting."
+	text "Grazie per"
+	line "l'attesa."
 
-	para "We received your"
-	line "ODD EGG."
+	para "Abbiamo ricevuto"
+	line "il tuo UOVO"
+	cont "STRANO."
 
-	para "Here it is!"
+	para "Eccolo!"
 
-	para "Please raise it"
-	line "with loving care."
+	para "Allevalo con"
+	line "cura."
 	done
 
 GoldenrodPokecomCenterNoEggTicketServiceText:
@@ -860,8 +861,8 @@ GoldenrodPokecomCenterWouldYouLikeTheNewsText:
 	done
 
 GoldenrodPokecomCenterReadingTheLatestNewsText:
-	text "Reading the latest"
-	line "NEWS… Please wait."
+	text "Lettura NOTIZIE"
+	line "recenti… Attendi."
 	done
 
 GoldenrodPokecomCenterNoOldNewsText:
@@ -870,11 +871,12 @@ GoldenrodPokecomCenterNoOldNewsText:
 	done
 
 GoldenrodPokecomCenterCorruptedNewsDataText:
-	text "The NEWS data is"
-	line "corrupted."
+	text "I dati delle "
+	line "NOTIZIE sono"
+	cont "corrotti."
 
-	para "Please download"
-	line "the NEWS again."
+	para "Si prega di"
+	line "riscaricarle."
 	done
 
 GoldenrodPokecomCenterMakingPreparationsText:

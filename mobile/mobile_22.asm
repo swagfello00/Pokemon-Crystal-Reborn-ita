@@ -3199,7 +3199,7 @@ Strings_8a483:
 	next "amici sono qui.@";"ここ<NI>いれておきます@"
 
 	db   "Immetti il tuo Nº";"でんわばんごう<WO>いれると"
-	next "per scamb. SCHEDE.@";"めいしこうかん<GA>できます@"
+	next "per scambi SCHEDE.@";"めいしこうかん<GA>できます@"
 
 	db   "Scambia le SCHEDE";"ともだちと　じぶん<NO>めいしを"
 	next "con amici via IR.@";"せきがいせんで　こうかん　します@"

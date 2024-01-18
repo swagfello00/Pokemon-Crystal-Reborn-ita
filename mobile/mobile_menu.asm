@@ -116,16 +116,16 @@ String_0x49fe9:
 	next "SCHEDE nell'Album.@"
 
 String_0x4a004:
-	db   "Compose CARD and";"モバイルたいせんや　じぶんのめいしで"
-	next "battle greetings.@";"つかう　あいさつ¯つくります@"
+	db   "Scrivi la SCHEDA e";"モバイルたいせんや　じぶんのめいしで"
+	next "i saluti lotta@";"つかう　あいさつ¯つくります@"
 
 String_0x4a026:
 	db   "Modifica età";"あなた<NO>じゅうしょや　ねんれいの"
 	next "e indirizzo.@";"せ<TTE>い¯かえられます@"
 
 String_0x4a042:
-	db   "Choose settings";"モバイルセンター<NI>せつぞくするとき"
-	next "used to connect.@";"ひつような　こと¯きめます@"
+	db   "Impostazioni di";"モバイルセンター<NI>せつぞくするとき"
+	next "collegamento.@";"ひつような　こと¯きめます@"
 
 String_0x4a062:
 	db   "Ritorna al menù";"まえ<NO>がめん　<NI>もどります"
@@ -774,14 +774,14 @@ String_4a5f2:
 	db "Annulla@";"もどる@"
 
 Strings_4a5f6:
-	db "Shown on your@";"めいし　や　ニュース　<NI>のせる@"
-	db "CARD and the NEWS.@";"あなた<NO>あいさつです@"
+	db "Mostra su SCHEDA@";"めいし　や　ニュース　<NI>のせる@"
+	db "e nelle NOTIZIE.@";"あなた<NO>あいさつです@"
 	db "Mostra a inizio@";"モバイル　たいせん<GA>はじまるとき@"
 	db "lotta Mobile.@";"あいて<NI>みえる　あいさつです@"
     db "Mostra se vinci@";"モバイル　たいせんで　かったとき@"
     db "una lotta Mobile.@";"あいて<NI>みえる　あいさつです@"
-    db "Seen upon losing@";"モバイル　たいせんで　まけたとき@"
-    db "a mobile battle.@";"あいて<NI>みえる　あいさつです@"
+    db "Mostra se perdi@";"モバイル　たいせんで　まけたとき@"
+    db "una lotta Mobile.@";"あいて<NI>みえる　あいさつです@"
 	db "Ritorna al menù@";"まえ<NO>がめん　<NI>もどります@"
 	db "precedente.@"
 
