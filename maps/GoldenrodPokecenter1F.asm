@@ -896,14 +896,15 @@ GoldenrodPokecomCenterSaveBeforeNewsMachineText:
 	done
 
 GoldenrodPokecenter1FMobileOffSuperNerdText:
-	text "Whoa, this #MON"
-	line "CENTER is huge."
+	text "Wow, questo CENTRO"
+	line "#MON è enorme."
 
-	para "They just built"
-	line "this place. They"
+	para "Lo hanno appena"
+	line "costruito. Hanno"
 
-	para "installed lots of"
-	line "new machines too."
+	para "installato anche"
+	line "tanti nuovi"
+	cont "macchinari."
 	done
 
 GoldenrodPokecenter1FMobileOnSuperNerdText:
@@ -934,12 +935,29 @@ GoldenrodPokecenter1FMobileOnSuperNerdText:
 	done
 
 GoldenrodPokecenter1FMobileOffLassText:
-	text "TRANSLATEME"
+	text "Hanno detto che"
+	line "qui si possono"
+	
+	para "scambiare #MON"
+	line "sconosciuti."
+
+	para "Però ci stanno"
+	line "ancora lavorando"
+	cont "su."
 	done
 
 GoldenrodPokecenter1FMobileOnLassText1:
-	text "TRANSLATEME"
-	done
+    text "Una ragazza che"
+    line "non conosco mi ha"
+
+    para "ha scambiato il suo"
+    line "HOPPIP."
+
+    para "Dovresti scambiare"
+    line "per ottenere i"
+	para "#MON che"
+	line "vorresti."
+    done
 
 GoldenrodPokecenter1FMobileOnLassText2:
 	text "Ho ricevuto un"
@@ -951,63 +969,66 @@ GoldenrodPokecenter1FMobileOnLassText2:
 	done
 
 GoldenrodPokecenter1FMobileOffYoungsterText:
-	text "What is the NEWS"
-	line "MACHINE?"
+	text "Cos'è la MACCHINA"
+	line "NOTIZIE?"
 
-	para "Does it get news"
-	line "from a wider area"
-	cont "than the radio?"
+	para "Le riceve da una"
+	line "zona più ampia"
+	cont "di una radio?"
 	done
 
 GoldenrodPokecenter1FMobileOffTeacherText:
-	text "The #COM CENTER"
-	line "will link with all"
+	text "Il CENTRO #COM"
+	line "si connetterà a"
+	
+	para "tutti i CENTRI"
+	line "#COM attraverso"
+	cont "la rete wireless."
 
-	para "#MON CENTERS in"
-	line "a wireless net."
+	para "Significa che"
+	line "metterà in"
 
-	para "That must mean"
-	line "I'll be able to"
-
-	para "link with all"
-	line "sorts of people."
+	para "contatto ogni"
+	line "genere di persona."
 	done
 
 GoldenrodPokecenter1FMobileOffRockerText:
-	text "The machines here"
-	line "can't be used yet."
+	text "Le macchine qui"
+	line "non si possono"
+	cont "ancora usare."
 
-	para "Still, it's nice"
-	line "coming to a trendy"
+	para "Però è bello"
+	line "venire in un posto"
 
-	para "place before other"
-	line "people."
+	para "famoso prima degli"
+	line "altri."
 	done
 
 GoldenrodPokecenter1FMobileOnYoungsterText:
-	text "My friend was in"
-	line "the NEWS a while"
+	text "Il mio amico era"
+	line "nelle NOTIZIE di"
 
-	para "back. I was really"
-	line "surprised!"
+	para "tempo. Mi ha"
+	line "proprio sorpreso!"
 	done
 
 GoldenrodPokecenter1FMobileOnTeacherText:
-	text "I get anxious if I"
-	line "don't check out"
-	cont "the latest NEWS!"
+	text "Ho l'ansia se non"
+	line "controllo le"
+	cont "ultime NOTIZIE!"
 	done
 
 GoldenrodPokecenter1FMobileOnRockerText:
-	text_start
-	line "NEWS and become"
 
-	para "famous, I bet I'll"
-	line "be adored."
+	text "Se finisco nelle"
+	line "NOTIZIE e divento"
 
-	para "I wonder how I"
-	line "could get in the"
-	cont "NEWS?"
+	para "famoso, verrò"
+	line "sicuramente"
+	cont "ammirato."
+
+	para "Come ci finisco"
+	line "nelle NOTIZIE?"
 	done
 
 GoldenrodPokecenter1FGameboyKidText:
@@ -1024,7 +1045,19 @@ GoldenrodPokecenter1FGameboyKidText:
 	done
 
 GoldenrodPokecenter1FMobileOffGrampsText:
-	text "TRANSLATEME"
+	text "Sono arrivato qui"
+	line "quando ho saputo"
+
+	para "che il CENTRO"
+	line "#MON di FIORDORO-"
+
+	para "POLI ha macchine"
+	line "che nessuno ha mai"
+	cont "visto prima."
+
+	para "Ma sembra siano"
+	line "ancora impegnati"
+	cont "coi preparativi…"
 	done
 
 GoldenrodPokecenter1FMobileOnGrampsText:
@@ -1068,25 +1101,25 @@ GoldenrodPokeCenter1FLinkReceptionistPleaseDoComeAgainText:
 	done
 
 GoldenrodPokecomCenterSignText:
-	text "#COM CENTER"
-	line "1F INFORMATION"
+	text "CENTRO #COM"
+	line "1P INFORMAZIONI"
 
-	para "Left:"
-	line "ADMINISTRATION"
+	para "Sinistra:"
+	line "AMMINISTRAZIONE"
 
-	para "Center:"
-	line "TRADE CORNER"
+	para "Centro:"
+	line "ANGOLO SCAMBI"
 
-	para "Right:"
-	line "#MON NEWS"
+	para "Destra:"
+	line "NOTIZIE #MON"
 	done
 
 GoldenrodPokecomCenterNewsMachineNotYetText:
-	text "It's a #MON"
-	line "NEWS MACHINE!"
+	text "È la MACCHINA"
+	line "NOTIZIE #MON!"
 
-	para "It's not in"
-	line "operation yet…"
+	para "Non è ancora"
+	line "operativa…"
 	done
 
 GoldenrodPokecenter1FPokefanFDoYouHaveEonMailText:

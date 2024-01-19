@@ -84,96 +84,95 @@ _LinkAskTradeForText::
 	done
 
 _MobileBattleMustPickThreeMonText::
-	text "To enter a mobile"
-	line "battle, you must"
+	text "Per partecipare a"
+	line "una lotta mobile,"
 
-	para "pick a team of"
-	line "three #MON."
+	para "devi scegliere"
+	line "tre #MON."
 
-	para "Is that OK?"
+	para "Va bene?"
 	done
 
 _MobileBattleMoreInfoText::
-	text "Need more info on"
-	line "mobile battles?"
+	text "Vuoi saperne di"
+	line "più sulle lotte"
+	cont "mobili?"
 	done
 
 _MobileBattleRulesText::
-	text "For a mobile"
-	line "battle, choose"
-	cont "three #MON."
+	text "Per una lotta"
+	line "mobile, scegli"
+	cont "tre #MON."
 
-	para "The maximum daily"
-	line "play time is ten"
+	para "La durata massima"
+	line "è dieci minuti al"
 
-	para "minutes for each"
-	line "linked player."
+	para "giorno per ogni"
+	line "giocatore."
 
-	para "If a battle isn't"
-	line "finished within"
+	para "Se la lotta non"
+	line "finisce entro il"
 
-	para "the time limit,"
-	line "the player with"
+	para "tempo limite,"
+	line "vince chi ha meno"
+	cont "#MON K.O. "
 
-	para "the fewest fainted"
-	line "#MON wins."
+	para "In caso di"
+	line "pareggio, vince"
 
-	para "If tied, the team"
-	line "that lost the"
-
-	para "least amount of HP"
-	line "wins."
+	para "la squadra che ha"
+	line "perso meno PS."
 	done
 
 _WouldYouLikeToMobileBattleText::
-	text "Today's remaining"
-	line "time is @"
+	text "Oggi hai solo"
+	line "@"
 	text_decimal wStringBuffer2, 1, 2
 	text " min."
 
-	para "Would you like to"
-	line "battle?"
+	para "Vuoi lottare?"
+	line ""
 	done
 
 _WantAQuickMobileBattleText::
-	text "There are only @"
+	text "Oggi hai solo @"
 	text_decimal wStringBuffer2, 1, 2
 	text_start
-	line "min. left today."
+	line "min."
 
-	para "Want a quick"
-	line "battle?"
+	para "Vuoi fare una"
+	line "lotta veloce?"
 	done
 
 _WantToRushThroughAMobileBattleText::
-	text "There is only"
-	line "1 min. left today!"
+	text "Oggi ti resta un"
+	line "solo minuto!"
 
-	para "Want to rush"
-	line "through a battle?"
+	para "Vuoi fare una"
+	line "lotta veloce?"
 	done
 
 _PleaseTryAgainTomorrowText::
-	text "There is less than"
-	line "1 min. left today!"
+	text "Hai meno di 1 min."
+	line "minuto oggi!"
 
-	para "Please try again"
-	line "tomorrow."
+	para "Riprova domani."
+	line ""
 	done
 
 _TryAgainUsingSameSettingsText::
-	text "Try again using"
-	line "the same settings?"
-	done
+    text "Riprovare con le"
+    line "stesse opzioni?"
+    done
 
 _MobileBattleLessThanOneMinuteLeftText::
-	text "There is less than"
-	line "1 min. left today!"
+	text "Oggi hai meno di"
+	line "1 min. disponibile!"
 	done
 
 _MobileBattleNoTimeLeftForLinkingText::
-	text "No time left for"
-	line "linking today."
+	text "Non c'è più tempo"
+	line "per collegarsi."
 	done
 
 _PickThreeMonForMobileBattleText::
@@ -182,8 +181,8 @@ _PickThreeMonForMobileBattleText::
 	done
 
 _MobileBattleRemainingTimeText::
-	text "Today's remaining"
-	line "time is @"
+	text "Oggi mancano"
+	line "@"
 	text_decimal wStringBuffer2, 1, 2
 	text " min."
 	done
@@ -242,24 +241,24 @@ _WindowAreaExceededErrorText:: ; unreferenced
 	done
 
 _WindowPoppingErrorText::
-	text "No windows avail-"
-	line "able for popping."
+	text "Usate troppe"
+	line "finestre."
 	done
 
 _CorruptedEventText:: ; unreferenced
-	text "Corrupted event!"
+	text "Evento corrotto!"
 	prompt
 
 _ObjectEventText::
-	text "Object event."
+	text "Oggetto evento."
 	done
 
 _BGEventText::
-	text "BG event"
+	text "Sfondo evento."
 	done
 
 _CoordinatesEventText::
-	text "Coordinates event"
+	text "Coordinate evento."
 	done
 
 _ReceivedItemText::
@@ -730,25 +729,24 @@ _SlotsDarnText::
 	done
 
 _MobileStadiumEntryText::
-	text "Data for use in"
-	line "the MOBILE STADIUM"
+	text "Qui trovi i dati"
+	line "STADIO MOBILE di"
 
-	para "of the N64 #MON"
-	line "STADIUM 2 can be"
-	cont "read here."
+	para "POKéMON STADIUM 2"
+	line "per N64."
 
-	para "Read the data?"
+	para "Caricare i dati?"
 	done
 
 _MobileStadiumSuccessText::
-	text "Data transfer is"
-	line "complete."
+	text "Trasferimento dati"
+	line "completato."
 
-	para "We hope you enjoy"
-	line "MOBILE STADIUM"
-
-	para "battles in the N64"
-	line "#MON STADIUM 2."
+	para "Goditi le lotte"
+	line "dello STADIO"
+	
+	para "MOBILE su #MON"
+	line "STADIUM 2 per N64."
 
 	para ""
 	done
@@ -763,8 +761,8 @@ _DeleteSavedLoginPasswordText::
 	done
 
 _DeletedTheLoginPasswordText::
-	text "Deleted the LOG-IN"
-	line "PASSWORD."
+	text "Rimuovere PASSWORD"
+	line "D'ACCESSO salvata?"
 	done
 
 _MobilePickThreeMonForBattleText::
@@ -792,74 +790,82 @@ _MobileOnlyThreeMonMayEnterText::
 	prompt
 
 _MobileCardFolderIntro1Text::
-	text "The CARD FOLDER"
-	line "stores your and"
+	text "L'ALBUM SCHEDE"
+	line "contiene le SCHEDE"
 
-	para "your friends'"
-	line "CARDS."
+	para "tue e dei tuoi"
+	line "amici."
 
-	para "A CARD contains"
-	line "information like"
+	para "Una SCHEDA con-"
+	line "tiene informazioni"
 
-	para "the person's name,"
-	line "phone number and"
-	cont "profile."
+	para "come il nome"
+	line "di una persona,"
+	para "il numero e il"
+	line "profilo."
 
 	para ""
 	done
 
 _MobileCardFolderIntro2Text::
-	text "This is your CARD."
+	text "Questa è la tua"
+	line "SCHEDA."
 
-	para "Once you've"
-	line "entered your phone"
+	para "Dopo aver inserito"
+	line "il tuo numero di"
 
-	para "number, you can"
-	line "trade CARDS with"
-	cont "your friends."
+	para "telefono, sarai on"
+	line "grado di scambiare"
+	para "le SCHEDE coi tuoi"
+	line "amici."
 
 	para ""
 	done
 
 _MobileCardFolderIntro3Text::
-	text "If you have your"
-	line "friend's CARD, you"
+	text "Se hai la SCHEDA"
+	line "di un tuo amico,"
 
-	para "can use it to make"
-	line "a call from a"
+	para "puoi usarla per"
+	line "fare una chiamata"
 
-	para "mobile phone on"
-	line "the 2nd floor of a"
-	cont "#MON CENTER."
+	para "dal secondo piano"
+	line "del CENTRO MOBILE."
 
 	para ""
 	done
 
 _MobileCardFolderIntro4Text::
-	text "To safely store"
-	line "your collection of"
+	text "Per tenere al"
+	line "sicuro una"
 
-	para "CARDS, you must"
-	line "set a PASSCODE for"
-	cont "your CARD FOLDER."
+	para "collezione di"
+	line "SCHEDE, devi"
+
+	para "impostare una"
+	line "PASSWORD D'ACCESSO"
+
+	para "per L'ALBUM"
+	line "SCHEDE."
 
 	para ""
 	done
 
 _MobileCardFolderAskDeleteText::
-	text "If the CARD FOLDER"
-	line "is deleted, all"
+	text "Se elimini l'ALBUM"
+	line "SCHEDE, verranno"
 
-	para "its CARDS and the"
-	line "PASSCODE will also"
-	cont "be deleted."
+	para "eliminati anche il"
+	line "CODICE di accesso"
+	cont "e le SCHEDE."
 
-	para "Beware--a deleted"
-	line "CARD FOLDER can't"
-	cont "be restored."
+	para "Attenzione: una"
+	line "SCHEDA eliminata"
+	para "non può essere"
+	line "ripristinata."
 
-	para "Want to delete"
-	line "your CARD FOLDER?"
+	para "Vuoi eliminare"
+	line "l'ALBUM SCHEDE?"
 	done
 
 _MobileCardFolderDeleteAreYouSureText::
@@ -868,29 +874,30 @@ _MobileCardFolderDeleteAreYouSureText::
 	done
 
 _MobileCardFolderDeletedText::
-	text "The CARD FOLDER"
-	line "has been deleted."
+	text "L'ALBUM SCHEDE"
+	line "è stato eliminato."
 
 	para ""
 	done
 
 _MobileCardFolderAskOpenOldText::
-	text "There is an older"
-	line "CARD FOLDER from a"
-	cont "previous journey."
+	text "C'è un ALBUM"
+	line "SCHEDE da un"
+	cont "salvataggio"
+	line "precedente."
 
-	para "Do you want to"
-	line "open it?"
+	para "Vuoi aprirlo?"
+	line ""
 	done
 
 _MobileCardFolderAskDeleteOldText::
-	text "Delete the old"
-	line "CARD FOLDER?"
+	text "Eliminare ALBUM"
+	line "SCHEDE precedente?"
 	done
 
 _MobileCardFolderFinishRegisteringCardsText::
-	text "Finish registering"
-	line "CARDS?"
+	text "Terminare regi-"
+	line "strazione SCHEDE?"
 	done
 
 _PhoneWrongNumberText::

@@ -1241,28 +1241,31 @@ _NewCardArrivedText::
 	done
 
 _PutCardInCardFolderText::
-	text "Put this CARD in"
-	line "the CARD FOLDER?"
+	text "Mettere questa"
+	line "SCHEDA nell'ALBUM?"
 	done
 
 _CardWasListedText::
-	text_ram wStringBuffer2
-	text "'s CARD was"
-	line "listed as no.@"
-	text_decimal wStringBuffer1, 1, 2
-	text "."
-	prompt
+    text_ram wStringBuffer2
+    text "'s CARD was"
+    line "listed as no.@"
+    text_decimal wStringBuffer1, 1, 2
+    text "."
+    prompt
 
 _StartingLinkText::
-	text "Starting link."
+	text "Inizio"
+	line "collegamento."
 	done
 
 _LinkTerminatedText::
-	text "Link terminated."
+	text "Collegamento."
+	line "terminato."
 	done
 
 _ClosingLinkText::
-	text "Closing link."
+	text "Chiusura"
+	line "collegamento."
 	done
 
 _ClearTimeLimitText:: ; unreferenced
