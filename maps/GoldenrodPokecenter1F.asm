@@ -1104,7 +1104,7 @@ GoldenrodPokeCenter1FLinkReceptionistPleaseDoComeAgainText:
 
 GoldenrodPokecomCenterSignText:
 	text "CENTRO #COM"
-	line "1°P INFORMAZIONI"
+	line "1ºP INFORMAZIONI"
 
 	para "Sinistra:"
 	line "AMMINISTRAZIONE"
