@@ -918,7 +918,8 @@ _AnimationTypeText:: ; unreferenced
 	text_end ; unreferenced
 
 _MonNumberText:: ; unreferenced
-	text "#MON number?"
+	text "numero del"
+	line "#MON?"
 	done
 
 _WasSentToBillsPCText::
@@ -1359,22 +1360,24 @@ _OakPCText4::
 	done
 
 _TrainerRankingExplanationText:: ; unreferenced
-	text "Triple-theme"
-	line "trainer ranking!"
+	text "Classifica a tema"
+	line "triplo!"
 
-	para "The SAVE file you"
-	line "just sent might"
-	cont "make the rankings!"
+	para "Il salvataggio"
+	line "da te inviato"
+	para "potrebbe "
+	line "classificarsi!"
 
 	para ""
 	done
 
 _TrainerRankingNoDataText:: ; unreferenced
-	text "There is no"
-	line "ranking data."
+	text "Dati delle"
+	line "classifiche"
+	cont "assenti."
 
-	para "Link to obtain"
-	line "ranking data."
+	para "Collegati per"
+	line "scaricare i dati."
 
 	para ""
 	done
