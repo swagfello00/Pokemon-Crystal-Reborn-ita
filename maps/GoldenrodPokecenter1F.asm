@@ -579,8 +579,9 @@ GoldenrodPokecomCenterYourMonHasBeenReceivedText:
 
 	para "Servirà tempo"
 	line "per trovare un"
+	
 	para "compagno di"
-	cont "scambi. Ritorna"
+	line "scambi. Ritorna"
 	cont "più tardi."
 	done
 
