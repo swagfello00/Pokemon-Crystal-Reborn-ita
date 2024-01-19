@@ -150,7 +150,7 @@ PokecomCenterAdminOfficeMobileScientist3Text:
 PokecomCenterAdminOfficeMobileComputer1Text:
 	text "È un avviso su"
 	line "dove usare gli"
-	para "ADATTATORI MOBILE…"
+	cont "ADATTATORI MOBILE…"
 	done
 
 PokecomCenterAdminOfficeMobileComputer1Text_PokeComClub:
