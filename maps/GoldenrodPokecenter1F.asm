@@ -510,7 +510,8 @@ GoldenrodPokeCenter1FLassWalkRightAroundPlayerMovement:
 GoldenrodPokecomCenterWelcomeToTradeCornerText:
 	text "Ti do il benvenuto"
 	line "all'ANGOLO SCAMBI"
-	cont "#COM!"
+	para "del CENTRO"
+	line "#COM!"
 
 	para "Qui puoi scambiare"
 	line "i tuoi #MON con"
@@ -1102,7 +1103,7 @@ GoldenrodPokeCenter1FLinkReceptionistPleaseDoComeAgainText:
 
 GoldenrodPokecomCenterSignText:
 	text "CENTRO #COM"
-	line "1P INFORMAZIONI"
+	line "1°P INFORMAZIONI"
 
 	para "Sinistra:"
 	line "AMMINISTRAZIONE"

@@ -208,7 +208,7 @@ PokecomCenterAdminOfficeMobileComputer2Text_UsePhone:
 	para "siano connessi"
 	line "correttamente."
 
-	para "Assicueati che il"
+	para "Assicurati che il"
 	line "segnale wireless"
 	
 	para "del telefono sia"
