@@ -96,7 +96,7 @@ _MobileBattleMustPickThreeMonText::
 _MobileBattleMoreInfoText::
 	text "Vuoi saperne di"
 	line "più sulle lotte"
-	cont "mobili?"
+	cont "mobile?"
 	done
 
 _MobileBattleRulesText::

@@ -1234,11 +1234,11 @@ _TheBoxIsFullText:: ; unreferenced
 ; Mobile Adapter
 
 _NewCardArrivedText::
-	text "A new CARD arrived"
-	line "from @"
-	text_ram wStringBuffer2
-	text "."
-	done
+    text ""
+    text_ram wStringBuffer2
+    text " ha inviato"
+    line "una nuova SCHEDA."
+    done
 
 _PutCardInCardFolderText::
 	text "Mettere questa"
@@ -1246,9 +1246,10 @@ _PutCardInCardFolderText::
 	done
 
 _CardWasListedText::
+    text "Inserita la SCHEDA"
+    line "di "
     text_ram wStringBuffer2
-    text "'s CARD was"
-    line "listed as no.@"
+    text ": n°@"
     text_decimal wStringBuffer1, 1, 2
     text "."
     prompt
@@ -1274,13 +1275,13 @@ _ClearTimeLimitText:: ; unreferenced
 	done
 
 _TimeLimitWasClearedText:: ; unreferenced
-	text "The time limit was"
-	line "cleared."
+	text "Ripristinato il"
+	line "tempo limite."
 	done
 
 _PickErrorPacketText:: ; unreferenced
-	text "Pick which packet"
-	line "as an error?"
+	text "Selezionare un"
+	line "pacchetto errore."
 	done
 
 _TradingMonForOTMonText::
