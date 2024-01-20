@@ -2506,7 +2506,7 @@ EZChatDraw_SortByMenu: ; Draws/Opens Sort By Menu
 	ld de, EZChatString_SortByAlphabetical
 .asm_11cd3d
 	call PlaceString
-	hlcoord 3, 8
+	hlcoord 2, 8
 	ld de, EZChatString_SortByMenu
 	call PlaceString
 	call Function11cdaa
@@ -2604,7 +2604,7 @@ EZChatString_SortByAlphabetical:
 	next "alfabetico.@";"じゅんばんで　ひょうじ　します@"
 
 EZChatString_SortByMenu:
-	db   "MODALITÀ GRUPPO";"しゅるいべつ　モード"  ; Category mode
+	db   "MODALITÀ CATEGORIA";"しゅるいべつ　モード"  ; Category mode
 	next "Dalla A alla Z@";"アイウエオ　　モード@" ; ABC mode
 
 EZChatDraw_SortByCharacter: ; Sort by Character Menu
@@ -3363,8 +3363,8 @@ AnimateEZChatCursor: ; EZChat cursor drawing code, extends all the way down to r
 	dbpixel 17, 12 ; NO
 
 .Coords_Five: ; Sort By Menu
-	dbpixel  3, 10 ; Group Mode
-	dbpixel  3, 12 ; ABC Mode
+	dbpixel  2, 10 ; Group Mode
+	dbpixel  2, 12 ; ABC Mode
 
 .Coords_Six
 	dbpixel  2, 10
