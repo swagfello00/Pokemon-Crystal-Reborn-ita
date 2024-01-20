@@ -123,18 +123,19 @@ _PasscodesNotSameText::
 	done
 
 _PasscodeSetText::
-	text "Your PASSCODE has"
-	line "been set."
+	text "CODICE impostato."
+	line ""
 
-	para "Enter this number"
-	line "next time to open"
-	cont "the CARD FOLDER."
+	para "Immetti il codice"
+	line "in seguito per"
+	para "aprire l'ALBUM"
+	line "SCHEDE."
 
 	para ""
 	done
 
 _FourZerosInvalidText::
-	text "0000 is invalid!"
+	text "0000 è errato!"
 
 	para ""
 	done
@@ -145,14 +146,14 @@ _EnterPasscodeText::
 	done
 
 _IncorrectPasscodeText::
-	text "Incorrect"
-	line "PASSCODE!"
+	text "CODICE errato!"
 
 	para ""
 	done
 
 _CardFolderOpenText::
-	text "CARD FOLDER open.@"
+	text "ALBUM SCHEDE"
+	line "aperto.@"
 	text_end
 
 _OakTimeWokeUpText::
@@ -218,34 +219,39 @@ _OakTimeIsItText::
 ; Mobile Adapter
 
 _ThereIsNothingConnectedText:: ; unreferenced
-	text "There is nothing"
-	line "connected."
+	text "Non hai collegato"
+	line "nulla."
 	done
 
 _CheckCellPhoneAdapterText:: ; unreferenced
-	text "Check cell phone"
-	line "adapter."
+	text "Controllo"
+	line "adattatore"
+	cont "telefonico."
 	done
 
 _CheckCDMAAdapterText:: ; unreferenced
-	text "Check CDMA"
-	line "adapter."
+	text "Controllo"
+	line "adattatore"
+	cont "CDMA."
 	done
 
 _CheckDOCOMOPHSAdapterText:: ; unreferenced
-	text "Check DOCOMO PHS"
-	line "adapter."
+	text "Controllo"
+	line "adattatore"
+	cont "DOCOMO PHS."
 	done
 
 _CheckDDIPHSAdapterText:: ; unreferenced
-	text "Check DDI PHS"
-	line "adapter."
+	text "Controllo"
+	line "adattatore"
+	cont "DDI PHS."
 	done
 
 _CheckMobileAdapterText:: ; unreferenced
-	text "Check unlimited"
-	line "battle mobile"
-	cont "adapter."
+	text "Controllo"
+	line "adattatore"
+	para "per lotte mobile"
+	line "illimitate."
 	done
 
 ; Mobile Adapter End
@@ -1270,8 +1276,8 @@ _ClosingLinkText::
 	done
 
 _ClearTimeLimitText:: ; unreferenced
-	text "Clear the time"
-	line "limit?"
+	text "Azzerare il"
+	line "limite di tempo?"
 	done
 
 _TimeLimitWasClearedText:: ; unreferenced
