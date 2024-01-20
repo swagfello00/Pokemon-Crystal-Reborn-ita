@@ -427,7 +427,7 @@ String_17f8d1:
 
 String_17f913:
 	db   "Linee sovracca-" ; "でんわかいせんが　こんでいるため"
-	next "riche impossibile," ; "でんわが　かけられません"
+	next "riche, impossibile" ; "でんわが　かけられません"
 	next "connettersi." ; "かけなおして　ください"
 	next "Riprova più" 
 	next "tardi."	

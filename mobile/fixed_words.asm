@@ -2307,8 +2307,8 @@ EZChatString_ExitPrompt: ; Exit menu string
 	next "di scrivere?@";"しますか？@"
 
 EZChatString_ExitConfirmation: ; Exit menu confirmation string
-	db   "Quit without";"とうろくちゅう<NO>あいさつ<WA>ほぞん"
-	next "saving a message? @";"されません<GA>よろしい　ですか？@"
+	db   "Esci senza salvare";"とうろくちゅう<NO>あいさつ<WA>ほぞん"
+	next "il messaggio?@";"されません<GA>よろしい　ですか？@"
 
 EZChatDraw_MessageTypeMenu: ; Message Type Menu Drawing (Intro/Battle Start/Win/Lose menu)
 	ld hl, EZChatString_MessageDescription
@@ -3870,7 +3870,7 @@ MobileEZChatCategoryNames:
 	db "VIRTÙ@" 	; 08 ; Conditions	; "じょうたい@"
 	db "VITA@" 	; 09 ; Lifestyle	; "せいかつ@@"
 	db "HOBBY@" 	; 0a ; Hobbies		; "しゅみ@@@"
-	db "ACTIONS@" 	; 0b ; Actions		; "こうどう@@"
+	db "VERBI@" 	; 0b ; Actions		; "こうどう@@"
 	db "TEMPO@" 	; 0c ; Time			; "じかん@@@"
 	db "GRAMM.@" 	; 0d ; Endings		; "むすび@@@"
 	db "ALTRO@" 	; 0e ; Misc			; "あれこれ@@"
