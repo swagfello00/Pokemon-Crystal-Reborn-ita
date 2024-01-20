@@ -2308,7 +2308,7 @@ EZChatString_ExitPrompt: ; Exit menu string
 
 EZChatString_ExitConfirmation: ; Exit menu confirmation string
 	db   "Esci senza salvare";"とうろくちゅう<NO>あいさつ<WA>ほぞん"
-	next "il messaggio?@";"されません<GA>よろしい　ですか？@"
+	next "questo messaggio?@";"されません<GA>よろしい　ですか？@"
 
 EZChatDraw_MessageTypeMenu: ; Message Type Menu Drawing (Intro/Battle Start/Win/Lose menu)
 	ld hl, EZChatString_MessageDescription
