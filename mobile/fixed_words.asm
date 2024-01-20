@@ -815,23 +815,36 @@ EZChatMenu_ChatWords: ; EZChat Word Menu
 ; if at QUIT
 	cp EZCHAT_MAIN_QUIT
 	jr z, .up_on_quit
+	ld de, wEZChatWord3 + 1
+	cp EZCHAT_MAIN_OK
+	jr z, .up_to_pokemon
 ; if in 2nd row and 2nd column
+	ld de, wEZChatWord1 + 1
 	cp EZCHAT_MAIN_WORD4
 	jr nz, .up_normal
+.up_to_pokemon
 ; to first row
-	ld a, [wEZChatWord1 + 1]
+	ld a, [de]
 	and a
 	jr nz, .up_normal
 ; 1st word not empty
-	ld a, [wEZChatWord1]
+	dec de
+	ld a, [de]
 	and a
 	jr z, .up_normal
-; pokemon is 1st word
+; pokemon is the word
+	ld a, [hl]
+	cp EZCHAT_MAIN_OK
+	ld a, EZCHAT_MAIN_WORD3
+	jr z, .finish_dpad
 	ld a, EZCHAT_MAIN_WORD1
 	jr .finish_dpad
 .up_normal
 	ld a, [hl]
 	sub 2
+	cp EZCHAT_MAIN_RESET
+	jr nz, .finish_dpad
+	dec a
 	jr .finish_dpad
 .up_on_quit
 	ld a, EZCHAT_MAIN_WORD3
