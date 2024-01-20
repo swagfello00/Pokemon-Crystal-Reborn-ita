@@ -1777,9 +1777,14 @@ EZChatMenu_WordSubmenuBottom: ; Seems to handle the bottom of the word menu.
 	dec c
 	jr nz, .asm_11c891
 .asm_11c895
-	ld hl, wEZChatLoadedItems
+	call EZChat_IsPKMNMenu
+	ld l, EZCHAT_WORDS_IN_MENU
+	jr nc, .after_determined_menu_size
+	ld l, EZCHAT_PKMN_WORDS_IN_MENU
+.after_determined_menu_size
 	ld a, [wEZChatPageOffset]
-	add $c ; EZCHAT_WORD_COUNT * 2 ?
+	add a, l
+	ld hl, wEZChatLoadedItems
 	jr c, .asm_11c8b7
 	cp [hl]
 	jr nc, .asm_11c8b7
