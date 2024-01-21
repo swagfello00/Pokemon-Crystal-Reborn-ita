@@ -4105,7 +4105,7 @@ ENDM
         ezchat_word "!?@@@@@@", $004
         ezchat_word "?@@@@@@@", $010
         ezchat_word "…@@@@@@@", $00a
-        ezchat_word "...!@@@@", $00c
+        ezchat_word "…!@@@@@@", $00c
         ezchat_word "………@@@@@", $00e
         ezchat_word "-@@@@@@@", $006
         ezchat_word "- - -@@@", $008
