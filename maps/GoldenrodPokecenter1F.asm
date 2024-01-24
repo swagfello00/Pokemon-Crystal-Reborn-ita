@@ -846,13 +846,13 @@ GoldenrodPokecomCenterNewsMachineExplanationText:
 	cont "inviato."
 
 	para "Il contenuto delle"
-	line "NOTIZIE dipende dai"
+	line "NOTIZIE dipende"
 
-	para "salvataggi spediti"
-	line "da te e altri"
-	cont "allenatori."
+	para "dai salvataggi"
+	line "spediti da te e"
+	cont "altri allenatori."
 
-	para "Potrsti persino"
+	para "Potresti persino"
 	line "finire nelle"
 	cont "NOTIZIE!"
 	done
