@@ -729,11 +729,12 @@ _SlotsDarnText::
 	done
 
 _MobileStadiumEntryText::
-	text "Qui trovi i dati"
-	line "STADIO MOBILE di"
+	text "Qui trovi"
+	line "i dati dello"
 
-	para "POKéMON STADIUM 2"
-	line "per N64."
+	para "STADIO MOBILE di"
+	line "POKéMON STADIUM 2"
+	cont "per N64."
 
 	para "Caricare i dati?"
 	done
