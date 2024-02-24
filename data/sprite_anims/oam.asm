@@ -150,6 +150,7 @@ SpriteAnimOAMData:
 	spriteanimoam $00, .OAMData_EZChatCursor8            ; SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_8
 	spriteanimoam $00, .OAMData_EZChatCursor9            ; SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_9
 	spriteanimoam $00, .OAMData_EZChatCursor10           ; SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_10
+	spriteanimoam $00, wMobileBoxSpriteBuffer            ; SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_CUSTOM_BOX
 	assert_table_length NUM_SPRITE_ANIM_OAMSETS
 
 .OAMData_1x1_Palette0:
