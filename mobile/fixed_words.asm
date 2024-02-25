@@ -10,6 +10,7 @@ DEF EZCHAT_CUSTOM_BOX_BIG_SIZE EQU 7
 DEF EZCHAT_CUSTOM_BOX_START_X EQU 6
 DEF EZCHAT_CUSTOM_BOX_START_Y EQU $1B
 DEF EZCHAT_CHARS_PER_LINE EQU 18
+DEF EZCHAT_BLANK_SIZE EQU 8
 
 	const_def
 	const EZCHAT_SORTED_A
@@ -605,6 +606,7 @@ Function11c373:
 	call EZChat_Textbox
 	pop af
 	ret nz
+	call EZChat_VerifyWordPlacement
 	call EZChatMenu_MessageSetup
 	jp EZChat_IncreaseJumptable
 
@@ -615,7 +617,10 @@ EZChatMenu_RerenderMessage:
 	call EZChat_ClearAllWords
 	jr EZChatMenu_MessageSetup
 
-EZChatMenu_GetChosenWordSize:
+EZChatMenu_GetRealChosenWordSize:
+	push hl
+	push de
+	push bc
 	ld hl, wEZChatWords
 	sla a
 	ld d, 0
@@ -632,13 +637,38 @@ EZChatMenu_GetChosenWordSize:
 	jr z, .emptystring
 	call EZChat_LoadOneWord
 	ld a, 0
-	ret c
+	jr c, .done
 	call GetLengthOfWordAtC608
 	ld a, c
+.done
+	pop bc
+	pop de
+	pop hl
 	ret
 
 .emptystring
-	ld a, 6
+	xor a
+	jr .done
+
+EZChatMenu_GetChosenWordSize:
+	push af
+	call EZChatMenu_GetRealChosenWordSize
+	pop hl
+	and a
+	ret nz
+	ld a, h
+	and 1
+	ld a, h
+	jr z, .after_decrement
+	dec a
+	dec a
+.after_decrement
+	inc a
+	call EZChatMenu_GetRealChosenWordSize
+	cp (EZCHAT_CHARS_PER_LINE - EZCHAT_BLANK_SIZE)
+	ld a, EZCHAT_BLANK_SIZE
+	ret nz
+	ld a, EZCHAT_BLANK_SIZE - 1
 	ret
 
 EZChatMenu_MessageLocationSetup:
@@ -683,26 +713,46 @@ EZChatMenu_MessageSetup:
 	xor a
 	ld [wMobileBoxSpritePositionDataTotal], a
 	hlcoord 1, 2
-	ld d, h
-	ld e, l
-	inc de
 	ld bc, wEZChatWords
 	call .after_initial_setup
+	ld a, EZCHAT_WORDS_PER_ROW
 	hlcoord 1, 4
-	ld d, h
-	ld e, l
-	inc de
 
 .after_initial_setup
+	push af
+	inc a
+	call EZChatMenu_GetRealChosenWordSize
+	push af
+	push hl
 	call .print_word_of_line
+	pop hl
+	pop de
+	pop af
+	call EZChatMenu_GetRealChosenWordSize
+	cp (EZCHAT_CHARS_PER_LINE - EZCHAT_BLANK_SIZE)
+	ld e, (EZCHAT_CHARS_PER_LINE - EZCHAT_BLANK_SIZE + 1)
+	jr z, .after_size_calcs
+	dec e
+	ld a, d
+	cp EZCHAT_BLANK_SIZE + 1
+	jr c, .after_size_calcs
+	sub EZCHAT_BLANK_SIZE
+	ld d, a
+	ld a, e
+	sub d
+	ld e, a
+.after_size_calcs
+	ld d, 0
+	add hl, de
 
 .print_word_of_line
+	ld d, a
 	ld a, [bc]
 	inc bc
 	push bc
-	push de
 	ld e, a
 	ld a, [bc]
+	ld b, d
 	ld d, a
 	or e
 	jr z, .emptystring
@@ -714,29 +764,21 @@ EZChatMenu_MessageSetup:
 	call EZChat_RenderOneWord
 	jr .asm_11c3b5
 .emptystring
-	pop hl
-	push hl
 	ld de, EZChatString_EmptyWord
+	ld a, b
+	cp (EZCHAT_CHARS_PER_LINE - EZCHAT_BLANK_SIZE)
+	jr nz, .after_shrink
+	inc de
+.after_shrink
 	call EZChatMenu_MessageLocationSetup
 	call PlaceString
-	inc bc
 .asm_11c3b5
-	ld a, 10
-	pop de
-	add e
-	ld e, a
-	adc d
-	sub e
-	ld d, a
-	ld h, b
-	ld l, c
-	inc hl
 	pop bc
 	inc bc
 	ret
 
 EZChatString_EmptyWord: ; EZChat Unassigned Words
-	db "------@"
+	db "--------@"
 
 ; ezchat main options
 	const_def
@@ -1858,7 +1900,7 @@ EZChat_VerifyWordPlacement:
 	push bc
 	push de
 	ld a, c
-	call EZChatMenu_GetChosenWordSize
+	call EZChatMenu_GetRealChosenWordSize
 	pop de
 	pop bc
 	add d
@@ -3059,29 +3101,6 @@ AnimateEZChatCursor: ; EZChat cursor drawing code, extends all the way down to r
 	dw .eight
 	dw .nine
 	dw .ten
-
-.is_pkmn
-	or a ; reset carry
-	push bc
-	push hl
-		ld c, a
-		ld b, 0
-		ld hl, wEZChatWords
-		add hl, bc
-		add hl, bc
-		ld a, [hli]
-		ld b, a
-		ld a, [hl]
-		or b
-		jr z, .chk_pkmn_ok ; == 0
-		ld a, [hl]
-		and a
-		jr nz, .chk_pkmn_ok ; != 0
-		scf
-.chk_pkmn_ok
-	pop hl
-	pop bc
-	ret
 
 .zero ; EZChat Message Menu
 ; reinit sprite
