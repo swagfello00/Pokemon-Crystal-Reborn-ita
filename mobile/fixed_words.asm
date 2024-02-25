@@ -620,7 +620,6 @@ EZChatMenu_RerenderMessage:
 EZChatMenu_GetRealChosenWordSize:
 	push hl
 	push de
-	push bc
 	ld hl, wEZChatWords
 	sla a
 	ld d, 0
@@ -629,6 +628,14 @@ EZChatMenu_GetRealChosenWordSize:
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
+	jr EZChatMenu_DirectGetRealChosenWordSize.after_initial_setup
+
+EZChatMenu_DirectGetRealChosenWordSize:
+	push hl
+	push de
+.after_initial_setup
+	push bc
+	ld a, e
 	or d
 	jr z, .emptystring
 	ld a, e
@@ -1402,8 +1409,14 @@ EZChatMenu_WordSubmenu: ; Word Submenu Controls
 	jp nz, .right
 	ret
 
+.failure_to_set
+	ld de, SFX_WRONG
+	call PlaySFX
+	jp WaitSFX
+
 .a
 	call EZChat_SetOneWord
+	jr nc, .failure_to_set
 	call EZChat_VerifyWordPlacement
 	call EZChatMenu_RerenderMessage
 	ld a, EZCHAT_DRAW_CHAT_WORDS
@@ -1954,8 +1967,22 @@ EZChat_SetOneWord:
 .got_word_entry
 	ld e, a
 .put_word
+	call EZChatMenu_DirectGetRealChosenWordSize
+	ld b, a
 	ld a, [wEZChatSelection]
 	ld c, a
+	and 1
+	ld a, c
+	jr z, .after_dec
+	dec a
+	dec a
+.after_dec
+	inc a
+	call EZChatMenu_GetRealChosenWordSize
+	add b
+	inc a
+	cp EZCHAT_CHARS_PER_LINE + 1
+	ret nc
 	ld b, 0
 	ld hl, wEZChatWords
 	add hl, bc
@@ -1964,6 +1991,7 @@ EZChat_SetOneWord:
 	inc hl
 	ld [hl], d
 ; finished
+	scf
 	ret
 
 .pokemon
