@@ -6,7 +6,7 @@ DEF EZCHAT_WORDS_IN_MENU EQU EZCHAT_WORDS_PER_ROW * EZCHAT_WORDS_PER_COL
 DEF EZCHAT_PKMN_WORDS_PER_ROW EQU 1
 DEF EZCHAT_PKMN_WORDS_PER_COL EQU 4
 DEF EZCHAT_PKMN_WORDS_IN_MENU EQU EZCHAT_PKMN_WORDS_PER_ROW * EZCHAT_PKMN_WORDS_PER_COL
-DEF EZCHAT_CUSTOM_BOX_BIG_SIZE EQU 7
+DEF EZCHAT_CUSTOM_BOX_BIG_SIZE EQU 9
 DEF EZCHAT_CUSTOM_BOX_START_X EQU 6
 DEF EZCHAT_CUSTOM_BOX_START_Y EQU $1B
 DEF EZCHAT_CHARS_PER_LINE EQU 18
@@ -675,7 +675,7 @@ EZChatMenu_GetChosenWordSize:
 	cp (EZCHAT_CHARS_PER_LINE - EZCHAT_BLANK_SIZE)
 	ld a, EZCHAT_BLANK_SIZE
 	ret nz
-	ld a, EZCHAT_BLANK_SIZE - 1
+	dec a
 	ret
 
 EZChatMenu_MessageLocationSetup:
@@ -717,6 +717,8 @@ EZChatMenu_MessageLocationSetup:
 	ret
 
 EZChatMenu_MessageSetup:
+    ld a, EZCHAT_MAIN_RESET
+    ld [wMobileBoxSpriteLoadedIndex], a
 	xor a
 	ld [wMobileBoxSpritePositionDataTotal], a
 	hlcoord 1, 2
@@ -923,7 +925,6 @@ EZChatMenu_ChatWords: ; EZChat Word Menu
 	ld a, [hl]
 	cp EZCHAT_MAIN_WORD3
 	ret c
-	ld a, [hl]
 	sub 2
 	cp EZCHAT_MAIN_WORD4
 	jr nz, .keep_checking_up
@@ -940,7 +941,6 @@ EZChatMenu_ChatWords: ; EZChat Word Menu
 	ld a, [hl]
 	cp 4
 	ret nc
-	ld a, [hl]
 	add 2
 	ld [hl], a
 	ret
@@ -3015,13 +3015,43 @@ EZChat_Textbox2:
 	ret
 
 PrepareEZChatCustomBox:
+	ld a, [wEZChatSelection]
+	cp EZCHAT_MAIN_RESET
+	ret nc
+	ld hl, wMobileBoxSpriteLoadedIndex
+	cp [hl]
+    ret z
+    ld [hl], a
+	ld d, a
+    call DelayFrame
+    ld a, [hl]
+	call EZChatMenu_GetRealChosenWordSize
 	ld hl, wMobileBoxSpriteBuffer
 	ld c, a
 	dec c
 	cp EZCHAT_CUSTOM_BOX_BIG_SIZE
-	jr c, .after_resize
+	jr c, .after_big_reshape
 	ld a, 5
-.after_resize
+	jr .done_reshape
+.after_big_reshape
+	ld a, d
+	and 1
+	ld a, d
+	jr z, .after_reshape
+	dec a
+	dec a
+.after_reshape
+    inc a
+	call EZChatMenu_GetRealChosenWordSize
+	cp (EZCHAT_CHARS_PER_LINE - EZCHAT_BLANK_SIZE)
+	ld a, EZCHAT_BLANK_SIZE
+	jr nz, .prepare_for_resize
+	dec a
+.prepare_for_resize
+    ld c, a
+    dec c
+
+.done_reshape
 	inc a
 	sla a
 	ld [hli], a
@@ -3139,9 +3169,7 @@ AnimateEZChatCursor: ; EZChat cursor drawing code, extends all the way down to r
 	jr .zero_sprite_anim_frame
 
 .zero_check_word
-	push bc
 	call EZChatMenu_GetChosenWordSize
-	pop bc
 	and a
 	ret z
 	push bc

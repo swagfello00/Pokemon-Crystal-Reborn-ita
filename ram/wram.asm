@@ -1076,6 +1076,7 @@ wMobileBoxSpriteBufferSize:: db
 wMobileBoxSpriteBufferData:: ds ((9 - 1 + 2) * 2) * 4
 wMobileBoxSpritePositionDataTotal:: db
 wMobileBoxSpritePositionData:: ds 2 * EASY_CHAT_MESSAGE_WORD_COUNT
+wMobileBoxSpriteLoadedIndex:: db
 wMobileBoxSpriteBufferEnd::
 
 
