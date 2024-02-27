@@ -3,9 +3,6 @@ DEF EZCHAT_WORD_LENGTH EQU 8
 DEF EZCHAT_WORDS_PER_ROW EQU 2
 DEF EZCHAT_WORDS_PER_COL EQU 4
 DEF EZCHAT_WORDS_IN_MENU EQU EZCHAT_WORDS_PER_ROW * EZCHAT_WORDS_PER_COL
-DEF EZCHAT_PKMN_WORDS_PER_ROW EQU 1
-DEF EZCHAT_PKMN_WORDS_PER_COL EQU 4
-DEF EZCHAT_PKMN_WORDS_IN_MENU EQU EZCHAT_PKMN_WORDS_PER_ROW * EZCHAT_PKMN_WORDS_PER_COL
 DEF EZCHAT_CUSTOM_BOX_BIG_SIZE EQU 9
 DEF EZCHAT_CUSTOM_BOX_START_X EQU 6
 DEF EZCHAT_CUSTOM_BOX_START_Y EQU $1B
@@ -40,7 +37,6 @@ DEF EZCHAT_BLANK_SIZE EQU 8
 	const EZCHAT_SORTED_Y
 	const EZCHAT_SORTED_Z
 	const EZCHAT_SORTED_ETC
-	const EZCHAT_SORTED_PKMN
 	const EZCHAT_SORTED_ERASE
 	const EZCHAT_SORTED_MODE
 	const EZCHAT_SORTED_CANCEL
@@ -1034,6 +1030,7 @@ def EZCHAT_EMPTY_VALUE EQU ((EZCHAT_NUM_EXTRA_ROWS << 5) | (EZCHAT_DISPLAYED_CAT
 
 EZChatDraw_CategoryMenu: ; Open category menu
 ; might need no change here
+	call DelayFrame
 	call EZChat_ClearBottom12Rows
 	call EZChat_PlaceCategoryNames
 	call EZChat_SortMenuBackground
@@ -1312,7 +1309,6 @@ EZChatString_Stop_Mode_Cancel:
 
 EZChatDraw_WordSubmenu: ; Opens/Draws Word Submenu
 	call EZChat_ClearBottom12Rows
-	call EZChat_ForcePokemonSubmenu
 	call EZChat_DetermineWordCounts
 	ld de, EZChatBKG_WordSubmenu
 	call EZChat_Textbox2
@@ -1371,6 +1367,7 @@ EZChatMenu_WordSubmenu: ; Word Submenu Controls
 	dec e
 	jr nz, .start_loop
 .navigate_to_page
+	call DelayFrame
 	call Function11c992
 	call EZChat_RenderWordChoices
 	call EZChatMenu_WordSubmenuBottom
@@ -1449,7 +1446,7 @@ EZChatMenu_WordSubmenu: ; Word Submenu Controls
 	jr nc, .finish_dpad
 	call .move_menu_up_by_one
 	ret nc
-	jr .navigate_to_page
+	jp .navigate_to_page
 
 .down
 	ld a, [hl]
@@ -1613,20 +1610,6 @@ EZChat_DetermineWordCounts:
 	ld b, 0
 	add hl, bc
 	jr .prepare_items_load
-
-EZChat_ForcePokemonSubmenu:
-	ld a, [wEZChatCategoryMode]
-	bit 0, a
-	ret z
-	ld a, [wEZChatSortedSelection]
-	cp EZCHAT_SORTED_PKMN
-	ret nz
-	ld a, [wEZChatCategoryMode]
-	res 0, a
-	ld [wEZChatCategoryMode], a
-	xor a
-	ld [wEZChatCategorySelection], a
-	ret
 	
 EZChat_RenderWordChoices:
 	ld bc, EZChatCoord_WordSubmenu
@@ -2676,25 +2659,9 @@ EZChatMenu_SortByCharacter: ; Sort By Character Menu Controls
 	jr nz, .right
 
 	ret
-	
-;.invalid ; Removed to be more in line with Gen 3
-;	ld de, SFX_WRONG
-;	call PlaySFX
-;	jp WaitSFX
 
 .a
 	ld a, [wEZChatSortedSelection]
-; exit early on "no words begin with this letter" - sort count 0
-	cp EZCHAT_SORTED_J
-;	jr z, .invalid ; Removed to be more in line with Gen 3
-	ret z
-	cp EZCHAT_SORTED_K
-;	jr z, .invalid ; Removed to be more in line with Gen 3
-	ret z
-	cp EZCHAT_SORTED_X
-;	jr z, .invalid ; Removed to be more in line with Gen 3
-	ret z	
-; otherwise
 	cp EZCHAT_SORTED_ERASE
 	jr c, .place
 	sub EZCHAT_SORTED_ERASE
@@ -2720,6 +2687,19 @@ EZChatMenu_SortByCharacter: ; Sort By Character Menu Controls
 	jr .load
 
 .place
+	ld hl, wc6a8 ; $c68a + 30
+	ld c, a
+	ld b, 0
+	add hl, bc
+	add hl, bc
+	ld a, [hl]
+	and a
+;	jr nz, .valid ; Removed to be more in line with Gen 3
+;	ld de, SFX_WRONG
+;	call PlaySFX
+;	jp WaitSFX
+	ret z
+.valid
 	ld a, EZCHAT_DRAW_WORD_SUBMENU
 	jr .load
 
@@ -2796,25 +2776,23 @@ EZChatMenu_SortByCharacter: ; Sort By Character Menu Controls
 ; T
 	db EZCHAT_SORTED_K,    EZCHAT_SORTED_U,      EZCHAT_SORTED_ETC,    EZCHAT_SORTED_S
 ; U
-	db EZCHAT_SORTED_L,    EZCHAT_SORTED_V,      EZCHAT_SORTED_ETC,   EZCHAT_SORTED_T
+	db EZCHAT_SORTED_L,    EZCHAT_SORTED_V,      EZCHAT_SORTED_ETC,    EZCHAT_SORTED_T
 ; V
-	db EZCHAT_SORTED_M,    EZCHAT_SORTED_W,      EZCHAT_SORTED_PKMN,   EZCHAT_SORTED_U
+	db EZCHAT_SORTED_M,    EZCHAT_SORTED_W,      EZCHAT_SORTED_MODE,   EZCHAT_SORTED_U
 ; W
 	db EZCHAT_SORTED_N,    EZCHAT_SORTED_X,      EZCHAT_SORTED_MODE,   EZCHAT_SORTED_V
 ; X
-	db EZCHAT_SORTED_O,    EZCHAT_SORTED_Y,      EZCHAT_SORTED_MODE, EZCHAT_SORTED_W
+	db EZCHAT_SORTED_O,    EZCHAT_SORTED_Y,      EZCHAT_SORTED_MODE,   EZCHAT_SORTED_W
 ; Y
 	db EZCHAT_SORTED_P,    EZCHAT_SORTED_Z,      EZCHAT_SORTED_CANCEL, EZCHAT_SORTED_X
 ; Z
 	db EZCHAT_SORTED_Q,    EZCHAT_SORTED_NULL,   EZCHAT_SORTED_CANCEL, EZCHAT_SORTED_Y
 ; ETC.
-	db EZCHAT_SORTED_S,    EZCHAT_SORTED_PKMN,   EZCHAT_SORTED_ERASE,  EZCHAT_SORTED_NULL
-; PKMN
-	db EZCHAT_SORTED_U,    EZCHAT_SORTED_NULL,   EZCHAT_SORTED_MODE,   EZCHAT_SORTED_ETC
+	db EZCHAT_SORTED_S,    EZCHAT_SORTED_NULL,   EZCHAT_SORTED_ERASE,  EZCHAT_SORTED_NULL
 ; ERASE
 	db EZCHAT_SORTED_ETC,  EZCHAT_SORTED_MODE,   EZCHAT_SORTED_NULL,   EZCHAT_SORTED_NULL
 ; MODE
-	db EZCHAT_SORTED_PKMN, EZCHAT_SORTED_CANCEL, EZCHAT_SORTED_NULL,   EZCHAT_SORTED_ERASE
+	db EZCHAT_SORTED_V,    EZCHAT_SORTED_CANCEL, EZCHAT_SORTED_NULL,   EZCHAT_SORTED_ERASE
 ; CANCEL
 	db EZCHAT_SORTED_Y,    EZCHAT_SORTED_NULL,   EZCHAT_SORTED_NULL,   EZCHAT_SORTED_MODE
 	assert_table_length NUM_EZCHAT_SORTED
@@ -2823,7 +2801,7 @@ EZChatScript_SortByCharacterTable:
 	db   "A B C D E F G H I"
 	next "J K L M N O P Q R"
 	next "S T U V W X Y Z"
-	next "altro <PK><MN>"
+	next "altro"
 	db   "@"
 
 EZChat_IncreaseJumptable:
@@ -3483,7 +3461,6 @@ AnimateEZChatCursor: ; EZChat cursor drawing code, extends all the way down to r
 	dbpixel 14, 13 ; Y
 	dbpixel 16, 13 ; Z
 	dbpixel  2, 15 ; ETC.
-	dbpixel  8, 15 ; PKMN
 	dbpixel  1, 18, 5, 2 ; ERASE
 	dbpixel  7, 18, 5, 2 ; MODE
 	dbpixel 13, 18, 5, 2 ; CANCEL
@@ -3536,7 +3513,6 @@ AnimateEZChatCursor: ; EZChat cursor drawing code, extends all the way down to r
 	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3  ; 18 (Letter selection box for the sort by menu)
 	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3  ; 19 (Letter selection box for the sort by menu)
 	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_10 ; 1a (Misc selection box for the sort by menu)
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_4  ; 1b (Pkmn selection box for the sort by menu)
 	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_1  ; 1c (Bottom Menu Selection box?)
 	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_1  ; 1d (Bottom Menu Selection box?)
 	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_1  ; 1e (Bottom Menu Selection box?)
@@ -3689,10 +3665,10 @@ EZChat_GetSeenPokemonByKana:
 	ld [wcd2e], a
 	ld [hl], a
 
-	;ld a, LOW(EZChat_SortedPokemon)
-	;ld [wcd2f], a
-	;ld a, HIGH(EZChat_SortedPokemon)
-	;ld [wcd30], a
+	ld a, LOW(EZChat_SortedPokemon)
+	ld [wcd2f], a
+	ld a, HIGH(EZChat_SortedPokemon)
+	ld [wcd30], a
 
 	ld a, LOW(wc6a8)
 	ld [wcd31], a
@@ -3720,17 +3696,9 @@ EZChat_GetSeenPokemonByKana:
 	ld c, a
 	ld a, [hli]
 	ld b, a
-
 ; bc == 0?
-	;ld a, b
-	and a
-	jr c, .continue
-	jr nz, .continue
-	ld a, c
-	and a
-	jr z, .save_without_copy
+	or c
 
-.continue
 ; save the pointer to the next row
 	push hl
 ; add de to w3_d000
@@ -3743,21 +3711,7 @@ EZChat_GetSeenPokemonByKana:
 	ld d, a
 ; save bc for later
 	push bc
-	jr .loop1
-
-.save_without_copy
-; save the pointer to the next row
-	push hl
-; add de to w3_d000
-	ld hl, w3_d000
-	add hl, de
-; recover de from wcd2d (default: wEZChatSortedWords)
-	ld a, [wcd2d]
-	ld e, a
-	ld a, [wcd2e]
-	ld d, a
-	push bc
-	jr .done_copying
+	jr z, .done_copying
 
 .loop1
 ; copy 2*bc bytes from 3:hl to 5:de
@@ -3788,56 +3742,55 @@ EZChat_GetSeenPokemonByKana:
 
 .done_copying
 ; recover the pointer from wcd2f (default: EZChat_SortedPokemon)
-	;ld a, [wcd2f]
-	;ld l, a
-	;ld a, [wcd30]
-	;ld h, a
+	ld a, [wcd2f]
+	ld l, a
+	ld a, [wcd30]
+	ld h, a
 ; copy the pointer from [hl] to bc
-	;ld a, [hli]
-	;ld c, a
-	;ld a, [hli]
-	;ld b, a
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
 ; store the pointer to the next pointer back in wcd2f
-	;ld a, l
-	;ld [wcd2f], a
-	;ld a, h
-	;ld [wcd30], a
-; push pop that pointer to hl
-	;push bc
-	;pop hl
-	;ld c, $0
+	ld a, l
+	ld [wcd2f], a
+	ld a, h
+	ld [wcd30], a
+	ld h, b
+	ld l, c
+	ld c, $0
 .loop2
 ; Have you seen this Pokemon?
-	;ld a, [hl]
-	;cp $ff
-	;jr z, .done
-	;call .CheckSeenMon
-	;jr nz, .next
+	ld a, [hl]
+	cp $ff
+	jr z, .done
+	call .CheckSeenMon
+	jr nz, .next
 ; If not, skip it.
-	;inc hl
-	;jr .loop2
+	inc hl
+	jr .loop2
 
 .next
 ; If so, append it to the list at 5:de, and increase the count.
-	;ld a, [hli]
-	;ld [de], a
-	;inc de
-	;xor a
-	;ld [de], a
-	;inc de
-	;inc c
-	;jr .loop2
+	ld a, [hli]
+	ld [de], a
+	inc de
+	xor a
+	ld [de], a
+	inc de
+	inc c
+	jr .loop2
 
 .done
 ; Remember the original value of bc from the table?
 ; Well, the stack remembers it, and it's popping it to hl.
 	pop hl
 ; Add the number of seen Pokemon from the list.
-;	ld b, $0
-;	add hl, bc
+	ld b, $0
+	add hl, bc
 ; Push pop to bc.
-	push hl
-	pop bc
+	ld b, h
+	ld c, l
 ; Load the pointer from [wcd31] (default: wc6a8)
 	ld a, [wcd31]
 	ld l, a
