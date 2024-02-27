@@ -669,9 +669,11 @@ EZChatMenu_GetChosenWordSize:
 .after_decrement
 	inc a
 	call EZChatMenu_GetRealChosenWordSize
-	cp (EZCHAT_CHARS_PER_LINE - EZCHAT_BLANK_SIZE)
+	sub (EZCHAT_CHARS_PER_LINE - EZCHAT_BLANK_SIZE)
+	ld h, a
 	ld a, EZCHAT_BLANK_SIZE
-	ret nz
+	ret c
+	sub h
 	dec a
 	ret
 
@@ -735,19 +737,23 @@ EZChatMenu_MessageSetup:
 	pop de
 	pop af
 	call EZChatMenu_GetRealChosenWordSize
-	cp (EZCHAT_CHARS_PER_LINE - EZCHAT_BLANK_SIZE)
-	ld e, (EZCHAT_CHARS_PER_LINE - EZCHAT_BLANK_SIZE + 1)
-	jr z, .after_size_calcs
+	sub EZCHAT_CHARS_PER_LINE - ((EZCHAT_CHARS_PER_LINE - 1) / 2)
+	ld e, EZCHAT_CHARS_PER_LINE - ((EZCHAT_CHARS_PER_LINE - 1) / 2) + 1
+	jr nc, .after_size_calcs
 	dec e
 	ld a, d
-	cp EZCHAT_BLANK_SIZE + 1
-	jr c, .after_size_calcs
-	sub EZCHAT_BLANK_SIZE
+	cp ((EZCHAT_CHARS_PER_LINE - 1) / 2) + 1
+	jr c, .after_size_set
+	sub ((EZCHAT_CHARS_PER_LINE - 1) / 2)
 	ld d, a
 	ld a, e
 	sub d
-	ld e, a
+	jr .after_size_increase
 .after_size_calcs
+	add e
+.after_size_increase
+	ld e, a
+.after_size_set
 	ld d, 0
 	add hl, de
 
@@ -772,9 +778,13 @@ EZChatMenu_MessageSetup:
 .emptystring
 	ld de, EZChatString_EmptyWord
 	ld a, b
-	cp (EZCHAT_CHARS_PER_LINE - EZCHAT_BLANK_SIZE)
-	jr nz, .after_shrink
-	inc de
+	sub EZCHAT_CHARS_PER_LINE - EZCHAT_BLANK_SIZE
+	jr c, .after_shrink
+	add e
+	ld e, a
+	adc d
+	sub e
+	ld d, a
 .after_shrink
 	call EZChatMenu_MessageLocationSetup
 	call PlaceString
@@ -3051,10 +3061,12 @@ PrepareEZChatCustomBox:
 .after_reshape
 	inc a
 	call EZChatMenu_GetRealChosenWordSize
-	cp (EZCHAT_CHARS_PER_LINE - EZCHAT_BLANK_SIZE)
-	ld a, EZCHAT_BLANK_SIZE
-	jr nz, .prepare_for_resize
+	sub EZCHAT_CHARS_PER_LINE - ((EZCHAT_CHARS_PER_LINE - 1) / 2)
+	ld c, a
+	ld a, ((EZCHAT_CHARS_PER_LINE - 1) / 2)
+	jr c, .prepare_for_resize
 	dec a
+	sub c
 .prepare_for_resize
 	ld c, a
 	dec c
