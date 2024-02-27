@@ -1255,7 +1255,7 @@ _CardWasListedText::
     text "Inserita la SCHEDA"
     line "di "
     text_ram wStringBuffer2
-    text ": n°@"
+    text ": nº@"
     text_decimal wStringBuffer1, 1, 2
     text "."
     prompt
