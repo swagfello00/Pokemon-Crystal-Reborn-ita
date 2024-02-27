@@ -1067,8 +1067,14 @@ wLinkReceivedMailEnd:: db
 
 SECTION UNION "Overworld Map", WRAM0
 
+	ds 242
+; buffer for the EZChat word selection menu containing the steps to scroll up
+wEZChatScrollBufferIndex:: db
+wEZChatScrollBufferUsed:: db
+wEZChatScrollBuffer:: ds $100
+wEZChatScrollBufferEnd::
+
 ; sprite buffer for mobile word selection
-	ds 500
 ; max is a box for 9 characters, with a byte for the size and (9 - 1 + 2) oam entries below and above it
 ; 10 characters is a special case, since there is a limit to how many sprites can be shown per scanline
 wMobileBoxSpriteBuffer::
