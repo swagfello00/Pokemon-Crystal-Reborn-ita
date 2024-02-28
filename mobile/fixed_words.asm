@@ -7,7 +7,7 @@ DEF EZCHAT_CUSTOM_BOX_BIG_SIZE EQU 9
 DEF EZCHAT_CUSTOM_BOX_START_X EQU 6
 DEF EZCHAT_CUSTOM_BOX_START_Y EQU $1B
 DEF EZCHAT_CHARS_PER_LINE EQU 18
-DEF EZCHAT_BLANK_SIZE EQU 8
+DEF EZCHAT_BLANK_SIZE EQU 5
 
 	const_def
 	const EZCHAT_SORTED_A
@@ -794,7 +794,7 @@ EZChatMenu_MessageSetup:
 	ret
 
 EZChatString_EmptyWord: ; EZChat Unassigned Words
-	db "--------@"
+	db "-----@"
 
 ; ezchat main options
 	const_def

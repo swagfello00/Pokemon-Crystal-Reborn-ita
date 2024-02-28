@@ -787,17 +787,19 @@ SpriteAnimOAMData:
 
 ; cursor for 'other'
 .OAMData_EZChatCursor10:
-	db 10
+	db 12
 	dsprite -1,  7,  0,  0, $30, 0
 	dsprite -1,  0,  1,  0, $34, 0
 	dsprite -1,  0,  2,  0, $34, 0
 	dsprite -1,  0,  3,  0, $34, 0
-	dsprite -1,  7,  4,  0, $32, 0
+	dsprite -1,  0,  4,  0, $34, 0
+	dsprite -1,  7,  5,  0, $32, 0
 	dsprite  0,  0,  0,  0, $33, 0
 	dsprite  0,  7,  1,  0, $31, 0
 	dsprite  0,  7,  2,  0, $31, 0
 	dsprite  0,  7,  3,  0, $31, 0
-	dsprite  0,  0,  4,  0, $35, 0
+	dsprite  0,  7,  4,  0, $31, 0
+	dsprite  0,  0,  5,  0, $35, 0
 
 .OAMData_BlueWalk:
 	db 4
