@@ -6301,8 +6301,8 @@ MenuHeader_11ae38:
 
 String_11ae40:
 	db   "QUALSIASI"
-	next "♂MASCH." ; male
-	next "♀FEMM." ; female
+	next "♂MASCHIO" ; male
+	next "♀FEMMINA" ; female
 	db   "@"
 
 Function11ae4e:
