@@ -2479,13 +2479,13 @@ pushc
 setcharmap ascii
 
 Unknown_1196b8:
-	db "Lun"
-	db "Mar"
-	db "Mer"
-	db "Gio"
-	db "Ven"
-	db "Sab"
-	db "Dom"
+	db "Mon"
+	db "Tue"
+	db "Wed"
+	db "Thu"
+	db "Fri"
+	db "Sat"
+	db "Sun"
 
 popc
 
