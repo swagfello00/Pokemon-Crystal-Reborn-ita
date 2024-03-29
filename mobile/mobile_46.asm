@@ -439,7 +439,6 @@ StopPichuMobileAnimation:
 MobileAdapterCommunication:
 	farcall _MobileAdapterCommunication
 	ret
-	ret
 
 Function118866:
 	ld a, 2

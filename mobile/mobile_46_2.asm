@@ -691,7 +691,7 @@ Function118b42:
 
 Function118b8c:
 .asm_118b8c
-	farcall Function118b9a
+	call Function118b9a_dup
 	ret nc
 	ld a, [hli]
 	cp $d
@@ -700,6 +700,15 @@ Function118b8c:
 	xor a
 	ld [hli], a
 	ld [hli], a
+	ret
+
+Function118b9a_dup:
+	ld a, h
+	cp $e0
+	ret c
+	ld a, $d3
+	call SetMobileErrorCode
+	and a
 	ret
 
 ; validates the length of the received battle room (1428 bytes) or honor roll data (150 bytes)
