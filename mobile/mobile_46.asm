@@ -1356,6 +1356,7 @@ popc
 ; validates the length of the received battle room (1428 bytes) or honor roll data (150 bytes)
 ValidateBattleDownload:
 	farcall _ValidateBattleDownload
+	ret
 
 Function118d80:
 	call Function118e06
@@ -2957,6 +2958,7 @@ Function1199ca:
 
 Function1199e2:
 	farcall _Function1199e2
+	ret
 
 Function119b0d:
 	ld a, $8
@@ -3014,6 +3016,7 @@ LogoutOfPop3Service:
 
 DecodeReceivedTradeCornerTrade:
 	farcall _DecodeReceivedTradeCornerTrade
+	ret
 
 RemovedFunction9:
 	ld hl, Text_BattleRoomVisitLimit;$6081
