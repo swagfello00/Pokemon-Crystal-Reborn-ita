@@ -202,7 +202,6 @@ asm_11800b:
 	ldh [rSVBK], a
 	call BattleTowerRoomMenu_Cleanup
 	call ReturnToMapFromSubmenu
-BattleTowerRoomMenu_DoNothing:
 	ret
 
 ; upload record
@@ -1772,7 +1771,7 @@ TradeCornerHoldMon_PrepareForUpload:
 	ret
 
 Function11b570:
-	call Function118007
+	farcall Function118007
 	ld a, [wScriptVar]
 	and a
 	jr nz, .exit
@@ -2467,7 +2466,7 @@ _Function1199e2:
 	ld a, [wcf65]
 	ld [w3_d090 + 2], a
 
-Function119ac9:
+_Function119ac9:
 	ld a, [w3_d000]
 	ld l, a
 	ld a, [w3_d000 + 1]

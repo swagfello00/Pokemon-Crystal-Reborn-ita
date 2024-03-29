@@ -520,6 +520,7 @@ Function1188e7:
 	jr nz, .asm_1188fa
 	dec c
 	jr nz, .asm_1188fa
+BattleTowerRoomMenu_DoNothing:
 	ret
 
 ; parse downoaded battle tower index file
@@ -2939,7 +2940,9 @@ Function1199b4:
 	jp Function1199ca
 
 .asm_1199c7
-	jp Function119ac9
+Function119ac9:
+	farcall _Function119ac9
+	ret
 
 Function1199ca:
 	ld a, $20
@@ -4450,7 +4453,7 @@ Function11ac51:
 	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .asm_11aca8
-	call Function11b314
+	farcall Function11b314
 	farcall Function11acb7
 	call Function11ad6e
 	ld a, 30 * SPRITEOAMSTRUCT_LENGTH
