@@ -651,120 +651,7 @@ Function118473:
 	ret
 
 BattleTowerRoomMenu_WriteMessage:
-	jumptable .Jumptable, wc31a
-
-.Jumptable:
-	dw BattleTowerRoomMenu_WriteMessage_DoNothing
-	dw Function11a90f
-	dw Function11a971
-
-Function11a90f:
-	ld a, $1
-	ldh [rSVBK], a
-	call SpeechTextbox
-	ld a, $50
-	ld hl, wc320
-	ld bc, $8c ; japanese version uses $26
-	call ByteFill
-	ld a, [wc31b]
-	ld l, a
-	ld a, [wc31c]
-	ld h, a
-	ld de, wc320
-.asm_11a92c
-	ld a, [hli]
-	cp $57
-	jr z, .asm_11a94f
-	cp $0
-	jr z, .asm_11a92c
-	cp $50
-	jr z, .asm_11a92c
-	cp $1
-	jr z, .asm_11a941
-	ld [de], a
-	inc de
-	jr .asm_11a92c
-
-.asm_11a941
-	ld a, [hli]
-	ld c, a
-	ld a, [hli]
-	ld b, a
-.asm_11a945
-	ld a, [bc]
-	inc bc
-	cp $50
-	jr z, .asm_11a92c
-	ld [de], a
-	inc de
-	jr .asm_11a945
-
-.asm_11a94f
-	xor a
-	ld [wc31f], a
-	ld a, LOW(wc320)
-	ld [wc31b], a
-	ld a, HIGH(wc320)
-	ld [wc31c], a
-	hlcoord 1, 14
-	ld a, l
-	ld [wc31d], a
-	ld a, h
-	ld [wc31e], a
-	ld hl, wc31a
-	inc [hl]
-	ld a, $3
-	ldh [rSVBK], a
-
-BattleTowerRoomMenu_WriteMessage_DoNothing:
-	ret
-
-Function11a971:
-	ld hl, wc31f
-	ldh a, [hJoyDown]
-	and a
-	jr nz, .asm_11a97f
-	ld a, [hl]
-	and a
-	jr z, .asm_11a97f
-	dec [hl]
-	ret
-
-.asm_11a97f
-	ld a, [wOptions]
-	and $7
-	ld [hl], a
-	ld hl, wcd8d
-	ld a, [wc31b]
-	ld e, a
-	ld a, [wc31c]
-	ld d, a
-	ld a, [de]
-	inc de
-	ld [hli], a
-	ld a, e
-	ld [wc31b], a
-	ld a, d
-	ld [wc31c], a
-	ld a, $50
-	ld [hl], a
-	ld a, [wc31d]
-	ld l, a
-	ld a, [wc31e]
-	ld h, a
-	ld de, wcd8d
-	call PlaceString
-	ld a, c
-	ld [wc31d], a
-	ld a, b
-	ld [wc31e], a
-	ld a, [wcd8d]
-	cp $50
-	jr nz, .asm_11a9bf
-	xor a
-	ld [wc31a], a
-
-.asm_11a9bf
+	farcall _BattleTowerRoomMenu_WriteMessage
 	ret
 
 ; seems to parse a downloaded index file
@@ -2360,10 +2247,10 @@ _Function1199e2:
 	ld c, $c
 	ld de, XGameCodePrefix
 	call Function119e4f
-	jp c, Function119ac9
+	jp c, _Function119ac9
 	ld a, c
 	cp $1
-	jp nz, Function119ac9
+	jp nz, _Function119ac9
 	ld hl, w3_d880
 	ld bc, XGameCode
 .loop
@@ -2371,7 +2258,7 @@ _Function1199e2:
 	and a
 	jr z, .game_result_prefix
 	cp [hl]
-	jp nz, Function119ac9
+	jp nz, _Function119ac9
 	inc bc
 	inc hl
 	jr .loop
@@ -2408,19 +2295,19 @@ _Function1199e2:
 	ld hl, w3_d8a0
 	ld a, [wcd2d]
 	cp [hl]
-	jr nz, Function119ac9
+	jr nz, _Function119ac9
 	inc hl
 	ld a, [wcd2c]
 	cp [hl]
-	jr nz, Function119ac9
+	jr nz, _Function119ac9
 	inc hl
 	ld a, [wcd2b]
 	cp [hl]
-	jr nz, Function119ac9
+	jr nz, _Function119ac9
 	inc hl
 	ld a, [wcd2a]
 	cp [hl]
-	jr nz, Function119ac9
+	jr nz, _Function119ac9
 	xor a
 	ld [w3_d8a0], a
 	ld [w3_d8a1], a
