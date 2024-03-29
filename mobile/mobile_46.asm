@@ -3387,7 +3387,53 @@ Function119f76:
 	jp BattleTowerRoomMenu2_IncrementJumptable
 
 Function119f98:
-	farcall _Function119f98
+	call Function11a536
+	ret c
+	call PlayClickSFX
+	ld a, [wMobileInactivityTimerMinutes]
+	and a
+	jr nz, .asm_119fef
+	call ExitMenu
+	call Function11a63c
+	xor a
+	ld [wScriptVar], a
+	farcall Function11a00e
+	ld a, [wScriptVar]
+	and a
+	jr z, .asm_119fd4
+	call ExitMenu
+	farcall ReloadMapPart
+	farcall Function115dc3
+	ld a, [wcd33]
+	ld [wcf66], a
+	ld a, $a
+	ld [wMobileErrorCodeBuffer], a
+	scf
+	ret
+
+.asm_119fd4
+	hlcoord 4, 2
+	ld de, String_11a692
+	call PlaceString
+	ld a, $1
+	ld [wc30d], a
+	ld a, $1
+	ld [wc314], a
+	farcall ReloadMapPart
+	and a
+	ret
+
+.asm_119fef
+	call ExitMenu
+	call ExitMenu
+	farcall ReloadMapPart
+	ld a, [wMobileInactivityTimerSeconds]
+	ld [wcf66], a
+	farcall Function115dc3
+	ld a, $a
+	ld [wMobileErrorCodeBuffer], a
+	scf
+	ret
 
 Function11a113:
 	call Function11a63c
