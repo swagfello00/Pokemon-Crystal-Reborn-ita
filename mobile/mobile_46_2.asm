@@ -691,8 +691,9 @@ Function118b42:
 
 Function118b8c:
 .asm_118b8c
-	call Function118b9a_dup
-	ret nc
+	ld a, h
+	cp $e0
+	jr nc, .failure
 	ld a, [hli]
 	cp $d
 	jr nz, .asm_118b8c
@@ -702,12 +703,9 @@ Function118b8c:
 	ld [hli], a
 	ret
 
-Function118b9a_dup:
-	ld a, h
-	cp $e0
-	ret c
+.failure
 	ld a, $d3
-	call SetMobileErrorCode
+	farcall SetMobileErrorCode
 	and a
 	ret
 
