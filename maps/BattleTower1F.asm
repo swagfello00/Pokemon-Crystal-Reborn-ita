@@ -479,9 +479,10 @@ Text_BattleTowerIntroduction_1: ; unreferenced
 
 	para "Per interrompere"
 	line "una sessione, devi"
+	cont "SALVARE."
 
-	para "SALVARE. Altrimenti"
-	line "non sarai in grado"
+	para "Altrimenti non"
+	line "sarai in grado"
 
 	para "di continuare le"
 	line "sfide nella SALA."
