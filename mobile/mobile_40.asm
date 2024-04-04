@@ -7297,10 +7297,10 @@ String_10355f: db "Decide chiamante.@"		; "でんわを　かけるひとが　�
 String_103571: db "Metodo ins.@"			; "でんわばんごうの　にゅうりょくのしかた@" ; Entering a phone number
 String_103585: db "Aggiorna SCHEDA.@"		; "あたらしいめいしが　あれば　こうかん@" ; Replace if there is a new card
 String_103598: db "<LF>:NO@"				; "とばして　みる@"; Skip to see
-String_1035a0: db "<LF>:SÌ @"				; "じっくり　みる@" ; Watch carefully
+String_1035a0: db "<LF>:SÌ@"				; "じっくり　みる@" ; Watch carefully
 String_1035a8: db "<LF>:SCHEDA@"				; "めいしからえらぶ@" ; Choose from cards
 String_1035b1: db "<LF>:CHIAMA@"				; "すうじで　いれる@"
-String_1035ba: db "<LF>:SÌ @"				; "する@"
+String_1035ba: db "<LF>:SÌ@"				; "する@"
 String_1035bd: db "<LF>:NO@"				; "しない@"
 String_1035c1: db " OK@"					; "けってい@"
 
