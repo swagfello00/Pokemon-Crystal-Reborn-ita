@@ -470,7 +470,7 @@ String_17fa14:
 String_17fa49:
 	db   "Errore di" ; "モバイルセンターの"
 	next "connessione al" ; "つうしんエラーです"
-	next "CENTRO Mobile." ; "しばらくまって"
+	next "Centro Mobile." ; "しばらくまって"
 	next "Riprova più" ; "しばらくまって"
 	next "tardi." ; "かけなおして　ください"
 	db   "@" 
@@ -485,7 +485,7 @@ String_17fa71:
 	db   "@" 
 
 String_17fab0:
-	db   "Il CENTRO Mobile" ; "モバイルセンターが"
+	db   "Il Centro Mobile" ; "モバイルセンターが"
 	next "è occupato." ; "こんでいて　つながりません"
 	next "Consulta il" ; "しばらくまって"
 	next "manuale e" ; "かけなおして　ください"
@@ -511,7 +511,7 @@ String_17fb2a:
 String_17fb6e:
 	db   "Password errata o" ; "ログインパスワードに"
 	next "errore del" ; "まちがいが　あるか"
-	next "CENTRO Mobile." ; "モバイルセンターの　エラーです"
+	next "Centro Mobile." ; "モバイルセンターの　エラーです"
 	next "Riprova più" ; "パスワードを　かくにんして"
 	next "tardi." ; "しばらく　まって"
 	db   "@" 
@@ -555,7 +555,7 @@ String_17fcbf:
 	db   "Si è verificato" ; "でんわかいせんが　こんでいるか"
 	next "un errore col" ; "モバイルセンターの　エラーで"
 	next "telefono o con il" ; "つうしんが　できません"
-	next "CENTRO Mobile" ; "しばらく　まって"
+	next "Centro Mobile" ; "しばらく　まって"
 	next "Riprova più" ; "かけなおして　ください"
 	next "tardi." ; "かけなおして　ください"	
 	db   "@" 
@@ -570,7 +570,7 @@ String_17fcff:
 	db   "@" 
 
 String_17fd47:
-	db   "Il CENTRO Mobile" ; "げんざい　モバイルセンターの"
+	db   "Il Centro Mobile" ; "げんざい　モバイルセンターの"
 	next "è in manutenzione." ; "てんけんを　しているので"
 	next "Riprova più" ; "しばらく　まって"
 	next "tardi." ; "かけなおして　ください"
