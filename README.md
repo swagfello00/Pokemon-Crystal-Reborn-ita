@@ -6,15 +6,6 @@ An Italian translation of https://github.com/gb-mobile/pokecrystal-mobile-eng
 This translation was performed via text dumps and a (somewhat) sophisticated find/replace script.
 It is possible that some menus were missed by the find/replace script, and need translating manually.
 
-
-## TO-DO
-
-- Translate any of mobile features. (Anything English under /mobile/, /maps/GoldenrodPokecenter1F.asm, maps/PokecomCenterAdminOfficeMobile.asm, data/text/common_1.asmm data/text/common_3.asm, data/text/battle.asm and maps/DayCare.asm).
-- Also refer to the English build for 'Text_BattleReceptionistIntro:', 'Text_TradeReceptionistIntro:' and 'Text_TimeCapsuleReceptionistIntro:' for proper mobile translations of the PokeCOM Club reception dialogue.
-- Update gfx\intro\crystal_unowns.png in the intro to match Italian.
-- Fix the known issues.
-
-
 ## Setup [![Build Status][ci-badge]][ci]
 
 For more information, please see [INSTALL.md](INSTALL.md)
