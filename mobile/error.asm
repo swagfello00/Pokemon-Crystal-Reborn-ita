@@ -481,7 +481,7 @@ String_17fa71:
 	next "configurato" ; "ただしく　ありません"
 	next "correttamente." ; "モバイルトレーナーで"
 	next "Registrati dal" ; "しょきとうろくを　してください"
-	next "Mobile Trainer." 
+	next "Allenatore Mobile." 
 	db   "@" 
 
 String_17fab0:
@@ -505,7 +505,7 @@ String_17fb2a:
 	next "Consulta il" ; "とりあつかいせつめいしょを"
 	next "manuale e " ; "ごらんのうえ"
 	next "registrati dal" ; "モバイルトレーナーで"
-	next "Mobile Trainer." 
+	next "Allenatore Mobile." 
 	db   "@" 
 
 String_17fb6e:
