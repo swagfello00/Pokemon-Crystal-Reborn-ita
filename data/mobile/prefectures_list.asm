@@ -1,116 +1,139 @@
-Prefectures: ; Some names shortened to fit, check for official initials later. In this list, strings must be right-aligned.
-	db "IT-AL@"      ; Alessandria
-	db "IT-AN@"      ; Ancona
-	db "IT-AP@"      ; Ascoli Piceno
-	db "IT-AQ@"      ; L'Aquila
-	db "IT-AR@"      ; Arezzo
-	db "IT-AT@"      ; Asti
-	db "IT-AV@"      ; Avellino
-	db "IT-BG@"      ; Bergamo
-	db "IT-BI@"      ; Biella
-	db "IT-BL@"      ; Belluno
-	db "IT-BN@"      ; Benevento
-	db "IT-BR@"      ; Brindisi
-	db "IT-BS@"      ; Brescia
-	db "IT-BT@"      ; Barletta-Andria-Trani
-	db "IT-CB@"      ; Campobasso
-	db "IT-CE@"      ; Caserta
-	db "IT-CH@"      ; Chieti
-	db "IT-CN@"      ; Cuneo
-	db "IT-CO@"      ; Como
-	db "IT-CR@"      ; Cremona
-	db "IT-CS@"      ; Cosenza
-	db "IT-CZ@"      ; Catanzaro
-	db "IT-FC@"      ; Forlì-Cesena
-	db "IT-FE@"      ; Ferrara
-	db "IT-FG@"      ; Foggia
-	db "IT-FM@"      ; Fermo
-	db "IT-FR@"      ; Frosinone
-	db "IT-GR@"      ; Grosseto
-	db "IT-IM@"      ; Imperia
-	db "IT-IS@"      ; Isernia
-	db "IT-KR@"      ; Crotone
-	db "IT-LC@"      ; Lecco
-	db "IT-LE@"      ; Lecce
-	db "IT-LI@"      ; Livorno
-	db "IT-LO@"      ; Lodi
-	db "IT-LT@"      ; Latina
-	db "IT-LU@"      ; Lucca
-	db "IT-MB@"      ; Monza e Brianza
-	db "IT-MC@"      ; Macerata
-	db "IT-MN@"      ; Mantova
-	db "IT-MO@"      ; Modena
-	db "IT-MS@"      ; Massa-Carrara
-	db "IT-MT@"      ; Matera
-	db "IT-NO@"      ; Novara
-	db "IT-NU@"      ; Nuoro
-	db "IT-OR@"      ; Oristano
-	db "IT-PC@"      ; Piacenza
-	db "IT-PD@"      ; Padova
-	db "IT-PE@"      ; Pescara
-	db "IT-PG@"      ; Perugia
-	db "IT-PI@"      ; Pisa
-	db "IT-PO@"      ; Prato
-	db "IT-PR@"      ; Parma
-	db "IT-PT@"      ; Pistoia
-	db "IT-PU@"      ; Pesaro e Urbino
-	db "IT-PV@"      ; Pavia
-	db "IT-PZ@"      ; Potenza
-	db "IT-RA@"      ; Ravenna
-	db "IT-RE@"      ; Reggio Emilia
-	db "IT-RI@"      ; Rieti
-	db "IT-RN@"      ; Rimini
-	db "IT-RO@"      ; Rovigo
-	db "IT-SA@"      ; Salerno
-	db "IT-SI@"      ; Siena
-	db "IT-SO@"      ; Sondrio
-	db "IT-SP@"      ; La Spezia
-	db "IT-SS@"      ; Sassari
-	db "IT-SU@"      ; Sud Sardegna
-	db "IT-SV@"      ; Savona
-	db "IT-TA@"      ; Taranto
-	db "IT-TE@"      ; Teramo
-	db "IT-TR@"      ; Terni
-	db "IT-TV@"      ; Treviso
-	db "IT-VA@"      ; Varese
-	db "IT-VB@"      ; Verbano-Cusio-Ossola
-	db "IT-VC@"      ; Vercelli
-	db "IT-VI@"      ; Vicenza
-	db "IT-VR@"      ; Verona
-	db "IT-VT@"      ; Viterbo
-	db "IT-VV@"      ; Vibo Valentia
-	db "CH-AG@"      ; Aargau
-	db "CH-AI@"      ; Appenzell Innerrhoden
-	db "CH-AR@"      ; Appenzell Ausserrhoden
-	db "CH-BE@"      ; Berne
-	db "CH-BL@"      ; Basel-Landschaft
-	db "CH-BS@"      ; Basel-Stadt
-	db "CH-FR@"      ; Fribourg
-	db "CH-GE@"      ; Genève
-	db "CH-GL@"      ; Glarus
-	db "CH-GR@"      ; Graubünden
-	db "CH-JU@"      ; Jura
-	db "CH-LU@"      ; Luzer
-	db "CH-NE@"      ; Neuchâtel
-	db "CH-NW@"      ; Nidwalden
-	db "CH-OW@"      ; Obwalden
-	db "CH-SG@"      ; Sankt Gallen
-	db "CH-SH@"      ; Schaffhausen
-	db "CH-SO@"      ; Solothurn
-	db "CH-SZ@"      ; Schwyz
-	db "CH-TG@"      ; Thurgau
-	db "CH-TI@"      ; Ticino
-	db "CH-UR@"      ; Uri
-	db "CH-VD@"      ; Vaud
-	db "CH-VS@"      ; Valais
-	db "CH-ZG@"      ; Zug
-	db "CH-ZH@"      ; Zürich
-	db "SM-01@"      ; Acquaviva
-	db "SM-02@"      ; Chiesanuova
-	db "SM-03@"      ; Domagnano
-	db "SM-04@"      ; Faetano
-	db "SM-05@"      ; Fiorentino
-	db "SM-06@"      ; Borgo Maggiore
-	db "SM-07@"      ; Città di San Marino
-	db "SM-08@"      ; Montegiardino
-LastPrefecture: 	db "SM-09@"      ; Serravalle
+Prefectures:
+	db "IT-AG@"
+	db "IT-AL@"
+	db "IT-AN@"
+	db "IT-AO@"
+	db "IT-AR@"
+	db "IT-AP@"
+	db "IT-AT@"
+	db "IT-AV@"
+	db "IT-BA@"
+	db "IT-BL@"
+	db "IT-BN@"
+	db "IT-BG@"
+	db "IT-BI@"
+	db "IT-BO@"
+	db "IT-BS@"
+	db "IT-BR@"
+	db "IT-CA@"
+	db "IT-CL@"
+	db "IT-CB@"
+	db "IT-CE@"
+	db "IT-CT@"
+	db "IT-CZ@"
+	db "IT-CH@"
+	db "IT-CO@"
+	db "IT-CS@"
+	db "IT-CR@"
+	db "IT-KR@"
+	db "IT-CN@"
+	db "IT-EN@"
+	db "IT-FE@"
+	db "IT-FI@"
+	db "IT-FG@"
+	db "IT-FC@"
+	db "IT-FR@"
+	db "IT-GE@"
+	db "IT-GO@"
+	db "IT-GR@"
+	db "IT-IM@"
+	db "IT-IS@"
+	db "IT-AQ@"
+	db "IT-SP@"
+	db "IT-LT@"
+	db "IT-LE@"
+	db "IT-LC@"
+	db "IT-LI@"
+	db "IT-LO@"
+	db "IT-LU@"
+	db "IT-MC@"
+	db "IT-MN@"
+	db "IT-MS@"
+	db "IT-MT@"
+	db "IT-ME@"
+	db "IT-MI@"
+	db "IT-MO@"
+	db "IT-NA@"
+	db "IT-NO@"
+	db "IT-NU@"
+	db "IT-OR@"
+	db "IT-PD@"
+	db "IT-PA@"
+	db "IT-PR@"
+	db "IT-PV@"
+	db "IT-PG@"
+	db "IT-PU@"
+	db "IT-PE@"
+	db "IT-PC@"
+	db "IT-PI@"
+	db "IT-PT@"
+	db "IT-PN@"
+	db "IT-PZ@"
+	db "IT-PO@"
+	db "IT-RG@"
+	db "IT-RA@"
+	db "IT-RC@"
+	db "IT-RE@"
+	db "IT-RI@"
+	db "IT-RN@"
+	db "IT-RM@"
+	db "IT-RO@"
+	db "IT-SA@"
+	db "IT-SS@"
+	db "IT-SV@"
+	db "IT-SI@"
+	db "IT-SO@"
+	db "IT-BZ@"
+	db "IT-SR@"
+	db "IT-TA@"
+	db "IT-TE@"
+	db "IT-TR@"
+	db "IT-TP@"
+	db "IT-TN@"
+	db "IT-TV@"
+	db "IT-TS@"
+	db "IT-TO@"
+	db "IT-UD@"
+	db "IT-VA@"
+	db "IT-VE@"
+	db "IT-VB@"
+	db "IT-VC@"
+	db "IT-VR@"
+	db "IT-VV@"
+	db "IT-VI@"
+	db "IT-VT@"
+	db "CH-ZH@"
+	db "CH-BE@"
+	db "CH-LU@"
+	db "CH-UR@"
+	db "CH-SZ@"
+	db "CH-OW@"
+	db "CH-NW@"
+	db "CH-GL@"
+	db "CH-ZG@"
+	db "CH-FR@"
+	db "CH-SO@"
+	db "CH-BS@"
+	db "CH-BL@"
+	db "CH-SH@"
+	db "CH-AR@"
+	db "CH-AI@"
+	db "CH-SG@"
+	db "CH-GR@"
+	db "CH-AG@"
+	db "CH-TG@"
+	db "CH-TI@"
+	db "CH-VD@"
+	db "CH-VS@"
+	db "CH-NE@"
+	db "CH-GE@"
+	db "CH-JU@"
+	db "SM-01@"
+	db "SM-06@"
+	db "SM-02@"
+	db "SM-07@"
+	db "SM-03@"
+	db "SM-04@"
+	db "SM-05@"
+	db "SM-08@"
+LastPrefecture: 	db "SM-09@"
