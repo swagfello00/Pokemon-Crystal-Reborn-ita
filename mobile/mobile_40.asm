@@ -4571,8 +4571,8 @@ String_101fd2:
 	next  "corso…@"
 
 String_101fe1:
-	db   "Chiamata@"	; "でんわが　つながりました!@"
-	next "agganciata!"
+	db   "Chiamata"	; "でんわが　つながりました!@"
+	next "agganciata!@"
 
 String_101fef:
 	db   "Fine chiamata…@"	; "つうわを"
@@ -5992,7 +5992,7 @@ Function1029cf:
 	call LoadStandardMenuHeader
 	hlcoord 10, 7
 	ld b, 3
-	ld c, 8
+	ld c, 7
 	ld d, h
 	ld e, l
 	farcall _LinkTextbox
@@ -6034,8 +6034,8 @@ Function1029fe:
 	ret
 
 String_102a26:
-	db   "TRADE"
-	next "CANCEL"
+	db   "OK"
+	next "ESCI"
 	db   "@"
 
 MenuData3_102a33:
