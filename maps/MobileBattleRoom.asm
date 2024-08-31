@@ -54,8 +54,8 @@ MobileBattleRoomConsoleScript:
 	end
 
 MobileBattleRoom_EstablishingCommsText:
-	text "Establishing"
-	line "communications…"
+	text "Connessione in"
+	line "corso…"
 	done
 
 MobileBattleRoom_HealText:

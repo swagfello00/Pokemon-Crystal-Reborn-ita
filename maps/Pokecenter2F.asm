@@ -806,7 +806,7 @@ Text_BattleReceptionistMobile:
 	done
 
 Text_TradeReceptionistMobile:
-	text "Vuoi lottare VIA"
+	text "Vuoi scambiare VIA"
 	line "CAVO o mobile?"
 	done
 
