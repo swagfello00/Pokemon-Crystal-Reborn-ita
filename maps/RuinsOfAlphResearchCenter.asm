@@ -331,20 +331,19 @@ RuinsOfAlphResearchCenterUnusedText1: ; unreferenced
 	done
 
 RuinsOfAlphResearchCenterUnusedText2: ; unreferenced
-	text "According to my"
-	line "research…"
+	text "Stando ai miei"
+	line "studi…"
 
-	para "Those mysterious"
-	line "patterns appeared"
+	para "Questi disegni"
+	line "misteriosi sono"
 
-	para "when the #COM"
-	line "CENTER was built."
-
-	para "It must mean that"
-	line "radio waves have"
-
-	para "some sort of a"
-	line "link…"
+	para "apparsi quando il"
+	line "CENTRO #COM"
+	cont "è stato aperto."
+	
+	para "Sembra che ci sia"
+	line "un nesso con le"
+	cont "onde radio…"
 	done
 
 RuinsOfAlphResearchCenterScientist2Text_GotAllUnown:
