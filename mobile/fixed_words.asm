@@ -4167,7 +4167,7 @@ ENDM
         ezchat_word "NEMICO@@", $33e
         ezchat_word "PERDI@@@", $3c8
         ezchat_word "VINCIAMO", $59c
-        ezchat_word "ALLENAT@", $066
+        ezchat_word "ALLEN.@@", $066
         ezchat_word "FUGA@@@@", $22e
         ezchat_word "MODESTO@", $318
         ezchat_word "VINCETE@", $598
