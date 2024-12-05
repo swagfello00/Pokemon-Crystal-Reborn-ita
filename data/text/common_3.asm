@@ -282,7 +282,7 @@ _PocketIsFullText::
 	text "La @"
 	text_ram wStringBuffer3
 	text_start
-	line "è piena…"
+	line "è piena…@"
 	text_linkwaitbutton
 	text_end
 

@@ -1051,11 +1051,13 @@ GoldenrodPokecenter1FMobileOffGrampsText:
 	line "quando ho saputo"
 
 	para "che il CENTRO"
-	line "#MON di FIORDORO-"
+	line "#MON di"
 
-	para "POLI ha macchine"
-	line "che nessuno ha mai"
-	cont "visto prima."
+	para "FIORDOROPOLI ha"
+	line "macchine che"
+	
+	para "nessuno ha mai"
+	line "visto prima."
 
 	para "Ma sembra siano"
 	line "ancora impegnati"
