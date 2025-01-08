@@ -3132,17 +3132,17 @@ Strings_L10ToL100:
 	db " L:80 @@"
 	db " L:90 @@"
 	db " L:100@@"
-	db "ESCI@@"
+	db "ESCI  @@"
 
 Strings_Ll0ToL40:
 	db " L:10 @@"
 	db " L:20 @@"
 	db " L:30 @@"
 	db " L:40 @@"
-	db "ESCI@@"
+	db "ESCI  @@"
 
 BattleTowerCancelString:
-	db "ESCI@"
+	db "ESCI  @"
 
 ; to clear the cancel text, japanese version does not require this
 String_blank:
@@ -4558,9 +4558,8 @@ Text_CheckBattleRoomListByMaxLevel:
 	done
 
 Text_EnterWhichBattleRoom: ; unreferenced
-	text "In quale SALA"
-	line "LOTTA vuoi"
-	cont "entrare?"
+	text "A quale SALA"
+	line "LOTTA accedi?"
 	done
 
 Text_WhichBattleRoom: ; unreferenced
