@@ -65,24 +65,24 @@ BattleTowerOutsideDoor:
 	jumptext BattleTowerOutsideText_DoorsOpen
 
 BattleTowerOutsideYoungsterText_NotYetOpen: ; unreferenced
-	text "Wow, the BATTLE"
-	line "TOWER is huge! My"
+	text "Wow, la TORRE"
+	line "LOTTA è enorme!"
 
-	para "neck is tired from"
-	line "looking up at it."
+	para "Ho il torcicollo a"
+	line "guardarla."
 	done
 
 BattleTowerOutsideYoungsterText_Mobile: ; unreferenced
-	text "Wow, the BATTLE"
-	line "TOWER is huge!"
+	text "Wow, la TORRE"
+	line "LOTTA è enorme!"
 
-	para "Since there are a"
-	line "whole bunch of"
+	para "Siccome dentro ci"
+	line "sono un sacco di"
 
-	para "trainers inside,"
-	line "there must also be"
+	para "allenatori, ci"
+	line "devono essere"
 
-	para "a wide variety of"
+	para "anche numerosi"
 	line "#MON."
 	done
 
@@ -96,14 +96,14 @@ BattleTowerOutsideYoungsterText:
 	done
 
 BattleTowerOutsideBeautyText_NotYetOpen: ; unreferenced
-	text "What on earth do"
-	line "they do here?"
+	text "Cosa diamine ci"
+	line "fanno loro qui?"
 
-	para "If the name says"
-	line "anything, I guess"
+	para "Se il nome non mi"
+	line "inganna, credo che"
 
-	para "it must be for"
-	line "#MON battles."
+	para "cerchino lotte di"
+	line "#MON."
 	done
 
 BattleTowerOutsideBeautyText:
@@ -119,12 +119,16 @@ BattleTowerOutsideBeautyText:
 
 BattleTowerOutsideSailorText_Mobile: ; unreferenced
 	text "Ehehehe…"
-	line "I sneaked out of"
-	cont "work to come here."
+	line "Sono sgattaiolato"
 
-	para "I'm never giving"
-	line "up until I become"
-	cont "a LEADER!"
+	para "dal lavoro per"
+	line "arrivare qui."
+
+	para "Non mi arrenderò"
+	line "fino a che non"
+	
+	para "divento un"
+	line "CAPOSALA!"
 	done
 
 BattleTowerOutsideSailorText:
@@ -140,7 +144,7 @@ BattleTowerOutsideSailorText:
 
 BattleTowerOutsideSignText_NotYetOpen: ; unreferenced
 ; originally shown when the Battle Tower was closed
-	text "BATTLE TOWER"
+	text "TORRE LOTTA"
 	done
 
 BattleTowerOutsideSignText:

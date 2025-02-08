@@ -4534,7 +4534,7 @@ Text_CancelBattleRoomChallenge:
 Text_ExitGymLeaderHonorRoll:
 	text "Esci dall'ALBO"
 	line "D'ORO dei"
-	cont "CAPOPALESTRA?"
+	cont "CAPOSALA?"
 	done
 
 Text_LinkingWithCenter: ; unreferenced
@@ -4567,13 +4567,12 @@ Text_WhichBattleRoom: ; unreferenced
 	done
 
 Text_ThisBattleRoomPleaseWait:
-	text "La SALA@"
+	text "SALA "
 	text_ram wStringBuffer4
-	text_start
-	line "di @"
+	text " "
 	text_ram wStringBuffer3
 	text "?"
-	cont "Attendere, prego…"
+	line "Attendere, prego…"
 	done
 
 Function11ac3e:

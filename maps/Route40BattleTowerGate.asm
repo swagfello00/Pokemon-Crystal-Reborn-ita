@@ -28,23 +28,24 @@ Route40BattleTowerGateTwinScript:
 	jumptextfaceplayer Route40BattleTowerGateUnusedText2
 
 Route40BattleTowerGateUnusedText1:
-	text "Did you come to"
-	line "see the BATTLE"
-	cont "TOWER too?"
+	text "Sei venuto a"
+	line "visitare la TORRE"
+	cont "LOTTA anche tu?"
 
-	para "But I guess you"
-	line "can't go in yet."
+	para "Credo che sia"
+	line "ancora chiusa."
 	done
 
 Route40BattleTowerGateUnusedText2:
-	text "BATTLE TOWER has"
-	line "opened."
+	text "La TORRE LOTTA è"
+	line "aperta."
 
-	para "I want to go, but"
-	line "I haven't thought"
+	para "Vorrei andarci ma"
+	line "non ho ancora"
 
-	para "up a cool line for"
-	line "when I win."
+	para "imparato un buon"
+	line "motto per quando"
+	cont "ho una vittoria."
 	done
 
 Route40BattleTowerGateRockerText:
@@ -59,11 +60,11 @@ Route40BattleTowerGateRockerText:
 	done
 
 Route40BattleTowerGateUnusedText3:
-	text "I'm going to train"
-	line "my #MON so I'll"
+	text "Allenerò i miei"
+	line "#MON così sarò"
 
-	para "be all ready for"
-	line "the BATTLE TOWER."
+	para "pronto per la"
+	line "TORRE LOTTA."
 	done
 
 Route40BattleTowerGateTwinText:
