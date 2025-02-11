@@ -1240,9 +1240,8 @@ _TheBoxIsFullText:: ; unreferenced
 ; Mobile Adapter
 
 _NewCardArrivedText::
-    text ""
-    text_ram wStringBuffer2
     text "@"
+    text_ram wStringBuffer2
     text " ha inviato"
     line "una nuova SCHEDA."
     done
