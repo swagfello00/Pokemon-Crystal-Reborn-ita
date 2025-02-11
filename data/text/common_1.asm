@@ -1242,6 +1242,7 @@ _TheBoxIsFullText:: ; unreferenced
 _NewCardArrivedText::
     text ""
     text_ram wStringBuffer2
+    text "@"
     text " ha inviato"
     line "una nuova SCHEDA."
     done

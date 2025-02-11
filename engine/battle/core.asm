@@ -8589,7 +8589,7 @@ ReadAndPrintLinkBattleRecord:
 	db "  ---  <LF>"
 	db "         -    -    -@"
 .Record:
-	db "RESULTATI <PLAYER>@"
+	db "RISULTATI <PLAYER>@"
 .Result:
 	db "AVV VINTE PERSE PAR@"
 .Total:
