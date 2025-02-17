@@ -4567,13 +4567,13 @@ Text_WhichBattleRoom: ; unreferenced
 	done
 
 Text_ThisBattleRoomPleaseWait:
-	text "SALA "
-	text_ram wStringBuffer4
-	text " "
-	text_ram wStringBuffer3
-	text "?"
-	line "Attendere, prego…"
-	done
+    text "La SALA@"
+    text_ram wStringBuffer4
+    line "di @"
+    text_ram wStringBuffer3
+    text "?"
+    cont "Attendere, prego…"
+    done
 
 Function11ac3e:
 	call SpeechTextbox
