@@ -605,8 +605,8 @@ Text_YourPackIsStuffedFull:
 	done
 
 Text_YourRegistrationIsComplete: ; unreferenced
-	text "La registrazione"
-	line "è stata completata."
+	text "La registrazione è"
+	line "stata completata."
 	para "Torna a trovarci!"
 	done
 

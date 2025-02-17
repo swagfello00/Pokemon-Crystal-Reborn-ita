@@ -902,10 +902,10 @@ LoveBallDesc:
 	next "genere opposto.@"
 
 NormalBoxDesc:
-	db   "Apri e vedrai!"
+	db   "Apri e vedrai!@"
 
 GorgeousBoxDesc:
-	db   "Apri e vedrai!"
+	db   "Apri e vedrai!@"
 
 SunStoneDesc:
 	db   "Fa evolvere certi"
