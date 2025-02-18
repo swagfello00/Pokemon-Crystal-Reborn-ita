@@ -811,7 +811,7 @@ Text_MayNotEnterABattleRoomUnderL70:
 	cont "del L.70."
 
 	para "Questa SALA LOTTA"
-	line "è per L."
+	line "è per L.@"
 	text_decimal wScriptVar, 1, 3
 	text "."
 	done
