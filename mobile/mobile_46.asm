@@ -4567,7 +4567,7 @@ Text_WhichBattleRoom: ; unreferenced
 	done
 
 Text_ThisBattleRoomPleaseWait:
-    text "La SALA@"
+    text "La SALA @"
     text_ram wStringBuffer4
     line "di @"
     text_ram wStringBuffer3
