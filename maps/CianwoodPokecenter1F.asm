@@ -106,15 +106,16 @@ CianwoodPokecenter1FPreMobileText: ; unreferenced
 	done
 
 CianwoodPokecenter1FMobileText: ; unreferenced
-	text "I've been battling"
-	line "my pal in VIOLET"
+	text "Ho lottato con un"
+	line "mio amico in link"
 
-	para "using a MOBILE"
-	line "ADAPTER link."
+	para "a VIOLAPOLI"
+	line "utilizzando un"
+	cont "ADATTATORE MOBILE."
 
-	para "I'm down 5-7"
-	line "against him. I've"
-	cont "gotta crank it up!"
+	para "Sono a 5-7 contro"
+	line "di luli. Devo"
+	cont "alzare il ritmo!"
 	done
 
 CianwoodPokecenter1FSuperNerdText:

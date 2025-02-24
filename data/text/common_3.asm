@@ -236,13 +236,14 @@ _MoveMonWOMailSaveText::
 	done
 
 _WindowAreaExceededErrorText:: ; unreferenced
-	text "La finestra di"
-	line "area was exceeded."
+	text "L'area della"
+	line "finestra "
 	done
 
 _WindowPoppingErrorText::
 	text "Usate troppe"
-	line "finestre."
+	line "finestra è stata"
+	cont "oltrepassata."
 	done
 
 _CorruptedEventText:: ; unreferenced

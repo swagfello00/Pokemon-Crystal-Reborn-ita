@@ -320,14 +320,18 @@ RuinsOfAlphResearchCenterScientist2Text_UnownAppeared:
 	done
 
 RuinsOfAlphResearchCenterUnusedText1: ; unreferenced
-	text "We think something"
-	line "caused the cryptic"
+	text "Pensiamo che ci"
+	line "sia stato qualcosa"
 
-	para "patterns to appear"
-	line "in the RUINS."
+	para "che abbia causato"
+	line "la comparsa dei"
 
-	para "We've focused our"
-	line "studies on that."
+	para "disegni criptici"
+	line "nelle ROVINE."
+	
+	para "Abbiamo incentrato"
+	line "i nostri studi su"
+	cont "questo."
 	done
 
 RuinsOfAlphResearchCenterUnusedText2: ; unreferenced
