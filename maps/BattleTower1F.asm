@@ -727,8 +727,8 @@ Text_SaveAndEndTheSession:
 	done
 
 Text_SaveBeforeReentry:
-	text "Il tuo record"
-	line "verrà SALVATO."
+    text "Il gioco verrà"
+    line "SALVATO."
 
 	para "Ritornerai alla"
 	line "SALA precedente."
