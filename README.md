@@ -42,6 +42,7 @@ https://github.com/gb-mobile/pokecrystal-mobile-en/wiki/Pok%C3%A9mon-Crystal-Mob
 - Lorenzooone    : Italian Mobile Translation & Code
 - 95Girl         : Italian Mobile Translation
 - RainbowMPigeon : Italian Mobile Translation
+- swagfello      : Italian Mobile Translation
 - Damien         : Code
 - DS             : GFX & Code
 - Ryuzac         : Code & Japanese Translation
