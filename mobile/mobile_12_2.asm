@@ -863,7 +863,7 @@ Function4ad68:
 
 String_4ad88:
 	db   "STAT.";"つよさをみる"
-	next "SPOSTA";"つかえるわざ"
+	next "MOSSE";"つかえるわざ"
 	next "ESCI@";"もどる@"
 
 String_4ad9a:
