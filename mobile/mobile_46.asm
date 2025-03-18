@@ -4265,7 +4265,7 @@ String_11a6d2:
 
 String_11a6db:
 	db   "Comunicazione";"つうしん　ちゅう"
-	next "annullato.@";"セレクト　エーでちゅうし@"
+	next "annullata.@";"セレクト　エーでちゅうし@"
 
 String_11a6f1:
 	db   "Questo servizio";"この　サービスには"
