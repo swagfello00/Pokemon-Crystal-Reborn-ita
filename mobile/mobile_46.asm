@@ -4272,7 +4272,7 @@ String_11a6f1:
 	next "è a pagamento.@";"つうわりょう<NO>ほかに@"
 
 String_11a706:
-	db   "Prezza:@";"おかね<GA>@"
+	db   "Prezzo:@";"おかね<GA>@"
 
 String_11a71e:
 	db   "Comunicazione";"つうしん　しゅうりょう@" ; ???
