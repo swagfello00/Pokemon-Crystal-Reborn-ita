@@ -203,7 +203,7 @@ endc
 	ret
 
 AlphRuinsStampString:
-	db " IMMAG. ROVINE ALFA@"
+	db " IMMAG.ROVINE ALFA@"
 
 UnownDexDoWhatString:
 	db "Scegli un'opzione.@"
