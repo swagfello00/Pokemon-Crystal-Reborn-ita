@@ -758,8 +758,8 @@ _MainMenuTimeUnknownText::
 	done
 
 _DeleteSavedLoginPasswordText::
-	text "Delete the saved"
-	line "LOG-IN PASSWORD?"
+	text "Cancellare la"
+	line "PASSWORD salvata?"
 	done
 
 _DeletedTheLoginPasswordText::
