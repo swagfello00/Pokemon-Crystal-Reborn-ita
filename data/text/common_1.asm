@@ -172,7 +172,7 @@ _OakTimeWhatTimeIsItText::
 	done
 
 _OakTimeWhatHoursText::
-	text "What?@"
+	text "Cosa?@"
 	text_end
 
 _OakTimeHoursQuestionMarkText::
@@ -184,7 +184,7 @@ _OakTimeHowManyMinutesText::
 	done
 
 _OakTimeWhoaMinutesText::
-	text "Whoa!@"
+	text "Come?@"
 	text_end
 
 _OakTimeMinutesQuestionMarkText::
