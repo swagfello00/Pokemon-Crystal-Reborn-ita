@@ -617,7 +617,7 @@ NotAPokemonPasswordString:
 	;line "PASSWORD!@";"されていません！@"
 
 SavedPasswordString:
-	db   "Salvato PASSWORD";"ログインパスワード¯ほぞん"
+	db   "Salvata PASSWORD";"ログインパスワード¯ほぞん"
 	line "D'ACCESSO.@";"しました@"
 
 MobilePassword_IncrementJumptable:
