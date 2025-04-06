@@ -4567,12 +4567,12 @@ Text_WhichBattleRoom: ; unreferenced
 	done
 
 Text_ThisBattleRoomPleaseWait:
-    text "La SALA @"
+    text "SALA @"
     text_ram wStringBuffer4
-    line "di @"
+    text "di @"
     text_ram wStringBuffer3
     text "?"
-    cont "Attendere, prego…"
+    line "Attendere, prego…"
     done
 
 Function11ac3e:
