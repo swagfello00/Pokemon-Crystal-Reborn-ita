@@ -816,10 +816,10 @@ _MobileCardFolderIntro2Text::
 	para "Dopo aver inserito"
 	line "il tuo numero di"
 
-	para "telefono, sarai on"
+	para "telefono, sarai in"
 	line "grado di scambiare"
-	para "le SCHEDE coi tuoi"
-	line "amici."
+	para "le SCHEDE con i"
+	line "tuoi amici."
 
 	para ""
 	done
@@ -832,7 +832,8 @@ _MobileCardFolderIntro3Text::
 	line "fare una chiamata"
 
 	para "dal secondo piano"
-	line "del CENTRO MOBILE."
+	line "del CENTRO"
+	cont "#MON."
 
 	para ""
 	done
