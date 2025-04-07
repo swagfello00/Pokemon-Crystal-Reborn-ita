@@ -758,13 +758,13 @@ _MainMenuTimeUnknownText::
 	done
 
 _DeleteSavedLoginPasswordText::
-	text "Cancellare la"
-	line "PASSWORD salvata?"
+	text "Cancella PASSWORD"
+	line "D'ACCESSO salvata?"
 	done
 
 _DeletedTheLoginPasswordText::
-	text "Rimuovere PASSWORD"
-	line "D'ACCESSO salvata?"
+	text "Rimossa la"
+	line "PASSWORD salvata."
 	done
 
 _MobilePickThreeMonForBattleText::
