@@ -763,8 +763,8 @@ _DeleteSavedLoginPasswordText::
 	done
 
 _DeletedTheLoginPasswordText::
-	text "Rimossa la"
-	line "PASSWORD salvata."
+	text "PASSWORD D'ACCESSO"
+	line "rimossa."
 	done
 
 _MobilePickThreeMonForBattleText::
