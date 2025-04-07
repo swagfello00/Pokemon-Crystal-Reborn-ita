@@ -527,8 +527,8 @@ Function17a99e:
 	ret
 
 String_17a9b2:
-	db   "Invalid phone" ;"でんわばんごうが　ただしく"
-	next "number!" ;"はいって　いません！"
+	db   "Numero di telefono" ;"でんわばんごうが　ただしく"
+	next "non valida!" ;"はいって　いません！"
 	db   "@"
 
 Function17a9cb:
