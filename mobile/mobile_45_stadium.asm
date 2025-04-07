@@ -613,8 +613,8 @@ AskSavePasswordString:
 	line "PASSWORD?@";"おきますか？@"
 
 NotAPokemonPasswordString:
-	db   "PASSWORD invalida!@";"パスワード<WO>にゅうりょく"
-	;line "PASSWORD!@";"されていません！@"
+	db   "PASSWORD non";"パスワード<WO>にゅうりょく"
+	line "valida!@";"されていません！@"
 
 SavedPasswordString:
 	db   "PASSWORD D'ACCESSO";"ログインパスワード¯ほぞん"
