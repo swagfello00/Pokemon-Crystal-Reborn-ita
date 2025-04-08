@@ -63,7 +63,7 @@ _PlayerDecorationMenu:
 .bed      db "LETTO@"
 .carpet   db "TAPPETO@"
 .plant    db "PIANTA@"
-.poster:   db "POSTER@"
+.poster   db "POSTER@"
 .game     db "CONSOLE@"
 .ornament db "ORNAMENTO@"
 .big_doll db "MAXIBAMBOLA@"
@@ -531,34 +531,34 @@ GetDecoName:
 	jr .getdeconame
 
 .bed:
-	call .plant
 	ld a, _BED
-	jr .getdeconame
+	jr .unused
 
 .carpet:
-	call .plant
 	ld a, _CARPET
-	jr .getdeconame
+	jr .unused
 
 .poster:
-	ld a, e
-	call .getpokename
-	ld a, _POSTER
-	jr .getdeconame
-
-.doll:
-	ld a, e
-	call .getpokename
-	ld a, _DOLL
-	jr .getdeconame
-
-.bigdoll:
 	push de
-	ld a, BIG_
+	ld a, _POSTER
 	call .getdeconame
 	pop de
 	ld a, e
 	jr .getpokename
+
+.doll:
+	push de
+	ld a, _DOLL
+	call .getdeconame
+	pop de
+	ld a, e
+	jr .getpokename
+
+.bigdoll
+	ld a, e
+	call .getpokename
+	ld a, BIG_
+	jr .getdeconame
 
 .unused: ; unreferenced
 	push de
