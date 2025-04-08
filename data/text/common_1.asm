@@ -136,8 +136,8 @@ _PasscodeSetText::
 	done
 
 _FourZerosInvalidText::
-	text "0000 è errato!"
-
+	text "0000 non è valido!"
+	
 	para ""
 	done
 
