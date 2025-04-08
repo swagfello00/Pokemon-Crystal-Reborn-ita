@@ -193,7 +193,7 @@ NamingScreen:
 	ret
 
 .oTomodachi_no_namae_sutoringu
-	db "FRIEND'S NAME?@"
+	db "NOME AMICO?@"
 
 .LoadSprite:
 	push de
