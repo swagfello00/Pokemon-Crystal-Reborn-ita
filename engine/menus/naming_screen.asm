@@ -186,7 +186,7 @@ NamingScreen:
 	db "NOME BOX?@"
 
 .Tomodachi:
-	hlcoord 4, 2
+	hlcoord 3, 2
 	ld de, .oTomodachi_no_namae_sutoringu
 	call PlaceString
 	call .StoreSpriteIconParams
