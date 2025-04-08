@@ -480,7 +480,7 @@ String_17fa71:
 	next "Mobile non è" ; "とうろくされた　じょうほうが"
 	next "configurato" ; "ただしく　ありません"
 	next "correttamente." ; "モバイルトレーナーで"
-	next "Registrati dal" ; "しょきとうろくを　してください"
+	next "Registrati su" ; "しょきとうろくを　してください"
 	next "Allenatore Mobile." 
 	db   "@" 
 
@@ -504,7 +504,7 @@ String_17fb2a:
 	next "e-mail è errato." ; "まちがいが　あります"
 	next "Consulta il" ; "とりあつかいせつめいしょを"
 	next "manuale e " ; "ごらんのうえ"
-	next "registrati dal" ; "モバイルトレーナーで"
+	next "registrati su" ; "モバイルトレーナーで"
 	next "Allenatore Mobile." 
 	db   "@" 
 
