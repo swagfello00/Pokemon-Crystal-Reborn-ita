@@ -120,6 +120,7 @@ _PasscodesNotSameText::
 	text "Il numero è"
 	line "diverso dal"
 	cont "precedente."
+	para ""
 	done
 
 _PasscodeSetText::
