@@ -35,15 +35,17 @@ CeruleanPokecenter1FSuperNerdText:
 	done
 
 CeruleanPokecenter1FSuperNerdText_Mobile:
-	text "Do you battle by"
-	line "mobile phone?"
-
-	para "If time runs out"
-	line "during a battle,"
-
-	para "waiting to see who"
-	line "won is really"
-	cont "nerve wracking."
+	text "Lotti mai tramite"
+	line "cellulare?"
+	
+	para "Se il tempo si"
+	line "esaurisce durante"
+	cont "una battaglia,"
+	
+	para "aspettare di"
+	line "vedere chi vincerá"
+	cont "é davvero"
+	cont "snervante."
 	done
 
 CeruleanPokecenter1FGymGuideText:
