@@ -4567,8 +4567,8 @@ String_101fc5:
 	db 	"Chiamare il Nº?@"	; "に　でんわを　かけます@"
 
 String_101fd2:
-	db 	"Chiamata in"			; "に　でんわを　かけています@"
-	next  "corso…@"
+	db 	"Chiamata…@"			; "に　でんわを　かけています@"
+	;next  "corso…@"
 
 String_101fe1:
 	db   "Chiamata"	; "でんわが　つながりました!@"
