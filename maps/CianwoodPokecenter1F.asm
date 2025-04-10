@@ -115,7 +115,7 @@ CianwoodPokecenter1FMobileText: ; unreferenced
 
 	para "Sono a 5-7 contro"
 	line "di luli. Devo"
-	cont "alzare il ritmo!"
+	cont "darci dentro!"
 	done
 
 CianwoodPokecenter1FSuperNerdText:
