@@ -1254,7 +1254,7 @@ _PutCardInCardFolderText::
 
 _CardWasListedText::
     text "Inserita la SCHEDA"
-    line "di "
+    line "di @"
     text_ram wStringBuffer2
     text ": nº@"
     text_decimal wStringBuffer1, 1, 2
