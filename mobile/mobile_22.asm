@@ -3793,7 +3793,7 @@ Function8a8c3:
 	ret
 
 String_8a919:
-	db   "Cancellare questa@";"このデータ<WO>けしますか？@"	
+	db   "Cancellare questa";"このデータ<WO>けしますか？@"	
 	next "SCHEDA?@"	
 
 String_8a926:
