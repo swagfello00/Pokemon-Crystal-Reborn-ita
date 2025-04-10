@@ -263,23 +263,25 @@ _MysteryGiftSentHomeText::
 	prompt
 
 _NameCardReceivedCardText::
-	text "Ricevuta CARTA di"
+	text "Ricevuta SCHEDA di"
 	line "@"
 	text_ram wMysteryGiftCardHolderName
 	text "."
 	prompt
 
 _NameCardListedCardText::
+	text "La SCHEDA"
+	line "di @"
 	text_ram wMysteryGiftCardHolderName
-	text "'s CARD was"
-	line "listed as no.@"
+	text "è stata"
+	cont "inserita al N. @"
 	text_decimal wTextDecimalByte, 1, 2
 	text "."
 	prompt
 
 _NameCardNotRegisteredCardText::
-	text "The CARD was not"
-	line "registered."
+	text "La SCHEDA non è"
+	line "stata registrata."
 	prompt
 
 _NameCardLinkCancelledText::
