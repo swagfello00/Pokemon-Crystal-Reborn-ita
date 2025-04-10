@@ -4374,7 +4374,7 @@ String_AskOverwriteCard:
 
 String_KeepFriendsName:
 	db   "Conservare il";"おともだち<NO>なまえを"
-	next "nome dell'amico?@";"のこして　おきますか？@"
+	next "nome amico?@";"のこして　おきますか？@"
 
 Function8adb3:
 	call Mobile22_ClearScreen
