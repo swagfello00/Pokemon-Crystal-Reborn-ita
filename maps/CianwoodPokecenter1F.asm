@@ -101,7 +101,7 @@ CianwoodPokecenter1FPreMobileText: ; unreferenced
 	line "#MON che ho"
 
 	para "allenato ad un"
-	line "mio amici di"
+	line "mio amico di"
 	cont "VIOLAPOLI."
 	done
 
