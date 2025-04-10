@@ -1240,7 +1240,7 @@ Text_BallCaught::
 	text_end ; unreferenced
 
 _WaitButtonText::
-	text_waitbutton
+	text_promptbutton
 	text_end
 
 	text_end ; unreferenced
