@@ -34,8 +34,8 @@ WildCelebiAppearedText:
 	prompt
 
 WantsToBattleText::
-	text "<ENEMY>"
-	line "vuole lottare!"
+	text "vuole lottare!"
+	line "<ENEMY>"
 	prompt
 
 BattleText_WildFled:
