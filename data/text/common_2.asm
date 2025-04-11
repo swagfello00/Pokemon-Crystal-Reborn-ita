@@ -270,11 +270,11 @@ _NameCardReceivedCardText::
 	prompt
 
 _NameCardListedCardText::
-	text "La SCHEDA"
-	line "di @"
+	text "La SCHEDA di"
+	line "@"
 	text_ram wMysteryGiftCardHolderName
-	text "è stata"
-	cont "inserita al N. @"
+	text " è stata"
+	cont "inserita al Nº@"
 	text_decimal wTextDecimalByte, 1, 2
 	text "."
 	prompt
