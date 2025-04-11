@@ -346,11 +346,11 @@ PlaceBattlersName:
 	jr PlaceCommandCharacter
 
 .enemy
-	ld de, wEnemyMonNickname
+	ld de, EnemyText
 	call PlaceString
 	ld h, b
 	ld l, c
-	ld de, EnemyText
+	ld de, wEnemyMonNickname
 	jr PlaceCommandCharacter
 
 PlaceEnemysName::
@@ -366,16 +366,16 @@ PlaceEnemysName::
 	cp RIVAL2
 	jr z, .rival
 
-	ld de, wOTClassName
-	call PlaceString
-	ld h, b
-	ld l, c
-	ld de, String_Space
-	call PlaceString
-	push bc
+	push hl
 	callfar Battle_GetTrainerName
 	pop hl
 	ld de, wStringBuffer1
+	call PlaceString
+	ld h, b
+	ld l, c
+	ld a, " "
+	ld [hli], a
+	ld de, wOTClassName
 	jr PlaceCommandCharacter
 
 .rival
