@@ -7294,7 +7294,7 @@ String_103546: db " ANIMAZIONE LOTTA@"			; "せんとう　アニメ@"
 String_10354f: db " NUMERO TELEFONICO@"			; "でんわばんごう@"
 String_103557: db " SCAMBIO SCHEDE@"			; "めいしこうかん@"
 String_10355f: db "Decide chiamante.@"		; "でんわを　かけるひとが　きめられる@"
-String_103571: db "Metodo ins.@"			; "でんわばんごうの　にゅうりょくのしかた@" ; Entering a phone number
+String_103571: db "Metodo immissione.@"			; "でんわばんごうの　にゅうりょくのしかた@" ; Entering a phone number
 String_103585: db "Aggiorna SCHEDA.@"		; "あたらしいめいしが　あれば　こうかん@" ; Replace if there is a new card
 String_103598: db "<LF>:NO@"				; "とばして　みる@"; Skip to see
 String_1035a0: db "<LF>:SÌ@"				; "じっくり　みる@" ; Watch carefully
