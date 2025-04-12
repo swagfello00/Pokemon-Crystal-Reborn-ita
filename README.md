@@ -14,7 +14,7 @@ This translation was performed via text dumps and a (somewhat) sophisticated fin
 ![image](https://github.com/user-attachments/assets/9acb6268-302d-4f64-8834-69c8d54aaa37)
 ![image](https://github.com/user-attachments/assets/6b59640c-e0ed-4bf0-a9a3-4c1547df38b3)
 ![image](https://github.com/user-attachments/assets/32fce5c7-4ecf-4c38-96ed-c2930cde3988)
-![image](https://github.com/user-attachments/assets/91e4fafb-f66d-4dfc-b119-7bb45e5d7795)
+![image](https://github.com/user-attachments/assets/e1a16aa4-26e6-47ac-99fe-fc1b38a6a17c)
 ![image](https://github.com/user-attachments/assets/dddcf398-d118-4925-9517-192c59082538)
 ![image](https://github.com/user-attachments/assets/345a699f-96a3-478c-864b-e7caf023659d)
 ![image](https://github.com/user-attachments/assets/ec408381-9c7a-48f2-985c-b6aeda997296)
