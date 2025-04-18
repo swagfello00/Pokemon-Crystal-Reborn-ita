@@ -384,7 +384,7 @@ _TeleportReturnText::
 _CantUseTeleportText::
 	text "Non si può usare"
 	line "qui."
-	done
+	prompt
 
 _AlreadyUsingStrengthText::
 	text "Un #MON sta già"
