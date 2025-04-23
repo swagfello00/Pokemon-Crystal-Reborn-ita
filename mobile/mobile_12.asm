@@ -206,20 +206,20 @@ Mobile12_ClearBlankUserParameters:
 	jr nz, .asm_481c1
 	bit 0, d
 	jr nz, .asm_481c1
-	lb bc, 1, 8
-	hlcoord 11, 5 ; Gender position
+	lb bc, 1, 7
+	hlcoord 12, 5 ; Gender position
 	call ClearBox
 .asm_481c1
 	bit 1, d
 	jr nz, .asm_481ce
-	lb bc, 1, 8
-	hlcoord 11, 7 ; Age position ; Don't change
+	lb bc, 1, 7
+	hlcoord 12, 7 ; Age position ; Don't change
 	call ClearBox
 .asm_481ce
 	bit 2, d
 	jr nz, .asm_481db
-	lb bc, 1, 8
-	hlcoord 11, 9 ; prefecture position
+	lb bc, 1, 7
+	hlcoord 12, 9 ; prefecture position
 	call ClearBox
 .asm_481db
 	bit 3, d
@@ -227,8 +227,8 @@ Mobile12_ClearBlankUserParameters:
 	ld a, [wd479]
 	bit 0, a
 	jr nz, .asm_481f8
-	lb bc, 1, 8
-	hlcoord 9, 11 ; Zip code location
+	lb bc, 1, 7
+	hlcoord 12, 11 ; Zip code location
 	call ClearBox
 	jr .asm_48201
 .asm_481f1
@@ -239,6 +239,9 @@ Mobile12_ClearBlankUserParameters:
 	hlcoord 12, 11 ; Position of 'Tell Later' after selecting
 	ld de, .String_TellLater
 	call PlaceString
+	hlcoord 11, 11 ; Placement of Zip Code Colon Text
+	ld de, Colon
+	call PlaceString	
 .asm_48201
 	ret
 
@@ -355,6 +358,9 @@ GenderPressed:
 	ld e, l
 	hlcoord 12, 5 ; Gender position
 	call PlaceString
+	hlcoord 11, 5 ; Placement of Gender Colon Text
+	ld de, Colon
+	call PlaceString
 	ld a, [wMobileProfileParametersFilled]
 	set 0, a
 	ld [wMobileProfileParametersFilled], a
@@ -413,6 +419,9 @@ RegionCodePressed:
 	ld a, [wMobileProfileParametersFilled]
 	set 2, a
 	ld [wMobileProfileParametersFilled], a
+	hlcoord 11, 9 ; Placement of Address Colon Text
+	ld de, Colon
+	call PlaceString
 .asm_48377
 	call Mobile12_ClearBlankUserParameters
 	farcall Mobile_OpenAndCloseMenu_HDMATransferTilemapAndAttrmap
@@ -496,8 +505,8 @@ SavePrefectureAndDisplayIt:
 	ld d, h
 	ld e, l
 	ld b, $2
-	ld c, $8
-	hlcoord 11, 8 ; ??? Clears the surrounding tiles when prefecture is selected, needs to be moved with preferectures
+	ld c, $7
+	hlcoord 12, 8 ; ??? Clears the surrounding tiles when prefecture is selected, needs to be moved with preferectures
 	call ClearBox
 	hlcoord 17 - REGION_CODE_STRING_LENGTH, 9 ; Prefectures position when selected
 	call PlaceString
@@ -661,6 +670,15 @@ DisplayInitializedMobileProfileLayout: ; Clears the 4 top lines, displays the "M
 	ld b, $8
 	ld c, $12
 	call DisplayBlankGoldenBox
+	hlcoord 11, 7 ; Placement of Age Colon Text
+	ld de, Colon
+	call PlaceString
+	hlcoord 11, 9 ; Placement of Address Colon Text
+	ld de, Colon
+	call PlaceString
+	hlcoord 11, 11 ; Placement of Zip Code Colon Text
+	ld de, Colon
+	call PlaceString
 	ret
 
 SetCursorParameters_MobileProfile:
@@ -860,7 +878,13 @@ AgePressed:
 	call Function487ec
 	pop af
 	ldh [hInMenu], a
+	hlcoord 11, 7 ; Placement of Age Colon Text
+	ld de, Colon
+	call PlaceString
 	jp ReturnToMobileProfileMenu
+
+Colon:
+	db ":@"
 
 Function487ec:
 	push hl
@@ -1012,6 +1036,10 @@ ZipCodePressed:
 	hlcoord 4, 12 ; Clearing the potential "Tell Later" text.
 	lb bc, 1, 14 - ZIPCODE_LENGTH ; Determines the size of the clearing box
 	call ClearBox
+
+	hlcoord 11, 11 ; Placement of Colon Text
+	ld de, Colon
+	call PlaceString
 
 	ld hl, MenuHeader_ZipCodeEditBox
 	call LoadMenuHeader
