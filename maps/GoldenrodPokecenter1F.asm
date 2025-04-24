@@ -1010,8 +1010,9 @@ GoldenrodPokecenter1FMobileOnYoungsterText:
 	text "Il mio amico era"
 	line "nelle NOTIZIE di"
 
-	para "tempo. Mi ha"
-	line "proprio sorpreso!"
+	para "un po' di tempo"
+	line "fa. Mi ha proprio"
+	cont "sorpreso!"
 	done
 
 GoldenrodPokecenter1FMobileOnTeacherText:
