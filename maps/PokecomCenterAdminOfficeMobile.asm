@@ -235,7 +235,7 @@ PokecomCenterAdminOfficeMobileComputer2Text_DontUsePhone:
 	para "Se non riesci a"
 	line "collegarti o non"
 
-	para "capisci o messaggi"
+	para "o ci sono messaggi"
 	line "di errore, chiama"
 
 	para "il supporto"
