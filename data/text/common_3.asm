@@ -846,7 +846,7 @@ _MobileCardFolderIntro4Text::
 	line "SCHEDE, devi"
 
 	para "impostare una"
-	line "PASSWORD D'ACCESSO"
+	line "CODICE di accesso"
 
 	para "per L'ALBUM"
 	line "SCHEDE."
