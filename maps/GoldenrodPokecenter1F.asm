@@ -868,8 +868,8 @@ GoldenrodPokecomCenterReadingTheLatestNewsText:
 	done
 
 GoldenrodPokecomCenterNoOldNewsText:
-	text "Non ci sono vecche"
-	line "NOTIZIE…"
+	text "Non ci sono"
+	line "vecchie NOTIZIE…"
 	done
 
 GoldenrodPokecomCenterCorruptedNewsDataText:
