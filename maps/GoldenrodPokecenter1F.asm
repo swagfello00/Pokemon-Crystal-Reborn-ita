@@ -775,7 +775,7 @@ GoldenrodPokecomCenterOddEggBriefingText:
 	para "Ti verrà inviato"
 	line "subito."
 
-	para "Scegli una SALA"
+	para "Scegli una sala"
 	line "ti verrà mandato"
 
 	para "Un UOVO STRANO"
