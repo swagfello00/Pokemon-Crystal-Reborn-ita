@@ -87,11 +87,11 @@ Text_DayCareManTalksAboutEggTicket: ; unreferenced
 	line "SCAMBI."
 
 	para "Mi hanno dato un"
-	line "BIGLIETTO UOVO che"
+	line "BIGLIETTO UOVO"
 
-	para "essere scambiato"
-	line "per un UOVO"
-	cont "STRANO."
+	para "che può essere"
+	line "scambiato per un"
+	cont "UOVO STRANO."
 
 	para "Ma poichè gestiamo"
 	line "una PENSIONE,"
