@@ -114,7 +114,7 @@ CianwoodPokecenter1FMobileText: ; unreferenced
 	cont "ADATTATORE MOBILE."
 
 	para "Sono a 5-7 contro"
-	line "di luli. Devo"
+	line "di lui. Devo"
 	cont "darci dentro!"
 	done
 
