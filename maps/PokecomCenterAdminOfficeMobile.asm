@@ -233,14 +233,14 @@ PokecomCenterAdminOfficeMobileComputer2Text_DontUsePhone:
 	cont "più tardi."
 
 	para "Se non riesci a"
-	line "collegarti o non"
+	line "collegarti o ci"
 
-	para "o ci sono messaggi"
-	line "di errore, chiama"
+	para "sono messaggi di"
+	line "errore, chiama il"
 
-	para "il supporto"
-	line "tecnico o leggi"
-	cont "le istruzioni."
+	para "supporto tecnico"
+	line "o leggi le"
+	cont "istruzioni."
 	done
 
 PokecomCenterAdminOfficeMobileComputer3Text:
