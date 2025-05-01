@@ -251,10 +251,10 @@ String_17f6dc:
 	db "ERRORE:　　　-@"		; "つうしんエラー　　　ー@"
 
 String_17f6e8:
-	db    "Errore scon."
-	next "Per favore,"
-	next "controlla il"
-	next "programma."
+	db   "Errore"
+	next "sconosciuto per"
+	next "favore, controlla"
+	next "il programma."
 	db     "@"
 
 Table_17f706:
