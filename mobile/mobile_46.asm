@@ -4276,7 +4276,7 @@ String_11a706:
 
 String_11a71e:
 	db   "Comunicazione";"つうしん　しゅうりょう@" ; ???
-	next "interrotta.@"
+	next "terminata.@"
 
 String_11a72a:
 	db   "DURATA TEL.";"つないだ　じかん"
