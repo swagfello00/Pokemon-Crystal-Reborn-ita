@@ -251,10 +251,11 @@ String_17f6dc:
 	db "ERRORE:　　　-@"		; "つうしんエラー　　　ー@"
 
 String_17f6e8:
-	db   "Unknown error." 	; "みていぎ<NO>エラーです"
-	next "Please check"		; "プログラム<WO>"
-	next "the program."		; "かくにん　してください"
-	db   "@"
+	db    "Errore scon."
+	next "Per favore,"
+	next "controlla il"
+	next "programma."
+	db     "@"
 
 Table_17f706:
 	dw Unknown_17f74e
