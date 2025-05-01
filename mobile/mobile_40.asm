@@ -334,7 +334,7 @@ Function100232:
 
 String10024d:
 	db   "Comunicazione"	; "つうしんを　キャンセル　しました@"
-	next "interrotta.@"
+	next "terminata.@"
 
 String10025e:
 	db   "Le stanze scelte"	; "おともだちと　えらんだ　へやが"
