@@ -44,7 +44,7 @@ CeruleanPokecenter1FSuperNerdText_Mobile:
 	
 	para "aspettare di"
 	line "vedere chi vincerá"
-	cont "é davvero"
+	cont "è davvero"
 	cont "snervante."
 	done
 
