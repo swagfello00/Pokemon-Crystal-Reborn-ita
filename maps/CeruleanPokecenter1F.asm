@@ -43,7 +43,7 @@ CeruleanPokecenter1FSuperNerdText_Mobile:
 	cont "una battaglia,"
 	
 	para "aspettare di"
-	line "vedere chi vincerá"
+	line "vedere chi vincerà"
 	cont "è davvero"
 	cont "snervante."
 	done
