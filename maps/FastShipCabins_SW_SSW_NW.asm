@@ -217,13 +217,13 @@ FastShipBedText2:
 FastShipArrivedOlivineText:
 	text "La NAVE VELOCE"
 	line "M/N ACQUA è giunta"
-	cont "ad ARANCIOPOLI."
+	cont "a OLIVINOPOLI."
 	done
 
 FastShipArrivedVermilionText:
 	text "La NAVE VELOCE"
 	line "M/N ACQUA è giunta"
-	cont "a OLIVINOPOLI."
+	cont "ad ARANCIOPOLI."
 	done
 
 FastShipCabins_SW_SSW_NW_MapEvents:
