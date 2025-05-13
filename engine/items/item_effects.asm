@@ -1233,7 +1233,7 @@ StatStrings:
 .health  db "SALUTE@"
 .attack  db "ATTACCO@"
 .defense db "DIFESA@"
-.speed   db "VELOCITA@"
+.speed   db "VELOCITÁ@"
 .special db "SPECIALI@"
 
 GetStatExpRelativePointer:
