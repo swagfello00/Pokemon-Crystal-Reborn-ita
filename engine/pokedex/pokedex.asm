@@ -1967,8 +1967,8 @@ Pokedex_DisplayTypeNotFoundMessage:
 	ret
 
 .TypeNotFound:
-	db   "The specified type"
-	next "was not found.@"
+	db   "Tipo specificato"
+	next "non trovato.@"
 
 Pokedex_UpdateCursorOAM:
 	ld a, [wCurDexMode]
