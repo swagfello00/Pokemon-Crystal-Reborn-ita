@@ -1280,7 +1280,7 @@ Pokedex_DrawSearchResultsScreenBG:
 	ret
 
 .BottomWindowText:
-	db   "RISULTATI RICERA"
+	db   "RISULTATI RICERCA"
 	next "  TIPO"
 	next "    TROVATO(I)!"
 	db   "@"
