@@ -113,7 +113,7 @@ DrawPokedexSearchResultsWindow:
 
 .esults_D
 ; (SEARCH R)
-	db   "I RICERA"
+	db   "I RICERCA"
 	next ""
 ; (### FOUN)
 	next "ATO(I)!@"
