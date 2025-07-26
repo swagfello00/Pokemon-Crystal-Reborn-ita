@@ -2032,7 +2032,7 @@ Function100d67:
 .MenuData:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 3
-	db "ORDINA@"	; "いれかえる@"  ; TRADE
+	db "CAMBIA@"	; "いれかえる@"  ; TRADE
 	db "STAT.@"		; "つよさをみる@" ; STATS
 	db "ESCI@"	; "キャンセル@"  ; CANCEL
 
