@@ -373,9 +373,9 @@ Options_Print:
 	dw .Darkest
 
 .Lightest: db "CHIARIS.@"
-.Lighter:  db "CHIARA@"
-.Normal:   db "NORMALE@"
-.Darker:   db "SCURA@"
+.Lighter:  db "CHIARA  @"
+.Normal:   db "NORMALE @"
+.Darker:   db "SCURA   @"
 .Darkest:  db "SCURISS.@"
 
 GetPrinterSetting:
