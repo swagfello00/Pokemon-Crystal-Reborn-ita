@@ -1284,7 +1284,7 @@ Function108a33:
 	ret
 
 .OddEgg:
-	db "UOVO MISTERO@";"なぞのタマゴ@"
+	db "UOVO STRANO@";"なぞのタマゴ@"
 
 MobileTradeAnim_LoadMonTemplate:
 	call WaitTop
