@@ -16,7 +16,7 @@ This translation was performed via text dumps and a (somewhat) sophisticated fin
 ![image](https://github.com/user-attachments/assets/32fce5c7-4ecf-4c38-96ed-c2930cde3988)
 ![image](https://github.com/user-attachments/assets/a25ca4f8-c2e0-4a73-91c6-f6abbe2a9f51)
 ![image](https://github.com/user-attachments/assets/dddcf398-d118-4925-9517-192c59082538)
-![image](https://github.com/user-attachments/assets/345a699f-96a3-478c-864b-e7caf023659d)
+<img width="160" height="144" alt="image" src="https://github.com/user-attachments/assets/d7f74078-6d31-4365-9048-98fad53d3579" />
 ![image](https://github.com/user-attachments/assets/ec408381-9c7a-48f2-985c-b6aeda997296)
 
 
