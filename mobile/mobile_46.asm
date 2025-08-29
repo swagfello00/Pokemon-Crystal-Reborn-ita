@@ -4549,12 +4549,8 @@ Text_WhatLevelDoYouWantToChallenge:
 	done
 
 Text_CheckBattleRoomListByMaxLevel:
-	text "Vuoi vedere la"
-	line "lista delle SALE"
-
-	para "LOTTA partendo"
-	line "dal livello più"
-	cont "alto?"
+	text "Vedi SALA LOTTA"
+	line "per livello max?"
 	done
 
 Text_EnterWhichBattleRoom: ; unreferenced
