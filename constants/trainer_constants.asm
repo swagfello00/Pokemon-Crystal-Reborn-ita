@@ -30,27 +30,35 @@ DEF NUM_NONTRAINER_PHONECONTACTS EQU const_value - 1
 DEF KRIS EQU __trainer_class__
 	trainerclass FALKNER ; 1
 	const FALKNER1
+	const FALKNER2
 
 	trainerclass WHITNEY ; 2
 	const WHITNEY1
+	const WHITNEY2
 
 	trainerclass BUGSY ; 3
 	const BUGSY1
+	const BUGSY2
 
 	trainerclass MORTY ; 4
 	const MORTY1
+	const MORTY2
 
 	trainerclass PRYCE ; 5
 	const PRYCE1
+	const PRYCE2
 
 	trainerclass JASMINE ; 6
 	const JASMINE1
+	const JASMINE2
 
 	trainerclass CHUCK ; 7
 	const CHUCK1
+	const CHUCK2
 
 	trainerclass CLAIR ; 8
 	const CLAIR1
+	const CLAIR2
 
 	trainerclass RIVAL1 ; 9
 	const RIVAL1_1_CHIKORITA
@@ -68,11 +76,27 @@ DEF KRIS EQU __trainer_class__
 	const RIVAL1_5_CHIKORITA
 	const RIVAL1_5_CYNDAQUIL
 	const RIVAL1_5_TOTODILE
+	const RIVAL1_1_BULBASAUR
+	const RIVAL1_1_CHARMANDER
+	const RIVAL1_1_SQUIRTLE
+	const RIVAL1_2_BULBASAUR
+	const RIVAL1_2_CHARMANDER
+	const RIVAL1_2_SQUIRTLE
+	const RIVAL1_3_BULBASAUR
+	const RIVAL1_3_CHARMANDER
+	const RIVAL1_3_SQUIRTLE
+	const RIVAL1_4_BULBASAUR
+	const RIVAL1_4_CHARMANDER
+	const RIVAL1_4_SQUIRTLE
+	const RIVAL1_5_BULBASAUR
+	const RIVAL1_5_CHARMANDER
+	const RIVAL1_5_SQUIRTLE
 
 	trainerclass POKEMON_PROF ; a
 
 	trainerclass WILL ; b
 	const WILL1
+	const WILL2
 
 	trainerclass CAL ; c
 	const CAL1 ; unused
@@ -81,15 +105,19 @@ DEF KRIS EQU __trainer_class__
 
 	trainerclass BRUNO ; d
 	const BRUNO1
+	const BRUNO2
 
 	trainerclass KAREN ; e
 	const KAREN1
+	const KAREN2
 
 	trainerclass KOGA ; f
 	const KOGA1
+	const KOGA2
 
 	trainerclass CHAMPION ; 10
 	const LANCE
+	const LANCE2
 
 	trainerclass BROCK ; 11
 	const BROCK1
@@ -458,6 +486,12 @@ DEF KRIS EQU __trainer_class__
 	const RIVAL2_2_CHIKORITA
 	const RIVAL2_2_CYNDAQUIL
 	const RIVAL2_2_TOTODILE
+	const RIVAL2_1_BULBASAUR
+	const RIVAL2_1_CHARMANDER
+	const RIVAL2_1_SQUIRTLE
+	const RIVAL2_2_BULBASAUR
+	const RIVAL2_2_CHARMANDER
+	const RIVAL2_2_SQUIRTLE
 
 	trainerclass GUITARIST ; 2b
 	const CLYDE

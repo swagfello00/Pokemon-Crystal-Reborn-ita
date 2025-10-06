@@ -4,9 +4,13 @@ BattleIntroSlidingPics:
 	ld a, BANK(wLYOverrides)
 	ldh [rSVBK], a
 	call .subfunction1
+	ld a, JP_INSTRUCTION
+	ld [hFunctionInstruction], a
 	ld a, LOW(rSCX)
 	ldh [hLCDCPointer], a
 	call .subfunction2
+	ld a, RETI_INSTRUCTION
+	ld [hFunctionInstruction], a
 	xor a
 	ldh [hLCDCPointer], a
 	pop af
@@ -33,7 +37,7 @@ BattleIntroSlidingPics:
 .loop2
 	ldh a, [rLY]
 	cp $60
-	jr c, .loop2
+	jr nz, .loop2
 	ld a, d
 	ldh [hSCX], a
 	call .subfunction5

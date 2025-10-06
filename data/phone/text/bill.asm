@@ -42,11 +42,9 @@ BillPhoneNotFullText:
 	text "Grazie per la tua"
 	line "pazienza."
 
-	para "<PLAY_G>, nel BOX"
-	line "c'è posto ancora"
-	cont "per @"
-	text_ram wStringBuffer3
-	text " #MON."
+	para "<PLAY_G>, nei BOX"
+	line "c'è posto per"
+	cont "molti #MON."
 
 	para "Cosa aspetti a"
 	line "riempirlo?"

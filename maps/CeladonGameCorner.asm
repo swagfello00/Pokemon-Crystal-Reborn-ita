@@ -13,6 +13,14 @@ CeladonGameCorner_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
+	callback MAPCALLBACK_TILES, RocketHideoutOpenCallback
+
+RocketHideoutOpenCallback:	
+	checkevent EVENT_OPENED_ROCKET_HIDEOUT
+	iffalse .end
+	changeblock 18, 0, $31
+.end
+	endcallback
 
 CeladonGameCornerClerkScript:
 	jumpstd GameCornerCoinVendorScript
@@ -74,7 +82,7 @@ CeladonGameCornerFisherScript:
 	end
 
 .coinname
-	db "GETT.@"
+	db "18 GETTONI@"
 
 .NoCoinCase:
 	writetext CeladonGameCornerFisherNoCoinCaseText
@@ -106,7 +114,16 @@ CeladonGameCornerPoster1Script:
 	jumptext CeladonGameCornerPoster1Text
 
 CeladonGameCornerPoster2Script:
-	jumptext CeladonGameCornerPoster2Text
+	opentext
+	writetext CeladonGameCornerPoster2Text
+	waitbutton
+	refreshscreen
+	playsound SFX_ENTER_DOOR
+	changeblock 18, 0, $31
+	reloadmappart
+	setevent EVENT_OPENED_ROCKET_HIDEOUT
+	closetext
+	end
 
 CeladonGameCornerLuckySlotMachineScript:
 	random 6
@@ -263,7 +280,8 @@ CeladonGameCornerPoster2Text:
 	para "Sotto a questo"
 	line "poster…"
 
-	para "Non c'è nulla!"
+	para "C'è un pulsante,"
+	line "premiamolo!"
 	done
 
 CeladonGameCornerLighterText:
@@ -285,6 +303,7 @@ CeladonGameCorner_MapEvents:
 	def_warp_events
 	warp_event 14, 13, CELADON_CITY, 6
 	warp_event 15, 13, CELADON_CITY, 6
+	warp_event 19,  1, ROCKET_HIDEOUT_B1F, 1
 
 	def_coord_events
 

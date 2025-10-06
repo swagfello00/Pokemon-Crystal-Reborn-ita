@@ -429,32 +429,9 @@ BattleAnimFunction_PokeBallBlocked:
 	ret
 
 GetBallAnimPal:
-	ld hl, BallColors
-	ldh a, [rSVBK]
-	push af
-	ld a, BANK(wCurItem)
-	ldh [rSVBK], a
-	ld a, [wCurItem]
-	ld e, a
-	pop af
-	ldh [rSVBK], a
-.IsInArray:
-	ld a, [hli]
-	cp -1
-	jr z, .load
-	cp e
-	jr z, .load
-	inc hl
-	jr .IsInArray
-
-.load
-	ld a, [hl]
 	ld hl, BATTLEANIMSTRUCT_PALETTE
 	add hl, bc
-	ld [hl], a
 	ret
-
-INCLUDE "data/battle_anims/ball_colors.asm"
 
 BattleAnimFunction_Ember:
 	call BattleAnim_AnonJumptable
@@ -1156,6 +1133,8 @@ BattleAnimFunction_Surf:
 	dw .four
 .zero
 	call BattleAnim_IncAnonJumptableIndex
+	ld a, JP_INSTRUCTION
+	ld [hFunctionInstruction], a
 	ld a, LOW(rSCY)
 	ldh [hLCDCPointer], a
 	ld a, $58
@@ -1214,6 +1193,8 @@ BattleAnimFunction_Surf:
 	ld a, [hl]
 	cp $70
 	jr c, .move_down
+	ld a, RETI_INSTRUCTION
+	ld [hFunctionInstruction], a
 	xor a
 	ldh [hLCDCPointer], a
 	ldh [hLYOverrideStart], a

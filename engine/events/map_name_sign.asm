@@ -53,6 +53,8 @@ InitMapNameSign::
 	ld a, $90
 	ldh [rWY], a
 	ldh [hWY], a
+	ld a, RETI_INSTRUCTION
+	ld [hFunctionInstruction], a
 	xor a
 	ldh [hLCDCPointer], a
 	ret
@@ -79,8 +81,6 @@ InitMapNameSign::
 	cp LANDMARK_UNDERGROUND_PATH
 	ret z
 	cp LANDMARK_INDIGO_PLATEAU
-	ret z
-	cp LANDMARK_POWER_PLANT
 	ret z
 	ld a, 1
 	and a
@@ -120,6 +120,8 @@ PlaceMapNameSign::
 	ld a, $90
 	ldh [rWY], a
 	ldh [hWY], a
+	ld a, RETI_INSTRUCTION
+	ld [hFunctionInstruction], a
 	xor a
 	ldh [hLCDCPointer], a
 	ret

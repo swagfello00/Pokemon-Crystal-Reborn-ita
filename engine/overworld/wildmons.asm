@@ -313,14 +313,14 @@ ChooseWildEncounter:
 	inc b
 ; Store the level
 .ok
-; BUG: ChooseWildEncounter doesn't really validate the wild Pokemon species (see docs/bugs_and_glitches.md)
+; BUGfixed: ChooseWildEncounter doesn't really validate the wild Pokemon species (see docs/bugs_and_glitches.md)
 	ld a, b
 	ld [wCurPartyLevel], a
 	ld b, [hl]
+	ld a, b
 	call ValidateTempWildMonSpecies
 	jr c, .nowildbattle
 
-	ld a, b
 	cp UNOWN
 	jr nz, .done
 
@@ -490,25 +490,38 @@ LookUpWildmonsForMapDE:
 	scf
 	ret
 
-InitRoamMons:
-; initialize wRoamMon structs
+InitRoamRaikou:
+; initialize wRoamMon struct
 
 ; species
 	ld a, RAIKOU
 	ld [wRoamMon1Species], a
-	ld a, ENTEI
-	ld [wRoamMon2Species], a
 
 ; level
 	ld a, 40
 	ld [wRoamMon1Level], a
-	ld [wRoamMon2Level], a
 
 ; raikou starting map
 	ld a, GROUP_ROUTE_42
 	ld [wRoamMon1MapGroup], a
 	ld a, MAP_ROUTE_42
 	ld [wRoamMon1MapNumber], a
+
+; hp
+	xor a ; generate new stats
+	ld [wRoamMon1HP], a
+	ret
+
+InitRoamEntei:
+; initialize wRoamMon struct
+
+; species
+	ld a, ENTEI
+	ld [wRoamMon2Species], a
+
+; level
+	ld a, 40
+	ld [wRoamMon2Level], a
 
 ; entei starting map
 	ld a, GROUP_ROUTE_37
@@ -518,9 +531,7 @@ InitRoamMons:
 
 ; hp
 	xor a ; generate new stats
-	ld [wRoamMon1HP], a
 	ld [wRoamMon2HP], a
-
 	ret
 
 CheckEncounterRoamMon:
@@ -558,6 +569,8 @@ CheckEncounterRoamMon:
 	ld [wTempWildMonSpecies], a
 	ld a, [hl]
 	ld [wCurPartyLevel], a
+	ld a, 0
+	ld [wBuffer1], a
 	ld a, BATTLETYPE_ROAMING
 	ld [wBattleType], a
 

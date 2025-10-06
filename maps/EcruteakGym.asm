@@ -24,6 +24,8 @@ EcruteakGymNoopScene:
 EcruteakGymMortyScript:
 	faceplayer
 	opentext
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .Rematch
 	checkevent EVENT_BEAT_MORTY
 	iftrue .FightDone
 	writetext MortyIntroText
@@ -66,6 +68,21 @@ EcruteakGymMortyScript:
 	waitbutton
 .NoRoomForShadowBall:
 	closetext
+	end
+
+.Rematch
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .FightDone
+	checkflag ENGINE_MORTY_REMATCH_DONE
+	iftrue .FightDone
+	writetext MortyIntroText
+	waitbutton
+	closetext
+	winlosstext MortyRematchText, 0
+	loadtrainer MORTY, MORTY2
+	startbattle
+	reloadmapafterbattle
+	setflag ENGINE_MORTY_REMATCH_DONE
 	end
 
 EcruteakGymActivateRockets:
@@ -142,6 +159,8 @@ TrainerMediumGrace:
 EcruteakGymGuideScript:
 	faceplayer
 	opentext
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .EcruteakGymGuideRematchScript
 	checkevent EVENT_BEAT_MORTY
 	iftrue .EcruteakGymGuideWinScript
 	writetext EcruteakGymGuideText
@@ -151,6 +170,16 @@ EcruteakGymGuideScript:
 
 .EcruteakGymGuideWinScript:
 	writetext EcruteakGymGuideWinText
+	waitbutton
+	closetext
+	end
+
+.EcruteakGymGuideRematchScript:
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .EcruteakGymGuideWinScript
+	checkflag ENGINE_MORTY_REMATCH_DONE
+	iftrue .EcruteakGymGuideWinScript
+	writetext EcruteakGymGuideRematchText
 	waitbutton
 	closetext
 	end
@@ -228,6 +257,11 @@ MortyWinLossText:
 
 	para "E va bene. La"
 	line "MEDAGLIA è tua."
+	done
+
+MortyRematchText:
+	text "Non sono ancora"
+	line "al massimo…"
 	done
 
 Text_ReceivedFogBadge:
@@ -370,6 +404,15 @@ EcruteakGymGuideWinText:
 	para "Ho dovuto nascon-"
 	line "dermi per la"
 	cont "paura!"
+	done
+
+EcruteakGymGuideRematchText:
+	text "ANGELO è pronto"
+	line "per una nuova"
+	cont "sfida."
+	
+	para "Metti alla prova"
+	line "le tue capacità!"
 	done
 
 EcruteakGymClosedText:

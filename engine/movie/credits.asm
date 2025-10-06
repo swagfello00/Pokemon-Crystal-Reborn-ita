@@ -68,16 +68,20 @@ Credits::
 	xor a
 	call ByteFill
 
+	ld a, JP_INSTRUCTION
+	ld [hFunctionInstruction], a
 	ld a, LOW(rSCX)
 	ldh [hLCDCPointer], a
 
 	call GetCreditsPalette
 	call SetPalettes
-; BUG: Credits sequence changes move selection menu behavior (see docs/bugs_and_glitches.md)
+; BUGfixed: Credits sequence changes move selection menu behavior (see docs/bugs_and_glitches.md)
 	ldh a, [hVBlank]
 	push af
 	ld a, $5
 	ldh [hVBlank], a
+	ldh a, [hInMenu]
+	push af
 	ld a, TRUE
 	ldh [hInMenu], a
 	xor a
@@ -97,9 +101,13 @@ Credits::
 
 .exit_credits
 	call ClearBGPalettes
+	ld a, RETI_INSTRUCTION
+	ld [hFunctionInstruction], a
 	xor a
 	ldh [hLCDCPointer], a
 	ldh [hBGMapAddress], a
+	pop af
+	ldh [hInMenu], a
 	pop af
 	ldh [hVBlank], a
 	pop af

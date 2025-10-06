@@ -1,4 +1,4 @@
-DEF BLUE_CARD_POINT_CAP EQU 30
+DEF BLUE_CARD_POINT_CAP EQU 255
 
 	object_const_def
 	const RADIOTOWER2F_SUPER_NERD
@@ -284,6 +284,7 @@ Buena:
 	ifequal PHONE_CONTACTS_FULL, .PhoneFull
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	writetext RadioTower2FRegisteredBuenasNumberText
+	waitsfx
 	playsound SFX_REGISTER_PHONE_NUMBER
 	waitsfx
 	promptbutton
@@ -307,23 +308,6 @@ Buena:
 	closetext
 	turnobject RADIOTOWER2F_BUENA, RIGHT
 .HasNumber:
-	end
-
-RadioTowerBuenaPrizeReceptionist:
-	faceplayer
-	opentext
-	checkitem BLUE_CARD
-	iffalse .NoCard
-	writetext RadioTower2FBuenaReceptionistPointsForPrizesText
-	promptbutton
-	special BuenaPrize
-	closetext
-	end
-
-.NoCard:
-	writetext RadioTower2FBuenaReceptionistNoCardText
-	promptbutton
-	closetext
 	end
 
 RadioTower2FSalesSign:
@@ -494,13 +478,13 @@ RadioTower2FBuenaShowIntroductionText:
 
 	para "Conserva i punti e"
 	line "consegnali alla"
-	cont "ragazza qui"
 
-	para "vicino."
-	line "Potrai ottenere"
+	para "ragazza della"
+	line "TORRE LOTTA."
 
-	para "fantastici premi"
-	line "in cambio!"
+	para "Potrai ottenere"
+	line "fantastici premi"
+	cont "in cambio!"
 
 	para "Ecco qui!"
 
@@ -696,23 +680,6 @@ RadioTower2FBuenaYourPhoneIsFullText:
 	line "più posto…"
 	done
 
-RadioTower2FBuenaReceptionistPointsForPrizesText:
-	text "Puoi scambiare i"
-	line "punti raccolti con"
-
-	para "il premio che"
-	line "preferisci!"
-	done
-
-RadioTower2FBuenaReceptionistNoCardText:
-	text "Senza la CARTA BLU"
-	line "non puoi"
-	cont "raccogliere punti."
-
-	para "Non scordare mai"
-	line "la CARTA BLU!"
-	done
-
 RadioTower2FSalesSignText:
 	text "1ºP VENDITA"
 	done
@@ -758,4 +725,4 @@ RadioTower2F_MapEvents:
 	object_event  1,  1, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RadioTower2FBlackBelt2Script, EVENT_RADIO_TOWER_CIVILIANS_AFTER
 	object_event 12,  1, SPRITE_JIGGLYPUFF, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RadioTowerJigglypuff, -1
 	object_event 14,  5, SPRITE_BEAUTY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Buena, -1
-	object_event 12,  7, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, RadioTowerBuenaPrizeReceptionist, EVENT_GOLDENROD_CITY_CIVILIANS
+

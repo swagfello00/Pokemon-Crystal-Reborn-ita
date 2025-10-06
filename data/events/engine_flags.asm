@@ -78,6 +78,7 @@ EngineFlags:
 	engine_flag wVisitedSpawns, SPAWN_PALLET
 	engine_flag wVisitedSpawns, SPAWN_VIRIDIAN
 	engine_flag wVisitedSpawns, SPAWN_PEWTER
+	engine_flag wVisitedSpawns, SPAWN_ROUTE3
 	engine_flag wVisitedSpawns, SPAWN_CERULEAN
 	engine_flag wVisitedSpawns, SPAWN_ROCK_TUNNEL
 	engine_flag wVisitedSpawns, SPAWN_VERMILION
@@ -90,15 +91,18 @@ EngineFlags:
 	engine_flag wVisitedSpawns, SPAWN_NEW_BARK
 	engine_flag wVisitedSpawns, SPAWN_CHERRYGROVE
 	engine_flag wVisitedSpawns, SPAWN_VIOLET
+	engine_flag wVisitedSpawns, SPAWN_UNION_CAVE
 	engine_flag wVisitedSpawns, SPAWN_AZALEA
 	engine_flag wVisitedSpawns, SPAWN_CIANWOOD
 	engine_flag wVisitedSpawns, SPAWN_GOLDENROD
 	engine_flag wVisitedSpawns, SPAWN_OLIVINE
+	engine_flag wVisitedSpawns, SPAWN_BATTLE_TOWER
 	engine_flag wVisitedSpawns, SPAWN_ECRUTEAK
 	engine_flag wVisitedSpawns, SPAWN_MAHOGANY
 	engine_flag wVisitedSpawns, SPAWN_LAKE_OF_RAGE
 	engine_flag wVisitedSpawns, SPAWN_BLACKTHORN
 	engine_flag wVisitedSpawns, SPAWN_MT_SILVER
+	engine_flag wVisitedSpawns, SPAWN_ROUTE27
 	engine_flag wVisitedSpawns, NUM_SPAWNS ; unused
 
 	engine_flag wLuckyNumberShowFlag, LUCKYNUMBERSHOW_GAME_OVER_F
@@ -157,6 +161,22 @@ EngineFlags:
 	engine_flag wDailyRematchFlags, 21 ; wilton
 	engine_flag wDailyRematchFlags, 22 ; parry
 	engine_flag wDailyRematchFlags, 23 ; erin
+	engine_flag wDailyRematchFlags, 24 ; falkner
+	engine_flag wDailyRematchFlags, 25 ; bugsy
+	engine_flag wDailyRematchFlags, 26 ; whitney
+	engine_flag wDailyRematchFlags, 27 ; morty
+	engine_flag wDailyRematchFlags, 28 ; chuck
+	engine_flag wDailyRematchFlags, 29 ; jasmine
+	engine_flag wDailyRematchFlags, 30 ; pryce
+	engine_flag wDailyRematchFlags, 31 ; clair
+	engine_flag wDailyRematchFlags, 32 ; brock
+	engine_flag wDailyRematchFlags, 33 ; misty
+	engine_flag wDailyRematchFlags, 34 ; surge
+	engine_flag wDailyRematchFlags, 35 ; erika
+	engine_flag wDailyRematchFlags, 36 ; janine
+	engine_flag wDailyRematchFlags, 37 ; sabrina
+	engine_flag wDailyRematchFlags, 38 ; blaine
+	engine_flag wDailyRematchFlags, 39 ; blue
 
 	engine_flag wDailyPhoneItemFlags, 0 ; beverly has nugget
 	engine_flag wDailyPhoneItemFlags, 1 ; jose has star piece

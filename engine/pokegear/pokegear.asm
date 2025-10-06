@@ -324,6 +324,8 @@ InitPokegearTilemap:
 
 .Map:
 	ld a, [wPokegearMapPlayerIconLandmark]
+	cp LANDMARK_UNDERWATER
+	jr nc, .johto
 	cp LANDMARK_FAST_SHIP
 	jr z, .johto
 	cp KANTO_LANDMARK
@@ -530,6 +532,8 @@ Pokegear_UpdateClock:
 
 PokegearMap_CheckRegion:
 	ld a, [wPokegearMapPlayerIconLandmark]
+	cp LANDMARK_UNDERWATER
+	jr nc, .johto
 	cp LANDMARK_FAST_SHIP
 	jr z, .johto
 	cp KANTO_LANDMARK
@@ -624,22 +628,41 @@ PokegearMap_ContinueMap:
 	ld a, [hl]
 	cp d
 	jr c, .wrap_around_up
+	cp LANDMARK_SILVER_CAVE
+	jr z, .jump2underwater
 	ld a, e
 	dec a
 	ld [hl], a
 .wrap_around_up
 	inc [hl]
+	cp LANDMARK_ROUTE_28
+	jr nz, .done_dpad
+	inc [hl]
 	jr .done_dpad
+
+.jump2underwater
+	ld a, LANDMARK_UNDERWATER - 1
+	ld [hl], a
+	jr .wrap_around_up
 
 .down
 	ld hl, wPokegearMapCursorLandmark
 	ld a, [hl]
 	cp e
-	jr nz, .wrap_around_down
+	jr nz, .wrap_around_underwater
+	cp LANDMARK_NEW_BARK_TOWN
+	jr nz, .restart
+	ld a, LANDMARK_UNDERWATER + 1
+	ld [hl], a
+	jr .wrap_around_down
+.restart
 	ld a, d
 	inc a
 	ld [hl], a
 .wrap_around_down
+	dec [hl]
+	cp LANDMARK_SAFARI
+	jr nz, .done_dpad
 	dec [hl]
 .done_dpad
 	ld a, [wPokegearMapCursorLandmark]
@@ -651,6 +674,11 @@ PokegearMap_ContinueMap:
 	ld a, [wPokegearMapCursorLandmark]
 	call PokegearMap_UpdateCursorPosition
 	ret
+
+.wrap_around_underwater
+	cp LANDMARK_UNDERWATER
+	jr nz, .wrap_around_down
+	jr .restart
 
 PokegearMap_InitPlayerIcon:
 	push af
@@ -728,7 +756,7 @@ TownMap_GetKantoLandmarkLimits:
 	ld a, [wStatusFlags]
 	bit STATUSFLAGS_HALL_OF_FAME_F, a
 	jr z, .not_hof
-	ld d, LANDMARK_ROUTE_28
+	ld d, LANDMARK_ROUTE_10_SOUTH
 	ld e, LANDMARK_PALLET_TOWN
 	ret
 
@@ -1540,6 +1568,8 @@ RadioChannels:
 ; if in Johto or on the S.S. Aqua, set carry
 ; otherwise clear carry
 	ld a, [wPokegearMapPlayerIconLandmark]
+	cp LANDMARK_UNDERWATER
+	jr nc, .johto
 	cp LANDMARK_FAST_SHIP
 	jr z, .johto
 	cp KANTO_LANDMARK
@@ -1806,8 +1836,11 @@ _TownMap:
 
 .dmg
 	ld a, [wTownMapPlayerIconLandmark]
+	cp LANDMARK_UNDERWATER
+	jr nc, .johto
 	cp KANTO_LANDMARK
 	jr nc, .kanto
+.johto
 	ld d, KANTO_LANDMARK - 1
 	ld e, 1
 	call .loop
@@ -1854,24 +1887,43 @@ _TownMap:
 	ld a, [hl]
 	cp d
 	jr c, .okay
+	cp LANDMARK_SILVER_CAVE
+	jr z, .jump2underwater
 	ld a, e
 	dec a
 	ld [hl], a
 
 .okay
 	inc [hl]
+	cp LANDMARK_ROUTE_28
+	jr nz, .next
+	inc [hl]
 	jr .next
+
+.jump2underwater
+	ld a, LANDMARK_UNDERWATER - 1
+	ld [hl], a
+	jr .okay
 
 .pressed_down
 	ld hl, wTownMapCursorLandmark
 	ld a, [hl]
 	cp e
-	jr nz, .okay2
+	jr nz, .okay2underwater
+	cp LANDMARK_NEW_BARK_TOWN
+	jr nz, .restart2
+	ld a, LANDMARK_UNDERWATER + 1
+	ld [hl], a
+	jr .okay2
+.restart2
 	ld a, d
 	inc a
 	ld [hl], a
 
 .okay2
+	dec [hl]
+	cp LANDMARK_SAFARI
+	jr nz, .next
 	dec [hl]
 
 .next
@@ -1887,10 +1939,18 @@ _TownMap:
 	pop de
 	jr .loop2
 
+.okay2underwater
+	cp LANDMARK_UNDERWATER
+	jr nz, .okay2
+	jr .restart2
+
 .InitTilemap:
 	ld a, [wTownMapPlayerIconLandmark]
+	cp LANDMARK_UNDERWATER
+	jr nc, .johto2
 	cp KANTO_LANDMARK
 	jr nc, .kanto2
+.johto2
 	ld e, JOHTO_REGION
 	jr .okay_tilemap
 
@@ -2104,25 +2164,46 @@ _FlyMap:
 	ld a, [hl]
 	cp d
 	jr nz, .NotAtEndYet
+	cp LANDMARK_SILVER_CAVE
+	jr z, .jump2underwater
 	ld a, e
 	dec a
 	ld [hl], a
 .NotAtEndYet:
 	inc [hl]
+	cp LANDMARK_ROUTE_28
+	jr nz, .dontskip
+	inc [hl]
+.dontskip
 	call CheckIfVisitedFlypoint
 	jr z, .ScrollNext
 	jr .Finally
+
+.jump2underwater
+	ld a, LANDMARK_UNDERWATER - 1
+	ld [hl], a
+	jr .NotAtEndYet
 
 .ScrollPrev:
 	ld hl, wTownMapPlayerIconLandmark
 	ld a, [hl]
 	cp e
-	jr nz, .NotAtStartYet
+	jr nz, .NotAtStartYetUnderwater
+	cp LANDMARK_NEW_BARK_TOWN
+	jr nz, .restart
+	ld a, LANDMARK_UNDERWATER + 1
+	ld [hl], a
+	jr .NotAtStartYet
+.restart
 	ld a, d
 	inc a
 	ld [hl], a
 .NotAtStartYet:
 	dec [hl]
+	cp LANDMARK_SAFARI
+	jr nz, .dontskip2
+	dec [hl]
+.dontskip2
 	call CheckIfVisitedFlypoint
 	jr z, .ScrollPrev
 .Finally:
@@ -2131,6 +2212,11 @@ _FlyMap:
 	xor a
 	ldh [hBGMapMode], a
 	ret
+
+.NotAtStartYetUnderwater
+	cp LANDMARK_UNDERWATER
+	jr nz, .NotAtStartYet
+	jr .restart
 
 TownMapBubble:
 ; Draw the bubble containing the location text in the town map HUD
@@ -2264,10 +2350,13 @@ FlyMap:
 	call GetWorldMapLocation
 .CheckRegion:
 ; The first 46 locations are part of Johto. The rest are in Kanto.
+	cp LANDMARK_UNDERWATER
+	jr nc, .johto
 	cp KANTO_LANDMARK
 	jr nc, .KantoFlyMap
 ; Johto fly map
 ; Note that .NoKanto should be modified in tandem with this branch
+.johto
 	push af
 	ld a, JOHTO_FLYPOINT ; first Johto flypoint
 	ld [wTownMapPlayerIconLandmark], a ; first one is default (New Bark Town)
@@ -2566,6 +2655,8 @@ Pokedex_GetArea:
 ; not in the same region as what's currently
 ; on the screen.
 	ld a, [wTownMapPlayerIconLandmark]
+	cp LANDMARK_UNDERWATER
+	jr nc, .johto
 	cp LANDMARK_FAST_SHIP
 	jr z, .johto
 	cp KANTO_LANDMARK

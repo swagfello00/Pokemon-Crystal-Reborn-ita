@@ -53,9 +53,10 @@ CeladonDeptStore5FGentlemanText:
 CeladonDeptStore5FSailorText:
 	text "Vorrei PP-SU per"
 	line "poter aumentare i"
-
-	para "PP delle mosse:"
-	line "ma non lo vendono…"
+  cont "PP delle mosse:"
+  
+  para "aspetta…"
+  line "ora lo vendono."
 	done
 
 CeladonDeptStore5FTeacherText:

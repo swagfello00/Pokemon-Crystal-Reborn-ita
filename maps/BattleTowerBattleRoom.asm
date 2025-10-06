@@ -105,11 +105,8 @@ Script_FailedBattleTowerChallenge: ; 7a32
 	setval BATTLETOWERACTION_CHALLENGECANCELED
 	special BattleTowerAction
 	opentext
-;	writetext Text_ThanksForVisiting
-;	waitbutton
-;	closetext
-;	end
-	writetext Text_ThankYou;$74be
+	writetext Text_ThanksForVisiting
+	promptbutton
 	sjump Idk3;$71b4
 
 Script_BeatenAllTrainers: ; 7a5b
@@ -122,15 +119,32 @@ Script_BeatenAllTrainers: ; 7a5b
 ;	sjump Script_GivePlayerHisPrize
 	setval BATTLETOWERACTION_13
 	special BattleTowerAction
-	ifequal 1, Script_ChallengeCanceled;$7a90
+	ifequal 1, Script_ChallengeCanceledWin;$7a90
+	readvar VAR_BLUECARDBALANCE
+	ifgreater 234, .CardFull
+	addval 20
+	writevar VAR_BLUECARDBALANCE
+.continue
+	special SaveGameData
+	setval 20
+	getnum STRING_BUFFER_4
 	setval BATTLETOWERACTION_05
 	special BattleTowerAction
-	ifequal 8, Script_TooMuchTimeElapsedNoRegister;$7a84
+	ifequal 8, Script_TooMuchTimeElapsedNoRegisterWin;$7a84
 	setval BATTLETOWERACTION_CHALLENGECANCELED
 	special BattleTowerAction
 	opentext
 	writetext Text_BeatenAllTheTrainers_Mobile;$74ca
+	waitbutton
+	readvar VAR_BLUECARDBALANCE
+	ifnotequal 255, Idk3
+	writetext Text_CardFull
+	waitbutton
 	sjump Idk3;$71b4
+
+.CardFull
+	loadvar VAR_BLUECARDBALANCE, 255
+	sjump .continue
 
 Script_TooMuchTimeElapsedNoRegister: ; 7a84
 	setval BATTLETOWERACTION_CHALLENGECANCELED
@@ -138,8 +152,22 @@ Script_TooMuchTimeElapsedNoRegister: ; 7a84
 	opentext
 	writetext Text_TooMuchTimeElapsedNoRegister
 	waitbutton
-	closetext
-	end
+	sjump Script_BattleTowerHopeToServeYouAgain
+
+Script_TooMuchTimeElapsedNoRegisterWin: ; 7a84
+	setval BATTLETOWERACTION_CHALLENGECANCELED
+	special BattleTowerAction
+	opentext
+	writetext Text_BeatenAllTheTrainers_Mobile;$74ca
+	waitbutton
+	readvar VAR_BLUECARDBALANCE
+	ifnotequal 255, .skip
+	writetext Text_CardFull
+	waitbutton
+.skip
+	writetext Text_TooMuchTimeElapsedNoRegister
+	waitbutton
+	sjump Script_BattleTowerHopeToServeYouAgain
 
 Script_ChallengeCanceled: ; 7a90
 	setval BATTLETOWERACTION_CHALLENGECANCELED
@@ -147,12 +175,42 @@ Script_ChallengeCanceled: ; 7a90
 	setval BATTLETOWERACTION_06
 	special BattleTowerAction
 	opentext
-;	writetext Text_ThanksForVisiting
-	writetext Text_ThankYou;$74be
+	writetext Text_ThanksForVisiting
+	promptbutton
 	writetext Text_WeHopeToServeYouAgain
 	waitbutton
 	closetext
 	end
+
+Script_ChallengeCanceledWin: ; 7a90
+	readvar VAR_BLUECARDBALANCE
+	ifgreater 244, .CardFull
+	addval 10
+	writevar VAR_BLUECARDBALANCE
+.continue
+	special SaveGameData
+	setval 10
+	getnum STRING_BUFFER_4
+	setval BATTLETOWERACTION_CHALLENGECANCELED
+	special BattleTowerAction
+	setval BATTLETOWERACTION_06
+	special BattleTowerAction
+	opentext
+	writetext Text_BeatenAllTheTrainers_Mobile;$74ca
+	waitbutton
+	readvar VAR_BLUECARDBALANCE
+	ifnotequal 255, .skip
+	writetext Text_CardFull
+	waitbutton
+.skip
+	writetext Text_WeHopeToServeYouAgain
+	waitbutton
+	closetext
+	end
+
+.CardFull
+	loadvar VAR_BLUECARDBALANCE, 255
+	sjump .continue
 
 Text_ReturnedAfterSave_Mobile: ; unreferenced
 	text "Potrai tornare"

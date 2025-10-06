@@ -9,10 +9,32 @@ PokeSeersHouse_MapScripts:
 SeerScript:
 	faceplayer
 	opentext
+	loadmem wBuffer1, 0
 	special PokeSeer
 	waitbutton
+	loadmem wSeerCaughtLevel, 0
+	setval TOWN_MAP
+	special UnusedFindItemInPCOrBag
+	iftrue .skip
+	readmem wBuffer1
+	ifequal 100, .TownMap
+.skip
 	closetext
 	end
+
+.TownMap
+	writetext TownMapText
+	waitbutton
+	verbosegiveitem TOWN_MAP
+	closetext
+	end
+	
+TownMapText:
+	text "Ti regalo la mia"
+	line "MAPPA CITTÀ."
+	
+	para "Te la meriti."
+	done
 
 PokeSeersHouse_MapEvents:
 	db 0, 0 ; filler

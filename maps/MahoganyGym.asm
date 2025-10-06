@@ -15,6 +15,8 @@ MahoganyGym_MapScripts:
 MahoganyGymPryceScript:
 	faceplayer
 	opentext
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .Rematch
 	checkevent EVENT_BEAT_PRYCE
 	iftrue .FightDone
 	writetext PryceText_Intro
@@ -48,6 +50,21 @@ MahoganyGymPryceScript:
 	writetext PryceText_IcyWindSpeech
 	waitbutton
 	closetext
+	end
+
+.Rematch
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .FightDone
+	checkflag ENGINE_PRYCE_REMATCH_DONE
+	iftrue .FightDone
+	writetext PryceText_Intro
+	waitbutton
+	closetext
+	winlosstext PryceText_Rematch, 0
+	loadtrainer PRYCE, PRYCE2
+	startbattle
+	reloadmapafterbattle
+	setflag ENGINE_PRYCE_REMATCH_DONE
 	end
 
 PryceScript_Defeat:
@@ -126,6 +143,8 @@ TrainerBoarderDouglas:
 MahoganyGymGuideScript:
 	faceplayer
 	opentext
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .MahoganyGymGuideRematchScript
 	checkevent EVENT_BEAT_PRYCE
 	iftrue .MahoganyGymGuideWinScript
 	writetext MahoganyGymGuideText
@@ -135,6 +154,16 @@ MahoganyGymGuideScript:
 
 .MahoganyGymGuideWinScript:
 	writetext MahoganyGymGuideWinText
+	waitbutton
+	closetext
+	end
+
+.MahoganyGymGuideRematchScript:
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .MahoganyGymGuideWinScript
+	checkflag ENGINE_PRYCE_REMATCH_DONE
+	iftrue .MahoganyGymGuideWinScript
+	writetext MahoganyGymGuideRematchText
 	waitbutton
 	closetext
 	end
@@ -192,6 +221,17 @@ PryceText_Impressed:
 	line "della PALESTRA!"
 	done
 
+PryceText_Rematch:
+	text "La tua forza mi"
+	line "ha impressionato!"
+
+	para "La tua volontà ti"
+	line "farà superare ogni"
+
+	para "ostacolo della"
+	line "vita."
+	done
+
 Text_ReceivedGlacierBadge:
 	text "<PLAYER> riceve la"
 	line "MEDAGLIA GELO."
@@ -199,11 +239,9 @@ Text_ReceivedGlacierBadge:
 
 PryceText_GlacierBadgeSpeech:
 	text "Questa MEDAGLIA"
-	line "migliora le STATI-"
-	cont "STICHE SPECIALI"
-	cont "dei #MON."
+	line "è tua!"
 
-	para "Inoltre, permette"
+	para "permette"
 	line "ai tuoi #MON"
 	cont "di usare MULINELLO"
 	cont "per superare i"
@@ -365,6 +403,14 @@ MahoganyGymGuideText:
 
 	para "tua bruciante"
 	line "ambizione!"
+	done
+
+MahoganyGymGuideRematchText:
+	text "ALFREDO non vede"
+	line "l'ora di sfidarti"
+	cont "nuovamente."
+	
+	para "metticela tutta!"
 	done
 
 MahoganyGymGuideWinText:

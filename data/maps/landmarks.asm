@@ -58,7 +58,7 @@ Landmarks:
 	landmark  52, 108, PalletTownName
 	landmark  52,  92, Route1Name
 	landmark  52,  76, ViridianCityName
-	landmark  52,  64, Route2Name
+	landmark  52,  68, Route2Name
 	landmark  52,  52, PewterCityName
 	landmark  64,  52, Route3Name
 	landmark  76,  52, MtMoonName
@@ -67,10 +67,10 @@ Landmarks:
 	landmark 100,  44, Route24Name
 	landmark 108,  36, Route25Name
 	landmark 100,  60, Route5Name
-	landmark 108,  76, UndergroundName
+	landmark 108,  60, UndergroundName
 	landmark 100,  76, Route6Name
 	landmark 100,  84, VermilionCityName
-	landmark  88,  60, DiglettsCaveName
+	landmark 108,  76, DiglettsCaveName
 	landmark  88,  68, Route7Name
 	landmark 116,  68, Route8Name
 	landmark 116,  52, Route9Name
@@ -104,6 +104,12 @@ Landmarks:
 	landmark  12, 100, TohjoFallsName
 	landmark  20,  68, Route28Name
 	landmark 140, 116, FastShipName
+	landmark  92, 108, SafariZoneName
+	landmark  52,  60, ViridianForestName
+	landmark  92,  44, CeruleanCaveName
+	landmark 140,  64, PokemonTowerName
+	landmark 132,  64, Route10SouthName
+	landmark  36, 100, UnderwaterName
 	assert_table_length NUM_LANDMARKS
 
 NewBarkTownName:     	db "BORGO¯FOGLIANOVA@"
@@ -144,8 +150,8 @@ FuchsiaCityName:     	db "FUCSIAPOLI@"
 CinnabarIslandName:  	db "ISOLA¯CANNELLA@"
 IndigoPlateauName:   	db "ALTOPIANO¯BLU@"
 VictoryRoadName:     	db "VIA¯VITTORIA@"
-MtMoonName:          	db "MONTELUNA@"
-RockTunnelName:      	db "TUNNEL%ROCCIOSO@"
+MtMoonName:          	db "MONTE LUNA@"
+RockTunnelName:      	db "TUNNEL¯ROCCIOSO@"
 LavRadioTowerName:   	db "TORRE RADIO¯LAV@"
 SilphCoName:         	db "SILPH SPA@"
 SafariZoneName:      	db "ZONA SAFARI@"
@@ -202,9 +208,12 @@ DarkCaveName:        	db "GROTTA¯SCURA@"
 IlexForestName:      	db "BOSCO DI¯LECCI@"
 BurnedTowerName:     	db "TORRE¯BRUCIATA@"
 FastShipName:        	db "NAVE VELOCE@"
-ViridianForestName:  	db "BOSCO%SMERALDO@"
+ViridianForestName:  	db "BOSCO¯SMERALDO@"
 DiglettsCaveName:    	db "GROTTA¯DIGLETT@"
 TohjoFallsName:      	db "CASCATE¯TOHJO@"
 UndergroundName:     	db "SOTTERRANEI@"
 BattleTowerName:     	db "TORRE¯LOTTA@"
 SpecialMapName:      	db "SPECIALE@"
+Route10SouthName:		db "PERCORSO 10@"
+UnderwaterName:			db "SOTT'ACQUA@"
+PokemonTowerName:     	db "TORRE¯POKéMON@"

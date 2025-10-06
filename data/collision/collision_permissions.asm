@@ -7,7 +7,7 @@ TileCollisionTable::
 	db LAND_TILE         ; COLL_03
 	db LAND_TILE         ; COLL_04
 	db LAND_TILE         ; 05
-	db LAND_TILE         ; 06
+	db WALL_TILE 	     ; COLL_ROCKY_WALL
 	db WALL_TILE         ; COLL_WALL
 	db LAND_TILE         ; COLL_CUT_08
 	db LAND_TILE         ; 09
@@ -43,8 +43,8 @@ TileCollisionTable::
 	db WALL_TILE         ; COLL_BUOY
 	db WATER_TILE        ; COLL_CUT_28
 	db WATER_TILE        ; COLL_WATER
-	db WATER_TILE | TALK ; 2a
-	db LAND_TILE         ; COLL_ICE_2B
+	db WATER_TILE | TALK ; DIVE_DOWN
+	db LAND_TILE  | TALK ; DIVE_UP
 	db WATER_TILE | TALK ; COLL_WHIRLPOOL_2C
 	db WATER_TILE        ; 2d
 	db WATER_TILE        ; 2e
@@ -129,11 +129,11 @@ TileCollisionTable::
 	db LAND_TILE         ; COLL_DOOR_7D
 	db LAND_TILE         ; COLL_WARP_CARPET_RIGHT
 	db LAND_TILE         ; COLL_WARP_7F
-	db WALL_TILE         ; 80
-	db WALL_TILE         ; 81
-	db WALL_TILE         ; 82
-	db WALL_TILE         ; 83
-	db WALL_TILE         ; 84
+	db LAND_TILE         ; COLL_STOP_SPIN
+	db LAND_TILE         ; COLL_SPIN_UP
+	db LAND_TILE         ; COLL_SPIN_DOWN
+	db LAND_TILE         ; COLL_SPIN_LEFT
+	db LAND_TILE         ; COLL_SPIN_RIGHT
 	db LAND_TILE         ; 85
 	db LAND_TILE         ; 86
 	db LAND_TILE         ; 87
