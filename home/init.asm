@@ -97,6 +97,14 @@ Init::
 	call ClearSprites
 	call ClearsScratch
 
+	; Set up LCD interrupt handler
+	ld a, RETI_INSTRUCTION
+	ldh [hFunctionInstruction], a
+	ld a, LOW(LCDGeneric)
+	ldh [hFunctionTargetLo], a
+	ld a, HIGH(LCDGeneric)
+	ldh [hFunctionTargetHi], a
+
 	ld a, BANK(WriteOAMDMACodeToHRAM) ; aka BANK(GameInit)
 	rst Bankswitch
 
@@ -148,9 +156,7 @@ Init::
 
 	ldh a, [hCGB]
 	and a
-	jr z, .no_double_speed
-	call NormalSpeed
-.no_double_speed
+	call nz, DoubleSpeed
 
 	xor a
 	ldh [rIF], a
@@ -186,7 +192,7 @@ ClearVRAM::
 ClearWRAM::
 ; Wipe swappable WRAM banks (1-7)
 ; Assumes CGB or AGB
-; BUG: ClearWRAM only clears WRAM bank 1 (see docs/bugs_and_glitches.md)
+; BUGfixed: ClearWRAM only clears WRAM bank 1 (see docs/bugs_and_glitches.md)
 
 	ld a, 1
 .bank_loop
@@ -199,7 +205,7 @@ ClearWRAM::
 	pop af
 	inc a
 	cp 8
-	jr nc, .bank_loop
+	jr c, .bank_loop
 	ret
 
 ClearsScratch::
