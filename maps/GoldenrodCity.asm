@@ -32,9 +32,9 @@ GoldenrodCityFlypointAndFloriaCallback:
 	endcallback
 
 GoldenrodCityMoveTutorCallback:
-	checkevent EVENT_BEAT_ELITE_FOUR
+	checkevent EVENT_CLEARED_RADIO_TOWER
 	iffalse .MoveTutorDone
-	checkitem COIN_CASE
+	checkitem BLUE_CARD
 	iffalse .MoveTutorDisappear
 	readvar VAR_WEEKDAY
 	ifequal WEDNESDAY, .MoveTutorAppear
@@ -56,55 +56,432 @@ MoveTutorScript:
 	writetext GoldenrodCityMoveTutorAskTeachAMoveText
 	yesorno
 	iffalse .Refused
-	special DisplayCoinCaseBalance
 	writetext GoldenrodCityMoveTutorAsk4000CoinsOkayText
+	special PrintBlueCardBalance
 	yesorno
 	iffalse .Refused2
-	checkcoins 4000
-	ifequal HAVE_LESS, .NotEnoughMoney
 	writetext GoldenrodCityMoveTutorWhichMoveShouldITeachText
+	waitbutton
+	loadmem wBuffer1, 1
+.ReturnTeach
+	writetext GoldenrodCityMoveTutorWhichMoveShouldText
 	loadmenu .MoveMenuHeader
 	verticalmenu
 	closewindow
-	ifequal MOVETUTOR_FLAMETHROWER, .Flamethrower
-	ifequal MOVETUTOR_THUNDERBOLT, .Thunderbolt
-	ifequal MOVETUTOR_ICE_BEAM, .IceBeam
-	sjump .Incompatible
+	ifequal 1, .Moves1
+	ifequal 2, .Moves2
+	ifequal 3, .Moves3
+	ifequal 4, .Moves4
+	readmem wBuffer1
+	ifequal 1, .Incompatible
+	sjump .FarewellKid
 
-.Flamethrower:
-	setval MOVETUTOR_FLAMETHROWER
+.MovesTeach1
+	scall .TeachScript
+.Moves1
 	writetext GoldenrodCityMoveTutorMoveText
-	special MoveTutor
-	ifequal FALSE, .TeachMove
-	sjump .Incompatible
+	loadmenu .MoveMenu1Header
+	verticalmenu
+	closewindow
+	ifequal 1, .MegaPunch
+	ifequal 2, .SwordsDance
+	ifequal 3, .Whirlwind
+	ifequal 4, .MegaKick
+	ifequal 5, .BodySlam
+	ifequal 6, .DoubleEdge
+	ifequal 7, .IceBeam
+	sjump .ReturnTeach
 
-.Thunderbolt:
-	setval MOVETUTOR_THUNDERBOLT
+.MovesTeach2
+	scall .TeachScript
+.Moves2
 	writetext GoldenrodCityMoveTutorMoveText
-	special MoveTutor
-	ifequal FALSE, .TeachMove
-	sjump .Incompatible
+	loadmenu .MoveMenu2Header
+	verticalmenu
+	closewindow
+	ifequal 1, .Submission
+	ifequal 2, .Counter
+	ifequal 3, .SeismicToss
+	ifequal 4, .Thunderbolt
+	ifequal 5, .Mimic
+	ifequal 6, .Reflect
+	ifequal 7, .Metronome
+	sjump .ReturnTeach
 
-.IceBeam:
-	setval MOVETUTOR_ICE_BEAM
+.MovesTeach3
+	scall .TeachScript
+.Moves3
 	writetext GoldenrodCityMoveTutorMoveText
+	loadmenu .MoveMenu3Header
+	verticalmenu
+	closewindow
+	ifequal 1, .Softboiled
+	ifequal 2, .SkyAttack
+	ifequal 3, .ThunderWave
+	ifequal 4, .Explosion
+	ifequal 5, .RockSlide
+	ifequal 6, .TriAttack
+	ifequal 7, .Substitute
+	sjump .ReturnTeach
+
+.MovesTeach4
+	scall .TeachScript
+.Moves4
+	writetext GoldenrodCityMoveTutorMoveText
+	loadmenu .MoveMenu4Header
+	verticalmenu
+	closewindow
+	ifequal 1, .Flamethrower
+	ifequal 2, .LightScreen
+	ifequal 3, .Outrage
+	ifequal 4, .PainSplit
+	ifequal 5, .HealBell
+	ifequal 6, .MirrorCoat
+	ifequal 7, .FalseSwipe
+	sjump .ReturnTeach
+
+.MegaPunch
+	farscall RadioTowerBuenaPrizeReceptionist.Cost2
+	iffalse .Moves1
+	setval MEGA_PUNCH
 	special MoveTutor
-	ifequal FALSE, .TeachMove
-	sjump .Incompatible
+	ifnotequal FALSE, .Moves1
+	farscall RadioTowerBuenaPrizeReceptionist.Pay2
+	sjump .MovesTeach1
+
+.SwordsDance
+	farscall RadioTowerBuenaPrizeReceptionist.Cost20
+	iffalse .Moves1
+	setval SWORDS_DANCE
+	special MoveTutor
+	ifnotequal FALSE, .Moves1
+	farscall RadioTowerBuenaPrizeReceptionist.Pay20
+	sjump .MovesTeach1
+
+.Whirlwind
+	farscall RadioTowerBuenaPrizeReceptionist.Cost10
+	iffalse .Moves1
+	setval WHIRLWIND
+	special MoveTutor
+	ifnotequal FALSE, .Moves1
+	farscall RadioTowerBuenaPrizeReceptionist.Pay10
+	sjump .MovesTeach1
+
+.MegaKick
+	farscall RadioTowerBuenaPrizeReceptionist.Cost3
+	iffalse .Moves1
+	setval MEGA_KICK
+	special MoveTutor
+	ifnotequal FALSE, .Moves1
+	farscall RadioTowerBuenaPrizeReceptionist.Pay3
+	sjump .MovesTeach1
+
+.BodySlam
+	farscall RadioTowerBuenaPrizeReceptionist.Cost10
+	iffalse .Moves1
+	setval BODY_SLAM
+	special MoveTutor
+	ifnotequal FALSE, .Moves1
+	farscall RadioTowerBuenaPrizeReceptionist.Pay10
+	sjump .MovesTeach1
+
+.DoubleEdge
+	farscall RadioTowerBuenaPrizeReceptionist.Cost10
+	iffalse .Moves1
+	setval DOUBLE_EDGE
+	special MoveTutor
+	ifnotequal FALSE, .Moves1
+	farscall RadioTowerBuenaPrizeReceptionist.Pay10
+	sjump .MovesTeach1
+
+.IceBeam
+	farscall RadioTowerBuenaPrizeReceptionist.Cost20
+	iffalse .Moves1
+	setval ICE_BEAM
+	special MoveTutor
+	ifnotequal FALSE, .Moves1
+	farscall RadioTowerBuenaPrizeReceptionist.Pay20
+	sjump .MovesTeach1
+
+.Submission
+	farscall RadioTowerBuenaPrizeReceptionist.Cost10
+	iffalse .Moves2
+	setval SUBMISSION
+	special MoveTutor
+	ifnotequal FALSE, .Moves2
+	farscall RadioTowerBuenaPrizeReceptionist.Pay10
+	sjump .MovesTeach2
+
+.Counter
+	farscall RadioTowerBuenaPrizeReceptionist.Cost20
+	iffalse .Moves2
+	setval COUNTER
+	special MoveTutor
+	ifnotequal FALSE, .Moves2
+	farscall RadioTowerBuenaPrizeReceptionist.Pay20
+	sjump .MovesTeach2
+	
+.SeismicToss
+	farscall RadioTowerBuenaPrizeReceptionist.Cost10
+	iffalse .Moves2
+	setval SEISMIC_TOSS
+	special MoveTutor
+	ifnotequal FALSE, .Moves2
+	farscall RadioTowerBuenaPrizeReceptionist.Pay10
+	sjump .MovesTeach2
+	
+.Thunderbolt
+	farscall RadioTowerBuenaPrizeReceptionist.Cost20
+	iffalse .Moves2
+	setval THUNDERBOLT
+	special MoveTutor
+	ifnotequal FALSE, .Moves2
+	farscall RadioTowerBuenaPrizeReceptionist.Pay20
+	sjump .MovesTeach2
+
+.Mimic
+	farscall RadioTowerBuenaPrizeReceptionist.Cost3
+	iffalse .Moves2
+	setval MIMIC
+	special MoveTutor
+	ifnotequal FALSE, .Moves2
+	farscall RadioTowerBuenaPrizeReceptionist.Pay3
+	sjump .MovesTeach2
+
+.Reflect
+	farscall RadioTowerBuenaPrizeReceptionist.Cost10
+	iffalse .Moves2
+	setval REFLECT
+	special MoveTutor
+	ifnotequal FALSE, .Moves2
+	farscall RadioTowerBuenaPrizeReceptionist.Pay10
+	sjump .MovesTeach2
+
+.Metronome
+	farscall RadioTowerBuenaPrizeReceptionist.Cost30
+	iffalse .Moves2
+	setval METRONOME
+	special MoveTutor
+	ifnotequal FALSE, .Moves2
+	farscall RadioTowerBuenaPrizeReceptionist.Pay30
+	sjump .MovesTeach2
+
+.Softboiled
+	farscall RadioTowerBuenaPrizeReceptionist.Cost30
+	iffalse .Moves3
+	setval SOFTBOILED
+	special MoveTutor
+	ifnotequal FALSE, .Moves3
+	farscall RadioTowerBuenaPrizeReceptionist.Pay30
+	sjump .MovesTeach3
+
+.SkyAttack
+	farscall RadioTowerBuenaPrizeReceptionist.Cost10
+	iffalse .Moves3
+	setval SKY_ATTACK
+	special MoveTutor
+	ifnotequal FALSE, .Moves3
+	farscall RadioTowerBuenaPrizeReceptionist.Pay10
+	sjump .MovesTeach3
+
+.ThunderWave
+	farscall RadioTowerBuenaPrizeReceptionist.Cost20
+	iffalse .Moves3
+	setval THUNDER_WAVE
+	special MoveTutor
+	ifnotequal FALSE, .Moves3
+	farscall RadioTowerBuenaPrizeReceptionist.Pay20
+	sjump .MovesTeach3
+
+.Explosion
+	farscall RadioTowerBuenaPrizeReceptionist.Cost50
+	iffalse .Moves3
+	setval EXPLOSION
+	special MoveTutor
+	ifnotequal FALSE, .Moves3
+	farscall RadioTowerBuenaPrizeReceptionist.Pay50
+	sjump .MovesTeach3
+
+.RockSlide
+	farscall RadioTowerBuenaPrizeReceptionist.Cost10
+	iffalse .Moves3
+	setval ROCK_SLIDE
+	special MoveTutor
+	ifnotequal FALSE, .Moves3
+	farscall RadioTowerBuenaPrizeReceptionist.Pay10
+	sjump .MovesTeach3
+
+.TriAttack
+	farscall RadioTowerBuenaPrizeReceptionist.Cost10
+	iffalse .Moves3
+	setval TRI_ATTACK
+	special MoveTutor
+	ifnotequal FALSE, .Moves3
+	farscall RadioTowerBuenaPrizeReceptionist.Pay10
+	sjump .MovesTeach3
+
+.Substitute
+	farscall RadioTowerBuenaPrizeReceptionist.Cost20
+	iffalse .Moves3
+	setval SUBSTITUTE
+	special MoveTutor
+	ifnotequal FALSE, .Moves3
+	farscall RadioTowerBuenaPrizeReceptionist.Pay20
+	sjump .MovesTeach3
+
+.Flamethrower
+	farscall RadioTowerBuenaPrizeReceptionist.Cost20
+	iffalse .Moves4
+	setval FLAMETHROWER
+	special MoveTutor
+	ifnotequal FALSE, .Moves4
+	farscall RadioTowerBuenaPrizeReceptionist.Pay20
+	sjump .MovesTeach4
+
+.LightScreen
+	farscall RadioTowerBuenaPrizeReceptionist.Cost10
+	iffalse .Moves4
+	setval LIGHT_SCREEN
+	special MoveTutor
+	ifnotequal FALSE, .Moves4
+	farscall RadioTowerBuenaPrizeReceptionist.Pay10
+	sjump .MovesTeach4
+
+.Outrage
+	farscall RadioTowerBuenaPrizeReceptionist.Cost10
+	iffalse .Moves4
+	setval OUTRAGE
+	special MoveTutor
+	ifnotequal FALSE, .Moves4
+	farscall RadioTowerBuenaPrizeReceptionist.Pay10
+	sjump .MovesTeach4
+
+.PainSplit
+	farscall RadioTowerBuenaPrizeReceptionist.Cost20
+	iffalse .Moves4
+	setval PAIN_SPLIT
+	special MoveTutor
+	ifnotequal FALSE, .Moves4
+	farscall RadioTowerBuenaPrizeReceptionist.Pay20
+	sjump .MovesTeach4
+
+.HealBell
+	farscall RadioTowerBuenaPrizeReceptionist.Cost10
+	iffalse .Moves4
+	setval HEAL_BELL
+	special MoveTutor
+	ifnotequal FALSE, .Moves4
+	farscall RadioTowerBuenaPrizeReceptionist.Pay10
+	sjump .MovesTeach4
+
+.MirrorCoat
+	farscall RadioTowerBuenaPrizeReceptionist.Cost20
+	iffalse .Moves4
+	setval MIRROR_COAT
+	special MoveTutor
+	ifnotequal FALSE, .Moves4
+	farscall RadioTowerBuenaPrizeReceptionist.Pay20
+	sjump .MovesTeach4
+
+.FalseSwipe
+	farscall RadioTowerBuenaPrizeReceptionist.Cost2
+	iffalse .Moves4
+	setval FALSE_SWIPE
+	special MoveTutor
+	ifnotequal FALSE, .Moves4
+	farscall RadioTowerBuenaPrizeReceptionist.Pay2
+	sjump .MovesTeach4
 
 .MoveMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 0, 2, 15, TEXTBOX_Y - 1
+	menu_coords 0, 0, 9, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 
 .MenuData:
-	db STATICMENU_CURSOR ; flags
-	db 4 ; items
-	db "LANCIAFIAMME@"
-	db "FULMINE@"
-	db "GELORAGGIO@"
+	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
+	db 5 ; items
+	db "MENU 1@"
+	db "MENU 2@"
+	db "MENU 3@"
+	db "MENU 4@"
 	db "ESCI@"
+
+.MoveMenu1Header:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 2, 19, 17
+	dw .MenuData1
+	db 1 ; default option
+
+.MenuData1:
+	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
+	db 7 ; items
+	db "MEGAPUGNO       2@"
+	db "DANZASPADA     20@"
+	db "TURBINE        10@"
+	db "MEGACALCIO      3@"
+	db "BODY SLAM      10@"
+	db "SDOPPIATORE    10@"
+	db "GELORAGGIO     20@"
+
+.MoveMenu2Header:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 2, 19, 17
+	dw .MenuData2
+	db 1 ; default option
+
+.MenuData2:
+	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
+	db 7 ; items
+	db "SOTTOMISS.     10@"
+	db "CONTATORE      20@"
+	db "MOV. SISMICO   10@"
+	db "FULMINE        20@"
+	db "MIMICA          3@"
+	db "RIFLESSO       10@"
+	db "METRONOMO      30@"
+
+.MoveMenu3Header:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 2, 19, 17
+	dw .MenuData3
+	db 1 ; default option
+
+.MenuData3:
+	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
+	db 7 ; items
+	db "COVAUOVA       30@"
+	db "AEROATTACCO    10@"
+	db "TUONONDA       20@"
+	db "ESPLOSIONE     50@"
+	db "FRANA          10@"
+	db "TRIPLETTA      10@"
+	db "SOSTITUTO      20@"
+	
+.MoveMenu4Header:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 2, 19, 17
+	dw .MenuData4
+	db 1 ; default option
+
+.MenuData4:
+	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
+	db 7 ; items
+	db "LANCIAFIAMME   20@"
+	db "SCHERMO-LUCE   10@"
+	db "OLTRAGGIO      10@"
+	db "MALCOMUNE      20@"
+	db "RINTOCCASANA   10@"
+	db "SPECCHIOVELO   20@"
+	db "FALSOFINALE     2@"
+
+.TeachScript
+	writetext GoldenrodCityMoveTutorWhichMoveShouldITeachText
+	promptbutton
+	waitsfx
+	playsound SFX_TRANSACTION
+	special PrintBlueCardBalance
+	end
 
 .Refused:
 	writetext GoldenrodCityMoveTutorAwwButTheyreAmazingText
@@ -118,13 +495,13 @@ MoveTutorScript:
 	closetext
 	end
 
-.TeachMove:
-	writetext GoldenrodCityMoveTutorIfYouUnderstandYouveMadeItText
-	promptbutton
-	takecoins 4000
-	waitsfx
-	playsound SFX_TRANSACTION
-	special DisplayCoinCaseBalance
+.Incompatible:
+	writetext GoldenrodCityMoveTutorBButText
+	waitbutton
+	closetext
+	end
+
+.FarewellKid:
 	writetext GoldenrodCityMoveTutorFarewellKidText
 	waitbutton
 	closetext
@@ -143,13 +520,7 @@ MoveTutorScript:
 	waitsfx
 	end
 
-.Incompatible:
-	writetext GoldenrodCityMoveTutorBButText
-	waitbutton
-	closetext
-	end
-
-.NotEnoughMoney:
+.NotEnoughMoney: ; unreferenced now
 	writetext GoldenrodCityMoveTutorYouDontHaveEnoughCoinsText
 	waitbutton
 	closetext
@@ -280,6 +651,10 @@ GoldenrodCityMoveTutorWalkAroundPlayerThenEnterGameCornerMovement:
 	step UP
 	step UP
 	step_end
+
+GoldenrodCityMoveTutorBButText:
+	text "M-m-ma…"
+	done
 
 GoldenrodCityPokefanMText:
 	text "La nuova TORRE"
@@ -503,8 +878,9 @@ GoldenrodCityMoveTutorAskTeachAMoveText:
 	done
 
 GoldenrodCityMoveTutorAsk4000CoinsOkayText:
-	text "Ti costerà 4000"
-	line "gettoni. Va bene?"
+	text "Userai i punti"
+	line "della CARTA BLU."
+	cont "Va bene?"
 	done
 
 GoldenrodCityMoveTutorAwwButTheyreAmazingText:
@@ -515,8 +891,10 @@ GoldenrodCityMoveTutorAwwButTheyreAmazingText:
 GoldenrodCityMoveTutorWhichMoveShouldITeachText:
 	text "Benone! Non te ne"
 	line "pentirai!"
+	done
 
-	para "Quale mossa"
+GoldenrodCityMoveTutorWhichMoveShouldText:
+	text "Quale mossa"
 	line "preferisci?"
 	done
 
@@ -527,22 +905,9 @@ GoldenrodCityMoveTutorHmTooBadText:
 	cont "a casa…"
 	done
 
-GoldenrodCityMoveTutorIfYouUnderstandYouveMadeItText:
-	text "Se ci sai davvero"
-	line "fare con i #MON"
-
-	para "capirai perché"
-	line "questa mossa è"
-	cont "così eccezionale."
-	done
-
 GoldenrodCityMoveTutorFarewellKidText:
 	text "Ahahah!"
 	line "Addio!"
-	done
-
-GoldenrodCityMoveTutorBButText:
-	text "M-m-ma…"
 	done
 
 GoldenrodCityMoveTutorYouDontHaveEnoughCoinsText:

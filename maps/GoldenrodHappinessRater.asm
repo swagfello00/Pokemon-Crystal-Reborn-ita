@@ -24,6 +24,16 @@ GoldenrodHappinessRaterTeacherScript:
 .LovesYouALot:
 	writetext GoldenrodHappinessRatingText_LovesYouALot
 	waitbutton
+	setval SOETHE_BELL
+	special UnusedFindItemInPCOrBag
+	iffalse .SoetheBell
+	closetext
+	end
+
+.SoetheBell
+	writetext SoetheBellText
+	waitbutton
+	verbosegiveitem SOETHE_BELL
 	closetext
 	end
 
@@ -80,6 +90,15 @@ GoldenrodHappinessRaterTeacherText:
 	line "il tuo @"
 	text_ram wStringBuffer3
 	text "…"
+	done
+
+SoetheBellText:
+	text "Tieni questo"
+	line "strumento."
+	
+	para "Renderà i tuoi"
+	line "#MON più"
+	cont "amichevoli."
 	done
 
 GoldenrodHappinessRatingText_LovesYouALot:

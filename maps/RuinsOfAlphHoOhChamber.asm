@@ -55,6 +55,9 @@ RuinsOfAlphHoOhChamberPuzzle:
 	end
 
 .PuzzleComplete:
+	opentext
+	verbosegiveitem SACRED_ASH, 1
+	closetext
 	setevent EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
 	setevent EVENT_SOLVED_HO_OH_PUZZLE
 	setflag ENGINE_UNLOCKED_UNOWNS_X_TO_Z

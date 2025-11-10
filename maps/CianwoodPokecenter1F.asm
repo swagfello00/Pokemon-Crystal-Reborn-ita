@@ -17,6 +17,8 @@ CianwoodPokecenter1FLassScript:
 
 CianwoodGymGuideScript:
 	faceplayer
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .CianwoodGymGuideRematchScript
 	checkevent EVENT_BEAT_CHUCK
 	iftrue .CianwoodGymGuideWinScript
 	opentext
@@ -28,6 +30,16 @@ CianwoodGymGuideScript:
 .CianwoodGymGuideWinScript:
 	opentext
 	writetext CianwoodGymGuideWinText
+	waitbutton
+	closetext
+	end
+
+.CianwoodGymGuideRematchScript:
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .CianwoodGymGuideWinScript
+	checkflag ENGINE_CHUCK_REMATCH_DONE
+	iftrue .CianwoodGymGuideWinScript
+	writetext CianwoodGymGuideRematchText
 	waitbutton
 	closetext
 	end
@@ -131,6 +143,15 @@ CianwoodPokecenter1FSuperNerdText:
 	para "un bel po' di"
 	line "lotte!"
 	done
+
+CianwoodGymGuideRematchText:
+  text "FURIO ti sta"
+  line "aspettando."
+  
+  para "Affrontalo di"
+  line "nuovo con tutta la"
+  cont "forza che hai!"
+  done
 
 CianwoodPokecenter1F_MapEvents:
 	db 0, 0 ; filler

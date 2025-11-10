@@ -22,6 +22,7 @@ GoldenrodBikeShopClerkScript:
 	waitsfx
 	giveitem BICYCLE
 	writetext BorrowedABicycleText
+	waitsfx
 	playsound SFX_KEY_ITEM
 	waitsfx
 	itemnotify

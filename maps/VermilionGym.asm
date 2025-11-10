@@ -13,6 +13,8 @@ VermilionGym_MapScripts:
 VermilionGymSurgeScript:
 	faceplayer
 	opentext
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .Rematch
 	checkflag ENGINE_THUNDERBADGE
 	iftrue .FightDone
 	writetext LtSurgeIntroText
@@ -40,6 +42,21 @@ VermilionGymSurgeScript:
 	writetext LtSurgeFightDoneText
 	waitbutton
 	closetext
+	end
+
+.Rematch
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .FightDone
+	checkflag ENGINE_SURGE_REMATCH_DONE
+	iftrue .FightDone
+	writetext LtSurgeIntroText
+	waitbutton
+	closetext
+	winlosstext LtSurgeRematchText, 0
+	loadtrainer LT_SURGE, LT_SURGE1
+	startbattle
+	reloadmapafterbattle
+	setflag ENGINE_SURGE_REMATCH_DONE
 	end
 
 TrainerGentlemanGregory:
@@ -78,6 +95,8 @@ TrainerJugglerHorton:
 VermilionGymGuideScript:
 	faceplayer
 	opentext
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .VermilionGymGuideRematchScript
 	checkevent EVENT_BEAT_LTSURGE
 	iftrue .VermilionGymGuideWinScript
 	writetext VermilionGymGuideText
@@ -87,6 +106,16 @@ VermilionGymGuideScript:
 
 .VermilionGymGuideWinScript:
 	writetext VermilionGymGuideWinText
+	waitbutton
+	closetext
+	end
+
+.VermilionGymGuideRematchScript:
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .VermilionGymGuideWinScript
+	checkflag ENGINE_SURGE_REMATCH_DONE
+	iftrue .VermilionGymGuideWinScript
+	writetext VermilionGymGuideRematchText
 	waitbutton
 	closetext
 	end
@@ -133,6 +162,11 @@ LtSurgeWinLossText:
 	line "la MEDAGLIA TUONO."
 	done
 
+LtSurgeRematchText:
+	text "SURGE: Arrrg!"
+	line "Allora sei forte!"
+	done
+
 ReceivedThunderBadgeText:
 	text "<PLAYER> riceve la"
 	line "MEDAGLIA TUONO."
@@ -140,9 +174,7 @@ ReceivedThunderBadgeText:
 
 LtSurgeThunderBadgeText:
 	text "SURGE: La MEDAGLIA"
-	line "TUONO aumenta la"
-	cont "velocità dei"
-	cont "#MON."
+	line "TUONO è tua!"
 
 	para "È la prova che"
 	line "mi hai battuto!"
@@ -258,6 +290,17 @@ VermilionGymGuideWinText:
 VermilionGymTrashCanText:
 	text "Ehi, qui c'è solo"
 	line "spazzatura."
+	done
+
+VermilionGymGuideRematchText:
+	text "LT.SURGE non teme"
+	line "alcun avversario!"
+	
+	para "Affrontalo ancora"
+	line "una volta e"
+	
+	para "dimostra le tue"
+	line "capacità."
 	done
 
 VermilionGym_MapEvents:
