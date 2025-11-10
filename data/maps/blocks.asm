@@ -1,8 +1,5 @@
 SECTION "Map Blocks 1", ROMX
 
-Route32_Blocks:
-	INCBIN "maps/Route32.blk"
-
 Route40_Blocks:
 	INCBIN "maps/Route40.blk"
 
@@ -212,6 +209,8 @@ Route40BattleTowerGate_Blocks:
 Route2Gate_Blocks:
 Route29Route46Gate_Blocks:
 Route5SaffronGate_Blocks:
+Route2NorthGate_Blocks:
+Route2SouthGate_Blocks:
 	INCBIN "maps/NorthSouthGate.blk"
 
 BetaEcruteakCity_Blocks: ; unreferenced
@@ -307,9 +306,6 @@ Route5_Blocks:
 Route9_Blocks:
 	INCBIN "maps/Route9.blk"
 
-Route22_Blocks:
-	INCBIN "maps/Route22.blk"
-
 
 SECTION "Map Blocks 2", ROMX
 
@@ -361,6 +357,7 @@ CianwoodPokecenter1F_Blocks:
 ViridianPokecenter1F_Blocks:
 SaffronPokecenter1F_Blocks:
 CherrygrovePokecenter1F_Blocks:
+Route3Pokecenter1F_Blocks:
 	INCBIN "maps/Pokecenter1F.blk"
 
 BetaPewterMuseumOfScience1F_Blocks: ; unreferenced
@@ -929,6 +926,7 @@ RockTunnelB1F_Blocks:
 	INCBIN "maps/RockTunnelB1F.blk"
 
 DiglettsCave_Blocks:
+SeafoamIslands1F_Blocks:
 	INCBIN "maps/DiglettsCave.blk"
 
 MountMoon_Blocks:
@@ -1046,3 +1044,66 @@ BetaBlank_Blocks: ; unreferenced
 
 GoldenrodDeptStoreRoof_Blocks:
 	INCBIN "maps/GoldenrodDeptStoreRoof.blk"
+
+Route41Underwater_Blocks:
+	INCBIN "maps/Route41Underwater.blk"
+
+Route41UnderwaterCave_Blocks:
+	INCBIN "maps/Route41UnderwaterCave.blk"
+
+Route22_Blocks:
+	INCBIN "maps/Route22.blk"
+
+Route32_Blocks:
+	INCBIN "maps/Route32.blk"
+	
+ViridianForest_Blocks:
+	INCBIN "maps/ViridianForest.blk"
+	
+SeafoamIslandsB1F_Blocks:
+	INCBIN "maps/SeafoamIslandsB1F.blk"
+	
+SeafoamIslandsB2F_Blocks:
+	INCBIN "maps/SeafoamIslandsB2F.blk"
+
+SeafoamIslandsB3F_Blocks:
+	INCBIN "maps/SeafoamIslandsB3F.blk"
+	
+SeafoamIslandsB4F_Blocks:
+	INCBIN "maps/SeafoamIslandsB4F.blk"
+	
+CeruleanCave1F_Blocks:
+	INCBIN "maps/CeruleanCave1F.blk"
+	
+CeruleanCave2F_Blocks:
+	INCBIN "maps/CeruleanCave2F.blk"
+
+CeruleanCaveB1F_Blocks:
+	INCBIN "maps/CeruleanCaveB1F.blk"
+
+RocketHideoutB1F_Blocks:
+	INCBIN "maps/RocketHideoutB1F.blk"
+	
+RocketHideoutB2F_Blocks:
+	INCBIN "maps/RocketHideoutB2F.blk"
+
+RocketHideoutB3F_Blocks:
+	INCBIN "maps/RocketHideoutB3F.blk"
+	
+RocketHideoutB4F_Blocks:
+	INCBIN "maps/RocketHideoutB4F.blk"
+	
+RocketHideoutElevator_Blocks:
+	INCBIN "maps/RocketHideoutElevator.blk"
+
+PowerPlant2F_Blocks:
+	INCBIN "maps/PowerPlant2F.blk"
+
+PokemonTower6F_Blocks:
+	INCBIN "maps/PokemonTower6F.blk"
+
+PokemonTower7F_Blocks:
+	INCBIN "maps/PokemonTower7F.blk"
+
+VictoryRoad2F_Blocks:
+	INCBIN "maps/VictoryRoad2F.blk"

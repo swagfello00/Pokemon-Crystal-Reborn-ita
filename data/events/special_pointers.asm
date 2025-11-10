@@ -116,7 +116,7 @@ SpecialsPointers::
 	add_special GameboyCheck
 	add_special TrainerHouse
 	add_special PhotoStudio
-	add_special InitRoamMons
+	add_special InitRoamRaikou
 	add_special FadeOutMusic
 	add_special Diploma
 	add_special PrintDiploma
@@ -179,7 +179,20 @@ SpecialsPointers::
 	add_special AskRememberPassword
 	add_special LoadMapPalettes
 	add_special UnusedFindItemInPCOrBag
+	add_special Function1719c8
 
 	add_special InitialSetDSTFlag
 	add_special InitialClearDSTFlag
 	add_special UnusedDummySpecial ; unused
+	
+; New to Crystal Reborn
+	add_special TradebackNPC
+	add_special MoveReminder
+	add_special PrintBlueCardBalance
+	add_special MobileTradeAnimation_RetrieveGivemonFromGTS
+	add_special SaveGameData
+	add_special InitRoamEntei
+	add_special GiveMagikarpSpecialMove
+	add_special GivePikachuSpecialMoves
+	add_special CheckDexCaughtVar
+	add_special DisplayMoneyAndBlueCardBalance

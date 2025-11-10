@@ -98,19 +98,19 @@ Text_Gained::
 	text_end
 
 _BoostedExpPointsText::
-; BUG: Five-digit experience gain is printed incorrectly (see docs/bugs_and_glitches.md)
+; BUGfixed: Five-digit experience gain is printed incorrectly (see docs/bugs_and_glitches.md)
 	text_start
 	line "la bellezza di"
 	cont "@"
-	text_decimal wStringBuffer2, 2, 4
+	text_decimal wStringBuffer2, 2, 5
 	text " Punti ESP.!"
 	prompt
 
 _ExpPointsText::
-; BUG: Five-digit experience gain is printed incorrectly (see docs/bugs_and_glitches.md)
+; BUGfixed: Five-digit experience gain is printed incorrectly (see docs/bugs_and_glitches.md)
 	text_start
 	line "@"
-	text_decimal wStringBuffer2, 2, 4
+	text_decimal wStringBuffer2, 2, 5
 	text " Punti ESP."
 	prompt
 
@@ -310,6 +310,11 @@ _UseCutText::
 	line "TAGLIO!"
 	prompt
 
+_UseHMCutText::
+	text "<PLAYER> usa"
+	line "TAGLIO!"
+	prompt
+
 _CutNothingText::
 	text "Non c'è nulla su"
 	line "cui usare TAGLIO."
@@ -326,6 +331,11 @@ _BlindingFlashText::
 _UsedSurfText::
 	text_ram wStringBuffer2
 	text " usa"
+	line "SURF!"
+	done
+
+_UsedHMSurfText::
+	text "<PLAYER> usa"
 	line "SURF!"
 	done
 
@@ -350,6 +360,11 @@ _UseWaterfallText::
 	line "CASCATA!"
 	done
 
+_UseHMWaterfallText::
+	text "<PLAYER> usa"
+	line "CASCATA!"
+	done
+
 _HugeWaterfallText::
 	text "Ma è una"
 	line "cascata enorme!"
@@ -360,9 +375,42 @@ _AskWaterfallText::
 	line "CASCATA?"
 	done
 
+_CantDiveText::
+	text "Non è possibile"
+	line "fare SUB qui."
+	prompt
+
+_AskDiveDownText::
+	text "Il mare è"
+	line "profondo qui."
+	
+	para "Vuoi fare SUB?"
+	done
+
+_AskDiveUpText::
+	text "La luce filtra"
+	line "dall'alto."
+
+	para "Vuoi riemergere?"
+	done
+
+_UsedDiveUpText::
+	text "<PLAYER> riemerge!"
+	done
+
+_UsedDiveDownText::
+	text "<PLAYER> si immerge"
+	line "SOTT'ACQUA!"
+	done
+
 _UseDigText::
 	text_ram wStringBuffer2
 	text " usa"
+	line "FOSSA!"
+	done
+
+_UseTMDigText::
+	text "<PLAYER> usa"
 	line "FOSSA!"
 	done
 
@@ -397,9 +445,19 @@ _UseStrengthText::
 	line "FORZA!"
 	done
 
+_UseHMStrengthText::
+	text "<PLAYER> usa"
+	line "FORZA!"
+	done
+
 _MoveBoulderText::
 	text_ram wStringBuffer1
 	text " può"
+	line "spostare i massi."
+	prompt
+
+_MoveHMBoulderText::
+	text "<PLAYER> può"
 	line "spostare i massi."
 	prompt
 
@@ -427,6 +485,11 @@ _UseWhirlpoolText::
 	line "MULINELLO!"
 	prompt
 
+_UseHMWhirlpoolText::
+	text "<PLAYER> usa"
+	line "MULINELLO!"
+	prompt
+
 _MayPassWhirlpoolText::
 	text "È un insidioso"
 	line "mulinello."
@@ -449,6 +512,11 @@ _UseHeadbuttText::
 	line "BOTTINTESTA!"
 	prompt
 
+_UseTMHeadbuttText::
+	text "<PLAYER> usa"
+	line "BOTTINTESTA!"
+	prompt
+
 _HeadbuttNothingText::
 	text "Niente…"
 	done
@@ -465,6 +533,11 @@ _AskHeadbuttText::
 _UseRockSmashText::
 	text_ram wStringBuffer2
 	text " usa"
+	line "SPACCAROCCIA!"
+	prompt
+
+_UseTMRockSmashText::
+	text "<PLAYER> usa"
 	line "SPACCAROCCIA!"
 	prompt
 
@@ -562,21 +635,18 @@ _ItemfinderNopeText::
 _PoisonFaintText::
 	text_ram wStringBuffer3
 	text_start
-	line "è esausto!"
-	prompt
-
-_PoisonWhiteoutText::
-	text "<PLAYER> non ha più"
-	line "#MON utili!"
-
-	para "<PLAYER> è fuori"
-	line "combattimento!"
+	line "è sopravvissuto!"
 	prompt
 
 _UseSweetScentText::
 	text_ram wStringBuffer3
 	text_start
 	line "usa PROFUMINO!"
+	done
+
+_UseTMSweetScentText::
+	text "<PLAYER> usa"
+	line "PROFUMINO!"
 	done
 
 _SweetScentNothingText::
@@ -1077,7 +1147,7 @@ _LuckyNumberMatchPartyText::
 	line "con il num. d'id."
 
 	para "di @"
-	text_ram wStringBuffer1
+	text_decimal wBufferMonID, 2, 5
 	text ","
 	line "della tua squadra."
 	prompt
@@ -1089,7 +1159,7 @@ _LuckyNumberMatchPCText::
 	line "con il num. d'id."
 
 	para "di @"
-	text_ram wStringBuffer1
+	text_decimal wBufferMonID, 2, 5
 	text_start
 	line "nel tuo BOX PC."
 	prompt
@@ -1491,6 +1561,11 @@ _ItemCantHeldText::
 	line "non si può tenere."
 	prompt
 
+_CantPlaceMailInStorageText::
+	text "Non puoi collocare"
+	line "MESSAGGI nei BOX."
+	prompt
+
 _MailLoseMessageText::
 	text "Il MESSAGGIO per-"
 	line "derà il contenuto."
@@ -1588,3 +1663,24 @@ _OakText5::
 	line "i #MON tutti"
 	cont "i giorni."
 	prompt
+
+_AskRockClimbText::
+	text "Questa è una"
+	line "parete rocciosa…"
+
+	para "Vuoi usare"
+	line "SCALAROCCIA?"
+	done
+
+_UsedRockClimbText::
+	text "<PLAYER> usa"
+	line "SCALAROCCIA!"
+	prompt
+
+_CantRockClimbText::
+	text "Questa è una"
+	line "parete rocciosa…"
+
+	para "Con uno strumento"
+	line "si può scalare."
+	done
