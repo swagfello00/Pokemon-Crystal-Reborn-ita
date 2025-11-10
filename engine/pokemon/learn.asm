@@ -184,17 +184,10 @@ ForgetMove:
 	pop bc
 	pop de
 	ld a, d
-	jr c, .hmmove
 	pop hl
 	add hl, bc
 	and a
 	ret
-
-.hmmove
-	ld hl, MoveCantForgetHMText
-	call PrintText
-	pop hl
-	jr .loop
 
 .cancel
 	scf

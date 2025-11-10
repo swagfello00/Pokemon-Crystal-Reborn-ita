@@ -8,8 +8,13 @@ SweetScentFromMenu:
 .SweetScent:
 	reloadmappart
 	special UpdateTimePals
+	readmem wCurItem
+	ifequal TM_ZAP_CANNON, .UseTMSweetScent
 	callasm GetPartyNickname
+	callasm PrepareOverworldMove
+	farscall PokepicFunction
 	writetext UseSweetScentText
+.continue
 	waitbutton
 	callasm SweetScentEncounter
 	iffalse SweetScentNothing
@@ -19,6 +24,11 @@ SweetScentFromMenu:
 	startbattle
 	reloadmapafterbattle
 	end
+
+.UseTMSweetScent
+	writetext UseTMSweetScentText
+	loadmem wCurItem, 0
+	sjump .continue
 
 .BugCatchingContest:
 	farsjump BugCatchingContestBattleScript
@@ -59,6 +69,10 @@ SweetScentEncounter:
 
 UseSweetScentText:
 	text_far _UseSweetScentText
+	text_end
+
+UseTMSweetScentText:
+	text_far _UseTMSweetScentText
 	text_end
 
 SweetScentNothingText:

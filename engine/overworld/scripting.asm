@@ -1,5 +1,31 @@
 ; Event scripting commands.
 
+AppendTMHMMoveName::
+; a = item ID
+	ld a, [wNamedObjectIndex]
+	cp TM01
+	ret c
+; save item name buffer
+	push de
+; a = TM/HM number
+	ld c, a
+	farcall GetTMHMNumber
+	ld a, c
+; a = move ID
+	ld [wTempTMHM], a
+	predef GetTMHMMove
+	ld a, [wTempTMHM]
+; wStringBuffer1 = move name
+	ld [wNamedObjectIndex], a
+	call GetMoveName
+; hl = item name buffer
+	pop hl
+; append wStringBuffer1 to item name buffer
+	ld [hl], " "
+	inc hl
+	ld de, wStringBuffer1
+	jp CopyName2
+
 EnableScriptMode::
 	push af
 	ld a, SCRIPT_READ
@@ -234,6 +260,8 @@ ScriptCommandTable:
 	dw Script_getname                    ; a7
 	dw Script_wait                       ; a8
 	dw Script_checksave                  ; a9
+	dw Script_divemap					 ; aa
+	dw Script_divewarp					 ; ab
 	assert_table_length NUM_EVENT_COMMANDS
 
 StartScript:
@@ -457,6 +485,8 @@ Script_verbosegiveitem:
 	ld de, wStringBuffer1
 	ld a, STRING_BUFFER_4
 	call CopyConvertedText
+	ld de, wStringBuffer4 + STRLEN("TM##")
+	call AppendTMHMMoveName
 	ld b, BANK(GiveItemScript)
 	ld de, GiveItemScript
 	jp ScriptCall
@@ -505,6 +535,8 @@ Script_verbosegiveitemvar:
 	ld de, wStringBuffer1
 	ld a, STRING_BUFFER_4
 	call CopyConvertedText
+	ld de, wStringBuffer4 + STRLEN("TM##")
+	call AppendTMHMMoveName
 	ld b, BANK(GiveItemScript)
 	ld de, GiveItemScript
 	jp ScriptCall
@@ -1240,12 +1272,14 @@ Script_memcall:
 	; fallthrough
 
 ScriptCall:
-; BUG: ScriptCall can overflow wScriptStack and crash (see docs/bugs_and_glitches.md)
-
-	push de
+; BUGfixed: ScriptCall can overflow wScriptStack and crash (see docs/bugs_and_glitches.md)
 	ld hl, wScriptStackSize
-	ld e, [hl]
+	ld a, [hl]
+	cp 5
+	ret nc
+	push de
 	inc [hl]
+	ld e, a
 	ld d, 0
 	ld hl, wScriptStack
 	add hl, de
@@ -2350,6 +2384,41 @@ Script_checksave:
 	farcall CheckSave
 	ld a, c
 	ld [wScriptVar], a
+	ret
+
+Script_divemap:
+	call GetScriptByte
+	ld [wDiveMapGroup], a
+	call GetScriptByte
+	ld [wDiveMapNumber], a
+	call GetScriptByte
+	ld [wDiveDeltaX], a
+	call GetScriptByte
+	ld [wDiveDeltaY], a
+	ret
+
+Script_divewarp:
+	ld a, [wDiveMapGroup]
+	ld [wMapGroup], a
+	ld a, [wDiveMapNumber]
+	ld [wMapNumber], a
+	ld a, [wXCoord]
+	ld b, a
+	ld a, [wDiveDeltaX]
+	add b
+	ld [wXCoord], a
+	ld a, [wYCoord]
+	ld b, a
+	ld a, [wDiveDeltaY]
+	add b
+	ld [wYCoord], a
+	ld a, -1
+	ld [wDefaultSpawnpoint], a
+	ld a, MAPSETUP_WARP
+	ld [hMapEntryMethod], a
+	ld a, 1
+	call LoadMapStatus
+	call StopScript
 	ret
 
 Script_checkver_duplicate: ; unreferenced

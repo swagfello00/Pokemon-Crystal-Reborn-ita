@@ -101,6 +101,8 @@ CheckUpdatePlayerSprite:
 	jr c, .ok
 	call .CheckSurfing
 	jr c, .ok
+	call .CheckDiving
+	jr c, .ok
 	call .CheckSurfing2
 	jr c, .ok
 	ret
@@ -119,6 +121,35 @@ CheckUpdatePlayerSprite:
 	scf
 	ret
 
+.CheckDiving:
+	ld a, [wMapTileset]
+	cp TILESET_UNDERWATER
+	jr nz, .not_underwater
+	ld a, [wPlayerState]
+	cp PLAYER_SURF_PIKA
+	jr z, .DivePika
+	cp PLAYER_SURF_LAPRAS
+	jr z, .DiveLapras
+	cp PLAYER_DIVE_PIKA
+	jr nc, .continue
+	ld a, PLAYER_DIVE
+.continue
+	ld [wPlayerState], a
+	scf
+	ret
+
+.DivePika
+	ld a, PLAYER_DIVE_PIKA
+	jr .continue
+
+.DiveLapras
+	ld a, PLAYER_DIVE_LAPRAS
+	jr .continue
+
+.not_underwater
+	and a
+	ret
+
 .CheckSurfing2:
 	ld a, [wPlayerState]
 	cp PLAYER_NORMAL
@@ -128,6 +159,8 @@ CheckUpdatePlayerSprite:
 	cp PLAYER_SURF
 	jr z, .surfing
 	cp PLAYER_SURF_PIKA
+	jr z, .surfing
+	cp PLAYER_SURF_LAPRAS
 	jr z, .surfing
 	call GetMapEnvironment
 	cp INDOOR
@@ -159,11 +192,27 @@ CheckUpdatePlayerSprite:
 	jr z, .is_surfing
 	cp PLAYER_SURF_PIKA
 	jr z, .is_surfing
+	cp PLAYER_SURF_LAPRAS
+	jr z, .is_surfing
+	cp PLAYER_DIVE_PIKA
+	jr z, .surf_pika
+	cp PLAYER_DIVE_LAPRAS
+	jr z, .surf_lapras
 	ld a, PLAYER_SURF
 	ld [wPlayerState], a
 .is_surfing
 	scf
 	ret
+
+.surf_pika
+	ld a, PLAYER_SURF_PIKA
+	ld [wPlayerState], a
+	jr .is_surfing
+
+.surf_lapras
+	ld a, PLAYER_SURF_LAPRAS
+	ld [wPlayerState], a
+	jr .is_surfing
 
 .nope2
 	and a

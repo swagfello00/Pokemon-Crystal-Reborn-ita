@@ -10,7 +10,15 @@ Fish:
 	ld b, e
 	call GetFishGroupIndex
 
+  ld a, [wPartySpecies]
+  cp OCTILLERY
+  jr z, .AlwaysBite
+  cp GRIMER
+  jr z, .AlwaysBite
+  cp MUK
+  jr z, .AlwaysBite
 	ld hl, FishGroups
+.continue
 rept FISHGROUP_DATA_LENGTH
 	add hl, de
 endr
@@ -20,6 +28,10 @@ endr
 	pop bc
 	pop af
 	ret
+
+.AlwaysBite
+  ld hl, FishGroups2
+  jr .continue
 
 .Fish:
 ; Fish for monsters with rod b from encounter data in FishGroup at hl.
