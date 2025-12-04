@@ -147,7 +147,7 @@ Cambiamenti e fix rimasti da fare:
 - Implementazione dei colori peculiari delle icone nel gts e per le bambole della casa del giocatore
 - La battaglia contro Suicune ci mette un po' troppo a caricare
 - Alcuni suoni possono non venire riprodotti
-(playsound e playsfx, come in alcuni casi quando si raccolgono gli strumenti)
+(playsound e playsfx, come in alcuni casi quando si raccolgono gli strumenti, segnalate)
 - Ulteriori fix di bug e glitch non ancora scoperti e aggiunte nuove richieste dalla community
 (coerenti con gli obbiettivi del progetto)
 
