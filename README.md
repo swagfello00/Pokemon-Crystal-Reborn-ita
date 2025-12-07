@@ -5,7 +5,7 @@ https://github.com/gb-mobile/pokecrystal-mobile-ita
 
 Su questa base cerca di migliorare ogni aspetto del gioco ad eccezione delle meccaniche del battling, mantenendo la compatibilità con Crystal Mobile e i giochi precedenti.
 Per ulteriori informazioni aprire il file [CHANGELOG.txt](Changelog.txt)
-Ulteriori informazioni su come sfruttare il Mobile System GB su [**Discord**](https://discord.gg/DHGhMPwt).
+Ulteriori informazioni su come sfruttare il Mobile System GB sul server [**Discord**](https://discord.gg/DHGhMPwt).
 Mira ad essere una 4° versione della 2° gen, il progetto è ancora in beta ma completo, è possibile giocare attraverso il setup assembly.
 
 ## Screenshots
