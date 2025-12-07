@@ -5,7 +5,7 @@ Pokémon - Crystal Reborn ita, cambiamenti:
 
 - Ripristinate e migliorate tutte le funzionalità e i contenuti del Mobile Adapter GB dalla versione giapponese
 - Aggiunti: profilo mobile, news machine, gts, torre lotta, lotte e scambi, mobile stadium, ecc.
-(Ulteriori informazioni sul Mobile System GB disponibili prossimamente)
+(Ulteriori informazioni sul Mobile System GB disponibili su Discord)
 - Fiordoropoli ha un nuovo centro pokémon e le sfide alla torre lotta ora richiedono il Mobile Adapter GB
 - Sono state aggiunte nuove mappe e sono state modificate e/o espanse alcune mappe già esistenti
 - Modificati alcuni level cap
