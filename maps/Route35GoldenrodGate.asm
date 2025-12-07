@@ -73,7 +73,9 @@ GiftSpearowName:
 GiftSpearowOTName:
 	db "RANDY@"
 
-	db 0, " EI@", 0 ; filler
+	db 0 ; filler
+	db " EI@" ; Nationality bytes, so that the game loads the proper font when reading the mail. EI stands for European-Italian.
+	db 0 ; unused
 
 Route35GoldenrodGatePokefanFScript:
 	faceplayer
