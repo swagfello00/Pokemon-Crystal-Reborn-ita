@@ -109,4 +109,14 @@ OverworldSprites:
 	overworld_sprite EnteiSpriteGFX, 4, STILL_SPRITE, PAL_OW_RED
 	overworld_sprite RaikouSpriteGFX, 4, STILL_SPRITE, PAL_OW_RED
 	overworld_sprite StandingYoungsterSpriteGFX, 12, STANDING_SPRITE, PAL_OW_BLUE
+	overworld_sprite DialSpriteGFX, 8, STANDING_SPRITE, PAL_OW_BLUE
+	overworld_sprite ChrisSurfSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
+	overworld_sprite KrisSurfSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
+	overworld_sprite ChrisRunSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
+ 	overworld_sprite KrisRunSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
+	overworld_sprite AmphySpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
+	overworld_sprite EarlyGameRattataSpriteGFX, 12, WALKING_SPRITE, PAL_OW_PINK
+	overworld_sprite SurfingLaprasGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
+	overworld_sprite WalkingPidgeyGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
+	overworld_sprite RunningFarfetch_dGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
 	assert_table_length NUM_OVERWORLD_SPRITES
