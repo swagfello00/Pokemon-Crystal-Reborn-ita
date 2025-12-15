@@ -122,7 +122,6 @@ BattleTowerRoomMenu_InitRAM:
 	di
 	ldh a, [rIE]
 	ld [wcd32], a
-	call DoubleSpeed
 	xor a
 	ldh [rIF], a
 	ld [wMobileErrorCodeBuffer], a
@@ -610,7 +609,6 @@ BattleTowerRoomMenu_Cleanup:
 	ldh [hMobileReceive], a
 	ldh [hMobile], a
 	ldh [hVBlank], a
-	call NormalSpeed
 	xor a
 	ldh [rIF], a
 	ld a, [wcd32]
@@ -1147,9 +1145,14 @@ Function11b6b4:
 	ld a, HIGH(wMobileMonMail)
 	ld [wMobileMonMailPointer + 1], a
 
+	ld a, [wcd31]
+	cp EGG
+	jr z, .egg_skip
+
 	ld a, BASE_HAPPINESS
 	ld [wMobileMonHappiness], a
 
+.egg_skip
 	ld de, wMobileMonOT
 	ld c, PLAYER_NAME_LENGTH - 1
 	farcall CheckStringForErrors
@@ -1249,6 +1252,7 @@ Function11b6b4:
 	ld a, [de]
 	ld [hl], a
 	call AddMobileMonToParty
+	call CheckEggToKill
 	ret
 
 Function11b314:
@@ -1719,7 +1723,7 @@ TradeCornerHoldMon_RemoveFromParty:
 	ld [wCurPartyMon], a
 	xor a ; REMOVE_PARTY
 	ld [wPokemonWithdrawDepositParameter], a
-	farcall RemoveMonFromPartyOrBox
+	farcall RemoveMonFromParty
 	farcall BattleTowerAction_16
 	farcall SaveAfterLinkTrade
 	farcall MobileIncJumptableIndex
@@ -1735,7 +1739,11 @@ TradeCornerHoldMon_Noop:
 	ret
 
 Function11b7e5:
+	ld a, [wcd31]
+	cp EGG
+	jp z, .set_egg
 	ld a, [wMobileMonSpecies]
+.continue
 	ld [wOTTrademonSpecies], a
 	ld [wCurPartySpecies], a
 	ld a, [wcd81]
@@ -1791,6 +1799,37 @@ Function11b7e5:
 	call CloseSubmenu
 	call RestartMapMusic
 	ret
+
+.set_egg
+	ld a, EGG
+	jp .continue
+
+CheckEggToKill:
+	ld de, -48
+	ld hl, wPartySpecies + 5
+	ld b, 5
+.loop
+	ld a, [hl]
+	cp EGG
+	jr nz, .CheckLoop
+	ld hl, wPartyMon6HP + 1
+	ld a, b
+.KillContinue
+	cp 5
+	jr nz, .KillLoop
+	ld [hl], 0
+	ret
+
+.CheckLoop:
+	dec hl
+	dec b
+	ret z
+	jr .loop
+
+.KillLoop
+	add hl, de
+	inc a
+	jr .KillContinue
 
 Function11b879:
 	farcall BattleTower_CheckSaveFileExistsAndIsYours
@@ -1932,6 +1971,7 @@ Function11b93b:
 	ld a, HIGH(wUnknownMonMail)
 	ld [wMobileMonMailPointer + 1], a
 	call AddMobileMonToParty
+	call CheckEggToKill
 	farcall SaveAfterLinkTrade
 	ret
 
