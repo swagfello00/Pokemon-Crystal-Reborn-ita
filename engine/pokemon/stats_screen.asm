@@ -1,8 +1,9 @@
-	const_def 1
-	const PINK_PAGE  ; 1
-	const GREEN_PAGE ; 2
-	const BLUE_PAGE  ; 3
-DEF NUM_STAT_PAGES EQU const_value - 1
+	const_def
+	const PINK_PAGE   ; 0
+	const GREEN_PAGE  ; 1
+	const BLUE_PAGE   ; 2
+	const ORANGE_PAGE ; 3
+DEF NUM_STAT_PAGES EQU const_value
 
 DEF STAT_PAGE_MASK EQU %00000011
 
@@ -62,12 +63,7 @@ StatsScreenInit_gotaddress:
 StatsScreenMain:
 	xor a
 	ld [wJumptableIndex], a
-; ???
-	ld [wStatsScreenFlags], a
-	ld a, [wStatsScreenFlags]
-	and ~STAT_PAGE_MASK
-	or PINK_PAGE ; first_page
-	ld [wStatsScreenFlags], a
+	ld [wStatsScreenFlags], a ; PINK_PAGE
 .loop
 	ld a, [wJumptableIndex]
 	and ~(1 << 7)
@@ -82,12 +78,7 @@ StatsScreenMain:
 StatsScreenMobile:
 	xor a
 	ld [wJumptableIndex], a
-; ???
-	ld [wStatsScreenFlags], a
-	ld a, [wStatsScreenFlags]
-	and ~STAT_PAGE_MASK
-	or PINK_PAGE ; first_page
-	ld [wStatsScreenFlags], a
+	ld [wStatsScreenFlags], a ; PINK_PAGE
 .loop
 	farcall Mobile_SetOverworldDelay
 	ld a, [wJumptableIndex]
@@ -177,12 +168,6 @@ EggStatsInit:
 
 EggStatsJoypad:
 	call StatsScreen_GetJoypad
-	jr nc, .check
-	ld h, 0
-	call StatsScreen_SetJumptableIndex
-	ret
-
-.check
 	bit A_BUTTON_F, a
 	jr nz, .quit
 if DEF(_DEBUG)
@@ -260,7 +245,7 @@ StatsScreenWaitCry:
 
 StatsScreen_CopyToTempMon:
 	ld a, [wMonType]
-	cp TEMPMON
+	cp BUFFERMON
 	jr nz, .not_tempmon
 	ld a, [wBufferMonSpecies]
 	ld [wCurSpecies], a
@@ -286,30 +271,8 @@ StatsScreen_CopyToTempMon:
 
 StatsScreen_GetJoypad:
 	call GetJoypad
-	ld a, [wMonType]
-	cp TEMPMON
-	jr nz, .not_tempmon
-	push hl
-	push de
-	push bc
-	farcall StatsScreenDPad
-	pop bc
-	pop de
-	pop hl
-	ld a, [wMenuJoypad]
-	and D_DOWN | D_UP
-	jr nz, .set_carry
-	ld a, [wMenuJoypad]
-	jr .clear_carry
-
-.not_tempmon
 	ldh a, [hJoyPressed]
-.clear_carry
 	and a
-	ret
-
-.set_carry
-	scf
 	ret
 
 StatsScreen_JoypadAction:
@@ -334,6 +297,8 @@ StatsScreen_JoypadAction:
 
 .d_down
 	ld a, [wMonType]
+	cp BUFFERMON
+	jr z, .next_storage
 	cp BOXMON
 	jr nc, .done
 	and a
@@ -357,6 +322,9 @@ StatsScreen_JoypadAction:
 	jr .load_mon
 
 .d_up
+	ld a, [wMonType]
+	cp BUFFERMON
+	jr z, .prev_storage
 	ld a, [wCurPartyMon]
 	and a
 	jr z, .done
@@ -373,22 +341,27 @@ StatsScreen_JoypadAction:
 
 .a_button
 	ld a, c
-	cp BLUE_PAGE ; last page
+	cp ORANGE_PAGE ; last page
 	jr z, .b_button
 .d_right
 	inc c
-	ld a, BLUE_PAGE ; last page
+	ld a, ORANGE_PAGE ; last page
 	cp c
 	jr nc, .set_page
 	ld c, PINK_PAGE ; first page
 	jr .set_page
 
 .d_left
+	ld a, c
 	dec c
+	and a ; cp PINK_PAGE ; first page
 	jr nz, .set_page
-	ld c, BLUE_PAGE ; last page
+	ld c, ORANGE_PAGE ; last page
 	jr .set_page
 
+.prev_storage
+	newfarcall PrevStorageBoxMon
+	jr nz, .load_storage_mon
 .done
 	ret
 
@@ -401,6 +374,13 @@ StatsScreen_JoypadAction:
 	call StatsScreen_SetJumptableIndex
 	ret
 
+.next_storage
+	newfarcall NextStorageBoxMon
+	jr z, .done
+.load_storage_mon
+	ld a, [wBufferMonAltSpecies]
+	ld [wCurPartySpecies], a
+	ld [wCurSpecies], a
 .load_mon
 	ld h, 0
 	call StatsScreen_SetJumptableIndex
@@ -480,7 +460,9 @@ StatsScreen_InitUpperHalf:
 .NicknamePointers:
 	dw wPartyMonNicknames
 	dw wOTPartyMonNicknames
-	dw sBoxMonNicknames
+	dw wBufferMonNickname ; unused
+	dw wBufferMonNickname ; unused
+	dw wBufferMonNickname ; unused
 	dw wBufferMonNickname
 
 StatsScreen_PlaceVerticalDivider: ; unreferenced
@@ -507,7 +489,7 @@ StatsScreen_PlaceHorizontalDivider:
 	ret
 
 StatsScreen_PlacePageSwitchArrows:
-	hlcoord 12, 6
+	hlcoord 10, 6
 	ld [hl], "◀"
 	hlcoord 19, 6
 	ld [hl], "▶"
@@ -563,7 +545,6 @@ StatsScreen_LoadGFX:
 .PageTilemap:
 	ld a, [wStatsScreenFlags]
 	maskbits NUM_STAT_PAGES
-	dec a
 	ld hl, .Jumptable
 	rst JumpTable
 	ret
@@ -574,6 +555,7 @@ StatsScreen_LoadGFX:
 	dw LoadPinkPage
 	dw LoadGreenPage
 	dw LoadBluePage
+	dw LoadOrangePage
 	assert_table_length NUM_STAT_PAGES
 
 LoadPinkPage:
@@ -764,6 +746,7 @@ LoadGreenPage:
 	db "MOSSE@"
 
 LoadBluePage:
+	call StatsScreen_PrintHappiness
 	call .PlaceOTInfo
 	hlcoord 10, 8
 	ld de, SCREEN_WIDTH
@@ -814,8 +797,428 @@ LoadBluePage:
 .OTNamePointers:
 	dw wPartyMonOTs
 	dw wOTPartyMonOTs
-	dw sBoxMonOTs
+	dw wBufferMonOT ; unused
+	dw wBufferMonOT ; unused
+	dw wBufferMonOT ; unused
 	dw wBufferMonOT
+
+StatsScreen_PrintHappiness:
+	ld de, .HappinessString
+	hlcoord 0, 15
+	call PlaceString
+
+	hlcoord 1, 16
+	lb bc, 1, 3
+	ld de, wTempMonHappiness
+	call PrintNum
+	ld de, .outofMaxLoveString
+	hlcoord 4, 16
+	call PlaceString
+	ret
+.outofMaxLoveString:
+	db "/255@"
+
+.HappinessString:
+	db "FELICITÀ:@"
+
+LoadOrangePage:
+	call StatsScreen_placeCaughtLevel
+	call StatsScreen_placeCaughtTime
+	call StatsScreen_placeCaughtLocation
+	call printStatExp
+	call StatsScreen_PrintDVs
+	ld de, HiddenPowerTypeString
+	hlcoord 0, 10
+	call PlaceString
+	
+	ld hl, wTempMonDVs
+	; Type:
+
+	; Def & 3
+	ld a, [hl]
+	and %0011
+	ld b, a
+
+	; + (Atk & 3) << 2
+	ld a, [hl]
+	and %0011 << 4
+	swap a
+	add a
+	add a
+	or b
+
+; Skip Normal
+	inc a
+
+; Skip Bird
+	cp BIRD
+	jr c, .done
+	inc a
+
+; Skip unused types
+	cp UNUSED_TYPES
+	jr c, .done
+	add UNUSED_TYPES_END - UNUSED_TYPES
+
+.done
+    ld [wNamedObjectIndex], a
+	farcall GetTypeName
+	ld de, wStringBuffer1
+	hlcoord 2, 11
+	call PlaceString
+	call StatsScreen_HiddenPow_BP
+	ld [wPokedexStatus], a
+	ld de, wPokedexStatus
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2 ; bytes, digits
+	hlcoord 12, 10 ; 1, 4, 7, 10, 13 
+	call PrintNum
+	ret
+
+StatsScreen_HiddenPow_BP:
+; Take the top/most significant bit from each stat
+; basically, if the DV is 8 or above
+; arrange those bits in order, into a nybble
+	; Attack
+	ld a, [wTempMonDVs]
+	swap a
+	and %1000
+	; Defense
+	ld b, a
+	ld a, [wTempMonDVs]
+	and %1000
+	srl a
+	or b
+	; Speed
+	ld b, a
+	ld a, [wTempMonDVs + 1]
+	swap a
+	and %1000
+	srl a
+	srl a
+	or b
+	; Special
+	ld b, a
+	ld a, [wTempMonDVs + 1]
+	and %1000
+	srl a
+	srl a
+	srl a
+	or b
+; Multiply by 5
+	ld b, a
+	add a
+	add a
+	add b
+; Add Special & 3
+	ld b, a
+	ld a, [wTempMonDVs + 1]
+	and %0011
+	add b
+; Divide by 2 and add 30 + 1
+	srl a
+	add 30
+	inc a
+	ret
+
+StatsScreen_PrintDVs:
+	; we're using wPokedexStatus because why not, nobody using it atm lol
+	; ATK DV
+	ld a, [wTempMonDVs] ; only get the first byte of the word
+	and %11110000 ; most significant nybble of first byte in word-sized wTempMonDVs
+	swap a ; so we can print it properly
+	ld [wPokedexStatus], a
+	ld c, 0
+	; calc HP stat contribution
+	and 1 ; a still has the ATK DV
+	jr z, .atk_not_odd
+	ld a, 0
+	add 8
+	ld b, 0
+	ld c, a
+	;
+.atk_not_odd
+	push bc
+	ld de, wPokedexStatus
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2 ; bytes, digits
+	hlcoord 4, 14
+	call PrintNum
+
+	; DEF DV
+	ld a, [wTempMonDVs] ; only get the first byte of the word
+	and %00001111 ; least significant nybble, don't need to swap the bits of the byte
+	ld [wPokedexStatus], a ;DEF
+	; calc HP stat contribution
+	pop bc
+	and 1 ; a still has the DEF DV
+	jr z, .def_not_odd
+	ld a, c
+	add 4
+	ld b, 0
+	ld c, a
+	;
+.def_not_odd
+	push bc
+	ld de, wPokedexStatus
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2 ; bytes, digits
+	hlcoord 4, 15
+	call PrintNum
+
+	; SPE DV
+	ld a, [wTempMonDVs + 1] ; second byte of word
+	and %11110000 ; most significant nybble of 2nd byte in word-sized wTempMonDVs
+	swap a ; so we can print it properly
+	ld [wPokedexStatus], a ;SPEED
+	; calc HP stat contribution
+	pop bc
+	and 1 ; a still has the SPEED DV
+	jr z, .speed_not_odd
+	ld a, c
+	add 2
+	ld b, 0
+	ld c, a
+	;
+.speed_not_odd
+	push bc
+	ld de, wPokedexStatus
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2 ; bytes, digits
+	hlcoord 4, 16 ; 1, 5, 9, 13
+	call PrintNum
+
+	; SPC DV
+	ld a, [wTempMonDVs + 1] ; second byte of word
+	and %00001111 ; least significant nybble, don't need to swap the bits of the byte
+	ld [wPokedexStatus], a ;SPC
+	; calc HP stat contribution
+	pop bc
+	and 1 ; a still has the DEF DV
+	jr z, .spc_not_odd
+	ld a, c
+	add 1
+	ld b, 0
+	ld c, a
+	;
+.spc_not_odd
+	push bc
+	ld de, wPokedexStatus
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2 ; bytes, digits
+	hlcoord 4, 17
+	call PrintNum
+	; hlcoord 18, 15 ; 1, 4, 7, 10, 13 
+	; call PrintNum
+
+	; HP
+	; HP DV is determined by the last bit of each of these four DVs
+	; odd Attack DV adds 8, Defense adds 4, Speed adds 2, and Special adds 1
+	;For example, a Lugia with the DVs 5 Atk, 15 Def, 13 Spe, and 13 Spc will have:
+	; 5 Attack = Odd, HP += 8
+	; 15 Defense = Odd, HP += 4
+	; 13 Speed = Odd, HP += 2
+	; 13 Special = Odd, HP += 1
+	;resulting in an HP stat of 15
+	; THANKS SMOGON
+	; going to "and 1" each final value and push a counter to stack to preserve it
+	pop bc
+	ld a, c
+	ld [wPokedexStatus], a
+	ld de, wPokedexStatus
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2 ; bytes, digits
+	hlcoord 4, 13 ; 1, 4, 7, 10, 13 
+	call PrintNum
+	ret
+
+HiddenPowerTypeString:
+	db "INTROFORZA:@"
+
+PrintStatLabels:	
+    ld de, .label_HP ; hp
+    call PlaceString
+    
+    ld bc, SCREEN_WIDTH
+	add hl, bc
+    ld de, .label_ATK ; atk
+    call PlaceString
+    
+    ld bc, SCREEN_WIDTH
+	add hl, bc
+    ld de, .label_DEF ; def
+    call PlaceString
+    
+    ld bc, SCREEN_WIDTH
+	add hl, bc
+    ld de, .label_SPE ; spe
+    call PlaceString
+
+    ld bc, SCREEN_WIDTH
+	add hl, bc
+    ld de, .label_SPC ; spc
+    call PlaceString
+	ret	
+
+.label_HP
+    db "PS    /15@"
+.label_ATK
+    db "ATT   /15@"
+.label_DEF
+    db "DIF   /15@"
+.label_SPE
+    db "VEL   /15@"
+.label_SPC
+    db "SPE   /15@"
+; by Aurelio Mannara - BitBuilt 2017
+; ShockSlayer helped ( °v°)
+
+printStatExp:
+	hlcoord 0, 12
+    ld de, .label_statExp
+    call PlaceString	
+	hlcoord 0, 13
+	call PrintStatLabels
+	
+	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
+	hlcoord 12, 13 ; hp disp coords
+    ld de, wTempMonHPExp
+	call .printStatExpVal
+    
+	hlcoord 12, 14 ; atk disp coords
+    ld de, wTempMonAtkExp
+    call .printStatExpVal
+	
+	hlcoord 12, 15 ; def disp coords
+    ld de, wTempMonDefExp
+    call .printStatExpVal
+	
+	hlcoord 12, 17 ; spc disp coords
+    ld de, wTempMonSpcExp
+    call .printStatExpVal
+	
+	hlcoord 12, 16 ; spd disp coords
+    ld de, wTempMonSpdExp
+    call .printStatExpVal
+	ret	
+
+.printStatExpVal:
+	ld a, [de] 
+	cp $FF
+	jr nz, .printAsNum
+	inc de
+	ld a, [de]
+	dec de
+	cp $FF 
+	jr nz, .printAsNum	
+.printAsMax
+	ld de, .label_MAX
+	push bc ; keep the print num settings in bc
+    call PlaceString	
+	pop bc
+	jr .done
+.printAsNum
+    call PrintNum	
+.done		
+	ret	
+	
+.label_statExp
+	db "DIVERSITÀ: ESP.STAT:@"	
+	
+.label_MAX
+	db "MASSIMA@"
+
+StatsScreen_placeCaughtLocation:
+	ld de, .MetAtMapString
+	hlcoord 0, 8
+	call PlaceString
+	ld a, [wTempMonCaughtLocation]
+	and CAUGHT_LOCATION_MASK
+	jr z, .unknown_location
+	cp LANDMARK_EVENT
+	jr z, .event
+	cp LANDMARK_GIFT
+	jr z, .unknown_location
+	ld e, a
+	farcall GetLandmarkName
+	ld de, wStringBuffer1
+	hlcoord 2, 9
+	call PlaceString
+	ret	
+.unknown_location:
+	ld de, .MetUnknownMapString
+	hlcoord 2, 9
+	call PlaceString
+	ret
+.MetAtMapString:
+	db "OTTENUTO: @"
+.MetUnknownMapString:
+	db "LUOGO SCONOSCIUTO@"
+
+.event
+	ld de, .MetEventMapString
+	hlcoord 2, 9
+	call PlaceString
+	ret
+
+.MetEventMapString
+	db "EVENTO@"
+
+StatsScreen_placeCaughtTime:
+	ld a, [wTempMonCaughtTime]
+	and CAUGHT_TIME_MASK
+	jr z, .unknown_time
+	rlca
+	rlca
+	dec a
+	ld hl, .times
+	call GetNthString
+	ld d, h
+	ld e, l
+	call CopyName1
+	ld de, wStringBuffer2
+	hlcoord 10, 8
+	call PlaceString
+	ret
+.unknown_time
+	ld a, 0
+	ld hl, .unknown_time_text
+	call GetNthString
+	ld d, h
+	ld e, l
+	call CopyName1
+	ld de, wStringBuffer2
+	hlcoord 10, 8
+	call PlaceString
+	ret
+.times
+	db "MATT.@"
+	db "GIOR.@"
+	db "NOTTE@"
+.unknown_time_text
+	db "SCAMBIO   @"
+
+StatsScreen_placeCaughtLevel:
+	; caught level
+	ld a, [wTempMonCaughtLevel]
+	and CAUGHT_LEVEL_MASK	
+	and a
+	jr z, .unknown_level
+	cp CAUGHT_EGG_LEVEL ; egg marker value
+	jr nz, .print
+	ld a, EGG_LEVEL ; egg hatch level
+
+.print
+	ld [wTextDecimalByte], a
+	hlcoord 17, 8
+	ld de, wTextDecimalByte
+	lb bc, PRINTNUM_LEFTALIGN | 1, 3
+	call PrintNum
+	hlcoord 16, 8
+	ld [hl], "<LV>"
+	ret
+
+.unknown_level
+	ld de, .MetUnknownLevelString
+	hlcoord 16, 8
+	call PlaceString
+	ret   
+.MetUnknownLevelString:
+	db "UOVO@"
 
 IDNoString:
 	db "№<ID>.@"
@@ -905,9 +1308,10 @@ StatsScreen_GetAnimationParam:
 .Jumptable:
 	dw .PartyMon
 	dw .OTPartyMon
-	dw .BoxMon
-	dw .Tempmon
+	dw .BoxMon ; unused
+	dw .Tempmon ; unused
 	dw .Wildmon
+	dw .Buffermon
 
 .PartyMon:
 	ld a, [wCurPartyMon]
@@ -923,20 +1327,7 @@ StatsScreen_GetAnimationParam:
 	ret
 
 .BoxMon:
-	ld hl, sBoxMons
-	ld bc, PARTYMON_STRUCT_LENGTH
-	ld a, [wCurPartyMon]
-	call AddNTimes
-	ld b, h
-	ld c, l
-	ld a, BANK(sBoxMons)
-	call OpenSRAM
-	call .CheckEggFaintedFrzSlp
-	push af
-	call CloseSRAM
-	pop af
-	ret
-
+.Buffermon
 .Tempmon:
 	ld bc, wTempMonSpecies
 	jr .CheckEggFaintedFrzSlp ; utterly pointless
@@ -1108,6 +1499,9 @@ StatsScreen_AnimateEgg:
 	ret
 
 StatsScreen_LoadPageIndicators:
+	hlcoord 11, 5
+	ld a, $36 ; " " " "
+	call .load_square
 	hlcoord 13, 5
 	ld a, $36 ; first of 4 small square tiles
 	call .load_square
@@ -1118,13 +1512,19 @@ StatsScreen_LoadPageIndicators:
 	ld a, $36 ; " " " "
 	call .load_square
 	ld a, c
+	cp PINK_PAGE
+	hlcoord 11, 5
+	jr z, .load_highlighted_square
 	cp GREEN_PAGE
+	hlcoord 13, 5
+	jr z, .load_highlighted_square
+	cp BLUE_PAGE
+	hlcoord 15, 5
+	jr z, .load_highlighted_square
+	; must be ORANGE_PAGE
+	hlcoord 17, 5
+.load_highlighted_square
 	ld a, $3a ; first of 4 large square tiles
-	hlcoord 13, 5 ; PINK_PAGE (< GREEN_PAGE)
-	jr c, .load_square
-	hlcoord 15, 5 ; GREEN_PAGE (= GREEN_PAGE)
-	jr z, .load_square
-	hlcoord 17, 5 ; BLUE_PAGE (> GREEN_PAGE)
 .load_square
 	push bc
 	ld [hli], a
@@ -1142,20 +1542,6 @@ StatsScreen_LoadPageIndicators:
 CopyNickname:
 	ld de, wStringBuffer1
 	ld bc, MON_NAME_LENGTH
-	jr .okay ; utterly pointless
-.okay
-	ld a, [wMonType]
-	cp BOXMON
-	jr nz, .partymon
-	ld a, BANK(sBoxMonNicknames)
-	call OpenSRAM
-	push de
-	call CopyBytes
-	pop de
-	call CloseSRAM
-	ret
-
-.partymon
 	push de
 	call CopyBytes
 	pop de
@@ -1171,7 +1557,7 @@ GetNicknamenamePointer:
 	ld h, [hl]
 	ld l, a
 	ld a, [wMonType]
-	cp TEMPMON
+	cp BUFFERMON
 	ret z
 	ld a, [wCurPartyMon]
 	jp SkipNames

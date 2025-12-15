@@ -272,41 +272,41 @@ MobileMenuJoypad:
 	ld c, a
 	ret
 
-Function241d5: ; unreferenced
-	call Place2DMenuCursor
-.loop
-	call Move2DMenuCursor
-	call HDMATransferTilemapToWRAMBank3 ; should be farcall
-	call .loop2
-	jr nc, .done
-	call _2DMenuInterpretJoypad
-	jr c, .done
-	ld a, [w2DMenuFlags1]
-	bit 7, a
-	jr nz, .done
-	call GetMenuJoypad
-	ld c, a
-	ld a, [wMenuJoypadFilter]
-	and c
-	jr z, .loop
-
-.done
+_NoYesBox::
+	ld hl, .NoYesMenuHeader
+	call CopyMenuHeader
+	lb bc, SCREEN_WIDTH - 6, 7
+	ld a, b
+	ld [wMenuBorderLeftCoord], a
+	add 5
+	ld [wMenuBorderRightCoord], a
+	ld a, c
+	ld [wMenuBorderTopCoord], a
+	add 4
+	ld [wMenuBorderBottomCoord], a
+	call PushWindow
+	call VerticalMenu
+	push af
+	ld c, 15
+	call DelayFrames
+	call CloseWindow
+	pop af
+	ret c
+	ld a, [wMenuCursorY]
+	cp 2
 	ret
 
-.loop2
-	call Menu_WasButtonPressed
-	ret c
-	ld c, 1
-	ld b, 3
-	call AdvanceMobileInactivityTimerAndCheckExpired ; should be farcall
-	ret c
-	farcall Function100337
-	ret c
-	ld a, [w2DMenuFlags1]
-	bit 7, a
-	jr z, .loop2
-	and a
-	ret
+.NoYesMenuHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 10, 5, 15, 9
+	dw .MenuData
+	db 1 ; default option
+
+.MenuData:
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
+	db 2 ; items
+	db "NO@"
+	db "SÌ@"
 
 MenuJoypadLoop:
 .loop
@@ -372,7 +372,7 @@ _2DMenuInterpretJoypad:
 	bit A_BUTTON_F, a
 	jp nz, .a_b_start_select
 	bit B_BUTTON_F, a
-	jp nz, .a_b_start_select
+	jp nz, .b
 	bit SELECT_F, a
 	jp nz, .a_b_start_select
 	bit START_F, a
@@ -489,6 +489,18 @@ _2DMenuInterpretJoypad:
 	ret
 
 .a_b_start_select
+	xor a
+	ret
+
+.b
+	ld a, [wMenuDataFlags]
+	bit 4, a ; should B move to Run?
+	jr z, .no_b_run
+	; Run is the bottom-right item
+	ld a, $2
+	ld [wMenuCursorX], a
+	ld [wMenuCursorY], a
+.no_b_run
 	xor a
 	ret
 

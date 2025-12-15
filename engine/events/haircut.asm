@@ -1,6 +1,8 @@
 BillsGrandfather:
 	farcall SelectMonFromParty
 	jr c, .cancel
+	ld a, [wCurPartyMon]
+	ld [wBuffer1], a
 	ld a, [wCurPartySpecies]
 	ld [wScriptVar], a
 	ld [wNamedObjectIndex], a

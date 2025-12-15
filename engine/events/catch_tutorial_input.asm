@@ -3,7 +3,7 @@ _DudeAutoInput_A::
 	jr _DudeAutoInput
 
 _DudeAutoInput_RightA:
-	ld hl, DudeAutoInput_RightA
+	ld hl, DudeAutoInput_RightRightA
 	jr _DudeAutoInput
 
 _DudeAutoInput_DownA:
@@ -22,7 +22,9 @@ DudeAutoInput_A:
 	db A_BUTTON, $00
 	db NO_INPUT, $ff ; end
 
-DudeAutoInput_RightA:
+DudeAutoInput_RightRightA:
+	db NO_INPUT, $08
+	db D_RIGHT,  $00
 	db NO_INPUT, $08
 	db D_RIGHT,  $00
 	db NO_INPUT, $08

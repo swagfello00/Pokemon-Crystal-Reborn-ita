@@ -1919,7 +1919,7 @@ LinkTrade:
 
 	xor a ; REMOVE_PARTY
 	ld [wPokemonWithdrawDepositParameter], a
-	callfar RemoveMonFromPartyOrBox
+	callfar RemoveMonFromParty
 	ld a, [wPartyCount]
 	dec a
 	ld [wCurPartyMon], a
@@ -2517,8 +2517,6 @@ TryQuickSave:
 	xor a ; FALSE
 .return_result
 	ld [wScriptVar], a
-	ld c, 30
-	call DelayFrames
 	pop af
 	ld [wChosenCableClubRoom], a
 	ret

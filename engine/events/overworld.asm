@@ -162,6 +162,10 @@ UseCutText:
 	text_far _UseCutText
 	text_end
 
+UseHMCutText:
+	text_far _UseHMCutText
+	text_end
+
 CutNothingText:
 	text_far _CutNothingText
 	text_end
@@ -204,12 +208,22 @@ Script_CutFromMenu:
 	special UpdateTimePals
 
 Script_Cut:
+	readmem wCurItem
+	ifequal ITEM_BE, .UsedHMCut
 	callasm GetPartyNickname
+	callasm PrepareOverworldMove
+	scall PokepicFunction
 	writetext UseCutText
+.continue
 	reloadmappart
 	callasm CutDownTreeOrGrass
 	closetext
 	end
+
+.UsedHMCut
+	writetext UseHMCutText
+	loadmem wCurItem, 0
+	sjump .continue
 
 CutDownTreeOrGrass:
 	ld hl, wCutWhirlpoolOverworldBlockAddr
@@ -309,10 +323,19 @@ UseFlash:
 Script_UseFlash:
 	reloadmappart
 	special UpdateTimePals
+	readmem wCurItem
+	ifequal TM_ROLLOUT, .UseHMFlash
+	callasm PrepareOverworldMove
+	scall PokepicFunction
+.continue
 	writetext UseFlashTextScript
 	callasm BlindingFlash
 	closetext
 	end
+
+.UseHMFlash
+	loadmem wCurItem, 0
+	sjump .continue
 
 UseFlashTextScript:
 	text_far _BlindingFlashText
@@ -354,6 +377,8 @@ SurfFunction:
 	cp PLAYER_SURF
 	jr z, .alreadyfail
 	cp PLAYER_SURF_PIKA
+	jr z, .alreadyfail
+	cp PLAYER_SURF_LAPRAS
 	jr z, .alreadyfail
 	call GetFacingTileCoord
 	call GetTileCollision
@@ -400,8 +425,13 @@ SurfFromMenuScript:
 	special UpdateTimePals
 
 UsedSurfScript:
-; BUG: Surfing directly across a map connection does not load the new map (see docs/bugs_and_glitches.md)
+; BUGfixed: Surfing directly across a map connection does not load the new map (see docs/bugs_and_glitches.md)
+	readmem wCurItem
+	ifequal TM_HEADBUTT, .UsedHMSurf
+	callasm PrepareOverworldMove
+	scall PokepicFunction
 	writetext UsedSurfText ; "used SURF!"
+.continue
 	waitbutton
 	closetext
 
@@ -412,17 +442,31 @@ UsedSurfScript:
 
 	special UpdatePlayerSprite
 	special PlayMapMusic
-; step into the water (slow_step DIR, step_end)
 	special SurfStartStep
-	applymovement PLAYER, wMovementBuffer
 	end
+
+.UsedHMSurf
+	writetext UsedHMSurfText
+	loadmem wCurItem, 0
+	sjump .continue
 
 .stubbed_fn
 	farcall StubbedTrainerRankings_Surf
 	ret
 
+ForceSurf:
+	callasm UsedSurfScript.stubbed_fn
+	loadvar VAR_MOVEMENT, PLAYER_SURF
+	special UpdatePlayerSprite
+	special PlayMapMusic
+	end
+
 UsedSurfText:
 	text_far _UsedSurfText
+	text_end
+
+UsedHMSurfText:
+	text_far _UsedHMSurfText
 	text_end
 
 CantSurfText:
@@ -432,6 +476,16 @@ CantSurfText:
 AlreadySurfingText:
 	text_far _AlreadySurfingText
 	text_end
+
+PrepareOverworldMove:
+	ld a, [wCurPartyMon]
+	ld e, a
+	ld d, 0
+	ld hl, wPartySpecies
+	add hl, de
+	ld a, [hl]
+	ld [wBuffer1], a
+	ret
 
 GetSurfType:
 ; Surfing on Pikachu uses an alternate sprite.
@@ -446,6 +500,10 @@ GetSurfType:
 	ld a, [hl]
 	cp PIKACHU
 	ld a, PLAYER_SURF_PIKA
+	ret z
+	ld a, [hl]
+	cp LAPRAS
+	ld a, PLAYER_SURF_LAPRAS
 	ret z
 	ld a, PLAYER_SURF
 	ret
@@ -490,6 +548,8 @@ TrySurfOW::
 	cp PLAYER_SURF_PIKA
 	jr z, .quit
 	cp PLAYER_SURF
+	jr z, .quit
+	cp PLAYER_SURF_LAPRAS
 	jr z, .quit
 
 ; Must be facing water.
@@ -560,6 +620,9 @@ FlyFunction:
 	ld de, ENGINE_STORMBADGE
 	call CheckBadge
 	jr c, .nostormbadge
+	ld a, [wMapTileset]
+	cp TILESET_UNDERWATER
+	jr z, .indoors
 	call GetMapEnvironment
 	call CheckOutdoorMap
 	jr z, .outdoors
@@ -583,20 +646,54 @@ FlyFunction:
 	ret
 
 .nostormbadge
+	ld a, [wCurItem]
+	cp TM_DYNAMICPUNCH
+	jr z, .nostormTMbadge
 	ld a, $82
 	ret
 
+.nostormTMbadge
+	ld a, $80
+	ret
+
 .indoors
+	ld a, [wCurItem]
+	cp TM_DYNAMICPUNCH
+	jr z, .HMindoors
 	ld a, $2
+	ret
+
+.HMindoors
+	call FieldMoveFailed
+	ld a, $80
 	ret
 
 .illegal
 	call CloseWindow
+	ld a, [wFlyingWithHMItem]
+	and a
+	jr z, .done_tiles
+	ld a, [wUsingItemWithSelect]
+	and a
+	jr nz, .overworld
+	farcall Pack_InitGFX ; gets the pack GFX when exiting out of Fly by pressing B
+	farcall WaitBGMap_DrawPackGFX
+	farcall Pack_InitColors
+.done_tiles
 	call WaitBGMap
 	ld a, $80
 	ret
 
+.overworld
+	call ExitFlyMap
+	jr .done_tiles
+
 .DoFly:
+	ld a, [wUsingItemWithSelect]
+	and a
+	jr z, .done_select
+	call ExitFlyMap
+.done_select
 	ld hl, .FlyScript
 	call QueueScript
 	ld a, $81
@@ -609,6 +706,11 @@ FlyFunction:
 
 .FlyScript:
 	reloadmappart
+	readmem wCurItem
+	ifequal TM_DYNAMICPUNCH, .UseHMFly
+	callasm PrepareOverworldMove
+	scall PokepicFunction
+.continue
 	callasm HideSprites
 	special UpdateTimePals
 	callasm FlyFromAnim
@@ -616,13 +718,19 @@ FlyFunction:
 	special WarpToSpawnPoint
 	callasm SkipUpdateMapSprites
 	loadvar VAR_MOVEMENT, PLAYER_NORMAL
-	newloadmap MAPSETUP_FLY
+	newloadmap MAPSETUP_FLY	
 	callasm FlyToAnim
 	special WaitSFX
 	callasm .ReturnFromFly
 	end
 
+.UseHMFly
+	loadmem wCurItem, 0
+	sjump .continue
+
 .ReturnFromFly:
+	ld e, PAL_OW_RED
+	farcall SetFirstOBJPalette
 	farcall RespawnPlayer
 	call DelayFrame
 	call UpdatePlayerSprite
@@ -672,8 +780,13 @@ Script_WaterfallFromMenu:
 	special UpdateTimePals
 
 Script_UsedWaterfall:
+	readmem wCurItem
+	ifequal TM_ROAR, .UsedHMWaterfall
 	callasm GetPartyNickname
+	callasm PrepareOverworldMove
+	scall PokepicFunction
 	writetext .UseWaterfallText
+.continue
 	waitbutton
 	closetext
 	playsound SFX_BUBBLEBEAM
@@ -682,6 +795,11 @@ Script_UsedWaterfall:
 	callasm .CheckContinueWaterfall
 	iffalse .loop
 	end
+
+.UsedHMWaterfall
+	writetext .UseHMWaterfallText
+	loadmem wCurItem, 0
+	sjump .continue
 
 .CheckContinueWaterfall:
 	xor a
@@ -700,6 +818,10 @@ Script_UsedWaterfall:
 
 .UseWaterfallText:
 	text_far _UseWaterfallText
+	text_end
+
+.UseHMWaterfallText:
+	text_far _UseHMWaterfallText
 	text_end
 
 TryWaterfallOW::
@@ -742,6 +864,15 @@ Script_AskWaterfall:
 .AskWaterfallText:
 	text_far _AskWaterfallText
 	text_end
+
+PokepicFunction:
+	refreshscreen
+	readmem wBuffer1
+	pokepic 0
+	cry 0
+	waitsfx
+	closepokepic
+	end
 
 EscapeRopeFunction:
 	call FieldMoveJumptableReset
@@ -829,6 +960,10 @@ EscapeRopeOrDig:
 	text_far _UseDigText
 	text_end
 
+.UseTMDigText:
+	text_far _UseTMDigText
+	text_end
+
 .UseEscapeRopeText:
 	text_far _UseEscapeRopeText
 	text_end
@@ -846,6 +981,10 @@ EscapeRopeOrDig:
 .UsedDigScript:
 	reloadmappart
 	special UpdateTimePals
+	readmem wCurItem
+	ifequal TM_PSYCH_UP, .UseTMDig
+	callasm PrepareOverworldMove
+	scall PokepicFunction
 	writetext .UseDigText
 
 .UsedDigOrEscapeRopeScript:
@@ -860,6 +999,11 @@ EscapeRopeOrDig:
 	playsound SFX_WARP_FROM
 	applymovement PLAYER, .DigReturn
 	end
+
+.UseTMDig
+	writetext .UseTMDigText
+	loadmem wCurItem, 0
+	sjump .UsedDigOrEscapeRopeScript
 
 .DigOut:
 	step_dig 32
@@ -932,6 +1076,8 @@ TeleportFunction:
 .TeleportScript:
 	reloadmappart
 	special UpdateTimePals
+	callasm PrepareOverworldMove
+	scall PokepicFunction
 	writetext .TeleportReturnText
 	pause 60
 	reloadmappart
@@ -1005,20 +1151,39 @@ Script_StrengthFromMenu:
 
 Script_UsedStrength:
 	callasm SetStrengthFlag
+	readmem wCurItem
+	ifequal TM_CURSE, .UseHMStrength
+	callasm PrepareOverworldMove
+	scall PokepicFunction
 	writetext .UseStrengthText
+	waitbutton
 	readmem wStrengthSpecies
-	cry 0 ; plays [wStrengthSpecies] cry
-	pause 3
 	writetext .MoveBoulderText
+.continue
 	closetext
 	end
+
+.UseHMStrength
+	writetext .UseHMStrengthText
+	waitbutton
+	writetext .MoveHMBoulderText
+	loadmem wCurItem, 0
+	sjump .continue
 
 .UseStrengthText:
 	text_far _UseStrengthText
 	text_end
 
+.UseHMStrengthText
+	text_far _UseHMStrengthText
+	text_end
+
 .MoveBoulderText:
 	text_far _MoveBoulderText
+	text_end
+
+.MoveHMBoulderText:
+	text_far _MoveHMBoulderText
 	text_end
 
 AskStrengthScript:
@@ -1128,6 +1293,10 @@ UseWhirlpoolText:
 	text_far _UseWhirlpoolText
 	text_end
 
+UseHMWhirlpoolText:
+	text_far _UseHMWhirlpoolText
+	text_end
+
 TryWhirlpoolMenu:
 	call GetFacingTileCoord
 	ld c, a
@@ -1163,12 +1332,22 @@ Script_WhirlpoolFromMenu:
 	special UpdateTimePals
 
 Script_UsedWhirlpool:
-	callasm GetPartyNickname
-	writetext UseWhirlpoolText
 	reloadmappart
+	readmem wCurItem
+	ifequal ITEM_C3, .UsedHMWhirlpool
+	callasm GetPartyNickname
+	callasm PrepareOverworldMove
+	scall PokepicFunction
+	writetext UseWhirlpoolText
+.continue
 	callasm DisappearWhirlpool
 	closetext
 	end
+
+.UsedHMWhirlpool
+	writetext UseHMWhirlpoolText
+	loadmem wCurItem, 0
+	sjump .continue
 
 DisappearWhirlpool:
 	ld hl, wCutWhirlpoolOverworldBlockAddr
@@ -1253,6 +1432,10 @@ UseHeadbuttText:
 	text_far _UseHeadbuttText
 	text_end
 
+UseTMHeadbuttText:
+	text_far _UseTMHeadbuttText
+	text_end
+
 HeadbuttNothingText:
 	text_far _HeadbuttNothingText
 	text_end
@@ -1262,9 +1445,14 @@ HeadbuttFromMenuScript:
 	special UpdateTimePals
 
 HeadbuttScript:
+	readmem wCurItem
+	ifequal TM_TOXIC, .UseTMHeadbutt
 	callasm GetPartyNickname
+	callasm PrepareOverworldMove
+	scall PokepicFunction
 	writetext UseHeadbuttText
 
+.continue
 	reloadmappart
 	callasm ShakeHeadbuttTree
 
@@ -1275,6 +1463,11 @@ HeadbuttScript:
 	startbattle
 	reloadmapafterbattle
 	end
+
+.UseTMHeadbutt
+	writetext UseTMHeadbuttText
+	loadmem wCurItem, 0
+	sjump .continue
 
 .no_battle
 	writetext HeadbuttNothingText
@@ -1359,8 +1552,13 @@ RockSmashFromMenuScript:
 	special UpdateTimePals
 
 RockSmashScript:
+	readmem wCurItem
+	ifequal TM_ROCK_SMASH, .UseTMRockSmash
 	callasm GetPartyNickname
+	callasm PrepareOverworldMove
+	scall PokepicFunction
 	writetext UseRockSmashText
+.continue
 	closetext
 	special WaitSFX
 	playsound SFX_STRENGTH
@@ -1377,12 +1575,21 @@ RockSmashScript:
 .done
 	end
 
+.UseTMRockSmash
+	writetext UseTMRockSmashText
+	loadmem wCurItem, 0
+	sjump .continue
+
 MovementData_RockSmash:
 	rock_smash 10
 	step_end
 
 UseRockSmashText:
 	text_far _UseRockSmashText
+	text_end
+
+UseTMRockSmashText:
+	text_far _UseTMRockSmashText
 	text_end
 
 AskRockSmashScript:
@@ -1442,16 +1649,20 @@ FishFunction:
 	dw .FishNoFish
 
 .TryFish:
-; BUG: You can fish on top of NPCs (see docs/bugs_and_glitches.md)
+; BUGfixed: You can fish on top of NPCs (see docs/bugs_and_glitches.md)
 	ld a, [wPlayerState]
-	cp PLAYER_SURF
-	jr z, .fail
 	cp PLAYER_SURF_PIKA
 	jr z, .fail
+	cp PLAYER_SURF_LAPRAS
+	jr z, .fail
+	cp PLAYER_DIVE
+	jr nc, .fail
 	call GetFacingTileCoord
 	call GetTileCollision
 	cp WATER_TILE
-	jr z, .facingwater
+	jr nz, .fail
+	farcall CheckFacingObject
+	jr nc, .facingwater
 .fail
 	ld a, $3
 	ret
@@ -1810,3 +2021,278 @@ CantCutScript:
 CanCutText:
 	text_far _CanCutText
 	text_end
+
+RockClimbFunction:
+	call FieldMoveJumptableReset
+.loop
+	ld hl, .jumptable
+	call FieldMoveJumptable
+	jr nc, .loop
+	and $7f
+	ld [wFieldMoveSucceeded], a
+	ret
+
+.jumptable:
+	dw .TryRockClimb
+	dw .DoRockClimb
+	dw .FailRockClimb
+
+.TryRockClimb:
+	call TryRockClimbMenu
+	jr c, .failed
+	ld a, $1
+	ret
+
+.failed
+	ld a, $2
+	ret
+
+.DoRockClimb:
+	ld hl, RockClimbFromMenuScript
+	call QueueScript
+	ld a, $81
+	ret
+
+.FailRockClimb:
+	ld a, $80
+	ret
+
+TryRockClimbMenu:
+	call GetFacingTileCoord
+	ld c, a
+	push de
+	call CheckRockyWallTile
+	pop de
+	jr nz, .failed
+	xor a
+	ret
+
+.failed
+	scf
+	ret
+
+TryRockClimbOW::
+	ld a, ROCK_CLIMB
+	ld [wCurItem], a
+	ld hl, wNumItems
+	call CheckItem
+	jr nc, .cant_climb
+
+	ld a, BANK(AskRockClimbScript)
+	ld hl, AskRockClimbScript
+	call CallScript
+	scf
+	ret
+
+.cant_climb
+	ld a, BANK(CantRockClimbScript)
+	ld hl, CantRockClimbScript
+	call CallScript
+	scf
+	ret
+
+AskRockClimbScript:
+	opentext
+	writetext AskRockClimbText
+	yesorno
+	iftrue UsedRockClimbScript
+	closetext
+	end
+
+CantRockClimbScript:
+	jumptext CantRockClimbText
+
+RockClimbFromMenuScript:
+	reloadmappart
+	special UpdateTimePals
+
+UsedRockClimbScript:
+	special RefreshSprites
+	writetext UsedRockClimbText
+	closetext
+	loadvar VAR_MOVEMENT, PLAYER_NORMAL
+	special UpdatePlayerSprite
+	special PlayMapMusic
+	waitsfx
+	playsound SFX_STRENGTH
+	readvar VAR_FACING
+	if_equal DOWN, .Down
+.loop_up
+	applymovement PLAYER, .RockClimbUpStep
+	callasm .CheckContinueRockClimb
+	iffalse .loop_up
+	end
+
+.Down:
+	applymovement PLAYER, .RockClimbFixFacing
+.loop_down
+	applymovement PLAYER, .RockClimbDownStep
+	callasm .CheckContinueRockClimb
+	iffalse .loop_down
+	applymovement PLAYER, .RockClimbRemoveFixedFacing
+	readmem wPlayerTile
+	ifnotequal COLL_WATER, .end
+	scall ForceSurf
+.end
+	end
+
+.CheckContinueRockClimb:
+	xor a
+	ld [wScriptVar], a
+	ld a, [wPlayerTile]
+	call CheckRockyWallTile
+	ret z
+	ld a, $1
+	ld [wScriptVar], a
+	ret
+
+.RockClimbUpStep:
+	step UP
+	step_end
+
+.RockClimbDownStep:
+	step DOWN
+	step_end
+
+.RockClimbFixFacing:
+	turn_head UP
+	fix_facing
+	step_end
+
+.RockClimbRemoveFixedFacing:
+	remove_fixed_facing
+	turn_head DOWN
+	step_end
+
+AskRockClimbText:
+	text_far _AskRockClimbText
+	text_end
+
+UsedRockClimbText:
+	text_far _UsedRockClimbText
+	text_end
+
+CantRockClimbText:
+	text_far _CantRockClimbText
+	text_end
+
+DiveFunction:
+	call FieldMoveJumptableReset
+.loop
+	ld hl, .Jumptable
+	call FieldMoveJumptable
+	jr nc, .loop
+	and $7f
+	ld [wFieldMoveSucceeded], a
+	ret
+
+.Jumptable:
+ 	dw .TryDive
+ 	dw .DoDive
+ 	dw .FailDive
+
+.TryDive:
+	call CheckMapCanDive
+	jr nz, .cannotdive
+	ld a, $1
+	ret
+.cannotdive
+	ld a, $2
+	ret
+
+.DoDive:
+	ld hl, DiveFromMenuScript
+	call QueueScript
+	ld a, $81
+	ret
+
+.FailDive:
+	ld hl, CantDiveText
+	call MenuTextboxBackup
+	ld a, $80
+	ret
+
+CantDiveText:
+	text_jump _CantDiveText
+	db "@"
+
+CheckMapCanDive:
+	ld a, [wDiveMapGroup]
+	and a
+	jr z, .failed
+	ld a, [wDiveMapNumber]
+	and a
+	jr z, .failed
+	ld a, [wPlayerTile]
+	call CheckDiveTile
+	jr nz, .failed
+	xor a
+	ret
+
+.failed
+	scf
+	ret
+
+TryDiveOW::
+	call CheckMapCanDive
+	jr c, .failed
+
+	ld a, BANK(AskDiveScript)
+	ld hl, AskDiveScript
+	call CallScript
+	scf
+	ret
+
+.failed
+	xor a
+	ret
+
+AskDiveScript:
+	opentext
+	copybytetovar wPlayerTile
+	ifequal COLL_DIVE_UP, .up
+	writetext AskDiveDownText
+	yesorno
+	iftrue UsedDiveDownScript
+	closetext
+	end
+.up
+	writetext AskDiveUpText
+	yesorno
+	iftrue UsedDiveUpScript
+	closetext
+	end
+
+AskDiveDownText:
+	text_jump _AskDiveDownText
+	db "@"
+
+AskDiveUpText:
+	text_jump _AskDiveUpText
+	db "@"
+
+DiveFromMenuScript:
+	special UpdateTimePals
+
+UsedDiveDownScript:
+	writetext UsedDiveDownText
+	sjump UsedDiveUpScript.continue
+
+UsedDiveUpScript:
+	writetext UsedDiveUpText
+.continue
+	waitbutton
+	closetext
+	special FadeOutPalettes
+	playsound warp
+	waitsfx
+	divewarp
+	end
+
+UsedDiveUpText:
+	text_jump _UsedDiveUpText
+	db "@"
+
+UsedDiveDownText:
+	text_jump _UsedDiveDownText
+	db "@"

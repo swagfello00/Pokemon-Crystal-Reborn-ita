@@ -138,56 +138,38 @@ UnusedWait30Frames: ; unreferenced
 	ret
 
 HandleMap:
-	call ResetOverworldDelay
 	call HandleMapTimeAndJoypad
-	farcall HandleCmdQueue ; no need to farcall
+	call HandleCmdQueue
 	call MapEvents
 
 ; Not immediately entering a connected map will cause problems.
 	ld a, [wMapStatus]
 	cp MAPSTATUS_HANDLE
 	ret nz
-
 	call HandleMapObjects
 	call NextOverworldFrame
 	call HandleMapBackground
 	call CheckPlayerState
+	xor a
 	ret
 
 MapEvents:
 	ld a, [wMapEventStatus]
-	ld hl, .Jumptable
-	rst JumpTable
-	ret
-
-.Jumptable:
-; entries correspond to MAPEVENTS_* constants
-	dw .events
-	dw .no_events
-
-.events:
+	and a
+	ret nz
 	call PlayerEvents
 	call DisableEvents
 	farcall ScriptEvents
 	ret
 
-.no_events:
-	ret
-
-MaxOverworldDelay:
-	db 2
-
-ResetOverworldDelay:
-	ld a, [MaxOverworldDelay]
-	ld [wOverworldDelay], a
-	ret
-
 NextOverworldFrame:
-	ld a, [wOverworldDelay]
-	and a
-	ret z
-	ld c, a
-	call DelayFrames
+	; If we haven't already performed a delay outside DelayFrame as a result
+	; of a busy LY overflow, perform that now.
+	ld a, [hDelayFrameLY]
+	inc a
+	jp nz, DelayFrame
+	xor a
+	ld [hDelayFrameLY], a
 	ret
 
 HandleMapTimeAndJoypad:
@@ -283,6 +265,14 @@ PlayerEvents:
 
 	xor a
 	ld [wLandmarkSignTimer], a
+
+; Have player stand (resets running sprite to standing if event starts while running)
+	ld a, [wPlayerState]
+	cp PLAYER_RUN
+	jr nz, .ok2
+	ld a, PLAYER_NORMAL
+	ld [wPlayerState], a
+	farcall UpdatePlayerSprite
 
 .ok2
 	scf
@@ -492,6 +482,11 @@ OWPlayerInput:
 	farcall CheckStandingOnIce
 	jr c, .NoAction
 
+; Can't perform button actions while spinning.
+	ld a, [wSpinning]
+	and a
+	jr nz, .NoAction
+
 	call CheckAPressOW
 	jr c, .Action
 
@@ -551,13 +546,13 @@ TryObjectEvent:
 	ld a, [hl]
 	and %00001111
 
-; BUG: TryObjectEvent arbitrary code execution (see docs/bugs_and_glitches.md)
+; BUGfixed: TryObjectEvent arbitrary code execution (see docs/bugs_and_glitches.md)
 	push bc
 	ld de, 3
 	ld hl, ObjectEventTypeArray
 	call IsInArray
-	jr nc, .nope
 	pop bc
+	jr nc, .nope
 
 	inc hl
 	ld a, [hli]
@@ -942,9 +937,17 @@ DoRepelStep:
 	dec a
 	ld [wRepelEffect], a
 	ret nz
-
+	
+	ld a, [wRepelType]
+	ld [wCurItem], a
+	ld hl, wNumItems
+	call CheckItem
 	ld a, BANK(RepelWoreOffScript)
 	ld hl, RepelWoreOffScript
+	jr nc, .got_script
+	ld a, BANK(UseAnotherRepelScript)
+	ld hl, UseAnotherRepelScript
+.got_script
 	call CallScript
 	scf
 	ret
@@ -1025,7 +1028,7 @@ EdgeWarpScript:
 	reloadend MAPSETUP_CONNECTION
 
 ChangeDirectionScript:
-	deactivatefacing 3
+	callasm UnfreezeAllObjects
 	callasm EnableWildEncounters
 	end
 
@@ -1110,13 +1113,22 @@ TryTileCollisionEvent::
 .headbutt
 	ld a, [wFacingTileID]
 	call CheckHeadbuttTreeTile
-	jr nz, .surf
+	jr nz, .rock_climb
 	farcall TryHeadbuttOW
 	jr c, .done
 	jr .noevent
 
+.rock_climb
+	ld a, [wFacingTileID]
+	call CheckRockyWallTile
+	jr nz, .surf
+	farcall TryRockClimbOW
+	jr .done
+
 .surf
 	farcall TrySurfOW
+	jr c, .done
+	farcall TryDiveOW
 	jr nc, .noevent
 	jr .done
 
@@ -1155,6 +1167,10 @@ RandomEncounter::
 	ret
 
 .ok
+	push bc
+	ld bc, wPlayerStruct
+	farcall ResetObject
+	pop bc
 	ld a, BANK(WildBattleScript)
 	ld hl, WildBattleScript
 	jr .done
@@ -1214,12 +1230,32 @@ ChooseWildEncounter_BugContest::
 	jr nc, .loop
 	srl a
 
+	push af
+	push bc
+	push de
+	ld de, EVENT_BEAT_ELITE_FOUR
+	ld b, CHECK_FLAG
+	call EventFlagAction
+	ld a, c
+	and a
+	jr nz, .true
+	pop de
+	pop bc
+	pop af
 	ld hl, ContestMons
 	ld de, 4
 .CheckMon:
 	sub [hl]
 	jr c, .GotMon
 	add hl, de
+	jr .CheckMon
+
+.true
+	pop de
+	pop bc
+	pop af
+	ld hl, ContestMons2
+	ld de, 4
 	jr .CheckMon
 
 .GotMon:
