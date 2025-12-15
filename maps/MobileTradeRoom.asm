@@ -28,8 +28,8 @@ MobileTradeRoomConsoleScript:
 	end
 
 MobileTradeRoom_EstablishingCommsText:
-	text "Connessione in"
-	line "corso…"
+	text "Avvio delle"
+	line "comunicazioni…"
 	done
 
 MobileTradeRoom_MapEvents:

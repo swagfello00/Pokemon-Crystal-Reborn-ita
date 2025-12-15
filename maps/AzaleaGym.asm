@@ -15,6 +15,8 @@ AzaleaGym_MapScripts:
 AzaleaGymBugsyScript:
 	faceplayer
 	opentext
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .Rematch
 	checkevent EVENT_BEAT_BUGSY
 	iftrue .FightDone
 	writetext BugsyText_INeverLose
@@ -54,6 +56,21 @@ AzaleaGymBugsyScript:
 	waitbutton
 .NoRoomForFuryCutter:
 	closetext
+	end
+
+.Rematch
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .FightDone
+	checkflag ENGINE_BUGSY_REMATCH_DONE
+	iftrue .FightDone
+	writetext BugsyText_INeverLose
+	waitbutton
+	closetext
+	winlosstext BugsyText_Rematch, 0
+	loadtrainer BUGSY, BUGSY2
+	startbattle
+	reloadmapafterbattle
+	setflag ENGINE_BUGSY_REMATCH_DONE
 	end
 
 AzaleaGymActivateRockets:
@@ -124,6 +141,8 @@ TrainerBugCatcherJosh:
 
 AzaleaGymGuideScript:
 	faceplayer
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .AzaleaGymGuideRematchScript
 	checkevent EVENT_BEAT_BUGSY
 	iftrue .AzaleaGymGuideWinScript
 	opentext
@@ -135,6 +154,17 @@ AzaleaGymGuideScript:
 .AzaleaGymGuideWinScript:
 	opentext
 	writetext AzaleaGymGuideWinText
+	waitbutton
+	closetext
+	end
+
+.AzaleaGymGuideRematchScript:
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .AzaleaGymGuideWinScript
+	checkflag ENGINE_BUGSY_REMATCH_DONE
+	iftrue .AzaleaGymGuideWinScript
+	opentext
+	writetext AzaleaGymGuideRematchText
 	waitbutton
 	closetext
 	end
@@ -176,6 +206,12 @@ BugsyText_ResearchIncomplete:
 
 	para "Ok, hai vinto tu."
 	line "Ecco la MEDAGLIA."
+	done
+
+BugsyText_Rematch:
+	text "Strabiliante!"
+	line "Conosci proprio"
+	cont "bene i #MON!"
 	done
 
 Text_ReceivedHiveBadge:
@@ -365,6 +401,14 @@ AzaleaGymGuideWinText:
 	para "Con gente come te"
 	line "i #MON avranno"
 	cont "un grande futuro!"
+	done
+
+AzaleaGymGuideRematchText:
+	text "Una grande lotta"
+	line "ti attende."
+	
+	para "Forza! Riaffronta"
+	line "RAFFAELLO."
 	done
 
 AzaleaGym_MapEvents:

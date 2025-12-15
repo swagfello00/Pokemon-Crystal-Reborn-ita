@@ -143,6 +143,7 @@ Route35NationalParkGate_LessThanFullParty:
 	writetext Route35NationalParkGateOfficer1WellHoldYourMonText
 	promptbutton
 	writetext Route35NationalParkGatePlayersMonLeftWithHelperText
+	waitsfx
 	playsound SFX_GOT_SAFARI_BALLS
 	waitsfx
 	promptbutton

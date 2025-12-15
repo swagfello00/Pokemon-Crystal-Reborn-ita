@@ -59,6 +59,8 @@ CeruleanGymGruntRunsOutScript:
 CeruleanGymMistyScript:
 	faceplayer
 	opentext
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .Rematch
 	checkflag ENGINE_CASCADEBADGE
 	iftrue .FightDone
 	writetext MistyIntroText
@@ -81,6 +83,21 @@ CeruleanGymMistyScript:
 	writetext MistyFightDoneText
 	waitbutton
 	closetext
+	end
+
+.Rematch
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .FightDone
+	checkflag ENGINE_MISTY_REMATCH_DONE
+	iftrue .FightDone
+	writetext MistyIntroText
+	waitbutton
+	closetext
+	winlosstext MistyRematchText, 0
+	loadtrainer MISTY, MISTY1
+	startbattle
+	reloadmapafterbattle
+	setflag ENGINE_MISTY_REMATCH_DONE
 	end
 
 TrainerSwimmerfDiana:
@@ -119,6 +136,8 @@ TrainerSwimmermParker:
 CeruleanGymGuideScript:
 	faceplayer
 	opentext
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .CeruleanGymGuideRematchScript
 	checkevent EVENT_BEAT_MISTY
 	iftrue .CeruleanGymGuideWinScript
 	writetext CeruleanGymGuideText
@@ -128,6 +147,16 @@ CeruleanGymGuideScript:
 
 .CeruleanGymGuideWinScript:
 	writetext CeruleanGymGuideWinText
+	waitbutton
+	closetext
+	end
+
+.CeruleanGymGuideRematchScript:
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .CeruleanGymGuideWinScript
+	checkflag ENGINE_MISTY_REMATCH_DONE
+	iftrue .CeruleanGymGuideWinScript
+	writetext CeruleanGymGuideRematchText
 	waitbutton
 	closetext
 	end
@@ -266,6 +295,14 @@ MistyWinLossText:
 	line "CASCATA!"
 	done
 
+MistyRematchText:
+	text "MISTY: Sei proprio"
+	line "forte…"
+
+	para "Devo ammettere che"
+	line "hai talento…"
+	done
+
 ReceivedCascadeBadgeText:
 	text "<PLAYER> riceve la"
 	line "MEDAGLIA CASCATA."
@@ -360,6 +397,17 @@ CeruleanGymGuideWinText:
 
 	para "È stata una"
 	line "gran bella lotta!"
+	done
+
+CeruleanGymGuideRematchText:
+	text "MISTY è in attesa"
+	line "di un avversario"
+	
+	para "che la metta di"
+	line "nuovo alla prova."
+
+	para "Coraggio! è il tuo"
+	line "turno."
 	done
 
 CeruleanGym_MapEvents:

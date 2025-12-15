@@ -1,3 +1,8 @@
+	object_const_def
+	const SIlVERCAVEOUTSIDE_POKE_BALL1
+	const SIlVERCAVEOUTSIDE_POKE_BALL2
+	const SIlVERCAVEOUTSIDE_POKE_BALL3
+
 SilverCaveOutside_MapScripts:
 	def_scene_scripts
 
@@ -16,6 +21,15 @@ MtSilverSign:
 
 SilverCaveOutsideHiddenFullRestore:
 	hiddenitem FULL_RESTORE, EVENT_SILVER_CAVE_OUTSIDE_HIDDEN_FULL_RESTORE
+
+SilverCaveOutsideBrightPowder:
+	itemball BRIGHTPOWDER
+
+SilverCaveOutsideSilverLeaf:
+	itemball SILVER_LEAF
+
+SilverCaveOutsideGoldLeaf:
+	itemball GOLD_LEAF
 
 MtSilverSignText:
 	text "MONTE ARGENTO"
@@ -36,3 +50,6 @@ SilverCaveOutside_MapEvents:
 	bg_event  9, 25, BGEVENT_ITEM, SilverCaveOutsideHiddenFullRestore
 
 	def_object_events
+	object_event  1,  0, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SilverCaveOutsideBrightPowder, EVENT_SILVER_CAVE_OUTSIDE_BRIGHTPOWDER
+	object_event 36, 16, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SilverCaveOutsideSilverLeaf, EVENT_SILVER_CAVE_OUTSIDE_SILVER_LEAF
+	object_event 17, 31, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SilverCaveOutsideGoldLeaf, EVENT_SILVER_CAVE_OUTSIDE_GOLD_LEAF

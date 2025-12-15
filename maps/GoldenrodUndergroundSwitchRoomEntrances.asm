@@ -171,6 +171,8 @@ UndergroundRivalBattleScript:
 	iftrue .Totodile
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue .Chikorita
+	checkevent EVENT_KANTO_STARTERS
+	iftrue .Charmander
 	winlosstext UndergroundRivalWinText, UndergroundRivalLossText
 	setlasttalked GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_RIVAL
 	loadtrainer RIVAL1, RIVAL1_4_TOTODILE
@@ -180,6 +182,8 @@ UndergroundRivalBattleScript:
 	sjump .FinishRivalBattle
 
 .Totodile:
+	checkevent EVENT_KANTO_STARTERS
+	iftrue .Squirtle
 	winlosstext UndergroundRivalWinText, UndergroundRivalLossText
 	setlasttalked GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_RIVAL
 	loadtrainer RIVAL1, RIVAL1_4_CHIKORITA
@@ -189,9 +193,38 @@ UndergroundRivalBattleScript:
 	sjump .FinishRivalBattle
 
 .Chikorita:
+	checkevent EVENT_KANTO_STARTERS
+	iftrue .Bulbasaur
 	winlosstext UndergroundRivalWinText, UndergroundRivalLossText
 	setlasttalked GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_RIVAL
 	loadtrainer RIVAL1, RIVAL1_4_CYNDAQUIL
+	startbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
+	sjump .FinishRivalBattle
+
+.Charmander
+	winlosstext UndergroundRivalWinText, UndergroundRivalLossText
+	setlasttalked GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_RIVAL
+	loadtrainer RIVAL1, RIVAL1_4_SQUIRTLE
+	startbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
+	sjump .FinishRivalBattle
+
+.Squirtle:
+	winlosstext UndergroundRivalWinText, UndergroundRivalLossText
+	setlasttalked GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_RIVAL
+	loadtrainer RIVAL1, RIVAL1_4_BULBASAUR
+	startbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
+	sjump .FinishRivalBattle
+
+.Bulbasaur:
+	winlosstext UndergroundRivalWinText, UndergroundRivalLossText
+	setlasttalked GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_RIVAL
+	loadtrainer RIVAL1, RIVAL1_4_CHARMANDER
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
@@ -380,6 +413,7 @@ GoldenrodUndergroundSwitchRoomEntrances_DontToggle:
 	end
 
 GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors:
+  waitsfx
 	readmem wUndergroundSwitchPositions
 	ifequal 0, .Position0
 	ifequal 1, .Position1

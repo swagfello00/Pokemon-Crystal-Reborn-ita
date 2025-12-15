@@ -4,12 +4,41 @@
 	const BLACKTHORNGYM1F_COOLTRAINER_M2
 	const BLACKTHORNGYM1F_COOLTRAINER_F
 	const BLACKTHORNGYM1F_GYM_GUIDE
+	const BLACKTHORNGYM1F_BOULDER1
 
 BlackthornGym1F_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
 	callback MAPCALLBACK_TILES, BlackthornGym1FBouldersCallback
+	callback MAPCALLBACK_CMDQUEUE, BlackthornGym1FSetUpStoneTableCallback
+
+BlackthornGym1FSetUpStoneTableCallback:
+	writecmdqueue .CommandQueue
+	endcallback
+
+.CommandQueue:
+	cmdqueue CMDQUEUE_STONETABLE, .StoneTable ; check if any stones are sitting on a warp
+
+.StoneTable:
+	stonetable 8, BLACKTHORNGYM1F_BOULDER1, .Boulder1
+	db -1 ; end
+
+.Boulder1:
+	disappear BLACKTHORNGYM1F_BOULDER1
+	sjump .Fall
+
+.Fall:
+	checkevent EVENT_BOULDER_IN_BLACKTHORN_GYM_2
+	iftrue .placeboth
+	changeblock 2, 4, $40 ; fallen boulder 3
+	sjump .skip4
+.placeboth
+	changeblock 2, 4, $41 ; fallen boulder 4
+.skip4
+  refreshscreen
+	reloadmappart
+	end
 
 BlackthornGym1FBouldersCallback:
 	checkevent EVENT_BOULDER_IN_BLACKTHORN_GYM_1
@@ -24,11 +53,22 @@ BlackthornGym1FBouldersCallback:
 	iffalse .skip3
 	changeblock 8, 6, $3b ; fallen boulder 2
 .skip3
+	checkevent EVENT_BOULDER_IN_BLACKTHORN_GYM_4
+	iffalse .skip4
+	checkevent EVENT_BOULDER_IN_BLACKTHORN_GYM_2
+	iftrue .placeboth
+	changeblock 2, 4, $40 ; fallen boulder 3
+	sjump .skip4
+.placeboth
+	changeblock 2, 4, $41 ; fallen boulder 4
+.skip4
 	endcallback
 
 BlackthornGymClairScript:
 	faceplayer
 	opentext
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .Rematch
 	checkflag ENGINE_RISINGBADGE
 	iftrue .AlreadyGotBadge
 	checkevent EVENT_BEAT_CLAIR
@@ -90,6 +130,21 @@ BlackthornGymClairScript:
 	closetext
 	end
 
+.Rematch
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .AlreadyGotBadge
+	checkflag ENGINE_CLAIR_REMATCH_DONE
+	iftrue .AlreadyGotBadge
+	writetext ClairIntroText
+	waitbutton
+	closetext
+	winlosstext ClairWinText, 0
+	loadtrainer CLAIR, CLAIR2
+	startbattle
+	reloadmapafterbattle
+	setflag ENGINE_CLAIR_REMATCH_DONE
+	end
+
 TrainerCooltrainermPaul:
 	trainer COOLTRAINERM, PAUL, EVENT_BEAT_COOLTRAINERM_PAUL, CooltrainermPaulSeenText, CooltrainermPaulBeatenText, 0, .Script
 
@@ -126,6 +181,8 @@ TrainerCooltrainerfLola:
 BlackthornGymGuideScript:
 	faceplayer
 	opentext
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .BlackthornGymGuideRematchScript
 	checkevent EVENT_BEAT_CLAIR
 	iftrue .BlackthornGymGuideWinScript
 	writetext BlackthornGymGuideText
@@ -135,6 +192,16 @@ BlackthornGymGuideScript:
 
 .BlackthornGymGuideWinScript:
 	writetext BlackthornGymGuideWinText
+	waitbutton
+	closetext
+	end
+
+.BlackthornGymGuideRematchScript:
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .BlackthornGymGuideWinScript
+	checkflag ENGINE_CLAIR_REMATCH_DONE
+	iftrue .BlackthornGymGuideWinScript
+	writetext BlackthornGymGuideRematchText
 	waitbutton
 	closetext
 	end
@@ -235,7 +302,7 @@ BlackthornGymClairText_YouKeptMeWaiting:
 
 BlackthornGymText_ReceivedTM24:
 	text "<PLAYER> riceve"
-	line "MT24."
+	line "MT24 DRAGOSPIRO."
 	done
 
 BlackthornGymClairText_DescribeTM24:
@@ -387,6 +454,17 @@ BlackthornGymGuideWinText:
 	cont "#MON."
 	done
 
+BlackthornGymGuideRematchText:
+	text "SANDRA è ansiosa"
+	line "di sfidare un"
+	
+	para "allenatore valido"
+	line "come te."
+	
+	para "fagli vedere chi"
+	line "sei!"
+	done
+
 BlackthornGym1F_MapEvents:
 	db 0, 0 ; filler
 
@@ -398,6 +476,7 @@ BlackthornGym1F_MapEvents:
 	warp_event  2,  6, BLACKTHORN_GYM_2F, 3
 	warp_event  7,  7, BLACKTHORN_GYM_2F, 4
 	warp_event  7,  6, BLACKTHORN_GYM_2F, 5
+	warp_event  2,  4, BLACKTHORN_GYM_1F, 1
 
 	def_coord_events
 
@@ -411,3 +490,4 @@ BlackthornGym1F_MapEvents:
 	object_event  1, 14, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCooltrainermPaul, -1
 	object_event  9,  2, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerCooltrainerfLola, -1
 	object_event  7, 15, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BlackthornGymGuideScript, -1
+	object_event  3,  4, SPRITE_BOULDER, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BlackthornGymBoulder, EVENT_BOULDER_IN_BLACKTHORN_GYM_4

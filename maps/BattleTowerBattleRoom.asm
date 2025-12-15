@@ -87,6 +87,8 @@ Script_DontSaveAndEndTheSession: ; 7a13
 	closetext
 	special FadeOutPalettes
 	warpfacing UP, BATTLE_TOWER_1F, 7, 7
+	loadmem wBattleTowerStreak, 0
+	special SaveGameData
 	opentext
 	sjump Script_BattleTowerHopeToServeYouAgain
 
@@ -95,6 +97,8 @@ Script_FailedBattleTowerChallenge: ; 7a32
 	special BattleTowerFade
 	warpfacing UP, BATTLE_TOWER_1F, 7, 7
 
+	loadmem wBattleTowerStreak, 0
+	special SaveGameData
 	setval BATTLETOWERACTION_13
 	special BattleTowerAction
 	ifequal 1, Script_ChallengeCanceled;$7a90
@@ -105,11 +109,8 @@ Script_FailedBattleTowerChallenge: ; 7a32
 	setval BATTLETOWERACTION_CHALLENGECANCELED
 	special BattleTowerAction
 	opentext
-;	writetext Text_ThanksForVisiting
-;	waitbutton
-;	closetext
-;	end
-	writetext Text_ThankYou;$74be
+	writetext Text_ThanksForVisiting
+	promptbutton
 	sjump Idk3;$71b4
 
 Script_BeatenAllTrainers: ; 7a5b
@@ -122,15 +123,52 @@ Script_BeatenAllTrainers: ; 7a5b
 ;	sjump Script_GivePlayerHisPrize
 	setval BATTLETOWERACTION_13
 	special BattleTowerAction
-	ifequal 1, Script_ChallengeCanceled;$7a90
+	ifequal 1, Script_ChallengeCanceledWin;$7a90
+	readmem wBattleTowerStreak
+	ifgreater 10, .skipstreak
+	addval 1
+	writemem wBattleTowerStreak
+.skipstreak
+	readvar VAR_BLUECARDBALANCE
+	ifgreater 244, .CardFull
+	addval 10
+	writevar VAR_BLUECARDBALANCE
+	readmem wBattleTowerStreak
+.loop
+	writemem wBuffer1
+	ifless 2, .continue
+	readvar VAR_BLUECARDBALANCE
+	ifequal 255, .continue
+	addval 1
+	writevar VAR_BLUECARDBALANCE
+	readmem wBuffer1
+	addval -1
+	sjump .loop
+.continue
+	readmem wBattleTowerStreak
+	ifnotequal 0, .continuestring
+	addval 1
+.continuestring
+	addval 9
+	getnum STRING_BUFFER_4
+	special SaveGameData
 	setval BATTLETOWERACTION_05
 	special BattleTowerAction
-	ifequal 8, Script_TooMuchTimeElapsedNoRegister;$7a84
+	ifequal 8, Script_TooMuchTimeElapsedNoRegisterWin;$7a84
 	setval BATTLETOWERACTION_CHALLENGECANCELED
 	special BattleTowerAction
 	opentext
 	writetext Text_BeatenAllTheTrainers_Mobile;$74ca
+	waitbutton
+	readvar VAR_BLUECARDBALANCE
+	ifnotequal 255, Idk3
+	writetext Text_CardFull
+	waitbutton
 	sjump Idk3;$71b4
+
+.CardFull
+	loadvar VAR_BLUECARDBALANCE, 255
+	sjump .continue
 
 Script_TooMuchTimeElapsedNoRegister: ; 7a84
 	setval BATTLETOWERACTION_CHALLENGECANCELED
@@ -138,8 +176,22 @@ Script_TooMuchTimeElapsedNoRegister: ; 7a84
 	opentext
 	writetext Text_TooMuchTimeElapsedNoRegister
 	waitbutton
-	closetext
-	end
+	sjump Script_BattleTowerHopeToServeYouAgain
+
+Script_TooMuchTimeElapsedNoRegisterWin: ; 7a84
+	setval BATTLETOWERACTION_CHALLENGECANCELED
+	special BattleTowerAction
+	opentext
+	writetext Text_BeatenAllTheTrainers_Mobile;$74ca
+	waitbutton
+	readvar VAR_BLUECARDBALANCE
+	ifnotequal 255, .skip
+	writetext Text_CardFull
+	waitbutton
+.skip
+	writetext Text_TooMuchTimeElapsedNoRegister
+	waitbutton
+	sjump Script_BattleTowerHopeToServeYouAgain
 
 Script_ChallengeCanceled: ; 7a90
 	setval BATTLETOWERACTION_CHALLENGECANCELED
@@ -147,12 +199,57 @@ Script_ChallengeCanceled: ; 7a90
 	setval BATTLETOWERACTION_06
 	special BattleTowerAction
 	opentext
-;	writetext Text_ThanksForVisiting
-	writetext Text_ThankYou;$74be
+	writetext Text_ThanksForVisiting
+	promptbutton
 	writetext Text_WeHopeToServeYouAgain
 	waitbutton
 	closetext
 	end
+
+Script_ChallengeCanceledWin: ; 7a90
+	readvar VAR_BLUECARDBALANCE
+	ifgreater 244, .CardFull
+	addval 10
+	writevar VAR_BLUECARDBALANCE
+	readmem wBattleTowerStreak
+.loop
+	writemem wBuffer1
+	ifless 2, .continue
+	readvar VAR_BLUECARDBALANCE
+	ifequal 255, .continue
+	addval 1
+	writevar VAR_BLUECARDBALANCE
+	readmem wBuffer1
+	addval -1
+	sjump .loop
+.continue
+	readmem wBattleTowerStreak
+	ifnotequal 0, .continuestring
+	addval 1
+.continuestring
+	addval 9
+	getnum STRING_BUFFER_4
+	special SaveGameData
+	setval BATTLETOWERACTION_CHALLENGECANCELED
+	special BattleTowerAction
+	setval BATTLETOWERACTION_06
+	special BattleTowerAction
+	opentext
+	writetext Text_BeatenAllTheTrainers_Mobile;$74ca
+	waitbutton
+	readvar VAR_BLUECARDBALANCE
+	ifnotequal 255, .skip
+	writetext Text_CardFull
+	waitbutton
+.skip
+	writetext Text_WeHopeToServeYouAgain
+	waitbutton
+	closetext
+	end
+
+.CardFull
+	loadvar VAR_BLUECARDBALANCE, 255
+	sjump .continue
 
 Text_ReturnedAfterSave_Mobile: ; unreferenced
 	text "Potrai tornare"

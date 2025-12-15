@@ -60,6 +60,8 @@ VictoryRoadRivalNext:
 	iftrue .GotTotodile
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue .GotChikorita
+	checkevent EVENT_KANTO_STARTERS
+	iftrue .GotCharmander
 	winlosstext VictoryRoadRivalDefeatText, VictoryRoadRivalVictoryText
 	setlasttalked VICTORYROAD_RIVAL
 	loadtrainer RIVAL1, RIVAL1_5_TOTODILE
@@ -69,6 +71,8 @@ VictoryRoadRivalNext:
 	sjump .AfterBattle
 
 .GotTotodile:
+	checkevent EVENT_KANTO_STARTERS
+	iftrue .GotSquirtle
 	winlosstext VictoryRoadRivalDefeatText, VictoryRoadRivalVictoryText
 	setlasttalked VICTORYROAD_RIVAL
 	loadtrainer RIVAL1, RIVAL1_5_CHIKORITA
@@ -78,9 +82,38 @@ VictoryRoadRivalNext:
 	sjump .AfterBattle
 
 .GotChikorita:
+	checkevent EVENT_KANTO_STARTERS
+	iftrue .GotBulbasaur
 	winlosstext VictoryRoadRivalDefeatText, VictoryRoadRivalVictoryText
 	setlasttalked VICTORYROAD_RIVAL
 	loadtrainer RIVAL1, RIVAL1_5_CYNDAQUIL
+	startbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
+	sjump .AfterBattle
+
+.GotCharmander
+	winlosstext VictoryRoadRivalDefeatText, VictoryRoadRivalVictoryText
+	setlasttalked VICTORYROAD_RIVAL
+	loadtrainer RIVAL1, RIVAL1_5_SQUIRTLE
+	startbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
+	sjump .AfterBattle
+
+.GotSquirtle:
+	winlosstext VictoryRoadRivalDefeatText, VictoryRoadRivalVictoryText
+	setlasttalked VICTORYROAD_RIVAL
+	loadtrainer RIVAL1, RIVAL1_5_BULBASAUR
+	startbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
+	sjump .AfterBattle
+
+.GotBulbasaur:
+	winlosstext VictoryRoadRivalDefeatText, VictoryRoadRivalVictoryText
+	setlasttalked VICTORYROAD_RIVAL
+	loadtrainer RIVAL1, RIVAL1_5_CHARMANDER
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
@@ -253,7 +286,8 @@ VictoryRoad_MapEvents:
 	warp_event 17, 19, VICTORY_ROAD, 6
 	warp_event  0, 11, VICTORY_ROAD, 9
 	warp_event  0, 27, VICTORY_ROAD, 8
-	warp_event 13,  5, ROUTE_23, 3
+	warp_event 13,  5, ROUTE_23, 4
+	warp_event 18, 10, VICTORY_ROAD_2F, 5
 
 	def_coord_events
 	coord_event 12,  8, SCENE_VICTORYROAD_RIVAL_BATTLE, VictoryRoadRivalLeft
@@ -270,3 +304,4 @@ VictoryRoad_MapEvents:
 	object_event 18, 29, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadFullRestore, EVENT_VICTORY_ROAD_FULL_RESTORE
 	object_event 15, 48, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadFullHeal, EVENT_VICTORY_ROAD_FULL_HEAL
 	object_event  7, 38, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadHPUp, EVENT_VICTORY_ROAD_HP_UP
+

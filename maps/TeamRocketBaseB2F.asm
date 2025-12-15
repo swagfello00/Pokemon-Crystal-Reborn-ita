@@ -13,6 +13,8 @@
 	const TEAMROCKETBASEB2F_ROCKET3
 	const TEAMROCKETBASEB2F_ROCKET4
 	const TEAMROCKETBASEB2F_POKE_BALL
+	const TEAMROCKETBASEB2F_SCIENTIST
+	const TEAMROCKETBASEB2F_POKE_BALL2
 
 TeamRocketBaseB2F_MapScripts:
 	def_scene_scripts
@@ -44,6 +46,200 @@ TeamRocketBaseB2FTransmitterDoorCallback:
 .OpenDoor:
 	changeblock 14, 12, $07 ; floor
 	endcallback
+
+FossilScientist:
+	faceplayer
+	opentext
+	checkevent EVENT_GAVE_SCIENTIST_MACHINERY
+	iffalse .NeedMachinery
+	checkevent EVENT_GAVE_SCIENTIST_OLD_AMBER
+	iftrue .GiveAerodactyl
+	checkevent EVENT_GAVE_SCIENTIST_DOME_FOSSIL
+	iftrue .GiveKabuto
+	checkevent EVENT_GAVE_SCIENTIST_HELIX_FOSSIL
+	iftrue .GiveOmanyte
+.GotMachinery
+	writetext FossilScientistIntroText
+	yesorno
+	iffalse .No
+	checkitem OLD_AMBER
+	iftrue .OldAmber
+	checkitem DOME_FOSSIL
+	iftrue .DomeFossil
+	checkitem HELIX_FOSSIL
+	iftrue .HelixFossil
+	sjump .NoFossil
+
+.OldAmber
+	getitemname STRING_BUFFER_3, OLD_AMBER
+	writetext FossilScientistMon2Text
+	yesorno
+	iffalse .NoAmber
+	takeitem OLD_AMBER
+	setevent EVENT_GAVE_SCIENTIST_OLD_AMBER
+	writetext FossilScientistGiveText
+	waitbutton
+	sjump .GaveScientistFossil
+
+.DomeFossil:
+	getitemname STRING_BUFFER_3, DOME_FOSSIL
+	writetext FossilScientistMon2Text
+	yesorno
+	iffalse .NoDome
+	takeitem DOME_FOSSIL
+	setevent EVENT_GAVE_SCIENTIST_DOME_FOSSIL
+	opentext
+	writetext FossilScientistGiveText
+	waitbutton
+	sjump .GaveScientistFossil
+
+.HelixFossil:
+	getitemname STRING_BUFFER_3, HELIX_FOSSIL
+	writetext FossilScientistMon2Text
+	yesorno
+	iffalse .NoHelix
+	takeitem HELIX_FOSSIL
+	setevent EVENT_GAVE_SCIENTIST_HELIX_FOSSIL
+	writetext FossilScientistGiveText
+	waitbutton
+	sjump .GaveScientistFossil
+	
+.NoFossil
+	writetext NoFossilText
+	waitbutton
+	closetext
+	end
+
+.NoAmber
+	writetext AnotherFossilText
+	yesorno
+	iffalse .No
+	checkitem DOME_FOSSIL
+	iftrue .DomeFossil
+	checkitem HELIX_FOSSIL
+	iftrue .HelixFossil
+	sjump .NoOtherFossil
+.NoDome
+	writetext AnotherFossilText
+	yesorno
+	iffalse .No
+	checkitem HELIX_FOSSIL
+	iftrue .HelixFossil
+	checkitem OLD_AMBER
+	iftrue .OldAmber
+	sjump .NoOtherFossil
+.NoHelix
+	writetext AnotherFossilText
+	yesorno
+	iffalse .No
+	checkitem OLD_AMBER
+	iftrue .OldAmber
+	checkitem DOME_FOSSIL
+	iftrue .DomeFossil
+.NoOtherFossil
+	writetext NoOtherFossilText
+	waitbutton
+	closetext
+	end
+
+.No
+	writetext FossilScientistNoText
+	waitbutton
+	closetext
+	end
+
+.GaveScientistFossil:
+	writetext FossilScientistTimeText
+	waitbutton
+	turnobject TEAMROCKETBASEB2F_SCIENTIST, UP
+	closetext
+	special FadeBlackQuickly
+	special ReloadSpritesNoPalettes
+	playsound SFX_WARP_TO
+	waitsfx
+	pause 35
+	special FadeInQuickly
+	sjump FossilScientist
+
+.GiveAerodactyl:
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, .NoRoom
+	clearevent EVENT_GAVE_SCIENTIST_OLD_AMBER
+	writetext FossilScientistDoneText
+	promptbutton
+	getmonname STRING_BUFFER_3, AERODACTYL
+	writetext FossilScientistReceiveText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	waitbutton
+	writetext FossilScientistMonText
+	givepoke AERODACTYL, 30
+	closetext
+	end
+
+.GiveKabuto:
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, .NoRoom
+	clearevent EVENT_GAVE_SCIENTIST_DOME_FOSSIL
+	writetext FossilScientistDoneText
+	promptbutton
+	getmonname STRING_BUFFER_3, KABUTO
+	writetext FossilScientistReceiveText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	waitbutton
+	writetext FossilScientistMonText
+	givepoke KABUTO, 30
+	closetext
+	end
+
+.GiveOmanyte:
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, .NoRoom
+	clearevent EVENT_GAVE_SCIENTIST_HELIX_FOSSIL
+	writetext FossilScientistDoneText
+	promptbutton
+	getmonname STRING_BUFFER_3, OMANYTE
+	writetext FossilScientistReceiveText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	waitbutton
+	writetext FossilScientistMonText
+	givepoke OMANYTE, 30
+	closetext
+	end
+
+.NoRoom:
+	writetext FossilScientistDoneText
+	promptbutton
+	writetext FossilScientistPartyFullText
+	waitbutton
+	closetext
+	end
+
+.NeedMachinery:
+  checkitem MACHINERY
+  iftrue .HaveMachinery
+  writetext AskMachineryText
+  waitbutton
+  closetext
+  end
+
+.HaveMachinery
+  writetext AskTakeMachineryText
+  yesorno
+  iffalse .DontTakeMachinery
+  takeitem MACHINERY
+  setevent EVENT_GAVE_SCIENTIST_MACHINERY
+  writetext ThankYouMachineryText
+  promptbutton
+  sjump .GotMachinery
+
+.DontTakeMachinery
+  writetext DontTakeMachineryText
+  waitbutton
+  closetext
+  end
 
 RocketBaseBossFLeft:
 	moveobject TEAMROCKETBASEB2F_LANCE, 9, 13
@@ -355,6 +551,9 @@ TeamRocketBaseB2FTMThief:
 
 TeamRocketBaseB2FHiddenFullHeal:
 	hiddenitem FULL_HEAL, EVENT_TEAM_ROCKET_BASE_B2F_HIDDEN_FULL_HEAL
+
+TeamRocketBaseB2FMachinery:
+  itemball MACHINERY
 
 RocketBaseLanceLeavesAfterHealMovement:
 	step RIGHT
@@ -917,6 +1116,160 @@ RocketBaseB2FDeactivateTransmitterText:
 	cont "segnale."
 	done
 
+FossilScientistIntroText:
+	text "Sono un importante"
+	line "scienziato!"
+
+	para "Studio i fossili"
+	line "dei #MON!"
+
+	para "Questa macchina è"
+	line "in grado di"
+	cont "resuscitarli."
+
+	para "Hai per caso un"
+	line "fossile?"
+	done
+
+FossilScientistNoText:
+	text "No! che peccato!"
+	line "Torna di nuovo!"
+	done
+
+FossilScientistPartyFullText:
+	text "No! Che peccato!"
+
+	para "La tua squadra"
+	line "è piena!"
+	done
+
+FossilScientistTimeText:
+	text "Stai a guardare!"
+	done
+
+FossilScientistDoneText:
+	text "Il tuo fossile è"
+	line "tornato in vita!"
+	done
+
+FossilScientistMonText:
+	text "Oh! Altro che"
+	line "un fossile!"
+
+	para "Questo è un"
+	line "@"
+	text_ram wStringBuffer3
+	text "!"
+	prompt
+
+FossilScientistMon2Text:
+	text "Questo fossile è"
+	line "@"
+	text_ram wStringBuffer3
+	text "."
+
+	para "Questo #MON"
+	line "è ormai estinto"
+	cont "da un pezzo!"
+
+	para "Il mio apparecchio"
+	line "lo farà tornare"
+	cont "in vita."
+	
+	para "Vuoi provare?"
+	done
+
+NoFossilText:
+	text "No! Che peccato!"
+
+	para "Non hai alcun"
+	line "fossile con te!"
+	done
+
+NoOtherFossilText:
+	text "No! Che peccato!"
+
+	para "Non hai altri"
+	line "fossili con te!"
+	done
+
+FossilScientistGiveText:
+	text "Ok! adesso"
+	line "consegnamelo!"
+
+	para "<PLAYER> consegna"
+	line "il fossile."
+	done
+
+FossilScientistReceiveText:
+	text "<PLAYER> riceve"
+	line "@"
+	text_ram wStringBuffer3
+	text "!"
+	done
+
+AnotherFossilText:
+	text "Hai un altro"
+	line "fossile da"
+	cont "resuscitare?"
+	done
+
+AskMachineryText:
+  text "Accidenti!"
+  
+  para "Il TEAM ROCKET mi"
+  line "ha rubato il"
+  
+  para "MACCHINARIO che"
+  line "uso per svolgere i"
+  cont "miei esperimenti!"
+  
+  para "Credo l'abbiano"
+  line "nascosto nella"
+  
+  para "stanza che usano"
+  line "per emettere il"
+  cont "segnale radio."
+  
+  para "Puoi recuperarlo"
+  line "per me?"
+  done
+  
+AskTakeMachineryText:
+  text "Sì è proprio"
+  line "Questo!"
+  
+  para "Ti prego,"
+  line "consegnamelo!"
+  
+  para "Così posso"
+  line "continuare a"
+  cont "lavorare."
+  done
+
+ThankYouMachineryText:
+  text "<PLAYER> consegna"
+  line "il MACCHINARIO"
+  cont "allo scienziato."
+  
+  para "Grazie mille,"
+  line "menomale che me"
+  cont "l'hai ritrovato!"
+  
+  para "Ora questo"
+  line "apparecchio"
+  cont "funziona di nuovo!"
+  
+  para "Oh che sbadato,"
+  line "non mi sono ancora"
+  cont "presentato!"
+  done
+
+DontTakeMachineryText:
+  text "Oh no! E ora come"
+  line "faccio?"
+  done
+
 TeamRocketBaseB2F_MapEvents:
 	db 0, 0 ; filler
 
@@ -968,13 +1321,15 @@ TeamRocketBaseB2F_MapEvents:
 	object_event 20, 16, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_EXECUTIVE
 	object_event  5, 13, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_LANCE
 	object_event  9, 13, SPRITE_DRAGON, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_DRAGONITE
-	object_event  7,  5, SPRITE_VOLTORB, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RocketElectrode1, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
-	object_event  7,  7, SPRITE_VOLTORB, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RocketElectrode2, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
-	object_event  7,  9, SPRITE_VOLTORB, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RocketElectrode3, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3
-	object_event 22,  5, SPRITE_VOLTORB, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
-	object_event 22,  7, SPRITE_VOLTORB, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
-	object_event 22,  9, SPRITE_VOLTORB, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3
+	object_event  7,  5, SPRITE_ELECTRODE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RocketElectrode1, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
+	object_event  7,  7, SPRITE_ELECTRODE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RocketElectrode2, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
+	object_event  7,  9, SPRITE_ELECTRODE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RocketElectrode3, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3
+	object_event 22,  5, SPRITE_ELECTRODE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
+	object_event 22,  7, SPRITE_ELECTRODE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
+	object_event 22,  9, SPRITE_ELECTRODE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3
 	object_event 25, 13, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM17, EVENT_TEAM_ROCKET_BASE_POPULATION
 	object_event  4,  1, SPRITE_ROCKET, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 1, TrainerGruntM18, EVENT_TEAM_ROCKET_BASE_POPULATION
 	object_event 21, 14, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 4, TrainerGruntM19, EVENT_TEAM_ROCKET_BASE_POPULATION
 	object_event  3, 10, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TeamRocketBaseB2FTMThief, EVENT_TEAM_ROCKET_BASE_B2F_TM_THIEF
+	object_event 24,  9, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FossilScientist, -1
+	object_event 22,  3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TeamRocketBaseB2FMachinery, EVENT_TEAM_ROCKET_BASE_B2F_MACHINERY

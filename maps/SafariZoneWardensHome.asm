@@ -55,6 +55,9 @@ WardensGranddaughterText2:
 	para "della ZONA SAFARI,"
 	line "ma mio nonno è"
 	cont "proprio cocciuto…"
+	
+	para "Menomale che"
+	line "l'hanno riaperta."
 	done
 
 WardenPhotoText:

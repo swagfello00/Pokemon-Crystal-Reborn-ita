@@ -30,6 +30,8 @@ BattleTower1FCheckStateScene:
 	end
 
 .LeftWithoutSaving ; 70BF
+	loadmem wBattleTowerStreak, 0
+	special SaveGameData
 	setval BATTLETOWERACTION_13
 	special BattleTowerAction
 	ifnotequal $00, .skip;$70CB
@@ -64,7 +66,8 @@ BattleTower1FReceptionistScript: ;70E5
 	;special BattleTowerAction
 	;ifequal $3, Script_BeatenAllTrainers2 ; maps/BattleTowerBattleRoom.asm
 	opentext
-
+	special Mobile_DummyReturnFalse
+	iffalse .NoMobile
 	setval BATTLETOWERACTION_CHECKSAVEFILEISYOURS
 	special BattleTowerAction
 	iffalse .idk2;$711F
@@ -97,6 +100,15 @@ BattleTower1FReceptionistScript: ;70E5
 	ifnotequal $0, Script_Menu_ChallengeExplanationCancel
 	jump Script_BattleTowerIntroductionYesNo
 
+.NoMobile
+	writetext NoBattleTowerText
+	waitbutton
+	closetext
+	end
+
+NoCard:
+	writetext NoCardBattleTowerText
+	waitbutton
 Script_Menu_ChallengeExplanationCancel: ; $712F
 	writetext Text_WantToGoIntoABattleRoom
 	setval TRUE
@@ -108,6 +120,8 @@ Script_Menu_ChallengeExplanationCancel: ; $712F
 	sjump Script_BattleTowerHopeToServeYouAgain ; 71E3
 
 Script_ChooseChallenge:
+	checkitem BLUE_CARD
+	iffalse NoCard
 	setval BATTLETOWERACTION_0D
 	special BattleTowerAction
 	iftrue Script_ReachedBattleLimit;$726E
@@ -246,6 +260,8 @@ Script_ChooseChallenge2: ; 71F1
 	end
 
 Script_StartChallenge: ; 721D
+	checkitem BLUE_CARD
+	iffalse NoCard
 	setval BATTLETOWERACTION_LEVEL_CHECK
 	special BattleTowerAction
 	ifnotequal $0, Script_AMonLevelExceeds
@@ -314,6 +330,565 @@ BattleTower1FYoungsterScript:
 	closetext
 	turnobject BATTLETOWER1F_YOUNGSTER, RIGHT
 	end
+
+RadioTowerBuenaPrizeReceptionist:
+	faceplayer
+	opentext
+	checkitem BLUE_CARD
+	iffalse .NoCard
+	writetext RadioTower2FBuenaReceptionistPointsForPrizesText
+	promptbutton
+.Menu
+	farwritetext _BuenaAskWhichPrizeText
+	special PrintBlueCardBalance
+	loadmenu .MenuHeader
+	verticalmenu
+	closewindow
+	ifequal 1, .Bought1
+	ifequal 2, .Bought2
+	ifequal 3, .Bought3
+	ifequal 4, .Bought4
+	farwritetext _BuenaComeAgainText
+	waitbutton
+.continue
+	closetext
+	end
+
+.NoCard:
+	writetext RadioTower2FBuenaReceptionistNoCardText
+	waitbutton
+	closetext
+	end
+
+.BagFullBought1
+	pocketisfull
+.Bought1
+	farwritetext _NoText
+	loadmenu .MenuHeader1
+	verticalmenu
+	closewindow
+	ifequal 1, .UltraBall
+	ifequal 2, .FullRestore
+	ifequal 3, .Nugget
+	ifequal 4, .SlowpokeTail
+	ifequal 5, .MaxEther
+	ifequal 6, .MaxElixer
+	ifequal 7, .MaxRevive
+	sjump .Menu
+
+.BagFullBought2
+	pocketisfull
+.Bought2
+	farwritetext _NoText
+	loadmenu .MenuHeader2
+	verticalmenu
+	closewindow
+	ifequal 1, .HpUp
+	ifequal 2, .Protein
+	ifequal 3, .Iron
+	ifequal 4, .Calcium
+	ifequal 5, .Carbos
+	ifequal 6, .PpUp
+	ifequal 7, .RareCandy
+	sjump .Menu
+
+.BagFullBought3
+	pocketisfull
+.Bought3
+	farwritetext _NoText
+	loadmenu .MenuHeader3
+	verticalmenu
+	closewindow
+	ifequal 1, .KingsRock
+	ifequal 2, .MetalCoat
+	ifequal 3, .DragonScale
+	ifequal 4, .Upgrade
+	ifequal 5, .BerserkGene
+	ifequal 6, .ScopeLens
+	ifequal 7, .Leftovers
+	sjump .Menu
+
+.BagFullBought4
+	pocketisfull
+.Bought4
+	farwritetext _NoText
+	loadmenu .MenuHeader4
+	verticalmenu
+	closewindow
+	ifequal 1, .SacredAsh
+	ifequal 2, .ExpShare
+	ifequal 3, .NormalBox
+	ifequal 4, .GorgeousBox
+	ifequal 5, .LuckyEgg
+	ifequal 6, .MasterBall
+	ifequal 7, .EggTicket
+	sjump .Menu
+
+.Cost2
+	readvar VAR_BLUECARDBALANCE
+	ifless 2, .NotEnough
+	setval TRUE
+	end
+.Pay2
+	readvar VAR_BLUECARDBALANCE
+	addval -2
+	writevar VAR_BLUECARDBALANCE
+	end
+
+.Cost3
+	readvar VAR_BLUECARDBALANCE
+	ifless 3, .NotEnough
+	setval TRUE
+	end
+.Pay3
+	readvar VAR_BLUECARDBALANCE
+	addval -3
+	writevar VAR_BLUECARDBALANCE
+	end
+
+.Cost4
+	readvar VAR_BLUECARDBALANCE
+	ifless 4, .NotEnough
+	setval TRUE
+	end
+.Pay4
+	readvar VAR_BLUECARDBALANCE
+	addval -4
+	writevar VAR_BLUECARDBALANCE
+	end
+
+.Cost10
+	readvar VAR_BLUECARDBALANCE
+	ifless 10, .NotEnough
+	setval TRUE
+	end
+.Pay10
+	readvar VAR_BLUECARDBALANCE
+	addval -10
+	writevar VAR_BLUECARDBALANCE
+	end
+
+.Cost20
+	readvar VAR_BLUECARDBALANCE
+	ifless 20, .NotEnough
+	setval TRUE
+	end
+.Pay20
+	readvar VAR_BLUECARDBALANCE
+	addval -20
+	writevar VAR_BLUECARDBALANCE
+	end
+
+.Cost30
+	readvar VAR_BLUECARDBALANCE
+	ifless 30, .NotEnough
+	setval TRUE
+	end
+.Pay30
+	readvar VAR_BLUECARDBALANCE
+	addval -30
+	writevar VAR_BLUECARDBALANCE
+	end
+
+.Cost50
+	readvar VAR_BLUECARDBALANCE
+	ifless 50, .NotEnough
+	setval TRUE
+	end
+.Pay50
+	readvar VAR_BLUECARDBALANCE
+	addval -50
+	writevar VAR_BLUECARDBALANCE
+	end
+
+.Cost100
+	readvar VAR_BLUECARDBALANCE
+	ifless 100, .NotEnough
+	setval TRUE
+	end
+.Pay100
+	readvar VAR_BLUECARDBALANCE
+	addval -100
+	writevar VAR_BLUECARDBALANCE
+	end
+
+.Cost200
+	readvar VAR_BLUECARDBALANCE
+	ifless 200, .NotEnough
+	setval TRUE
+	end
+.Pay200
+	readvar VAR_BLUECARDBALANCE
+	addval -200
+	writevar VAR_BLUECARDBALANCE
+	end
+
+.Cost255
+	readvar VAR_BLUECARDBALANCE
+	ifless 255, .NotEnough
+	setval TRUE
+	end
+.Pay255
+	readvar VAR_BLUECARDBALANCE
+	addval -255
+	writevar VAR_BLUECARDBALANCE
+	end
+
+.NotEnough
+	farwritetext _BuenaNotEnoughPointsText
+	setval FALSE
+	end
+
+.GiveItemScript
+	farwritetext _BuenaHereYouGoText
+	waitsfx
+	playsound SFX_TRANSACTION
+	waitbutton
+	special PrintBlueCardBalance
+	end
+
+.UltraBall
+	scall .Cost2
+	iffalse .Bought1
+	giveitem ULTRA_BALL
+	iffalse .BagFullBought1
+	scall .Pay2
+	scall .GiveItemScript
+	sjump .Bought1
+
+.FullRestore
+	scall .Cost2
+	iffalse .Bought1
+	giveitem FULL_RESTORE
+	iffalse .BagFullBought1
+	scall .Pay2
+	scall .GiveItemScript
+	sjump .Bought1
+
+.Nugget
+	scall .Cost3
+	iffalse .Bought1
+	giveitem NUGGET
+	iffalse .BagFullBought1
+	scall .Pay3
+	scall .GiveItemScript
+	sjump .Bought1
+
+.SlowpokeTail
+	scall .Cost3
+	iffalse .Bought1
+	giveitem SLOWPOKETAIL
+	iffalse .BagFullBought1
+	scall .Pay3
+	scall .GiveItemScript
+	sjump .Bought1
+
+.MaxEther
+	scall .Cost3
+	iffalse .Bought1
+	giveitem MAX_ETHER
+	iffalse .BagFullBought1
+	scall .Pay3
+	scall .GiveItemScript
+	sjump .Bought1
+
+.MaxElixer
+	scall .Cost10
+	iffalse .Bought1
+	giveitem MAX_ELIXER
+	iffalse .BagFullBought1
+	scall .Pay10
+	scall .GiveItemScript
+	sjump .Bought1
+
+.MaxRevive
+	scall .Cost10
+	iffalse .Bought1
+	giveitem MAX_REVIVE
+	iffalse .BagFullBought1
+	scall .Pay10
+	scall .GiveItemScript
+	sjump .Bought1
+
+.Protein
+	scall .Cost4
+	iffalse .Bought2
+	giveitem PROTEIN
+	iffalse .BagFullBought2
+	scall .Pay4
+	scall .GiveItemScript
+	sjump .Bought2
+	
+.Iron
+	scall .Cost4
+	iffalse .Bought2
+	giveitem IRON
+	iffalse .BagFullBought2
+	scall .Pay4
+	scall .GiveItemScript
+	sjump .Bought2
+
+.Carbos
+	scall .Cost4
+	iffalse .Bought2
+	giveitem CARBOS
+	iffalse .BagFullBought2
+	scall .Pay4
+	scall .GiveItemScript
+	sjump .Bought2
+
+.Calcium
+	scall .Cost4
+	iffalse .Bought2
+	giveitem CALCIUM
+	iffalse .BagFullBought2
+	scall .Pay4
+	scall .GiveItemScript
+	sjump .Bought2
+
+.HpUp
+	scall .Cost4
+	iffalse .Bought2
+	giveitem HP_UP
+	iffalse .BagFullBought2
+	scall .Pay4
+	scall .GiveItemScript
+	sjump .Bought2
+
+.PpUp
+	scall .Cost4
+	iffalse .Bought2
+	giveitem PP_UP
+	iffalse .BagFullBought2
+	scall .Pay4
+	scall .GiveItemScript
+	sjump .Bought2
+
+.RareCandy
+	scall .Cost10
+	iffalse .Bought2
+	giveitem RARE_CANDY
+	iffalse .BagFullBought2
+	scall .Pay10
+	scall .GiveItemScript
+	sjump .Bought2
+
+.KingsRock
+	scall .Cost30
+	iffalse .Bought3
+	giveitem KINGS_ROCK
+	iffalse .BagFullBought3
+	scall .Pay30
+	scall .GiveItemScript
+	sjump .Bought3
+
+.MetalCoat
+	scall .Cost30
+	iffalse .Bought3
+	giveitem METAL_COAT
+	iffalse .BagFullBought3
+	scall .Pay30
+	scall .GiveItemScript
+	sjump .Bought3
+
+.DragonScale
+	scall .Cost30
+	iffalse .Bought3
+	giveitem DRAGON_SCALE
+	iffalse .BagFullBought3
+	scall .Pay30
+	scall .GiveItemScript
+	sjump .Bought3
+
+.Upgrade
+	scall .Cost50
+	iffalse .Bought3
+	giveitem UP_GRADE
+	iffalse .BagFullBought3
+	scall .Pay50
+	scall .GiveItemScript
+	sjump .Bought3
+
+.BerserkGene
+	scall .Cost100
+	iffalse .Bought3
+	giveitem BERSERK_GENE
+	iffalse .BagFullBought3
+	scall .Pay100
+	scall .GiveItemScript
+	sjump .Bought3
+
+.ScopeLens
+	scall .Cost100
+	iffalse .Bought3
+	giveitem SCOPE_LENS
+	iffalse .BagFullBought3
+	scall .Pay100
+	scall .GiveItemScript
+	sjump .Bought3
+
+.Leftovers
+	scall .Cost100
+	iffalse .Bought3
+	giveitem LEFTOVERS
+	iffalse .BagFullBought3
+	scall .Pay100
+	scall .GiveItemScript
+	sjump .Bought3
+
+.SacredAsh
+	scall .Cost100
+	iffalse .Bought4
+	giveitem SACRED_ASH
+	iffalse .BagFullBought4
+	scall .Pay100
+	scall .GiveItemScript
+	sjump .Bought4
+
+.ExpShare
+	scall .Cost100
+	iffalse .Bought4
+	giveitem EXP_SHARE
+	iffalse .BagFullBought4
+	scall .Pay100
+	scall .GiveItemScript
+	sjump .Bought4
+
+.NormalBox
+	scall .Cost100
+	iffalse .Bought4
+	giveitem NORMAL_BOX
+	iffalse .BagFullBought4
+	scall .Pay100
+	scall .GiveItemScript
+	sjump .Bought4
+
+.GorgeousBox
+	scall .Cost200
+	iffalse .Bought4
+	giveitem GORGEOUS_BOX
+	iffalse .BagFullBought4
+	scall .Pay200
+	scall .GiveItemScript
+	sjump .Bought4
+
+.LuckyEgg
+	scall .Cost200
+	iffalse .Bought4
+	giveitem LUCKY_EGG
+	iffalse .BagFullBought4
+	scall .Pay200
+	scall .GiveItemScript
+	sjump .Bought4
+
+.MasterBall
+	scall .Cost200
+	iffalse .Bought4
+	giveitem MASTER_BALL
+	iffalse .BagFullBought4
+	scall .Pay200
+	scall .GiveItemScript
+	sjump .Bought4
+
+.EggTicket
+	setval EGG_TICKET
+	special UnusedFindItemInPCOrBag
+	iftrue .GotEggTicket
+	scall .Cost255
+	iffalse .Bought4
+	giveitem EGG_TICKET
+	iffalse .BagFullBought4
+	scall .Pay255
+	scall .GiveItemScript
+	sjump .Bought4
+
+.GotEggTicket
+	writetext GotEggTicketText
+	waitbutton
+	sjump .Bought4
+
+.MenuHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 0, 19, 11
+	dw .MenuData
+	db 1 ; default option
+
+.MenuData:
+	db STATICMENU_CURSOR | STATICMENU_WRAP; flags
+	db 5 ; items
+	db "STRUMEMTI COMUNI@"
+	db "STRUMENTI POTENZ.@"
+	db "STRUMENTI TENUTI@"
+	db "STRUMENTI RARI@"
+	db "ESCI@"
+
+.MenuHeader1:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 2, 19, 17
+	dw .MenuData1
+	db 1 ; default option
+
+.MenuData1:
+	db STATICMENU_CURSOR | STATICMENU_WRAP; flags
+	db 7 ; items
+	db "ULTRA BALL      2@"
+	db "RICARICA TOT    2@"
+	db "PEPITA          3@"
+	db "CODASLOWPOKE    3@"
+	db "ETERE MAX       3@"
+	db "ELISIR MAX     10@"
+	db "REVITAL.MAX    10@"
+
+.MenuHeader2:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 2, 19, 17
+	dw .MenuData2
+	db 1 ; default option
+
+.MenuData2:
+	db STATICMENU_CURSOR | STATICMENU_WRAP; flags
+	db 7 ; items
+	db "PS-SU           4@"
+	db "PROTEINA        4@"
+	db "FERRO           4@"
+	db "CALCIO          4@"
+	db "CARBURANTE      4@"
+	db "PP-SU           4@"
+	db "CARAM. RARA    10@"
+
+.MenuHeader3:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 2, 19, 17
+	dw .MenuData3
+	db 1 ; default option
+
+.MenuData3:
+	db STATICMENU_CURSOR | STATICMENU_WRAP; flags
+	db 7 ; items
+	db "ROCCIA DI RE   30@"
+	db "METALCOPERTA   30@"
+	db "SQUAMA DRAGO   30@"
+	db "UPGRADE        50@"
+	db "GENEFURIOSO   100@"
+	db "MIRINO        100@"
+	db "AVANZI        100@"
+	
+.MenuHeader4:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 2, 19, 17
+	dw .MenuData4
+	db 1 ; default option
+
+.MenuData4:
+	db STATICMENU_CURSOR | STATICMENU_WRAP; flags
+	db 7 ; items
+	db "CENEREMAGICA  100@"
+	db "CONDIV.ESP.   100@"
+	db "SCAT.NORMALE  100@"
+	db "SCAT.LUSSO    200@"
+	db "FORTUNUOVO    200@"
+	db "MASTER BALL   200@"
+	db "BIGL.UOVO     255@"
 
 BattleTower1FCooltrainerFScript:
 	jumptextfaceplayer Text_BattleTowerCooltrainerF
@@ -408,6 +983,25 @@ MovementData_BattleTowerBattleRoomPlayerTurnsToFaceNextOpponent:
 	turn_head RIGHT
 	step_end
 
+NoBattleTowerText:
+	text "Spiacente, la"
+	line "TORRE LOTTA non è"
+	cont "ancora operativa."
+	done
+
+NoCardBattleTowerText:
+	text "Spiacente, non è"
+	line "possibile accedere"
+	
+	para "alla TORRE LOTTA"
+	line "senza lo strumento"
+	cont "CARTA BLU."
+	
+	para "Puoi procurartelo"
+	line "alla TORRE RADIO"
+	cont "di FIORDOROPOLI."
+	done
+
 Text_BattleTowerWelcomesYou:
 	text "La TORRE LOTTA ti"
 	line "dà il benvenuto!"
@@ -467,9 +1061,9 @@ Text_BattleTowerIntroduction_1: ; unreferenced
 	line "sempre nell'ALBO"
 	cont "D'ORO."
 
-	para "Puoi sfidare fino"
-	line "a cinque SALA"
-	cont "LOTTA al giorno."
+	para "Puoi sfidare tutte"
+	line "le SALE LOTTA ogni"
+	cont "giorno."
 
 	para "Però puoi lottare"
 	line "solo una volta"
@@ -568,7 +1162,18 @@ Text_BeatenAllTheTrainers_Mobile: ; unreferenced
 	line "scelto come"
 	cont "CAPOSALA."
 	
-	para ""
+	para "Tieni, ti meriti"
+	line "un premio!"
+	
+	para "Hai vinto @"
+	text_ram wStringBuffer4 
+	text " punti"
+	line "sulla CARTA BLU."
+	done
+
+Text_CardFull:
+	text "Hai raggiunto il"
+	line "punteggio massimo."
 	done
 
 Text_CongratulationsYouveBeatenAllTheTrainers:
@@ -629,8 +1234,8 @@ Text_CantBeRegistered:
 	text "Il tuo risultato"
 	line "nella SALA LOTTA"
 
-	para "precedente non"
-	line "si può registrare."
+	para "precedente non si"
+	line "potrà registrare."
 	cont "Va bene?"
 	done
 
@@ -639,7 +1244,7 @@ Text_CantBeRegistered_PreviousRecordDeleted:
 	line "nella SALA LOTTA"
 
 	para "precedente non si"
-	line "può registrare."
+	line "potrà registrare."
 
 	para "Anche il risultato"
 	line "attuale andrà"
@@ -727,8 +1332,8 @@ Text_SaveAndEndTheSession:
 	done
 
 Text_SaveBeforeReentry:
-    text "Il gioco verrà"
-    line "SALVATO."
+	text "Il gioco verrà"
+	line "SALVATO."
 
 	para "Ritornerai alla"
 	line "SALA precedente."
@@ -759,7 +1364,7 @@ Text_WeveBeenWaitingForYou:
 
 Text_FiveDayBattleLimit_Mobile:
 	text "Puoi entrare solo"
-	line "in cinque SALA"
+	line "in venti SALE"
 	cont "LOTTA al giorno."
 
 	para "Torna domani, va"
@@ -777,7 +1382,8 @@ Text_TooMuchTimeElapsedNoRegister:
 	line "tempo da quando"
 
 	para "hai iniziato la"
-	line "sfida."
+	line "sfida o il record"
+	cont "è stato eliminato."
 	done
 
 Text_RegisterRecordTimedOut_Mobile: ; unreferenced
@@ -806,14 +1412,8 @@ Text_AMonLevelExceeds:
 Text_MayNotEnterABattleRoomUnderL70:
 	text_ram wcd49
 	text " non può"
-	line "entrare nella SALA"
-	cont "LOTTA al di sotto"
-	cont "del L.70."
-
-	para "Questa SALA LOTTA"
-	line "è per L.@"
-	text_decimal wScriptVar, 1, 3
-	text "."
+	line "entrare nelle"
+	cont "SALE LOTTA."
 	done
 
 Text_BattleTowerYoungster:
@@ -856,6 +1456,37 @@ Text_BattleTowerBugCatcher:
 	cont "#MON fuoco…"
 	done
 
+RadioTower2FBuenaReceptionistPointsForPrizesText:
+	text "Puoi scambiare i"
+	line "punti raccolti con"
+
+	para "il premio che"
+	line "preferisci!"
+	done
+
+RadioTower2FBuenaReceptionistNoCardText:
+	text "Spiacente, non è"
+	line "possibile comprare"
+	
+	para "strumenti senza la"
+	line "CARTA BLU."
+	
+	para "Puoi procurartela"
+	line "alla TORRE RADIO"
+	cont "di FIORDOROPOLI."
+	done
+
+GotEggTicketText:
+	text "Hai già questo"
+	line "STRUMENTO BASE."
+	done
+
+OneTimeBuyText:
+	text "Questo strumento"
+	line "si può comprare"
+	cont "solo una volta."
+	done
+
 BattleTower1F_MapEvents:
 	db 0, 0 ; filler
 
@@ -875,3 +1506,5 @@ BattleTower1F_MapEvents:
 	object_event  4,  9, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BattleTower1FCooltrainerFScript, -1
 	object_event  1,  3, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BattleTower1FBugCatcherScript, -1
 	object_event 14,  3, SPRITE_GRANNY, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BattleTower1FGrannyScript, -1
+	object_event 10,  6, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, RadioTowerBuenaPrizeReceptionist, -1
+	

@@ -63,8 +63,8 @@ PokefanmCarterBeatenText:
 	done
 
 PokefanmCarterAfterBattleText:
-	text "SQUIRTLE, CHARMAN-"
-	line "DER e BULBASAUR…"
+	text "WARTORTLE, CHARME-"
+	line "LEON e IVYSAUR…"
 
 	para "Questa mi pare una"
 	line "squadra"
@@ -104,7 +104,7 @@ PokefanmTrevorSeenText:
 
 PokefanmTrevorBeatenText:
 	text "Dove ho trovato"
-	line "questo PSYDUCK?"
+	line "questo GOLDUCK?"
 	done
 
 PokefanmTrevorAfterBattleText:

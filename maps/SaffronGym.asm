@@ -14,6 +14,8 @@ SaffronGym_MapScripts:
 SaffronGymSabrinaScript:
 	faceplayer
 	opentext
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .Rematch
 	checkflag ENGINE_MARSHBADGE
 	iftrue .FightDone
 	writetext SabrinaIntroText
@@ -42,6 +44,21 @@ SaffronGymSabrinaScript:
 	writetext SabrinaFightDoneText
 	waitbutton
 	closetext
+	end
+
+.Rematch
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .FightDone
+	checkflag ENGINE_SABRINA_REMATCH_DONE
+	iftrue .FightDone
+	writetext SabrinaIntroRematchText
+	waitbutton
+	closetext
+	winlosstext SabrinaRematchText, 0
+	loadtrainer SABRINA, SABRINA1
+	startbattle
+	reloadmapafterbattle
+	setflag ENGINE_SABRINA_REMATCH_DONE
 	end
 
 TrainerMediumRebecca:
@@ -91,6 +108,8 @@ TrainerPsychicJared:
 SaffronGymGuideScript:
 	faceplayer
 	opentext
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .SaffronGymGuideRematchScript
 	checkevent EVENT_BEAT_SABRINA
 	iftrue .SaffronGymGuideWinScript
 	writetext SaffronGymGuideText
@@ -100,6 +119,16 @@ SaffronGymGuideScript:
 
 .SaffronGymGuideWinScript:
 	writetext SaffronGymGuideWinText
+	waitbutton
+	closetext
+	end
+
+.SaffronGymGuideRematchScript:
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .SaffronGymGuideWinScript
+	checkflag ENGINE_SABRINA_REMATCH_DONE
+	iftrue .SaffronGymGuideWinScript
+	writetext SaffronGymGuideRematchText
 	waitbutton
 	closetext
 	end
@@ -137,6 +166,18 @@ SabrinaIntroText:
 	cont "poteri psichici."
 	done
 
+SabrinaIntroRematchText:
+	text "SABRINA: Ti stavo"
+	line "aspettando…"
+
+	para "Ho avuto una"
+	line "visione del tuo"
+	cont "ritorno."
+
+	para "Ora vedrai i miei"
+	line "poteri psichici."
+	done
+
 SabrinaWinLossText:
 	text "SABRINA: La tua"
 	line "forza è…"
@@ -153,6 +194,20 @@ SabrinaWinLossText:
 	para "Ok, hai vinto tu."
 	line "Hai guadagnato la"
 	cont "MEDAGLIA PALUDE."
+	done
+
+SabrinaRematchText:
+	text "SABRINA: La tua"
+	line "forza è…"
+
+	para "…molto maggiore di"
+	line "quanto credessi…"
+
+	para "Ma forse non si"
+	line "può predire"
+
+	para "perfettamente"
+	line "il futuro…"
 	done
 
 ReceivedMarshBadgeText:
@@ -287,6 +342,16 @@ SaffronGymGuideText:
 SaffronGymGuideWinText:
 	text "È stata un'altra"
 	line "fantastica lotta!"
+	done
+
+SaffronGymGuideRematchText:
+	text "SABRINA ha"
+	line "previsto il tuo"
+	cont "ritorno."
+	
+	para "Affrontala con"
+	line "tutta la forza che"
+	cont "possiedi!"
 	done
 
 SaffronGym_MapEvents:

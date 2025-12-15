@@ -120,6 +120,14 @@ CeruleanCityYoungsterScript:
 	closetext
 	end
 
+CeruleanCaveEntranceGuyScript:
+	faceplayer
+	opentext
+	writetext CeruleanCaveEntranceGuyText
+	waitbutton
+	closetext
+	end
+
 CeruleanCitySign:
 	jumptext CeruleanCitySignText
 
@@ -212,10 +220,13 @@ CeruleanCityFisherRocketTipText:
 
 CeruleanCityYoungsterText1:
 	text "Qui un tempo c'era"
-	line "una grotta con un"
+	line "in quella grotta"
 
-	para "#MON terri-"
+	para "un #MON terri-"
 	line "bilmente potente."
+	
+	para "Chissà se si trova"
+	line "ancora lì."
 	done
 
 CeruleanCityYoungsterText2:
@@ -275,6 +286,16 @@ CeruleanLockedDoorText:
 	text "È chiusa…"
 	done
 
+CeruleanCaveEntranceGuyText:
+	text "In questa grotta"
+	line "vivono #MON"
+	cont "terribilmente"
+	cont "potenti."
+	
+	para "Mi dispiace ma ora"
+	line "non puoi passare."
+	done
+
 CeruleanCity_MapEvents:
 	db 0, 0 ; filler
 
@@ -285,6 +306,7 @@ CeruleanCity_MapEvents:
 	warp_event 19, 21, CERULEAN_POKECENTER_1F, 1
 	warp_event 30, 23, CERULEAN_GYM, 1
 	warp_event 25, 29, CERULEAN_MART, 2
+	warp_event  0, 13, CERULEAN_CAVE_1F, 1
 
 	def_coord_events
 
@@ -302,7 +324,8 @@ CeruleanCity_MapEvents:
 	def_object_events
 	object_event 15, 23, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeruleanCityCooltrainerMScript, -1
 	object_event 23, 15, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeruleanCitySuperNerdScript, -1
-	object_event 20, 24, SPRITE_SLOWPOKE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeruleanCitySlowbro, -1
+	object_event 20, 24, SPRITE_SLOWBRO, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeruleanCitySlowbro, -1
 	object_event 21, 24, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeruleanCityCooltrainerFScript, -1
 	object_event 30, 26, SPRITE_FISHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeruleanCityFisherScript, -1
 	object_event  6, 12, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeruleanCityYoungsterScript, -1
+	object_event  0, 14, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 2, 2, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeruleanCaveEntranceGuyScript, EVENT_OPENED_MT_SILVER
