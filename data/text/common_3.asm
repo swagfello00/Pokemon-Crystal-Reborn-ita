@@ -887,7 +887,7 @@ _MobileCardFolderAskOpenOldText::
 	text "C'è un ALBUM"
 	line "SCHEDE da un"
 	cont "salvataggio"
-	line "precedente."
+	cont "precedente."
 
 	para "Vuoi aprirlo?"
 	line ""
