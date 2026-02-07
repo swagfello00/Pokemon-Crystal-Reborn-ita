@@ -1149,7 +1149,7 @@ _ExcuseMeYoureNotReadyText::
 
 _BattleTowerReturnWhenReadyText::
 	text "Torna dopo aver"
-	line "messo apposto ciò"
+	line "messo a posto ciò"
 	cont "che non va."
 	done
 

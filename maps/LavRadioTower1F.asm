@@ -72,7 +72,7 @@ LavRadioTower1FDirectory:
 LavRadioTower1FPokeFluteSign:
 	jumptext LavRadioTower1FPokeFluteSignText
 
-LavRadioTower1FReferenceLibrary: ; unreferenced
+LavRadioTower1FReferenceLibrary:
 	jumptext LavRadioTower1FReferenceLibraryText
 
 LavRadioTower1FReceptionistText:
@@ -233,6 +233,7 @@ LavRadioTower1F_MapEvents:
 	def_bg_events
 	bg_event 11,  0, BGEVENT_READ, LavRadioTower1FDirectory
 	bg_event  5,  0, BGEVENT_READ, LavRadioTower1FPokeFluteSign
+	bg_event 14,  4, BGEVENT_READ, LavRadioTower1FReferenceLibrary
 
 	def_object_events
 	object_event  6,  6, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, LavRadioTower1FReceptionistScript, -1

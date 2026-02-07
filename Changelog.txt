@@ -141,6 +141,7 @@ Pokémon - Crystal Reborn ita, cambiamenti:
 - È possibile vedere il proprio Secret ID su un muro della centrale elettrica
 (serve scalaroccia)
 - Aggiunto un centro pokémon al percorso 3 con 2 eventi legati ad un npc al suo interno
+- Ripristinati alcuni dialoghi inutilizzati
 - Fix minori al battling
 - Ulteriori aggiunte e fix minori
 

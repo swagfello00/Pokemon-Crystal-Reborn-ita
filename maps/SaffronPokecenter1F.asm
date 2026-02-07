@@ -89,10 +89,7 @@ SaffronPokecenter1FFisherReturnedMachinePartText:
 
 	para "Negli scorsi anni"
 	line "molte grotte sono"
-
-	para "scomparse, come"
-	line "quella vicino a"
-	cont "CELESTOPOLI."
+	cont "scomparse."
 
 	para "Tutti gli"
 	line "AVVENTURIERI"
