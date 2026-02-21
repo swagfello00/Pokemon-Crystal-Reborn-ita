@@ -3195,9 +3195,6 @@ BattleTower_LevelCheck:
 BattleTower_UbersCheck:
 	ldh a, [rSVBK]
 	push af
-	ld a, [wcd4f]
-	cp 70 / 10
-	jr nc, .level_70_or_more
 	ld a, BANK(wPartyMons)
 	ldh [rSVBK], a
 	ld hl, wPartyMon1Level
@@ -3216,22 +3213,6 @@ BattleTower_UbersCheck:
 	cp NUM_POKEMON + 1
 	jr nc, .next
 .uber
-	ld a, [hl]
-	cp 70
-	jr c, .uber_under_70
-.next
-	add hl, bc
-	inc de
-	pop af
-	dec a
-	jr nz, .loop
-.level_70_or_more
-	pop af
-	ldh [rSVBK], a
-	and a
-	ret
-
-.uber_under_70
 	pop af
 	ld a, [de]
 	ld [wNamedObjectIndex], a
@@ -3245,6 +3226,16 @@ BattleTower_UbersCheck:
 	pop af
 	ldh [rSVBK], a
 	scf
+	ret
+.next
+	add hl, bc
+	inc de
+	pop af
+	dec a
+	jr nz, .loop
+	pop af
+	ldh [rSVBK], a
+	and a
 	ret
 
 ; seems to be for interacting with the mobile adapter
@@ -3833,11 +3824,11 @@ Function11a302:
 	call PlaceString
 	hlcoord 4, 4;9, 4
 	ld de, wcd68
-	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	call PrintNum
 	hlcoord 12, 4;14, 4
 	ld de, wcd67
-	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	call PrintNum
 	ld a, $80
 	ld [wMobileInactivityTimerMinutes], a
@@ -4280,7 +4271,7 @@ String_11a71e:
 
 String_11a72a:
 	db   "DURATA TEL.";"つないだ　じかん"
-	next "   min.    sec.@"
+	next "    min     sec@"
 
 String_11a743:
 	db   "Non ci sono";"もっていない　データが"
@@ -4503,27 +4494,19 @@ Text_RegisteringRecord:
 	done
 
 Text_BattleRoomVisitLimit: ; unreferenced
-	text "Puoi entrare una"
-	line "sola volta al"
-
-	para "giorno nella"
-	line "stessa SALA LOTTA."
+	text "Sei già entrato in"
+	line "questa SALA oggi."
 	done
 
 Text_PartyMonTopsThisLevel:
-	text "Uno o più #MON"
-	line "in squadra"
-	cont "superano il"
-	cont "livello massimo."
+	text "La tua squadra"
+	line "lo supera."
 	done
 
 Text_UberRestriction:
 	text_ram wcd49
-	text " può"
-	line "solo entrare in"
-
-	para "SALE LOTTA di"
-	line "Liv.70 o maggiore."
+	text " non può"
+	line "entrare."
 	done
 
 Text_CancelBattleRoomChallenge:
@@ -4532,9 +4515,8 @@ Text_CancelBattleRoomChallenge:
 	done
 
 Text_ExitGymLeaderHonorRoll:
-	text "Esci dall'ALBO"
-	line "D'ORO dei"
-	cont "CAPOSALA?"
+	text "Vuoi uscire"
+	line "dall'ALBO D'ORO?"
 	done
 
 Text_LinkingWithCenter: ; unreferenced
@@ -4543,14 +4525,13 @@ Text_LinkingWithCenter: ; unreferenced
 	done
 
 Text_WhatLevelDoYouWantToChallenge:
-	text "I #MON di quale"
-	line "livello vuoi"
-	cont "sfidare?"
+	text "Quale livello vuoi"
+	line "sfidare?"
 	done
 
 Text_CheckBattleRoomListByMaxLevel:
-	text "Vedi SALA LOTTA"
-	line "per livello max?"
+	text "Che livello della"
+	line "lista vuoi vedere?"
 	done
 
 Text_EnterWhichBattleRoom: ; unreferenced
@@ -4565,11 +4546,11 @@ Text_WhichBattleRoom: ; unreferenced
 Text_ThisBattleRoomPleaseWait:
     text "SALA @"
     text_ram wStringBuffer4
-    text "di @"
+    text " di @"
     text_ram wStringBuffer3
     text "?"
     line "Attendere, prego…"
-    done
+	done
 
 Function11ac3e:
 	call SpeechTextbox
@@ -4656,7 +4637,7 @@ Function11ad1b:
 	ld [wcf65], a
 	ld [wcf66], a
 	ld [wcd30], a
-	ld a, DEXMODE_ABC
+	ld a, DEXMODE_OLD
 	ld [wCurDexMode], a
 	farcall Pokedex_OrderMonsByMode
 	ret
@@ -5422,7 +5403,7 @@ Function11b242: ; pokemon to trade
 	call PlaceString
 	xor a
 	ld [wMonType], a
-	farcall GetGender
+	farcall GetGenderMobile
 	hlcoord 6, 2 ; 1, 4 ; Changed from 7, 2
 	ld a, [wCurPartySpecies]
 	ld bc, wcd2f
@@ -5493,7 +5474,7 @@ Function11b295: ; pokemon to receive
 	ld hl, $0003
 	add hl, bc
 	ld e, [hl]
-	farcall FlyFunction_GetMonIcon
+	farcall FlyFunction_GetMonIconMobile
 	hlcoord 8, 4 ;4, 14
 	push hl
 	call GetPokemonName

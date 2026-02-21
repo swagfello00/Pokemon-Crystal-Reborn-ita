@@ -62,6 +62,8 @@ SetRAMStateForMobile:
 	call ByteFill
 	ldh a, [rIE]
 	ld [wBGMapBuffer], a
+	ld a, RETI_INSTRUCTION
+	ld [hFunctionInstruction], a
 	xor a
 	ldh [hMapAnims], a
 	ldh [hLCDCPointer], a
@@ -74,11 +76,12 @@ EnableMobile:
 	call ByteFill
 
 	di
-	call DoubleSpeed
 	xor a
 	ldh [rIF], a
 	ld a, IE_DEFAULT
 	ldh [rIE], a
+	ld a, RETI_INSTRUCTION
+	ld [hFunctionInstruction], a
 	xor a
 	ldh [hMapAnims], a
 	ldh [hLCDCPointer], a
@@ -96,7 +99,6 @@ DisableMobile:
 	ldh [hMobile], a
 	xor a
 	ldh [hVBlank], a
-	call NormalSpeed
 	xor a
 	ldh [rIF], a
 	ld a, [wBGMapBuffer]
@@ -1037,7 +1039,7 @@ Function100697:
 	ret
 
 .asm_1006b4
-	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	call PrintNum
 	ret
 
@@ -1047,9 +1049,9 @@ Function100697:
 	ret
 
 String1006c2:
-	db " min. @"			; "ふん　@" Minute
+	db " min @"			; "ふん　@" Minute
 String1006c6:
-	db " sec.@"			; "びょう@" Second
+	db " sec@"			; "びょう@" Second
 String1006ca:
 	db "1 ora o più    @" 		; "１じかんいじょう@" More than 1 hour
 
@@ -1408,7 +1410,7 @@ Function100902:
 	hlcoord 4, 11
 	call PlaceString
 	hlcoord 1, 11;8, 11
-	lb bc, 1, 2
+	lb bc, 1, 3
 	ld de, wStringBuffer2
 	call PrintNum
 	ld de, SFX_TWO_PC_BEEPS
@@ -1432,7 +1434,7 @@ Function100902:
 .string_10095a
 	db "Tempo scaduto!@"		;"たいせん　しゅうりょう@"
 .string_100966
-	db "min. rimanenti!@"	;"のこり　　　ふん！@"
+	db " min. rimasti!@"	;"のこり　　　ふん！@"
 
 Function100970:
 	hlcoord 0, 0
@@ -4567,8 +4569,8 @@ String_101fc5:
 	db 	"Chiamare il Nº?@"	; "に　でんわを　かけます@"
 
 String_101fd2:
-	db 	"Chiamata…@"			; "に　でんわを　かけています@"
-	;next  "corso…@"
+	db 	  "Chiamata…@"			; "に　でんわを　かけています@"
+	; next  "corso…@"
 
 String_101fe1:
 	db   "Chiamata"	; "でんわが　つながりました!@"
@@ -5151,7 +5153,7 @@ Function1023c6:
 	ld [wCurPartyMon], a
 	xor a ; REMOVE_PARTY
 	ld [wPokemonWithdrawDepositParameter], a
-	farcall RemoveMonFromPartyOrBox
+	farcall RemoveMonFromParty
 	ld hl, wPartyCount
 	inc [hl]
 	ld a, [hli]
@@ -7494,21 +7496,21 @@ Function103700:
 	ld a, c
 	ld [wStringBuffer2], a
 	ld a, [wStringBuffer2]
-	cp 5
-	jr nc, .five_or_more_mins
+	cp 10
+	jr nc, .ten_or_more_mins
 	cp 2
-	jr nc, .two_to_five_mins
+	jr nc, .two_to_nine_mins
 	cp 1
 	jr nc, .one_min
 	jr .times_up
 
-.five_or_more_mins
+.ten_or_more_mins
 	ld hl, WouldYouLikeToMobileBattleText
 	call PrintText
 	and a
 	ret
 
-.two_to_five_mins
+.two_to_nine_mins
 	ld hl, WantAQuickMobileBattleText
 	call PrintText
 	and a
