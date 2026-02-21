@@ -8,6 +8,12 @@ HasNoItems:
 	ld a, [wNumBalls]
 	and a
 	ret nz
+	ld a, [wNumBerries]
+	and a
+	ret nz
+	ld a, [wNumMeds]
+	and a
+	ret nz
 	ld hl, wTMsHMs
 	ld b, NUM_TMS + NUM_HMS
 .loop
@@ -216,8 +222,10 @@ GiveTakePartyMonItem:
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	ld a, [wMenuCursorY]
-	cp 1
-	jr nz, .take
+	cp 2
+	jr z, .take
+	cp 3
+	jr z, .swap
 
 	call LoadStandardMenuHeader
 	call ClearPalettes
@@ -233,19 +241,34 @@ GiveTakePartyMonItem:
 	ld a, 3
 	ret
 
+.swap
+	call SwapPartyItem
+	ld a, 3
+	ret
+
 .cancel
 	ld a, 3
 	ret
 
 .GiveItem:
-	farcall DepositSellInitPackBuffers
+	call GetItemToGive
+	ret z
+	jp TryGiveItemToPartymon
 
+.quit
+	ret
+
+GetItemToGive:
+; Returns nz if we got an item to give.
+	farcall DepositSellInitPackBuffers
+	; fallthrough
+_GetItemToGive:
 .loop
 	farcall DepositSellPack
 
 	ld a, [wPackUsedItem]
 	and a
-	jr z, .quit
+	ret z
 
 	ld a, [wCurPocket]
 	cp KEY_ITEM_POCKET
@@ -256,16 +279,64 @@ GiveTakePartyMonItem:
 	and a
 	jr nz, .next
 
-	call TryGiveItemToPartymon
-	jr .quit
+	or 1
+	ret
 
 .next
 	ld hl, ItemCantHeldText
 	call MenuTextboxBackup
 	jr .loop
 
-.quit
-	ret
+PCGiveItem:
+	farcall DepositSellInitPackBuffers
+.loop
+	call _GetItemToGive
+	ret z
+
+	; Ensure that we aren't trying to give Mail to a Pokémon in storage.
+	ld a, [wCurItem]
+	ld d, a
+	newfarcall ItemIsMail
+	jr nc, .item_ok
+
+	ld a, [wBufferMonBox]
+	and a
+	jr z, .item_ok
+
+	ld hl, CantPlaceMailInStorageText
+	call MenuTextboxBackup
+	jr .loop
+
+.item_ok
+	call PartyMonItemName
+	call GiveItemToPokemon
+
+	ld hl, wBufferMonNickname
+	ld de, wMonOrItemNameBuffer
+	ld bc, MON_NAME_LENGTH
+	call CopyBytes
+
+	ld hl, PokemonHoldItemText
+	call MenuTextboxBackup
+
+	; Now, actually give the item.
+	ld a, [wBufferMonSpecies]
+	ld [wCurPartySpecies], a
+	ld de, wCurItem
+	ld a, [de]
+	ld [wBufferMonItem], a
+	newfarcall UpdateStorageBoxMonFromTemp
+
+	; We know that if we're dealing with Mail, then we're giving to a partymon.
+	; Thus, there's no harm in using party-specific code.
+	ld a, [wBufferMonSlot]
+	dec a
+	ld [wCurPartyMon], a
+	ld a, [wCurItem]
+	ld d, a
+	newfarcall ItemIsMail
+	ret nc
+	jp ComposeMailMessage
 
 TryGiveItemToPartymon:
 	call SpeechTextbox
@@ -340,6 +411,96 @@ GivePartyItem:
 
 .done
 	ret
+SwapPartyItem:
+	call GetPartyItemLocation
+	ld a, [hl]
+	and a
+	jp z, TakePartyItem.not_holding_item
+	ld a, [wPartyCount]
+	cp 2
+	jp c, .DontSwapLastMon
+	ld a, [wCurPartyMon]
+	inc a
+	ld [wSwitchMon], a
+	farcall HoldSwitchmonIcon
+	farcall InitPartyMenuNoCancel
+	ld a, 4
+	ld [wPartyMenuActionText], a
+	farcall WritePartyMenuTilemap
+	farcall PrintPartyMenuText
+	hlcoord 0, 1
+	ld bc, 20 * 2
+	ld a, [wSwitchMon]
+	dec a
+	call AddNTimes
+	ld [hl], "▷"
+	call WaitBGMap
+	call SetPalettes
+	call DelayFrame
+	farcall PartyMenuSelect
+	bit 1, b
+	jr c, .DontSwap
+	; wSwitchMon contains first selected pkmn
+	; wCurPartyMon contains second selected pkmn
+	; getting pkmn2 item and putting into stack item addr + item id
+	ld a, [wCurPartySpecies]
+	cp EGG
+	jr z, .Egg
+	call GetPartyItemLocation
+	ld d, [hl] ; a pkmn2 contains item
+	push hl
+	farcall ItemIsMail
+	pop hl
+	jr c, .DontSwapMail
+	ld a, [hl]
+	push hl
+	push af
+	; getting pkmn 1 item and putting item id into b
+	ld a, [wSwitchMon]
+	dec a
+	ld [wCurPartyMon], a
+	call GetPartyItemLocation
+	ld a, [hl] ; a pkmn1 contains item
+	ld b, a
+	; actual swap
+	pop af
+	ld [hl], a ; pkmn1 get pkm2 item
+	pop hl
+	ld a, b
+	ld [hl], a ; pkmn1 get pkm2 item
+	xor a
+	ld [wPartyMenuActionText], a
+	ld de, SFX_SWITCH_POKEMON
+	call WaitPlaySFX
+	jp CancelPokemonAction
+
+.DontSwap
+	xor a
+	ld [wPartyMenuActionText], a
+	jp CancelPokemonAction
+
+.Egg
+	ld hl, .AnEggCantHoldAnItemText
+	call PrintText
+	jr .DontSwap
+
+.DontSwapMail
+	ld hl, PokemonRemoveMailText
+	call PrintText
+	jr .DontSwap
+
+.DontSwapLastMon
+	ld hl, .PCCantDepositLastMonText
+	call PrintText
+	jr .DontSwap
+
+.PCCantDepositLastMonText
+	text_far _PCCantDepositLastMonText
+	text_end
+
+.AnEggCantHoldAnItemText:
+	text_far _AnEggCantHoldAnItemText
+	text_end
 
 TakePartyItem:
 	call SpeechTextbox
@@ -376,15 +537,16 @@ TakePartyItem:
 
 GiveTakeItemMenuData:
 	db MENU_SPRITE_ANIMS | MENU_BACKUP_TILES ; flags
-	menu_coords 10, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	menu_coords 10, 10, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .Items
 	db 1 ; default option
 
 .Items:
 	db STATICMENU_CURSOR ; flags
-	db 2 ; # items
+	db 3 ; # items
 	db "DAI@"
 	db "PRENDI@"
+	db "SPOSTA@"
 
 PokemonSwapItemText:
 	text_far _PokemonSwapItemText
@@ -416,6 +578,10 @@ PokemonAskSwapItemText:
 
 ItemCantHeldText:
 	text_far _ItemCantHeldText
+	text_end
+
+CantPlaceMailInStorageText:
+	text_far _CantPlaceMailInStorageText
 	text_end
 
 GetPartyItemLocation:
@@ -495,59 +661,19 @@ MonMailAction:
 	call ExitMenu
 
 ; Interpret the menu.
-	jp c, .done
+	ld a, $3
+	ret c
 	ld a, [wMenuCursorY]
 	cp $1
 	jr z, .read
 	cp $2
-	jr z, .take
-	jp .done
+	jr z, TakeMail
+	ld a, $3
+	ret
 
 .read
 	farcall ReadPartyMonMail
-	ld a, $0
-	ret
-
-.take
-	ld hl, .MailAskSendToPCText
-	call StartMenuYesNo
-	jr c, .RemoveMailToBag
-	ld a, [wCurPartyMon]
-	ld b, a
-	farcall SendMailToPC
-	jr c, .MailboxFull
-	ld hl, .MailSentToPCText
-	call MenuTextboxBackup
-	jr .done
-
-.MailboxFull:
-	ld hl, .MailboxFullText
-	call MenuTextboxBackup
-	jr .done
-
-.RemoveMailToBag:
-	ld hl, .MailLoseMessageText
-	call StartMenuYesNo
-	jr c, .done
-	call GetPartyItemLocation
-	ld a, [hl]
-	ld [wCurItem], a
-	call ReceiveItemFromPokemon
-	jr nc, .BagIsFull
-	call GetPartyItemLocation
-	ld [hl], $0
-	call GetCurNickname
-	ld hl, .MailDetachedText
-	call MenuTextboxBackup
-	jr .done
-
-.BagIsFull:
-	ld hl, .MailNoSpaceText
-	call MenuTextboxBackup
-	jr .done
-
-.done
-	ld a, $3
+	xor a
 	ret
 
 .MenuHeader:
@@ -562,6 +688,52 @@ MonMailAction:
 	db "LEGGI@"
 	db "PRENDI@"
 	db "ESCI@"
+
+TakeMail:
+	ld hl, .MailAskSendToPCText
+	call StartMenuYesNo
+	jr c, .RemoveMailToBag
+	ld a, [wCurPartyMon]
+	ld b, a
+	farcall SendMailToPC
+	jr c, .MailboxFull
+	ld hl, .MailSentToPCText
+	call MenuTextboxBackup
+	jr .TookMail
+
+.MailboxFull:
+	ld hl, .MailboxFullText
+	call MenuTextboxBackup
+	jr .KeptMail
+
+.RemoveMailToBag:
+	ld hl, .MailLoseMessageText
+	call StartMenuYesNo
+	jr c, .KeptMail
+	call GetPartyItemLocation
+	ld a, [hl]
+	ld [wCurItem], a
+	call ReceiveItemFromPokemon
+	jr nc, .BagIsFull
+	call GetPartyItemLocation
+	ld [hl], $0
+	call GetCurNickname
+	ld hl, .MailDetachedText
+	call MenuTextboxBackup
+	; fallthrough
+.TookMail:
+	scf
+	jr .done
+
+.BagIsFull:
+	ld hl, .MailNoSpaceText
+	call MenuTextboxBackup
+	; fallthrough
+.KeptMail:
+	and a
+.done
+	ld a, $3
+	ret
 
 .MailLoseMessageText:
 	text_far _MailLoseMessageText
@@ -588,11 +760,13 @@ MonMailAction:
 	text_end
 
 OpenPartyStats:
-	call LoadStandardMenuHeader
-	call ClearSprites
 ; PartyMon
 	xor a
 	ld [wMonType], a
+	; fallthrough
+_OpenPartyStats:
+	call LoadStandardMenuHeader
+	call ClearSprites
 	call LowVolume
 	predef StatsScreenInit
 	call MaxVolume
@@ -614,6 +788,8 @@ MonMenu_Cut:
 	ret
 
 MonMenu_Fly:
+	xor a
+	ld [wFlyingWithHMItem], a
 	farcall FlyFunction
 	ld a, [wFieldMoveSucceeded]
 	cp $2
@@ -635,6 +811,29 @@ MonMenu_Fly:
 
 .NoReload: ; unreferenced
 	ld a, $1
+	ret
+
+AirplaneEffect:
+	ld a, 1
+	ld [wUsingHMItem], a
+	ld [wFlyingWithHMItem], a
+	farcall FlyFunction
+	ld a, [wFieldMoveSucceeded]
+	cp $2
+	jr z, .Fail
+	cp $0
+	jr z, .Error
+	farcall StubbedTrainerRankings_Fly
+	ld b, $4
+	ld a, $2
+	ret
+
+.Fail:
+	ld a, $3
+	ret
+
+.Error:
+	ld a, $0
 	ret
 
 MonMenu_Flash:
@@ -806,7 +1005,7 @@ ChooseMoveToDelete:
 	ld a, [hl]
 	push af
 	set NO_TEXT_SCROLL, [hl]
-	call LoadFontsBattleExtra
+	farcall LoadPartyMenuGFX
 	call .ChooseMoveToDelete
 	pop bc
 	ld a, b
@@ -894,6 +1093,9 @@ MoveScreenLoop:
 	jr .skip_joy
 
 .joy_loop
+	ld a, [wBattleMode]
+	cp 0
+	jp nz, .joy_loop_battle
 	call ScrollingMenuJoypad
 	bit 1, a
 	jp nz, .b_button
@@ -911,6 +1113,16 @@ MoveScreenLoop:
 	jr nz, .moving_move
 	call PlaceMoveData
 	jp .joy_loop
+
+.joy_loop_battle
+	call ScrollingMenuJoypad
+	bit 1, a
+	jp nz, .b_button
+	bit 4, a
+	jp nz, .d_right
+	bit 5, a
+	jp nz, .d_left
+	jr .skip_joy
 
 .moving_move
 	ld a, " "
@@ -1195,9 +1407,71 @@ PlaceMoveData:
 	hlcoord 12, 12
 	ld de, String_MoveAtk
 	call PlaceString
+	hlcoord 12, 13
+	ld de, String_MoveAcc
+	call PlaceString
+	hlcoord 1, 13
+	ld de, String_MoveEff
+	call PlaceString
+
+; Print move effect chance
+	ld a, [wCurSpecies]
+	ld bc, MOVE_LENGTH
+	ld hl, (Moves + MOVE_CHANCE) - MOVE_LENGTH
+	call AddNTimes
+	ld a, BANK(Moves)
+	call GetFarByte
+	cp 1
+	jr c, .if_null_chance
+	Call ConvertPercentages
+	ld [wBuffer1], a
+	ld de, wBuffer1
+	lb bc, 1, 3
+	hlcoord 5, 13
+	call PrintNum
+	jr .skip_null_chance
+
+.if_null_chance
+	ld de, String_MoveNoPower
+	ld bc, 3
+	hlcoord 5, 13
+	call PlaceString
+
+.skip_null_chance
+	; Print move accuracy
+	ld a, [wCurSpecies]
+	ld bc, MOVE_LENGTH
+	ld hl, (Moves + MOVE_EFFECT) - MOVE_LENGTH
+	call AddNTimes
+	ld a, BANK(Moves)
+	call GetFarByte
+	cp EFFECT_MIRROR_MOVE
+	jr nc, .perfect_accuracy
+	ld a, [wCurSpecies]
+	ld bc, MOVE_LENGTH
+	ld hl, (Moves + MOVE_ACC) - MOVE_LENGTH
+	call AddNTimes
+	ld a, BANK(Moves)
+	call GetFarByte
+	Call ConvertPercentages
+	ld [wBuffer1], a
+	ld de, wBuffer1
+	lb bc, 1, 3
+	hlcoord 16, 13
+	call PrintNum
+	jr .print_move_attack
+
+; This prints "---" if the move
+; has perfect accuracy.
+.perfect_accuracy
+	ld de, String_MoveNoPower
+	ld bc, 3
+	hlcoord 16, 13
+	call PlaceString
+.print_move_attack
 	ld a, [wCurSpecies]
 	ld b, a
-	hlcoord 2, 12
+	hlcoord 1, 12
 	predef PrintMoveType
 	ld a, [wCurSpecies]
 	dec a
@@ -1226,12 +1500,62 @@ PlaceMoveData:
 	ldh [hBGMapMode], a
 	ret
 
+ConvertPercentages:
+
+	; Overwrite the "hl" register.
+	ld l, a
+	ld h, 0
+	push af
+
+	; Multiplies the value of the "hl" register by 3.
+	add hl, hl
+	add a, l
+	ld l, a
+	adc h
+	sub l
+	ld h, a
+
+	; Multiplies the value of the "hl" register
+	; by 8. The value of the "hl" register
+	; is now 24 times its original value.
+	add hl, hl
+	add hl, hl
+	add hl, hl
+
+	; Add the original value of the "hl" value to itself,
+	; making it 25 times its original value.
+	pop af
+	add a, l
+	ld l, a
+	adc h
+	sbc l
+	ld h, a
+
+	; Multiply the value of the "hl" register by
+	; 4, making it 100 times its original value.
+	add hl, hl
+	add hl, hl
+
+	; Set the "l" register to 0.5, otherwise the rounded
+	; value may be lower than expected. Round the
+	; high byte to nearest and drop the low byte.
+	ld l, 0.5
+	sla l
+	sbc a
+	and 1
+	add a, h
+	ret
+
 String_MoveType_Top:
 	db "┌─────┐@"
 String_MoveType_Bottom:
 	db "│TIPO/└@"
 String_MoveAtk:
-	db "ATT./@"
+	db "ATT/@"
+String_MoveAcc:
+	db "PRE/@"
+String_MoveEff:
+	db "EFF『@"
 String_MoveNoPower:
 	db "---@"
 

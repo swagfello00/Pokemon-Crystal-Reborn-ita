@@ -164,9 +164,51 @@ AI_TryItem:
 	or b
 	ret z
 
+	ld a, [wOTPartyCount]
+	cp 2
+	jr c, .only_one_mon
+
+	ld d, a
+	ld e, 0
+	ld b, 1 << (PARTY_LENGTH - 1)
+	ld c, 0
+	ld hl, wOTPartyMon1HP
+
+.loop_alive
+	ld a, [wCurOTMon]
+	cp e
+	jr z, .next_alive
+
+	push bc
+	ld b, [hl]
+	inc hl
+	ld a, [hld]
+	or b
+	pop bc
+	jr z, .next_alive
+
+	ld a, c
+	or b
+	ld c, a
+
+.next_alive
+	srl b
+	push bc
+	ld bc, PARTYMON_STRUCT_LENGTH
+	add hl, bc
+	pop bc
+	inc e
+	dec d
+	jr nz, .loop_alive
+
+	ld a, c
+	and a
+	jr z, .only_one_mon
+
 	call .IsHighestLevel
 	ret nc
 
+.only_one_mon
 	ld a, [wTrainerClass]
 	dec a
 	ld hl, TrainerClassAttributes + TRNATTR_AI_ITEM_SWITCH
@@ -175,8 +217,9 @@ AI_TryItem:
 	ld b, h
 	ld c, l
 	ld hl, AI_Items
-	ld de, wEnemyTrainerItem1
+; BUGfixed
 .loop
+	ld de, wEnemyTrainerItem1
 	ld a, [hl]
 	and a
 	inc a
@@ -239,6 +282,10 @@ AI_TryItem:
 	ret
 
 .IsHighestLevel:
+	ld a, [wEnemySubStatus1]
+	bit SUBSTATUS_PERISH, a
+	jr nz, .no
+
 	ld a, [wOTPartyCount]
 	ld d, a
 	ld e, 0
@@ -261,7 +308,7 @@ AI_TryItem:
 	cp e
 	jr nc, .yes
 
-.no ; unreferenced
+.no
 	and a
 	ret
 
@@ -552,14 +599,10 @@ EnemyUsedMaxPotion:
 	jr FullRestoreContinue
 
 EnemyUsedFullRestore:
-; BUG: AI use of Full Heal does not cure confusion status (see docs/bugs_and_glitches.md)
+; BUGfixed: AI use of Full Heal does not cure confusion status (see docs/bugs_and_glitches.md)
 	call AI_HealStatus
 	ld a, FULL_RESTORE
 	ld [wCurEnemyItem], a
-	ld hl, wEnemySubStatus3
-	res SUBSTATUS_CONFUSED, [hl]
-	xor a
-	ld [wEnemyConfuseCount], a
 	; fallthrough
 
 FullRestoreContinue:
@@ -727,7 +770,7 @@ EnemyUsedFullHealRed: ; unreferenced
 	jp PrintText_UsedItemOn_AND_AIUpdateHUD
 
 AI_HealStatus:
-; BUG: AI use of Full Heal or Full Restore does not cure Nightmare status (see docs/bugs_and_glitches.md)
+; BUGfixed: AI use of Full Heal or Full Restore does not cure Nightmare status (see docs/bugs_and_glitches.md)
 	ld a, [wCurOTMon]
 	ld hl, wOTPartyMon1Status
 	ld bc, PARTYMON_STRUCT_LENGTH
@@ -735,6 +778,11 @@ AI_HealStatus:
 	xor a
 	ld [hl], a
 	ld [wEnemyMonStatus], a
+	ld hl, wEnemySubStatus1
+	res SUBSTATUS_NIGHTMARE, [hl]
+	ld [wEnemyConfuseCount], a
+	ld hl, wEnemySubStatus3
+	res SUBSTATUS_CONFUSED, [hl]
 	ld hl, wEnemySubStatus5
 	res SUBSTATUS_TOXIC, [hl]
 	ret

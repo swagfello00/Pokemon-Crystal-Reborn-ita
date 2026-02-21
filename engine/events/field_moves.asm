@@ -397,13 +397,22 @@ FlyFunction_InitGFX:
 	ld e, a
 	ld d, 0
 	add hl, de
+	ld a, [wFlyingWithHMItem]
+	and a
+	jr nz, .FlyHMGFX
 	ld a, [hl]
 	ld [wTempIconSpecies], a
 	ld e, FIELDMOVE_FLY
 	farcall FlyFunction_GetMonIcon
+.continue
 	xor a
 	ld [wJumptableIndex], a
 	ret
+
+.FlyHMGFX
+	ld e, FIELDMOVE_FLY
+	farcall GetSpeciesIcon
+	jr .continue
 
 FlyFunction_FrameTimer:
 	call .SpawnLeaf

@@ -7,6 +7,25 @@ PlaceMenuItemName:
 	call PlaceString
 	ret
 
+PlaceMartMenuItemName:
+	push de
+	ld a, [wMenuSelection]
+	ld [wNamedObjectIndex], a
+	call GetItemName
+	cp TM01
+	jr c, .place_string
+	ld hl, wStringBuffer1
+	ld de, wStringBuffer4
+	ld bc, STRING_BUFFER_LENGTH
+	call CopyBytes
+	ld de, wStringBuffer4 + STRLEN("TM##")
+	callfar AppendTMHMMoveName
+	ld de, wStringBuffer4
+.place_string:
+	pop hl
+	call PlaceString
+	ret
+
 PlaceMenuItemQuantity:
 	push de
 	ld a, [wMenuSelection]
@@ -103,6 +122,29 @@ DisplayMoneyAndCoinBalance:
 	call PrintNum
 	ret
 
+DisplayMoneyAndBlueCardBalance:
+	hlcoord 5, 0
+	ld b, 3
+	ld c, 13
+	call Textbox
+	hlcoord 6, 1
+	ld de, MoneyString
+	call PlaceString
+	hlcoord 12, 1
+	ld de, wMoney
+	lb bc, PRINTNUM_MONEY | 3, 6
+	call PrintNum
+	hlcoord 6, 3
+	ld de, BlueCardBalanceString
+	call PlaceString
+	hlcoord 16, 3
+	ld de, wBlueCardBalance
+	lb bc, 1, 3
+	call PrintNum
+	ret
+
+BlueCardBalanceString:
+	db "PUNTI@"
 MoneyString:
 	db "SOLDI@"
 CoinString:

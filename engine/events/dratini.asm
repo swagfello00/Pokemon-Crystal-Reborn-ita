@@ -109,3 +109,77 @@ GiveDratini:
 .EmptyParty:
 	scf
 	ret
+
+GiveMagikarpSpecialMove:
+	ld de, -48
+	ld hl, wPartySpecies + 5
+	ld b, 5
+.loop
+	ld a, [hl]
+	cp MAGIKARP
+	jr nz, .CheckLoop
+	ld hl, wPartyMon6Moves + 1
+	ld a, b
+.GiveContinue
+	cp 5
+	jr nz, .GiveLoop
+	ld [hl], HYDRO_PUMP
+	ld de, 21
+	add hl, de
+	ld [hl], 5
+	ret
+
+.CheckLoop:
+	dec hl
+	dec b
+	ret z
+	jr .loop
+
+.GiveLoop
+	add hl, de
+	inc a
+	jr .GiveContinue
+
+GivePikachuSpecialMoves:
+	ld de, -48
+	ld hl, wPartySpecies + 5
+	ld b, 5
+.loop
+	ld a, [hl]
+	cp PIKACHU
+	jr nz, .CheckLoop
+	ld hl, wPartyMon6Moves + 2
+	ld a, b
+.GiveContinue
+	cp 5
+	jr nz, .GiveLoop
+	push hl
+	ld [hl], SURF
+	ld de, 21
+	add hl, de
+	ld [hl], 15
+	pop hl
+	inc hl
+	ld [hl], FLY
+	ld de, 21
+	add hl, de
+	ld [hl], 15
+	ret
+
+.CheckLoop:
+	dec hl
+	dec b
+	ret z
+	jr .loop
+
+.GiveLoop
+	add hl, de
+	inc a
+	jr .GiveContinue
+
+CheckDexCaughtVar:
+	ld hl, wPokedexCaught
+	ld b, wEndPokedexCaught - wPokedexCaught
+	call CountSetBits
+	ld [wScriptVar], a
+	ret

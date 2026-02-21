@@ -74,7 +74,18 @@ LoadContestantName:
 ; Find the pointer for the trainer class of the Bug Catching Contestant whose ID is in a.
 	ld c, a
 	ld b, 0
+	push bc
+	push de
+	ld de, EVENT_BEAT_ELITE_FOUR
+	ld b, CHECK_FLAG
+	call EventFlagAction
+	ld a, c
+	and a
+	jr nz, .true
+	pop de
+	pop bc
 	ld hl, BugContestantPointers
+.continue
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
@@ -122,6 +133,12 @@ LoadContestantName:
 	ld de, wBugContestWinnerName
 	ld bc, NAME_LENGTH
 	jp CopyBytes
+
+.true
+	pop de
+	pop bc
+	ld hl, BugContestantPointers2
+	jr .continue
 
 INCLUDE "data/events/bug_contest_winners.asm"
 
@@ -236,7 +253,18 @@ ComputeAIContestantScores:
 	dec a
 	ld c, a
 	ld b, 0
+	push bc
+	push de
+	ld de, EVENT_BEAT_ELITE_FOUR
+	ld b, CHECK_FLAG
+	call EventFlagAction
+	ld a, c
+	and a
+	jr nz, .true
+	pop de
+	pop bc
 	ld hl, BugContestantPointers
+.continue
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
@@ -280,6 +308,12 @@ ComputeAIContestantScores:
 	cp NUM_BUG_CONTESTANTS
 	jr nz, .loop
 	ret
+
+.true
+	pop de
+	pop bc
+	ld hl, BugContestantPointers2
+	jr .continue
 
 ContestScore:
 ; Determine the player's score in the Bug Catching Contest.

@@ -1241,7 +1241,7 @@ BattleTowerAction_0C:
 	call CloseSRAM
 	ret
 
-; check 5 battle rooms per day limit
+; check 255 battle rooms per day limit
 BattleTowerAction_0D: ; BattleTowerAction $0d
 	xor a ; FALSE
 	ld [wScriptVar], a
@@ -1262,7 +1262,7 @@ BattleTowerAction_0D: ; BattleTowerAction $0d
 	call OpenSRAM
 	ld a, [s5_aa5d]
 	call CloseSRAM
-	cp 5
+	cp 255
 	ret c
 	ld a, TRUE
 	ld [wScriptVar], a

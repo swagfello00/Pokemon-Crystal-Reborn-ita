@@ -35,7 +35,7 @@ BattleMenuHeader:
 	db 1 ; default option
 
 .MenuData:
-	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
+	db $91 ; flags
 	dn 2, 2 ; rows, columns
 	db 6 ; spacing
 	dba .Text
@@ -54,7 +54,7 @@ SafariBattleMenuHeader:
 	db 1 ; default option
 
 .MenuData:
-	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
+	db $91 ; flags
 	dn 2, 2 ; rows, columns
 	db 11 ; spacing
 	dba .Text
@@ -80,7 +80,7 @@ ContestBattleMenuHeader:
 	db 1 ; default option
 
 .MenuData:
-	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
+	db $91 ; flags
 	dn 2, 2 ; rows, columns
 	db 8 ; spacing
 	dba .Text

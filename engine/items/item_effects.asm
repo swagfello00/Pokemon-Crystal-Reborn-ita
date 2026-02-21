@@ -149,8 +149,8 @@ ItemEffects:
 	dw BasementKeyEffect   ; BASEMENT_KEY
 	dw NoEffect            ; PASS
 	dw NoEffect            ; ITEM_87
-	dw NoEffect            ; ITEM_88
-	dw NoEffect            ; ITEM_89
+	dw RockClimbEffect     ; ROCK_CLIMB
+	dw NoEffect            ; MACHO_BRACE
 	dw NoEffect            ; CHARCOAL
 	dw RestoreHPEffect     ; BERRY_JUICE
 	dw NoEffect            ; SCOPE_LENS
@@ -158,16 +158,16 @@ ItemEffects:
 	dw NoEffect            ; ITEM_8E
 	dw NoEffect            ; METAL_COAT
 	dw NoEffect            ; DRAGON_FANG
-	dw NoEffect            ; ITEM_91
+	dw NoEffect            ; OVAL_CHARM
 	dw NoEffect            ; LEFTOVERS
-	dw NoEffect            ; ITEM_93
-	dw NoEffect            ; ITEM_94
-	dw NoEffect            ; ITEM_95
+	dw NoEffect            ; OLD_AMBER
+	dw NoEffect            ; DOME_FOSSIL
+	dw NoEffect            ; HELIX_FOSSIL
 	dw RestorePPEffect     ; MYSTERYBERRY
 	dw NoEffect            ; DRAGON_SCALE
 	dw NoEffect            ; BERSERK_GENE
-	dw NoEffect            ; ITEM_99
-	dw NoEffect            ; ITEM_9A
+	dw NoEffect            ; SOETHE_BELL
+	dw NoEffect            ; SILPH_SCOPE
 	dw NoEffect            ; ITEM_9B
 	dw SacredAshEffect     ; SACRED_ASH
 	dw PokeBallEffect      ; HEAVY_BALL
@@ -175,7 +175,7 @@ ItemEffects:
 	dw PokeBallEffect      ; LEVEL_BALL
 	dw PokeBallEffect      ; LURE_BALL
 	dw PokeBallEffect      ; FAST_BALL
-	dw NoEffect            ; ITEM_A2
+	dw NoEffect            ; MACHINERY
 	dw NoEffect            ; LIGHT_BALL
 	dw PokeBallEffect      ; FRIEND_BALL
 	dw PokeBallEffect      ; MOON_BALL
@@ -193,45 +193,52 @@ ItemEffects:
 	dw PokeBallEffect      ; PARK_BALL
 	dw NoEffect            ; RAINBOW_WING
 	dw NoEffect            ; ITEM_B3
-	assert_table_length ITEM_B3
-; The items past ITEM_B3 do not have effect entries:
-;	BRICK_PIECE
-;	SURF_MAIL
-;	LITEBLUEMAIL
-;	PORTRAITMAIL
-;	LOVELY_MAIL
-;	EON_MAIL
-;	MORPH_MAIL
-;	BLUESKY_MAIL
-;	MUSIC_MAIL
-;	MIRAGE_MAIL
-;	ITEM_BE
-; They all have the ITEMMENU_NOUSE attribute so they can't be used anyway.
-; NoEffect would be appropriate, with the table then being NUM_ITEMS long.
+	dw NoEffect			   ; BRICK_PIECE
+	dw NoEffect 		   ; SURF_MAIL
+	dw NoEffect 		   ; LITEBLUEMAIL
+	dw NoEffect			   ; PORTRAITMAIL
+	dw NoEffect			   ; LOVELY_MAIL
+	dw NoEffect			   ; EON_MAIL
+	dw NoEffect			   ; MORPH_MAIL
+	dw NoEffect			   ; BLUESKY_MAIL
+	dw NoEffect			   ; MUSIC_MAIL
+	dw NoEffect			   ; MIRAGE_MAIL
+	dw CutEffect		   ; ITEM_BE
+	dw FlyEffect		   ; TM01
+	dw SurfEffect		   ; TM02
+	dw StrengthEffect	   ; TM03
+	dw FlashEffect		   ; TM04
+	dw WhirlpoolEffect	   ; ITEM_C3
+	dw WaterfallEffect	   ; TM05
+	dw HeadbuttEffect	   ; TM06
+	dw SweetscentEffect	   ; TM07
+	dw RocksmashEffect	   ; TM08
+	dw DigEffect		   ; TM09
+	assert_table_length TM_PSYCH_UP
 
 PokeBallEffect:
-; BUG: The Dude's catching tutorial may crash if his Poké Ball can't be used (see docs/bugs_and_glitches.md)
+; BUGfixed: The Dude's catching tutorial may crash if his Poké Ball can't be used (see docs/bugs_and_glitches.md)
 	ld a, [wBattleMode]
 	dec a
 	jp nz, UseBallInTrainerBattle
+
+	ld a, [wBattleType]
+	cp BATTLETYPE_TUTORIAL
+	jr z, .room_in_party
 
 	ld a, [wPartyCount]
 	cp PARTY_LENGTH
 	jr nz, .room_in_party
 
-	ld a, BANK(sBoxCount)
-	call OpenSRAM
-	ld a, [sBoxCount]
-	cp MONS_PER_BOX
-	call CloseSRAM
-	jp z, Ball_BoxIsFullMessage
+	newfarcall NewStorageBoxPointer
+	jp c, Ball_BoxIsFullMessage
 
 .room_in_party
-; BUG: Using a Park Ball in non-Contest battles has a corrupt animation (see docs/bugs_and_glitches.md)
+; BUGfixed: Using a Park Ball in non-Contest battles has a corrupt animation (see docs/bugs_and_glitches.md)
 	xor a
 	ld [wWildMon], a
-	ld a, [wCurItem]
-	cp PARK_BALL
+	ld a, [wBattleType]
+	cp BATTLETYPE_CONTEST
 	call nz, ReturnToBattle_UseBall
 
 	ld hl, wOptions
@@ -336,12 +343,13 @@ PokeBallEffect:
 	jr nz, .statuscheck
 	ld a, 1
 .statuscheck
-; BUG: BRN/PSN/PAR do not affect catch rate (see docs/bugs_and_glitches.md)
+; BUGfixed: BRN/PSN/PAR do not affect catch rate (see docs/bugs_and_glitches.md)
 	ld b, a
 	ld a, [wEnemyMonStatus]
 	and 1 << FRZ | SLP_MASK
 	ld c, 10
 	jr nz, .addstatus
+	ld a, [wEnemyMonStatus]
 	and a
 	ld c, 5
 	jr nz, .addstatus
@@ -353,10 +361,11 @@ PokeBallEffect:
 	ld a, $ff
 .max_1
 
-; BUG: HELD_CATCH_CHANCE has no effect (see docs/bugs_and_glitches.md)
+; BUGfixed: HELD_CATCH_CHANCE has no effect (see docs/bugs_and_glitches.md)
 	ld d, a
 	push de
 	ld a, [wBattleMonItem]
+	ld b, a
 	farcall GetItemHeldEffect
 	ld a, b
 	cp HELD_CATCH_CHANCE
@@ -440,18 +449,11 @@ PokeBallEffect:
 	push af
 	set SUBSTATUS_TRANSFORMED, [hl]
 
-; BUG: Catching a Transformed Pokémon always catches a Ditto (see docs/bugs_and_glitches.md)
+; BUGfixed: Catching a Transformed Pokémon always catches a Ditto (see docs/bugs_and_glitches.md)
 	bit SUBSTATUS_TRANSFORMED, a
-	jr nz, .ditto
-	jr .not_ditto
+	jr nz, .load_data
 
 .ditto
-	ld a, DITTO
-	ld [wTempEnemyMonSpecies], a
-	jr .load_data
-
-.not_ditto
-	set SUBSTATUS_TRANSFORMED, [hl]
 	ld hl, wEnemyBackupDVs
 	ld a, [wEnemyMonDVs]
 	ld [hli], a
@@ -461,6 +463,7 @@ PokeBallEffect:
 .load_data
 	ld a, [wTempEnemyMonSpecies]
 	ld [wCurPartySpecies], a
+	ld [wBuffer1], a
 	ld a, [wEnemyMonLevel]
 	ld [wCurPartyLevel], a
 	farcall LoadEnemyMon
@@ -527,6 +530,10 @@ PokeBallEffect:
 
 	ld hl, NewDexDataText
 	call PrintText
+	ld de, SFX_SLOT_MACHINE_START
+	call WaitPlaySFX
+	call WaitSFX
+	call PromptButton
 
 	call ClearSprites
 
@@ -612,12 +619,8 @@ PokeBallEffect:
 
 	farcall SetBoxMonCaughtData
 
-	ld a, BANK(sBoxCount)
-	call OpenSRAM
-
-	ld a, [sBoxCount]
-	cp MONS_PER_BOX
-	jr nz, .BoxNotFullYet
+	newfarcall NewStorageBoxPointer
+	jr nc, .BoxNotFullYet
 	ld hl, wBattleResult
 	set BATTLERESULT_BOX_FULL, [hl]
 .BoxNotFullYet:
@@ -626,10 +629,8 @@ PokeBallEffect:
 	jr nz, .SkipBoxMonFriendBall
 	; The captured mon is now first in the box
 	ld a, FRIEND_BALL_HAPPINESS
-	ld [sBoxMon1Happiness], a
+	ld [wBufferMonHappiness], a
 .SkipBoxMonFriendBall:
-	call CloseSRAM
-
 	ld hl, AskGiveNicknameText
 	call PrintText
 
@@ -642,36 +643,55 @@ PokeBallEffect:
 
 	xor a
 	ld [wCurPartyMon], a
-	ld a, BOXMON
+	ld a, BUFFERMON
 	ld [wMonType], a
 	ld de, wMonOrItemNameBuffer
 	ld b, NAME_MON
 	farcall NamingScreen
 
-	ld a, BANK(sBoxMonNicknames)
-	call OpenSRAM
-
 	ld hl, wMonOrItemNameBuffer
-	ld de, sBoxMonNicknames
+	ld de, wBufferMonNickname
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
-	ld hl, sBoxMonNicknames
+	ld hl, wBufferMonNickname
 	ld de, wStringBuffer1
 	call InitName
 
-	call CloseSRAM
-
 .SkipBoxMonNickname:
-	ld a, BANK(sBoxMonNicknames)
-	call OpenSRAM
-
-	ld hl, sBoxMonNicknames
+	ld hl, wBufferMonNickname
 	ld de, wMonOrItemNameBuffer
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
-	call CloseSRAM
+	newfarcall UpdateStorageBoxMonFromTemp
+
+	; Switch current Box if it was full. We can check this by checking if
+	; the buffermon's box location matches the current box.
+	ld a, [wBufferMonBox]
+	ld b, a
+	ld a, [wCurBox]
+	inc a
+	cp b
+	jr z, .curbox_not_full
+
+	push bc
+	ld b, a
+	newfarcall GetBoxName
+	ld hl, CurBoxFullText
+	call PrintText
+	pop bc
+
+	; Switch current box.
+	ld a, b
+	dec a
+	ld [wCurBox], a
+
+.curbox_not_full
+	ld a, [wCurBox]
+	inc a
+	ld b, a
+	newfarcall GetBoxName
 
 	ld hl, BallSentToPCText
 	call PrintText
@@ -753,10 +773,11 @@ ParkBallMultiplier:
 	ret
 
 HeavyBall_GetDexEntryBank:
-; BUG: Heavy Ball uses wrong weight value for three Pokémon (see docs/bugs_and_glitches.md)
+; BUGfixed: Heavy Ball uses wrong weight value for three Pokémon (see docs/bugs_and_glitches.md)
 	push hl
 	push de
 	ld a, [wEnemyMonSpecies]
+	dec a
 	rlca
 	rlca
 	maskbits NUM_DEX_ENTRY_BANKS
@@ -914,14 +935,12 @@ MoonBallMultiplier:
 	ret nz
 
 	inc hl
-	inc hl
-	inc hl
 
-; BUG: Moon Ball does not boost catch rate (see docs/bugs_and_glitches.md)
+; BUGfixed: Moon Ball does not boost catch rate (see docs/bugs_and_glitches.md)
 	push bc
 	ld a, BANK("Evolutions and Attacks")
 	call GetFarByte
-	cp MOON_STONE_RED ; BURN_HEAL
+	cp MOON_STONE
 	pop bc
 	ret nz
 
@@ -973,12 +992,12 @@ LoveBallMultiplier:
 	inc d   ; female
 .got_wild_gender
 
-; BUG: Love Ball boosts catch rate for the wrong gender (see docs/bugs_and_glitches.md)
+; BUGfixed: Love Ball boosts catch rate for the wrong gender (see docs/bugs_and_glitches.md)
 	ld a, d
 	pop de
 	cp d
 	pop bc
-	ret nz
+	ret z
 
 	sla b
 	jr c, .max
@@ -1004,7 +1023,7 @@ FastBallMultiplier:
 	ld d, 3
 
 .loop
-; BUG: Fast Ball only boosts catch rate for three Pokémon (see docs/bugs_and_glitches.md)
+; BUGfixed: Fast Ball only boosts catch rate for three Pokémon (see docs/bugs_and_glitches.md)
 	ld a, BANK(FleeMons)
 	call GetFarByte
 
@@ -1012,7 +1031,7 @@ FastBallMultiplier:
 	cp -1
 	jr z, .next
 	cp c
-	jr nz, .next
+	jr nz, .loop
 	sla b
 	jr c, .max
 
@@ -1101,6 +1120,10 @@ WaitButtonText:
 	text_far _WaitButtonText
 	text_end
 
+CurBoxFullText:
+	text_far _CurBoxFullText
+	text_end
+
 BallSentToPCText:
 	text_far _BallSentToPCText
 	text_end
@@ -1118,7 +1141,14 @@ ReturnToBattle_UseBall:
 	ret
 
 TownMapEffect:
-	farcall PokegearMap
+	call FadeToMenu
+	farcall _TownMap
+	call Call_ExitMenu
+	xor a
+	ldh [hBGMapMode], a
+	farcall Pack_InitGFX
+	farcall WaitBGMap_DrawPackGFX
+	farcall Pack_InitColors
 	ret
 
 BicycleEffect:
@@ -1629,6 +1659,74 @@ RestoreHPEffect:
 	call ItemRestoreHP
 	jp StatusHealer_Jumptable
 
+RockClimbEffect:
+	farcall RockClimbFunction
+	ret
+
+CutEffect:
+	ld a, 1
+	ld [wUsingHMItem], a
+	farcall CutFunction
+	ret
+
+FlyEffect:
+	farcall AirplaneEffect
+	ret
+
+SurfEffect:
+	ld a, 1
+	ld [wUsingHMItem], a
+	farcall SurfFunction
+	ret
+
+StrengthEffect:
+	ld a, 1
+	ld [wUsingHMItem], a
+	farcall StrengthFunction
+	ret
+
+FlashEffect:
+	ld a, 1
+	ld [wUsingHMItem], a
+	farcall FlashFunction
+	ret
+	
+WhirlpoolEffect:
+	ld a, 1
+	ld [wUsingHMItem], a
+	farcall WhirlpoolFunction
+	ret
+
+WaterfallEffect:
+	ld a, 1
+	ld [wUsingHMItem], a
+	farcall WaterfallFunction
+	ret
+
+HeadbuttEffect:
+	ld a, 1
+	ld [wUsingHMItem], a
+	farcall HeadbuttFunction
+	ret
+
+SweetscentEffect:
+	ld a, 1
+	ld [wUsingHMItem], a
+	farcall SweetScentFromMenu
+	ret
+
+RocksmashEffect:
+	ld a, 1
+	ld [wUsingHMItem], a
+	farcall RockSmashFunction
+	ret
+
+DigEffect:
+	ld a, 1
+	ld [wUsingHMItem], a
+	farcall DigFunction
+	ret
+
 EnergypowderEffect:
 	ld c, HAPPINESS_BITTERPOWDER
 	jr EnergypowderEnergyRootCommon
@@ -1957,30 +2055,33 @@ GetOneFifthMaxHP:
 	ret
 
 GetHealingItemAmount:
-	push hl
 	ld a, [wCurItem]
-	ld hl, HealingHPAmounts
-	ld d, a
-.next
-	ld a, [hli]
-	cp -1
-	jr z, .NotFound
-	cp d
-	jr z, .done
-	inc hl
-	inc hl
-	jr .next
-
-.NotFound:
+	cp HYPER_POTION ; assumes Max Potion and Full Restore come before, and all others come after
+	jr c, .FullHP
+	push bc
+	ld b, a
+	farcall GetItemHeldEffect
+	ld e, c
+	ld d, 0
+	ld a, c
+	and a
+	jr nz, .no_carry
 	scf
-.done
+.no_carry
+	pop bc
+	ret
+
+.FullHP:
+	push hl
+	ld hl, .MaxStatValue
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	pop hl
 	ret
 
-INCLUDE "data/items/heal_hp.asm"
+.MaxStatValue:
+	dw MAX_STAT_VALUE
 
 Softboiled_MilkDrinkFunction:
 ; Softboiled/Milk Drink in the field
@@ -2079,6 +2180,8 @@ UseRepel:
 
 	ld a, b
 	ld [wRepelEffect], a
+	ld a, [wCurItem]
+	ld [wRepelType], a
 	jp UseItemText
 
 RepelUsedEarlierIsStillInEffectText:
@@ -2623,7 +2726,10 @@ LooksBitterMessage:
 	jp PrintText
 
 Ball_BoxIsFullMessage:
-	ld hl, BallBoxFullText
+	ld hl, StorageFullText
+	jr z, .got_msg
+	ld hl, DatabaseTaxedText
+.got_msg
 	call PrintText
 
 	; Item wasn't used.
@@ -2697,8 +2803,12 @@ ItemCantGetOnText:
 	text_far _ItemCantGetOnText
 	text_end
 
-BallBoxFullText:
-	text_far _BallBoxFullText
+StorageFullText:
+	text_far _StorageFullText
+	text_end
+
+DatabaseTaxedText:
+	text_far _StorageFullText
 	text_end
 
 ItemUsedText:
@@ -2797,6 +2907,18 @@ ComputeMaxPP:
 	pop bc
 	ret
 
+RestoreBufferPP:
+	ld hl, wBufferMonMoves
+	ld de, wBufferMonPP
+	ld a, [wMenuCursorY]
+	push af
+	ld a, BUFFERMON
+	ld [wMonType], a
+	call _RestoreAllPP
+	pop af
+	ld [wMenuCursorY], a
+	ret
+
 RestoreAllPP:
 	ld a, MON_PP
 	call GetPartyParamLocation
@@ -2805,8 +2927,11 @@ RestoreAllPP:
 	call GetPartyParamLocation
 	pop de
 	xor a ; PARTYMON
-	ld [wMenuCursorY], a
 	ld [wMonType], a
+	; fallthrough
+_RestoreAllPP:
+	xor a
+	ld [wMenuCursorY], a
 	ld c, NUM_MOVES
 .loop
 	ld a, [hli]
@@ -2858,6 +2983,10 @@ GetMaxPPOfMove:
 	jr z, .got_nonpartymon ; TEMPMON
 
 	ld hl, wBattleMonMoves ; WILDMON
+	dec a
+	jr z, .got_nonpartymon
+
+	ld hl, wBufferMonMoves ; BUFFERMON
 
 .got_nonpartymon ; BOXMON, TEMPMON, WILDMON
 	call GetMthMoveOfCurrentMon

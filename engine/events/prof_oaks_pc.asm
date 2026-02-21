@@ -15,6 +15,7 @@ ProfOaksPCBoot:
 	ld hl, OakPCText2
 	call PrintText
 	call Rate
+	call WaitSFX
 	call PlaySFX ; sfx loaded by previous Rate function call
 	call JoyWaitAorB
 	call WaitSFX

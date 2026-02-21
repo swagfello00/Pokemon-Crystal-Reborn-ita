@@ -601,6 +601,7 @@ InitializeEventsScript:
 	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_JANINE
 	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_JANINE
 	variablesprite SPRITE_COPYCAT, SPRITE_LASS
+	variablesprite SPRITE_DIALVAR, SPRITE_DIAL
 	variablesprite SPRITE_JANINE_IMPERSONATOR, SPRITE_LASS
 	setevent EVENT_FOUND_MACHINE_PART_IN_CERULEAN_GYM
 	setevent EVENT_CERULEAN_GYM_ROCKET
@@ -614,6 +615,8 @@ InitializeEventsScript:
 	setevent EVENT_SAFFRON_TRAIN_STATION_POPULATION
 	setevent EVENT_INDIGO_PLATEAU_POKECENTER_RIVAL
 	setevent EVENT_INITIALIZED_EVENTS
+	setevent EVENT_KANTO_SUICUNE
+	setevent EVENT_CAUGHT_CELEBI
 	endcallback
 
 AskNumber1MScript:
@@ -788,6 +791,7 @@ AskNumber2MScript:
 
 RegisteredNumberMScript:
 	farwritetext RegisteredNumber1Text
+	waitsfx
 	playsound SFX_REGISTER_PHONE_NUMBER
 	waitsfx
 	promptbutton
@@ -1479,6 +1483,7 @@ AskNumber2FScript:
 
 RegisteredNumberFScript:
 	farwritetext RegisteredNumber2Text
+	waitsfx
 	playsound SFX_REGISTER_PHONE_NUMBER
 	waitsfx
 	promptbutton
