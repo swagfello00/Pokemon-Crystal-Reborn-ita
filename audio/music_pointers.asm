@@ -107,4 +107,11 @@ Music:
 	dba Music_SuicuneBattle
 	dba Music_BattleTowerLobby
 	dba Music_MobileCenter
+; new to Crystal Reborn
+	dba Music_Dive
+	dba Music_LugiaBattleHGSS
+	dba Music_HoOhBattleHGSS
+	dba Music_KantoLegendBattleXY
+	dba Music_CeruleanCaveRBY
+	dba Music_PokemonTowerRBY
 	assert_table_length NUM_MUSIC_SONGS
