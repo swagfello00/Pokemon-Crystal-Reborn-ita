@@ -106,3 +106,16 @@ SuicuneSpriteGFX::             INCBIN "gfx/sprites/suicune.2bpp"
 EnteiSpriteGFX::               INCBIN "gfx/sprites/entei.2bpp"
 RaikouSpriteGFX::              INCBIN "gfx/sprites/raikou.2bpp"
 StandingYoungsterSpriteGFX::   INCBIN "gfx/sprites/standing_youngster.2bpp"
+
+SECTION "Sprites 3", ROMX
+
+DialSpriteGFX:: 			   INCBIN "gfx/sprites/dial.2bpp"
+ChrisSurfSpriteGFX:: 		   INCBIN "gfx/sprites/chrissurf.2bpp"
+KrisSurfSpriteGFX:: 		   INCBIN "gfx/sprites/krissurf.2bpp"
+ChrisRunSpriteGFX::            INCBIN "gfx/sprites/chrisrun.2bpp"
+KrisRunSpriteGFX::             INCBIN "gfx/sprites/krisrun.2bpp"
+AmphySpriteGFX:: 			   INCBIN "gfx/sprites/amphy.2bpp"
+EarlyGameRattataSpriteGFX::    INCBIN "gfx/sprites/earlygamerattata.2bpp"
+SurfingLaprasGFX::    		   INCBIN "gfx/sprites/surfinglapras.2bpp"
+WalkingPidgeyGFX::    		   INCBIN "gfx/sprites/walkingpidgey.2bpp"
+RunningFarfetch_dGFX::		   INCBIN "gfx/sprites/runningfarfetch_d.2bpp"
