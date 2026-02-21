@@ -41,14 +41,13 @@ ROMX $05
 	"bank5"
 ROMX $06
 	"Tileset Data 1"
+	"Egg Moves"
 ROMX $07
 	"Roofs"
 	"Tileset Data 2"
-	"Extra Songs 1"
 ROMX $08
 	"Clock Reset"
 	"Tileset Data 3"
-	"Egg Moves"
 ROMX $09
 	"bank9"
 ROMX $0a
@@ -63,12 +62,15 @@ ROMX $0d
 ROMX $0e
 	"Enemy Trainers"
 ROMX $0f
+	"Enemy Trainers 2"
 	"Battle Core"
 ROMX $10
 	"bank10"
 	"Evolutions and Attacks"
 ROMX $11
 	"bank11"
+	"Newbox"
+	"Bill's PC Graphics"
 ROMX $12
 	"Crystal Features 1"
 ROMX $13
@@ -112,7 +114,6 @@ ROMX $24
 	"bank24"
 ROMX $25
 	"Maps"
-	"Events"
 ROMX $26
 	"Map Scripts 11"
 ROMX $27
@@ -312,6 +313,9 @@ ROMX $78
 	"Tileset Data 8"
 ROMX $79
 	"Map Scripts 28"
+ROMX $7a
+	"Events"
+	"Extra Songs 1"
 ROMX $7b
 	"Battle Tower Text"
 ROMX $7c
@@ -375,15 +379,15 @@ SRAM $00
 	"Backup Save"
 SRAM $01
 	"Save"
-	"Active Box"
+	"Box Metadata"
 	"Link Battle Data"
 	"SRAM Hall of Fame"
 	"SRAM Crystal Data"
 	"SRAM Battle Tower"
 SRAM $02
-	"Boxes 1-7"
+	"PokeDB Bank 1"
 SRAM $03
-	"Boxes 8-14"
+	"PokeDB Bank 2"
 SRAM $04
 	"SRAM Mobile 1"
 SRAM $05

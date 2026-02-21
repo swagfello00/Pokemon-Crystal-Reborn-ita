@@ -1,6 +1,12 @@
-# Information
-An Italian translation of https://github.com/gb-mobile/pokecrystal-mobile-eng
-This translation was performed via text dumps and a (somewhat) sophisticated find/replace script and some manual effort.
+# Informazioni
+Una traduzione italiana di https://github.com/gb-mobile/pokecrystal-mobile-eng
+Il progetto parte dalla traduzione Italiana di Pokémon Crystal Mobile, un'hack rom che ripristina tutte le funzionalità del Mobile Adapter GB dalla versione giappponese.
+https://github.com/gb-mobile/pokecrystal-mobile-ita
+
+Su questa base cerca di migliorare ogni aspetto del gioco ad eccezione delle meccaniche del battling, mantenendo la compatibilità con Crystal Mobile e i giochi precedenti.
+Per ulteriori informazioni aprire il file [CHANGELOG.txt](Changelog.txt)
+Ulteriori informazioni su come sfruttare il Mobile System GB sul server Discord: https://discord.gg/akpYgUZ526.
+Mira ad essere una 4° versione della 2° gen, il progetto è ancora in beta ma completo, è possibile giocare attraverso il setup assembly.
 
 ## Screenshots
 ![image](https://github.com/user-attachments/assets/e1442d4b-c7e9-48ae-a670-a9b8fcd73ca0)
@@ -16,21 +22,21 @@ This translation was performed via text dumps and a (somewhat) sophisticated fin
 ![image](https://github.com/user-attachments/assets/32fce5c7-4ecf-4c38-96ed-c2930cde3988)
 ![image](https://github.com/user-attachments/assets/a25ca4f8-c2e0-4a73-91c6-f6abbe2a9f51)
 ![image](https://github.com/user-attachments/assets/dddcf398-d118-4925-9517-192c59082538)
-<img width="160" height="144" alt="image" src="https://github.com/user-attachments/assets/d7f74078-6d31-4365-9048-98fad53d3579" />
+![image](https://github.com/user-attachments/assets/345a699f-96a3-478c-864b-e7caf023659d)
 ![image](https://github.com/user-attachments/assets/ec408381-9c7a-48f2-985c-b6aeda997296)
 
 
 ## Setup [![Build Status][ci-badge]][ci]
 
-For more information, please see [INSTALL.md](INSTALL.md)
+Per ulteriori informazioni, guardare [INSTALL.md](INSTALL.md)
 
-After setup has been completed, you can choose which version you wish to build.
-To build a specific version, run this command inside the repository directory in cygwin64:
+Una volta che il setup è stato completato, puoi inviare un comando per assemblare.
+Esegui questo comando nella cartella del repository su cygwin64:
 
-`make`
+`make crystal11 -j$(nproc --ignore=1)`
 
 
-Other languages can be found here:
+Altre lingue possono essere trovate qui:
 
 https://github.com/gb-mobile/pokecrystal-mobile-eng
 
@@ -40,36 +46,32 @@ https://github.com/gb-mobile/pokecrystal-mobile-ger
 
 https://github.com/gb-mobile/pokecrystal-mobile-spa
 
-## Using Mobile Adapter Features
+## Utilizzare le Funzionalità del Mobile Adapter GB
 
-To take advantage of the Mobile Adapter features, we currently recommend the GameBoy Emulator BGB:
+Per sfruttare le Funzionalità del Mobile Adapter GB, è consigliabile al momento l'emulatore per GameBoy BGB:
 https://bgb.bircd.org/
 
-and libmobile-bgb:
+e libmobile-bgb:
 https://github.com/REONTeam/libmobile-bgb/releases
 
-Simply open BGB, right click the ‘screen’ and select `Link > Listen`, then accept the port it provides by clicking `OK`.
-Once done, run the latest version of libmobile for your operating system (`mobile-windows.exe` or windows and `mobile-linux` for linux).
-Now right click the ‘screen’ on BGB again and select `Load ROM…`, then choose the pokecrystal-mobile `.gbc` file you have built.
+## Funzionalità del Mobile Adapter GB
 
-## Mobile Adapter Features
-
-A full list of Mobile Adapter features for Pokémon Crystal can be found here:
+Una lista completa delle Funzionalità del Mobile Adapter GB per Pokémon Cristallo possono essere trovate qui:
 https://github.com/gb-mobile/pokecrystal-mobile-en/wiki/Pok%C3%A9mon-Crystal-Mobile-Features
 
-## Contributors
+## Collaboratori
 
-- Pret           : Initial disassembly
-- Matze          : Mobile Restoration & Japanese Code Disassembly
-- Lorenzooone    : Italian Mobile Translation & Code
-- 95Girl         : Italian Mobile Translation
-- RainbowMPigeon : Italian Mobile Translation
-- swagfello      : Italian Mobile Translation
-- Damien         : Code
-- DS             : GFX & Code
-- Ryuzac         : Code & Japanese Translation
-- Zumilsawhat?   : Code (Large amounts of work on the EZ Chat system)
-- REON Community : Support and Assistance
+- Pret           : Disassembly iniziale
+- Matze          : Ripristino Mobile & Disassemblaggio del Codice Giapponese
+- Lorenzooone    : Traduzione Italiana Mobile & Codice
+- 95Girl         : Traduzione Italiana Mobile
+- RainbowMPigeon : Traduzione Italiana Mobile
+- swagfello      : Traduzione Italiana Mobile e Codice di Crystal Reborn
+- Damien         : Codice
+- DS             : GFX & Codice
+- Ryuzac         : Codice & Traduzione Giapponese
+- Zumilsawhat?   : Codice (La maggior parte del lavoro sul sistema di EZ Chat)
+- REON Community : Supporto e Assistenza
 
 [ci]: https://github.com/pret/pokecrystal/actions
 [ci-badge]: https://github.com/pret/pokecrystal/actions/workflows/main.yml/badge.svg
