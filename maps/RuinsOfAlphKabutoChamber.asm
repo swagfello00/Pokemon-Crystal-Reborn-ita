@@ -61,6 +61,9 @@ RuinsOfAlphKabutoChamberPuzzle:
 	end
 
 .PuzzleComplete:
+	opentext
+	verbosegiveitem DOME_FOSSIL
+	closetext
 	setevent EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
 	setevent EVENT_SOLVED_KABUTO_PUZZLE
 	setflag ENGINE_UNLOCKED_UNOWNS_A_TO_K

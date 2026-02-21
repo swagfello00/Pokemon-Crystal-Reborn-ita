@@ -65,12 +65,14 @@ CherrygroveMartYoungsterText:
 	cont "#MON!"
 
 	para "Ho continuato a"
-	line "camminare, ma poi"
-	cont "il mio #MON"
-	cont "è andato KO."
+	line "camminare, ma alla"
+	cont "fine il mio"
+	
+	para "#MON è"
+	line "sopravvissuto."
 
-	para "Avrei dovuto"
-	line "avere un ANTIDOTO."
+	para "Meglio comprare un"
+	line "ANTIDOTO."
 	done
 
 CherrygroveMart_MapEvents:

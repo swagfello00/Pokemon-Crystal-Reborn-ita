@@ -2,6 +2,8 @@
 	const ROUTE33_POKEFAN_M
 	const ROUTE33_LASS
 	const ROUTE33_FRUIT_TREE
+	const ROUTE33_POKEBALL1
+	const ROUTE33_POKEBALL2
 
 Route33_MapScripts:
 	def_scene_scripts
@@ -16,7 +18,6 @@ TrainerHikerAnthony:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_HIKER_ANTHONY
-	endifjustbattled
 	opentext
 	checkflag ENGINE_ANTHONY_READY_FOR_REMATCH
 	iftrue .Rematch
@@ -45,29 +46,17 @@ TrainerHikerAnthony:
 .Rematch:
 	scall .RematchStd
 	winlosstext HikerAnthony2BeatenText, 0
-	readmem wAnthonyFightCount
-	ifequal 4, .Fight4
-	ifequal 3, .Fight3
-	ifequal 2, .Fight2
-	ifequal 1, .Fight1
-	ifequal 0, .LoadFight0
-.Fight4:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight4
-.Fight3:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight3
-.Fight2:
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue .LoadFight2
-.Fight1:
 	checkflag ENGINE_FLYPOINT_OLIVINE
 	iftrue .LoadFight1
-.LoadFight0:
 	loadtrainer HIKER, ANTHONY2
 	startbattle
 	reloadmapafterbattle
-	loadmem wAnthonyFightCount, 1
 	clearflag ENGINE_ANTHONY_READY_FOR_REMATCH
 	end
 
@@ -75,7 +64,6 @@ TrainerHikerAnthony:
 	loadtrainer HIKER, ANTHONY1
 	startbattle
 	reloadmapafterbattle
-	loadmem wAnthonyFightCount, 2
 	clearflag ENGINE_ANTHONY_READY_FOR_REMATCH
 	end
 
@@ -83,7 +71,6 @@ TrainerHikerAnthony:
 	loadtrainer HIKER, ANTHONY3
 	startbattle
 	reloadmapafterbattle
-	loadmem wAnthonyFightCount, 3
 	clearflag ENGINE_ANTHONY_READY_FOR_REMATCH
 	end
 
@@ -91,7 +78,6 @@ TrainerHikerAnthony:
 	loadtrainer HIKER, ANTHONY4
 	startbattle
 	reloadmapafterbattle
-	loadmem wAnthonyFightCount, 4
 	clearflag ENGINE_ANTHONY_READY_FOR_REMATCH
 	end
 
@@ -141,6 +127,12 @@ Route33Sign:
 
 Route33FruitTree:
 	fruittree FRUITTREE_ROUTE_33
+
+Route33Slowpoketail:
+	itemball SLOWPOKETAIL
+
+Route33BerryJuice:
+	itemball BERRY_JUICE
 
 HikerAnthony2SeenText:
 	text "Ho attraversato il"
@@ -209,3 +201,5 @@ Route33_MapEvents:
 	object_event  6, 13, SPRITE_POKEFAN_M, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerHikerAnthony, -1
 	object_event 13, 16, SPRITE_LASS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route33LassScript, -1
 	object_event 14, 16, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route33FruitTree, -1
+	object_event 18, 16, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route33Slowpoketail, EVENT_ROUTE_33_SLOWPOKETAIL
+	object_event 10,  5, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route33BerryJuice, EVENT_ROUTE_33_BERRY_JUICE

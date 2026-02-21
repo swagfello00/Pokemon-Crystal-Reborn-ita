@@ -82,6 +82,131 @@ VioletPokecenter1FGameboyKidScript:
 	jumptextfaceplayer VioletPokecenterGameboyKidPreMobileText 
 	
 .mobile
+	checkevent EVENT_VIOLET_MOBILE_EGG
+	iftrue .MobileNormal
+	faceplayer
+	opentext
+	writetext VioletPokecenterGameboyKidMobileText
+	waitbutton
+	writetext VioletPokecenterGameboyKidEggMobileText
+	yesorno
+	iffalse .EndText
+	musicfadeout MUSIC_MOBILE_ADAPTER_MENU, 2
+	special Function1719c8
+	ifnotequal $00, .End
+	reloadmap
+	opentext
+	writetext VioletMobileWorkingText
+	waitbutton
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, .PartyFull
+	readmem wZipCode
+	ifnotequal 246 + 1, .SkipDiglett
+	readmem wZipCode + 1
+	ifnotequal 246 + 0, .SkipDiglett
+	readmem wZipCode + 2
+	ifnotequal 246 + 1, .SkipDiglett
+	giveegg DIGLETT, EGG_LEVEL
+	sjump .continue
+.SkipDiglett
+	readmem wZipCode
+	ifnotequal 246 + 6, .SkipDoduo
+	readmem wZipCode + 1
+	ifnotequal 246 + 0, .SkipDoduo
+	readmem wZipCode + 2
+	ifnotequal 246 + 6, .SkipDoduo
+	giveegg DODUO, EGG_LEVEL
+	sjump .continue
+.SkipDoduo
+	readmem wZipCode
+	ifnotequal 246 + 8, .SkipGrimer
+	readmem wZipCode + 1
+	ifnotequal 246 + 7, .SkipGrimer
+	readmem wZipCode + 2
+	ifnotequal 246 + 2, .SkipGrimer
+	giveegg GRIMER, EGG_LEVEL
+	sjump .continue
+.SkipGrimer
+	readmem wZipCode
+	ifnotequal 246 + 3, .SkipChinchou
+	readmem wZipCode + 1
+	ifnotequal 246 + 8, .SkipChinchou
+	readmem wZipCode + 2
+	ifnotequal 246 + 6, .SkipChinchou
+	giveegg CHINCHOU, EGG_LEVEL
+	sjump .continue
+.SkipChinchou
+	readmem wZipCode
+	ifnotequal 246 + 1, .SkipNatu
+	readmem wZipCode + 1
+	ifnotequal 246 + 9, .SkipNatu
+	readmem wZipCode + 2
+	ifnotequal 246 + 7, .SkipNatu
+	giveegg NATU, EGG_LEVEL
+	sjump .continue
+.SkipNatu
+	readmem wZipCode
+	ifnotequal 246 + 5, .SkipSwinub
+	readmem wZipCode + 1
+	ifnotequal 246 + 3, .SkipSwinub
+	readmem wZipCode + 2
+	ifnotequal 246 + 8, .SkipSwinub
+	giveegg SWINUB, EGG_LEVEL
+	sjump .continue
+.SkipSwinub
+	readmem wZipCode
+	ifnotequal 246 + 4, .SkipVoltorb
+	readmem wZipCode + 1
+	ifnotequal 246 + 8, .SkipVoltorb
+	readmem wZipCode + 2
+	ifnotequal 246 + 1, .SkipVoltorb
+	giveegg VOLTORB, EGG_LEVEL
+	sjump .continue
+.SkipVoltorb
+	readmem wZipCode
+	ifnotequal 246 + 4, .SkipShuckle
+	readmem wZipCode + 1
+	ifnotequal 246 + 4, .SkipShuckle
+	readmem wZipCode + 2
+	ifnotequal 246 + 4, .SkipShuckle
+	giveegg SHUCKLE, EGG_LEVEL
+	sjump .continue
+.SkipShuckle
+	readmem wZipCode
+	ifnotequal 246 + 4, .SkipRemoraid
+	readmem wZipCode + 1
+	ifnotequal 246 + 0, .SkipRemoraid
+	readmem wZipCode + 2
+	ifnotequal 246 + 4, .SkipRemoraid
+	giveegg REMORAID, EGG_LEVEL
+	sjump .continue
+.SkipRemoraid
+	giveegg SLUGMA, EGG_LEVEL
+.continue
+	readmem wcd81
+	writemem wc74e
+	loadmem wOTTrademonSpecies, EGG
+	special MobileTradeAnimation_RetrieveGivemonFromGTS
+	setevent EVENT_VIOLET_MOBILE_EGG
+	reloadmap
+	opentext
+	writetext TakeCareEggMobileText
+	waitbutton
+.EndText
+	closetext
+	end
+
+.End
+	reloadmap
+	sjump .EndText
+
+.PartyFull
+	writetext VioletCityFullPartyText
+	waitbutton
+	closetext
+	end
+
+.MobileNormal
 	jumptextfaceplayer VioletPokecenterGameboyKidMobileText
 
 VioletPokecenter1FGentlemanScript:
@@ -158,6 +283,11 @@ VioletCityElmsAideFullPartyText:
 	cont "l'UOVO."
 	done
 
+VioletCityFullPartyText:
+	text "La tua squadra"
+	line "è piena."
+	done
+
 VioletPokecenterElmsAideRefuseText:
 	text "Ma… Il PROF.ELM"
 	line "ha chiesto di te…"
@@ -191,6 +321,29 @@ VioletPokecenterGameboyKidMobileText:
 	para "MOBILE, puoi" 
 	line "collegarti con un"
 	cont "amico lontano."
+	done
+
+VioletPokecenterGameboyKidEggMobileText:
+	text "Ehi, vedo che"
+	line "ne hai uno!"
+
+	para "Vuoi vedere come"
+	line "funziona?"
+	done
+
+VioletMobileWorkingText:
+	text "Perfetto, funziona"
+	line "alla grande!"
+	
+	para "Tieni, ho un"
+	line "regalo per te!"
+	
+	para "Spero ti piaccia."
+	done
+
+TakeCareEggMobileText:
+	text "Trattalo con cura,"
+	line "mi raccomando."
 	done
 
 VioletPokecenter1FGameboyKidText: ; unreferenced

@@ -15,6 +15,7 @@ GoldenrodVendingMachine:
 	opentext
 	writetext GoldenrodVendingText
 .Start:
+	writetext GoldenrodVending2Text
 	special PlaceMoneyTopRight
 	loadmenu .MenuHeader
 	verticalmenu
@@ -99,7 +100,10 @@ GoldenrodDeptStore6FElevatorButton:
 GoldenrodVendingText:
 	text "Un distributore"
 	line "automatico:"
-	cont "vediamo cosa c'è!"
+	prompt
+
+GoldenrodVending2Text:
+	text "Vediamo cosa c'è!"
 	done
 
 GoldenrodClangText:

@@ -10,6 +10,8 @@ OlivineGym_MapScripts:
 OlivineGymJasmineScript:
 	faceplayer
 	opentext
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .Rematch
 	checkevent EVENT_BEAT_JASMINE
 	iftrue .FightDone
 	writetext Jasmine_SteelTypeIntro
@@ -47,6 +49,21 @@ OlivineGymJasmineScript:
 	closetext
 	end
 
+.Rematch
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .FightDone
+	checkflag ENGINE_JASMINE_REMATCH_DONE
+	iftrue .FightDone
+	writetext Jasmine_SteelTypeIntro
+	waitbutton
+	closetext
+	winlosstext Jasmine_RematchText, 0
+	loadtrainer JASMINE, JASMINE2
+	startbattle
+	reloadmapafterbattle
+	setflag ENGINE_JASMINE_REMATCH_DONE
+	end
+
 OlivineGymActivateRockets:
 	ifequal 7, .RadioTowerRockets
 	ifequal 6, .GoldenrodRockets
@@ -60,6 +77,8 @@ OlivineGymActivateRockets:
 
 OlivineGymGuideScript:
 	faceplayer
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .EcruteakGymGuideRematchScript
 	checkevent EVENT_BEAT_JASMINE
 	iftrue .OlivineGymGuideWinScript
 	checkevent EVENT_JASMINE_RETURNED_TO_GYM
@@ -80,6 +99,17 @@ OlivineGymGuideScript:
 .OlivineGymGuidePreScript:
 	opentext
 	writetext OlivineGymGuidePreText
+	waitbutton
+	closetext
+	end
+
+.EcruteakGymGuideRematchScript:
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .OlivineGymGuideWinScript
+	checkflag ENGINE_JASMINE_REMATCH_DONE
+	iftrue .OlivineGymGuideWinScript
+	opentext
+	writetext OlivineGymGuideRematchText
 	waitbutton
 	closetext
 	end
@@ -129,6 +159,14 @@ Jasmine_BetterTrainer:
 	line "MEDAGLIA."
 	done
 
+Jasmine_RematchText:
+	text "Tu mi superi"
+	line "sia come capacità"
+
+	para "che come"
+	line "gentilezza."
+	done
+
 Text_ReceivedMineralBadge:
 	text "<PLAYER> riceve la"
 	line "MEDAGLIA MINERALE."
@@ -136,8 +174,7 @@ Text_ReceivedMineralBadge:
 
 Jasmine_BadgeSpeech:
 	text "La MEDAGLIA MINE-"
-	line "RALE migliora"
-	cont "la DIFESA."
+	line "RALE è tua!"
 
 	para "…Ehm… Prendi"
 	line "anche questo…"
@@ -188,6 +225,18 @@ OlivineGymGuidePreText:
 	para "Un forte allenato-"
 	line "re deve avere"
 	cont "compassione."
+	done
+
+OlivineGymGuideRematchText:
+	text "JASMINE è molto"
+	line "grata per quello"
+	
+	para "che hai fatto al"
+	line "faro."
+	
+	para "Sarebbe orgogliosa"
+	line "se tu la sfidassi"
+	cont "di nuovo."
 	done
 
 OlivineGym_MapEvents:

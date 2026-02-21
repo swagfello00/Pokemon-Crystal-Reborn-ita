@@ -14,6 +14,8 @@ SeafoamGymNoopScene:
 SeafoamGymBlaineScript:
 	faceplayer
 	opentext
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .Rematch
 	checkflag ENGINE_VOLCANOBADGE
 	iftrue .FightDone
 	writetext BlaineIntroText
@@ -43,9 +45,26 @@ SeafoamGymBlaineScript:
 	closetext
 	end
 
+.Rematch
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .FightDone
+	checkflag ENGINE_BLAINE_REMATCH_DONE
+	iftrue .FightDone
+	writetext BlaineIntroRematchText
+	waitbutton
+	closetext
+	winlosstext BlaineRematchText, 0
+	loadtrainer BLAINE, BLAINE1
+	startbattle
+	reloadmapafterbattle
+	setflag ENGINE_BLAINE_REMATCH_DONE
+	end
+
 SeafoamGymGuideScript:
 	faceplayer
 	opentext
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .SeafoamGymGuideRematchScript
 	checkevent EVENT_TALKED_TO_SEAFOAM_GYM_GUIDE_ONCE
 	iftrue .TalkedToSeafoamGymGuideScript
 	writetext SeafoamGymGuideWinText
@@ -56,6 +75,16 @@ SeafoamGymGuideScript:
 
 .TalkedToSeafoamGymGuideScript:
 	writetext SeafoamGymGuideWinText2
+	waitbutton
+	closetext
+	end
+
+.SeafoamGymGuideRematchScript:
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .TalkedToSeafoamGymGuideScript
+	checkflag ENGINE_BLAINE_REMATCH_DONE
+	iftrue .TalkedToSeafoamGymGuideScript
+	writetext SeafoamGymGuideRematchText
 	waitbutton
 	closetext
 	end
@@ -90,6 +119,32 @@ BlaineIntroText:
 	cont "ANTISCOTTATURA."
 	done
 
+BlaineIntroRematchText:
+	text "BLAINE: Tremendo!"
+
+	para "La mia PALESTRA è"
+	line "andata a fuoco."
+
+	para "Io e i miei #-"
+	line "MON fuoco siamo"
+
+	para "in mezzo alla"
+	line "strada a causa"
+	cont "del vulcano!"
+
+	para "È terribile!"
+
+	para "Così mi tocca fare"
+	line "il CAPOPALESTRA"
+
+	para "qui in questa"
+	line "grotta."
+
+	para "Ma è meglio che ti"
+	line "procuri"
+	cont "ANTISCOTTATURA."
+	done
+
 BlaineWinLossText:
 	text "BLAINE: Tremendo."
 	line "Mi hai ridotto in"
@@ -97,6 +152,12 @@ BlaineWinLossText:
 
 	para "Eccoti la"
 	line "MEDAGLIA VULCANO!"
+	done
+
+BlaineRematchText:
+	text "BLAINE: Tremendo."
+	line "Mi hai ridotto in"
+	cont "cenere…"
 	done
 
 ReceivedVolcanoBadgeText:
@@ -161,11 +222,21 @@ SeafoamGymGuideWinText2:
 	line "di un edificio."
 	done
 
+SeafoamGymGuideRematchText:
+	text "BLAINE nonostante"
+	line "tutto è in cerca"
+	cont "di nuove sfide."
+	
+	para "Affrontalo di"
+	line "nuovo, coraggio!"
+	done
+
 SeafoamGym_MapEvents:
 	db 0, 0 ; filler
 
 	def_warp_events
 	warp_event  5,  5, ROUTE_20, 1
+	warp_event  7,  5, SEAFOAM_ISLANDS_B1F, 2
 
 	def_coord_events
 

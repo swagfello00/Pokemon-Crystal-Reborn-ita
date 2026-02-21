@@ -5,6 +5,7 @@
 	const ROUTE9_LASS2
 	const ROUTE9_POKEFAN_M1
 	const ROUTE9_POKEFAN_M2
+	const ROUTE9_POKE_BALL1
 
 Route9_MapScripts:
 	def_scene_scripts
@@ -82,6 +83,9 @@ Route9Sign:
 
 Route9HiddenEther:
 	hiddenitem ETHER, EVENT_ROUTE_9_HIDDEN_ETHER
+
+Route9ThickClub:
+	itemball THICK_CLUB
 
 CamperDeanSeenText:
 	text "Voglio esplorare"
@@ -223,4 +227,5 @@ Route9_MapEvents:
 	object_event 11,  4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 5, TrainerCamperSid, -1
 	object_event 12, 15, SPRITE_LASS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerPicnickerEdna, -1
 	object_event 28,  3, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerHikerTim, -1
-	object_event 36, 15, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 4, TrainerHikerSidney, -1
+	object_event 35, 15, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 4, TrainerHikerSidney, -1
+	object_event 44, 12, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route9ThickClub, EVENT_ROUTE_9_THICK_CLUB

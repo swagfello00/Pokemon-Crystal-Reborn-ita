@@ -55,6 +55,9 @@ RuinsOfAlphOmanyteChamberPuzzle:
 	end
 
 .PuzzleComplete:
+	opentext
+	verbosegiveitem HELIX_FOSSIL
+	closetext
 	setevent EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
 	setevent EVENT_SOLVED_OMANYTE_PUZZLE
 	setflag ENGINE_UNLOCKED_UNOWNS_L_TO_R

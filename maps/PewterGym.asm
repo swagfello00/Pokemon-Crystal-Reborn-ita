@@ -11,6 +11,8 @@ PewterGym_MapScripts:
 PewterGymBrockScript:
 	faceplayer
 	opentext
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .Rematch
 	checkflag ENGINE_BOULDERBADGE
 	iftrue .FightDone
 	writetext BrockIntroText
@@ -38,6 +40,21 @@ PewterGymBrockScript:
 	closetext
 	end
 
+.Rematch
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .FightDone
+	checkflag ENGINE_BROCK_REMATCH_DONE
+	iftrue .FightDone
+	writetext BrockIntroText
+	waitbutton
+	closetext
+	winlosstext BrockRematchText, 0
+	loadtrainer BROCK, BROCK1
+	startbattle
+	reloadmapafterbattle
+	setflag ENGINE_BROCK_REMATCH_DONE
+	end
+
 TrainerCamperJerry:
 	trainer CAMPER, JERRY, EVENT_BEAT_CAMPER_JERRY, CamperJerrySeenText, CamperJerryBeatenText, 0, .Script
 
@@ -52,6 +69,8 @@ TrainerCamperJerry:
 PewterGymGuideScript:
 	faceplayer
 	opentext
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .PewterGymGuideRematchScript
 	checkevent EVENT_BEAT_BROCK
 	iftrue .PewterGymGuideWinScript
 	writetext PewterGymGuideText
@@ -61,6 +80,16 @@ PewterGymGuideScript:
 
 .PewterGymGuideWinScript:
 	writetext PewterGymGuideWinText
+	waitbutton
+	closetext
+	end
+
+.PewterGymGuideRematchScript:
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .PewterGymGuideWinScript
+	checkflag ENGINE_BROCK_REMATCH_DONE
+	iftrue .PewterGymGuideWinScript
+	writetext PewterGymGuideRematchText
 	waitbutton
 	closetext
 	end
@@ -111,6 +140,17 @@ BrockWinLossText:
 
 	para "Continua così!"
 	line "Ecco la MEDAGLIA!"
+	done
+
+BrockRematchText:
+	text "BROCK: Le potenti"
+	line "mosse dei tuoi"
+	cont "#MON hanno"
+	cont "sbriciolato la mia"
+	cont "rocciosa difesa…"
+
+	para "Sei più forte di"
+	line "quanto credessi…"
 	done
 
 ReceivedBoulderBadgeText:
@@ -207,6 +247,17 @@ PewterGymGuideWinText:
 
 	para "agisci: dico sul"
 	line "serio."
+	done
+
+PewterGymGuideRematchText:
+	text "Dopo la recente"
+	line "sconfitta, BROCK"
+	
+	para "vorrebbe lottare"
+	line "di nuovo."
+	
+	para "Fagli vedere la"
+	line "roccia che sei!"
 	done
 
 PewterGym_MapEvents:

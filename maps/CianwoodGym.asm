@@ -17,6 +17,8 @@ CianwoodGym_MapScripts:
 CianwoodGymChuckScript:
 	faceplayer
 	opentext
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .Rematch
 	checkevent EVENT_BEAT_CHUCK
 	iftrue .FightDone
 	writetext ChuckIntroText1
@@ -71,6 +73,36 @@ CianwoodGymChuckScript:
 	waitbutton
 .BagFull:
 	closetext
+	end
+
+.Rematch
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .FightDone
+	checkflag ENGINE_CHUCK_REMATCH_DONE
+	iftrue .FightDone
+	writetext ChuckIntroText1
+	waitbutton
+	closetext
+	turnobject CIANWOODGYM_CHUCK, RIGHT
+	opentext
+	writetext ChuckIntroText2
+	waitbutton
+	closetext
+	applymovement CIANWOODGYM_BOULDER1, CianwoodGymMovement_ChuckChucksBoulder
+	playsound SFX_STRENGTH
+	earthquake 80
+	disappear CIANWOODGYM_BOULDER1
+	pause 30
+	faceplayer
+	opentext
+	writetext ChuckIntroText3
+	waitbutton
+	closetext
+	winlosstext ChuckRematchText, 0
+	loadtrainer CHUCK, CHUCK2
+	startbattle
+	reloadmapafterbattle
+	setflag ENGINE_CHUCK_REMATCH_DONE
 	end
 
 CianwoodGymActivateRockets:
@@ -190,6 +222,11 @@ ChuckLossText:
 
 	para "Hai meritato una"
 	line "MEDAGLIA TEMPESTA!"
+	done
+
+ChuckRematchText:
+	text "Eh? Come?!"
+	line "Ho perso?"
 	done
 
 GetStormBadgeText:

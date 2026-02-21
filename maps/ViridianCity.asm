@@ -176,7 +176,7 @@ ViridianCityDreamEaterFisherGotDreamEaterText:
 
 ViridianCityYoungsterText:
 	text "Dicono che a"
-	line "BOSCOSMERALDO ci"
+	line "BOSCO SMERALDO ci"
 
 	para "siano molti stru-"
 	line "menti per terra."

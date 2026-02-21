@@ -31,8 +31,6 @@ TinTower1FNPCsCallback:
 	iftrue .GotRainbowWing
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iffalse .FaceBeasts
-	special BeastsCheck
-	iffalse .FaceBeasts
 	clearevent EVENT_TIN_TOWER_1F_WISE_TRIO_2
 	setevent EVENT_TIN_TOWER_1F_WISE_TRIO_1
 .GotRainbowWing:
@@ -82,6 +80,7 @@ TinTower1FStairsCallback:
 	endcallback
 
 TinTower1FSuicuneBattleScript:
+	loadmem wBuffer1, 0
 	applymovement PLAYER, TinTower1FPlayerEntersMovement
 	pause 15
 	setval RAIKOU
@@ -131,6 +130,10 @@ TinTower1FSuicuneBattleScript:
 	setscene SCENE_TINTOWER1F_NOOP
 	clearevent EVENT_SET_WHEN_FOUGHT_HO_OH
 	reloadmapafterbattle
+	readmem wBuffer1
+	ifnotequal SUICUNE, .continue
+	setevent EVENT_CAUGHT_SUICUNE
+.continue
 	pause 20
 	turnobject PLAYER, DOWN
 	playmusic MUSIC_MYSTICALMAN_ENCOUNTER

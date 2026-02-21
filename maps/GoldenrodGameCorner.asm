@@ -26,7 +26,7 @@ GoldenrodGameCorner_MapScripts:
 	callback MAPCALLBACK_OBJECTS, GoldenrodGameCornerMoveTutorCallback
 
 GoldenrodGameCornerMoveTutorCallback:
-	checkevent EVENT_BEAT_ELITE_FOUR
+	checkevent EVENT_CLEARED_RADIO_TOWER
 	iffalse .finish
 	checkitem COIN_CASE
 	iffalse .move_tutor_inside
@@ -63,8 +63,8 @@ GoldenrodGameCornerTMVendorScript:
 	waitbutton
 	checkitem COIN_CASE
 	iffalse GoldenrodGameCornerPrizeVendor_NoCoinCaseScript
-	writetext GoldenrodGameCornerPrizeVendorWhichPrizeText
 GoldenrodGameCornerTMVendor_LoopScript:
+	writetext GoldenrodGameCornerPrizeVendorWhichPrizeText
 	special DisplayCoinCaseBalance
 	loadmenu GoldenrodGameCornerTMVendorMenuHeader
 	verticalmenu
@@ -75,10 +75,12 @@ GoldenrodGameCornerTMVendor_LoopScript:
 	sjump GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 
 .Thunder:
+	checkitem TM_THUNDER
+	iftrue GoldenrodGameCornerPrizeVendor_AlreadyHaveTMScript
 	checkcoins GOLDENRODGAMECORNER_TM25_COINS
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
-	getitemname STRING_BUFFER_3, TM_THUNDER
-	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
+	writetext GoldenrodGameCornerPrizeVendorThunderPrizeText
+	yesorno
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 	giveitem TM_THUNDER
 	iffalse GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
@@ -86,10 +88,12 @@ GoldenrodGameCornerTMVendor_LoopScript:
 	sjump GoldenrodGameCornerTMVendor_FinishScript
 
 .Blizzard:
+	checkitem TM_BLIZZARD
+	iftrue GoldenrodGameCornerPrizeVendor_AlreadyHaveTMScript
 	checkcoins GOLDENRODGAMECORNER_TM14_COINS
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
-	getitemname STRING_BUFFER_3, TM_BLIZZARD
-	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
+	writetext GoldenrodGameCornerPrizeVendorBlizzardPrizeText
+	yesorno
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 	giveitem TM_BLIZZARD
 	iffalse GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
@@ -97,10 +101,12 @@ GoldenrodGameCornerTMVendor_LoopScript:
 	sjump GoldenrodGameCornerTMVendor_FinishScript
 
 .FireBlast:
+	checkitem TM_FIRE_BLAST
+	iftrue GoldenrodGameCornerPrizeVendor_AlreadyHaveTMScript
 	checkcoins GOLDENRODGAMECORNER_TM38_COINS
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
-	getitemname STRING_BUFFER_3, TM_FIRE_BLAST
-	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
+	writetext GoldenrodGameCornerPrizeVendorFireBlastPrizeText
+	yesorno
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 	giveitem TM_FIRE_BLAST
 	iffalse GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
@@ -116,6 +122,11 @@ GoldenrodGameCornerTMVendor_FinishScript:
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext GoldenrodGameCornerPrizeVendorHereYouGoText
+	waitbutton
+	sjump GoldenrodGameCornerTMVendor_LoopScript
+
+GoldenrodGameCornerPrizeVendor_AlreadyHaveTMScript:
+	writetext GoldenrodGameCornerPrizeVendorAlreadyHaveTMText
 	waitbutton
 	sjump GoldenrodGameCornerTMVendor_LoopScript
 
@@ -342,6 +353,10 @@ GoldenrodGameCornerPrizeVendorHereYouGoText:
 	text "Ecco qui!"
 	done
 
+GoldenrodGameCornerPrizeVendorAlreadyHaveTMText:
+	text "Hai già questa MT!"
+	done
+
 GoldenrodGameCornerPrizeVendorNeedMoreCoinsText:
 	text "Mi spiace, non ti"
 	line "bastano i gettoni!"
@@ -444,6 +459,21 @@ GoldenrodGameCornerLeftTheirDrinkText:
 	para "Ha un buon"
 	line "profumo."
 	done
+
+GoldenrodGameCornerPrizeVendorThunderPrizeText:
+  text "MT23 TUONO."
+  line "Giusto?"
+  done
+
+GoldenrodGameCornerPrizeVendorFireBlastPrizeText:
+  text "MT38 FUOCOBOMBA."
+  line "Giusto?"
+  done
+
+GoldenrodGameCornerPrizeVendorBlizzardPrizeText:
+  text "MT14 BORA."
+  line "Giusto?"
+  done
 
 GoldenrodGameCorner_MapEvents:
 	db 0, 0 ; filler

@@ -8,6 +8,7 @@
 	const BURNEDTOWERB1F_SUICUNE2
 	const BURNEDTOWERB1F_POKE_BALL
 	const BURNEDTOWERB1F_EUSINE
+	const BURNEDTOWERB1F_SUICUNE
 
 BurnedTowerB1F_MapScripts:
 	def_scene_scripts
@@ -81,7 +82,8 @@ ReleaseTheBeasts:
 	special RestartMapMusic
 	setscene SCENE_BURNEDTOWERB1F_NOOP
 	setevent EVENT_RELEASED_THE_BEASTS
-	special InitRoamMons
+	special InitRoamRaikou
+	special InitRoamEntei
 	setmapscene ECRUTEAK_GYM, SCENE_ECRUTEAKGYM_NOOP
 	setmapscene CIANWOOD_CITY, SCENE_CIANWOODCITY_SUICUNE_AND_EUSINE
 	clearevent EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
@@ -114,6 +116,21 @@ BurnedTowerB1FEusine:
 	disappear BURNEDTOWERB1F_EUSINE
 	playsound SFX_EXIT_BUILDING
 	waitsfx
+	end
+
+SuicuneFight:
+	loadmem wBuffer1, 0
+	pause 15
+	cry SUICUNE
+	loadwildmon SUICUNE, 40
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SUICUNE
+	startbattle
+	disappear BURNEDTOWERB1F_SUICUNE
+	reloadmapafterbattle
+	readmem wBuffer1
+	ifnotequal SUICUNE, .end
+	setevent EVENT_CAUGHT_SUICUNE
+.end
 	end
 
 BurnedTowerB1FTMEndure:
@@ -259,3 +276,4 @@ BurnedTowerB1F_MapEvents:
 	object_event 10,  4, SPRITE_SUICUNE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_SILVER, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_2
 	object_event 16,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, BurnedTowerB1FTMEndure, EVENT_BURNED_TOWER_B1F_TM_ENDURE
 	object_event 10, 12, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BurnedTowerB1FEusine, EVENT_EUSINE_IN_BURNED_TOWER
+	object_event 10,  4, SPRITE_SUICUNE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SuicuneFight, EVENT_KANTO_SUICUNE

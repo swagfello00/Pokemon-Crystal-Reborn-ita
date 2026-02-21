@@ -3,6 +3,7 @@
 	const FUCHSIACITY_POKEFAN_M
 	const FUCHSIACITY_TEACHER
 	const FUCHSIACITY_FRUIT_TREE
+	const FUCHSIACITY_POKE_BALL1
 
 FuchsiaCity_MapScripts:
 	def_scene_scripts
@@ -50,6 +51,9 @@ FuchsiaCityMartSign:
 FuchsiaCityFruitTree:
 	fruittree FRUITTREE_FUCHSIA_CITY
 
+FuchsiaCityLuckyPunch:
+	itemball LUCKY_PUNCH
+
 FuchsiaCityYoungsterText:
 	text "Uno dei SUPER-"
 	line "QUATTRO prima era"
@@ -69,10 +73,10 @@ FuchsiaCityPokefanMText:
 
 FuchsiaCityTeacherText:
 	text "La ZONA SAFARI è"
-	line "chiusa… E pensare"
+	line "aperta…"
 
-	para "che era il più"
-	line "bel divertimento"
+	para "è il più bel"
+	line "divertimento"
 	cont "a FUCSIAPOLI."
 	done
 
@@ -97,8 +101,7 @@ SafariZoneOfficeSignText:
 	line "c'è scritto…"
 
 	para "La ZONA SAFARI è"
-	line "chiusa fino a data"
-	cont "da destinarsi."
+	line "stata riaperta!"
 	done
 
 WardensHomeSignText:
@@ -112,7 +115,7 @@ SafariZoneClosedSignText:
 
 	para "In sua assenza, la"
 	line "ZONA SAFARI"
-	cont "resterà chiusa."
+	cont "resterà aperta."
 	done
 
 NoLitteringSignText:
@@ -156,3 +159,4 @@ FuchsiaCity_MapEvents:
 	object_event 13,  8, SPRITE_POKEFAN_M, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, FuchsiaCityPokefanM, -1
 	object_event 16, 14, SPRITE_TEACHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FuchsiaCityTeacher, -1
 	object_event  8,  1, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FuchsiaCityFruitTree, -1
+	object_event 22, 24, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, FuchsiaCityLuckyPunch, EVENT_FUCHSIA_CITY_LUCKY_PUNCH

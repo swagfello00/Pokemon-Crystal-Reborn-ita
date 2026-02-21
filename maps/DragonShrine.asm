@@ -158,6 +158,7 @@ DragonShrineTakeTestScript:
 	opentext
 	writetext DragonShrineHereRisingBadgeText
 	waitbutton
+	writetext DragonShrinePlayerReceivedRisingBadgeText
 	setflag ENGINE_RISINGBADGE
 	playsound SFX_GET_BADGE
 	waitsfx
@@ -165,7 +166,6 @@ DragonShrineTakeTestScript:
 	specialphonecall SPECIALCALL_MASTERBALL
 	setscene SCENE_DRAGONSHRINE_NOOP
 	setmapscene DRAGONS_DEN_B1F, SCENE_DRAGONSDENB1F_CLAIR_GIVES_TM
-	writetext DragonShrinePlayerReceivedRisingBadgeText
 	promptbutton
 	writetext DragonShrineRisingBadgeExplanationText
 	waitbutton

@@ -14,6 +14,8 @@ CeladonGym_MapScripts:
 CeladonGymErikaScript:
 	faceplayer
 	opentext
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .Rematch
 	checkflag ENGINE_RAINBOWBADGE
 	iftrue .FightDone
 	writetext ErikaBeforeBattleText
@@ -30,6 +32,7 @@ CeladonGymErikaScript:
 	setevent EVENT_BEAT_TWINS_JO_AND_ZOE
 	opentext
 	writetext PlayerReceivedRainbowBadgeText
+	waitsfx
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_RAINBOWBADGE
@@ -45,6 +48,21 @@ CeladonGymErikaScript:
 	writetext ErikaAfterBattleText
 	waitbutton
 	closetext
+	end
+
+.Rematch
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .FightDone
+	checkflag ENGINE_ERIKA_REMATCH_DONE
+	iftrue .FightDone
+	writetext ErikaBeforeBattleText
+	waitbutton
+	closetext
+	winlosstext ErikaRematchText, 0
+	loadtrainer ERIKA, ERIKA1
+	startbattle
+	reloadmapafterbattle
+	setflag ENGINE_ERIKA_REMATCH_DONE
 	end
 
 TrainerLassMichelle:
@@ -147,6 +165,17 @@ ErikaBeatenText:
 
 	para "Ti darò la MEDA-"
 	line "GLIA ARCOBALENO…"
+	done
+
+	text "ERIKA: Ok, ho"
+	line "perso, lo ammetto…"
+
+ErikaRematchText:
+	text "ERIKA: Ok, ho"
+	line "perso, lo ammetto…"
+
+	para "Sei davvero"
+	line "una forza…"
 	done
 
 PlayerReceivedRainbowBadgeText:

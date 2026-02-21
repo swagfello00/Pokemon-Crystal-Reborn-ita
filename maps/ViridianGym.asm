@@ -10,6 +10,8 @@ ViridianGym_MapScripts:
 ViridianGymBlueScript:
 	faceplayer
 	opentext
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .Rematch
 	checkflag ENGINE_EARTHBADGE
 	iftrue .FightDone
 	writetext LeaderBlueBeforeText
@@ -36,9 +38,26 @@ ViridianGymBlueScript:
 	closetext
 	end
 
+.Rematch
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .FightDone
+	checkflag ENGINE_BLUE_REMATCH_DONE
+	iftrue .FightDone
+	writetext LeaderBlueBeforeRematchText
+	waitbutton
+	closetext
+	winlosstext LeaderBlueRematchText, 0
+	loadtrainer BLUE, BLUE1
+	startbattle
+	reloadmapafterbattle
+	setflag ENGINE_BLUE_REMATCH_DONE
+	end
+
 ViridianGymGuideScript:
 	faceplayer
 	opentext
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .ViridianGymGuideRematchScript
 	checkevent EVENT_BEAT_BLUE
 	iftrue .ViridianGymGuideWinScript
 	writetext ViridianGymGuideText
@@ -48,6 +67,16 @@ ViridianGymGuideScript:
 
 .ViridianGymGuideWinScript:
 	writetext ViridianGymGuideWinText
+	waitbutton
+	closetext
+	end
+
+.ViridianGymGuideRematchScript:
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .ViridianGymGuideWinScript
+	checkflag ENGINE_BLUE_REMATCH_DONE
+	iftrue .ViridianGymGuideWinScript
+	writetext ViridianGymGuideRematchText
 	waitbutton
 	closetext
 	end
@@ -94,6 +123,21 @@ LeaderBlueBeforeText:
 	line "CAMPIONE di JOHTO!"
 	done
 
+LeaderBlueBeforeRematchText:
+	text "BLU: Eccoti"
+	line "finalmente!"
+
+	para "ora sono pronto"
+	line "a lottare con te."
+
+	para "Capirò quanto vali"
+	line "lottando contro di"
+	cont "te adesso."
+
+	para "In guardia,"
+	line "CAMPIONE di JOHTO!"
+	done
+
 LeaderBlueWinText:
 	text "BLU: Ma come?"
 
@@ -105,6 +149,13 @@ LeaderBlueWinText:
 	para "E va bene…"
 	line "Prendi questa"
 	cont "MEDAGLIA TERRA."
+	done
+
+LeaderBlueRematchText:
+	text "BLU: Ma come?"
+
+	para "Come ho potuto"
+	line "perdere?"
 	done
 
 Text_ReceivedEarthBadge:
@@ -165,6 +216,14 @@ ViridianGymGuideWinText:
 
 	para "di bravura. Ho gli"
 	line "occhi lucidi!"
+	done
+
+ViridianGymGuideRematchText:
+	text "BLU ti sta"
+	line "aspettando!"
+	
+	para "Vuole battersi di"
+	line "nuovo con te."
 	done
 
 ViridianGym_MapEvents:

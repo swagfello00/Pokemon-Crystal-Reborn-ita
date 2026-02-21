@@ -1,3 +1,6 @@
+	object_const_def
+	const ROUTE22_POKE_BALL1
+
 Route22_MapScripts:
 	def_scene_scripts
 
@@ -5,6 +8,9 @@ Route22_MapScripts:
 
 VictoryRoadEntranceSign:
 	jumptext VictoryRoadEntranceSignText
+
+Route22Twistedspoon:
+	itemball TWISTEDSPOON
 
 VictoryRoadEntranceSignText:
 	text "LEGA #MON"
@@ -25,3 +31,4 @@ Route22_MapEvents:
 	bg_event 15,  7, BGEVENT_READ, VictoryRoadEntranceSign
 
 	def_object_events
+	object_event 27, 7, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route22Twistedspoon, EVENT_ROUTE_22_TWISTEDSPOON

@@ -41,7 +41,7 @@ DragonsDenB1FCheckRivalCallback:
 	endcallback
 
 DragonsDenB1F_ClairScene:
-; BUG: Clair can give TM24 Dragonbreath twice (see docs/bugs_and_glitches.md)
+; BUGfixed: Clair can give TM24 Dragonbreath twice (see docs/bugs_and_glitches.md)
 	appear DRAGONSDENB1F_CLAIR
 	opentext
 	writetext ClairText_Wait
@@ -159,8 +159,107 @@ DragonsDenB1FRivalScript:
 	iftrue .RivalTalkAgain
 	writetext RivalText_Training1
 	waitbutton
-	closetext
+	checkevent EVENT_GOT_RIVAL_STARTER
+	iftrue .closetext
+	writetext TakeThisRivalStarterText
+	yesorno
+	iffalse .Refused
+	writetext RivalStarterImCountingOnYouText
+	promptbutton
+	waitsfx
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, .NoRoom
+	checkevent EVENT_GOT_TOTODILE_FROM_ELM
+	iftrue .GiveChikorita
+	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
+	iftrue .GiveCyndaquil
+	checkevent EVENT_GOT_CYNDAQUIL_FROM_ELM
+	iftrue .GiveTotodile
+	end
+
+.GiveChikorita:
+	checkevent EVENT_KANTO_STARTERS
+	iftrue .GiveBulbasaur
+	writetext ReceivedRivalChikoritaText
+	playsound SFX_CAUGHT_MON
+	waitsfx
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+	givepoke CHIKORITA, 5, BERRY
+	setevent EVENT_GOT_RIVAL_STARTER
+	writetext RivalStarterMayEvolveText
+	waitbutton
+	sjump .closetext
+	
+.GiveCyndaquil:
+	checkevent EVENT_KANTO_STARTERS
+	iftrue .GiveCharmander
+	writetext ReceivedRivalCyndaquilText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+	givepoke CYNDAQUIL, 5, BERRY
+	setevent EVENT_GOT_RIVAL_STARTER
+	writetext RivalStarterMayEvolveText
+	waitbutton
+	sjump .closetext
+	
+.GiveTotodile:
+	checkevent EVENT_KANTO_STARTERS
+	iftrue .GiveSquirtle
+	writetext ReceivedRivalTotodileText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+	givepoke TOTODILE, 5, BERRY
+	setevent EVENT_GOT_RIVAL_STARTER
+	writetext RivalStarterMayEvolveText
+	waitbutton
+	sjump .closetext
+
+.GiveBulbasaur:
+	writetext ReceivedRivalBulbasaurText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+	givepoke BULBASAUR, 5, BERRY
+	setevent EVENT_GOT_RIVAL_STARTER
+	writetext RivalStarterMayEvolveText
+	waitbutton
+	sjump .closetext
+	
+.GiveCharmander:
+	writetext ReceivedRivalCharmanderText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+	givepoke CHARMANDER, 5, BERRY
+	setevent EVENT_GOT_RIVAL_STARTER
+	writetext RivalStarterMayEvolveText
+	waitbutton
+	sjump .closetext
+	
+.GiveSquirtle:
+	writetext ReceivedRivalSquirtleText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+	givepoke SQUIRTLE, 5, BERRY
+	setevent EVENT_GOT_RIVAL_STARTER
+	writetext RivalStarterMayEvolveText
+	waitbutton
+	sjump .closetext
+
+.NoRoom:
+	writetext RivalStarterPartyFullText
+	waitbutton
+	sjump .closetext
+
+.Refused:
+	writetext NoRivalStarterText
+	waitbutton
+.closetext:
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+	closetext
 	special RestartMapMusic
 	end
 
@@ -218,7 +317,7 @@ ClairText_GiveDragonbreathDragonDen:
 
 Text_ReceivedTM24:
 	text "<PLAYER> riceve"
-	line "MT24."
+	line "MT24 DRAGOSPIRO."
 	done
 
 ClairText_DescribeDragonbreathDragonDen:
@@ -404,6 +503,70 @@ Text_NoRoomForDragonFang:
 	text "Ma <PLAYER> non"
 	line "può trasportare"
 	cont "altri strumenti."
+	done
+	
+TakeThisRivalStarterText:
+	text "Senti, alla"
+	line "pensione mi hanno"
+	cont "dato un UOVO."
+	
+	para "Si è schiuso da"
+	line "poco, ma questo"
+	cont "#MON è debole"
+	cont "e non mi serve."
+	
+	para "lo vuoi tu?"
+	done
+
+RivalStarterImCountingOnYouText:
+	text "Grazie mille,"
+	line "prenditene cura!"
+	done
+
+ReceivedRivalCyndaquilText:
+	text "<PLAYER> riceve"
+	line "CYNDAQUIL!"
+	done
+	
+ReceivedRivalTotodileText:
+	text "<PLAYER> riceve"
+	line "TOTODILE!"
+	done
+
+ReceivedRivalChikoritaText:
+	text "<PLAYER> riceve"
+	line "CHIKORITA!"
+	done
+
+ReceivedRivalCharmanderText:
+	text "<PLAYER> riceve"
+	line "CHARMANDER!"
+	done
+	
+ReceivedRivalSquirtleText:
+	text "<PLAYER> riceve"
+	line "SQUIRTLE!"
+	done
+
+ReceivedRivalBulbasaurText:
+	text "<PLAYER> riceve"
+	line "BULBASAUR!"
+	done
+
+RivalStarterMayEvolveText:
+	text "Mi raccomando,"
+	line "allevalo bene."
+	done
+
+RivalStarterPartyFullText:
+	text "Ah, ma non hai"
+	line "posto per altri"
+	cont "#MON!"
+	done
+
+NoRivalStarterText:
+	text "Ok, lo terrò io"
+	line "per il momento."
 	done
 
 DragonsDenB1F_MapEvents:

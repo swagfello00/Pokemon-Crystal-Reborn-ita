@@ -60,12 +60,12 @@ GoldenrodDeptStore2FUnusedText2: ; unreferenced
 
 GoldenrodDeptStore2FYoungsterText:
 	text "Il #GEAR può"
-	line "contenere 10"
+	line "contenere 32"
 	cont "numeri telefonici."
 
-	para "È dura decidere"
-	line "quali numeri"
-	cont "è meglio tenere."
+	para "Non è dura"
+	line "decidere quali"
+	cont "numeri tenere."
 	done
 
 GoldenrodDeptStore2FCooltrainerFText:

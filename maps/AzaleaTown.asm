@@ -64,6 +64,8 @@ AzaleaTownRivalBattleScript:
 	iftrue .Totodile
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue .Chikorita
+	checkevent EVENT_KANTO_STARTERS
+	iftrue .Charmander
 	winlosstext AzaleaTownRivalWinText, AzaleaTownRivalLossText
 	setlasttalked AZALEATOWN_RIVAL
 	loadtrainer RIVAL1, RIVAL1_2_TOTODILE
@@ -73,6 +75,8 @@ AzaleaTownRivalBattleScript:
 	sjump .AfterBattle
 
 .Totodile:
+	checkevent EVENT_KANTO_STARTERS
+	iftrue .Squirtle
 	winlosstext AzaleaTownRivalWinText, AzaleaTownRivalLossText
 	setlasttalked AZALEATOWN_RIVAL
 	loadtrainer RIVAL1, RIVAL1_2_CHIKORITA
@@ -82,9 +86,38 @@ AzaleaTownRivalBattleScript:
 	sjump .AfterBattle
 
 .Chikorita:
+	checkevent EVENT_KANTO_STARTERS
+	iftrue .Bulbasaur
 	winlosstext AzaleaTownRivalWinText, AzaleaTownRivalLossText
 	setlasttalked AZALEATOWN_RIVAL
 	loadtrainer RIVAL1, RIVAL1_2_CYNDAQUIL
+	startbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
+	sjump .AfterBattle
+
+.Charmander
+	winlosstext AzaleaTownRivalWinText, AzaleaTownRivalLossText
+	setlasttalked AZALEATOWN_RIVAL
+	loadtrainer RIVAL1, RIVAL1_2_SQUIRTLE
+	startbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
+	sjump .AfterBattle
+
+.Squirtle:
+	winlosstext AzaleaTownRivalWinText, AzaleaTownRivalLossText
+	setlasttalked AZALEATOWN_RIVAL
+	loadtrainer RIVAL1, RIVAL1_2_BULBASAUR
+	startbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
+	sjump .AfterBattle
+
+.Bulbasaur:
+	winlosstext AzaleaTownRivalWinText, AzaleaTownRivalLossText
+	setlasttalked AZALEATOWN_RIVAL
+	loadtrainer RIVAL1, RIVAL1_2_CHARMANDER
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
