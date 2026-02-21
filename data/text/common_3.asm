@@ -105,7 +105,7 @@ _MobileBattleRulesText::
 	cont "tre #MON."
 
 	para "La durata massima"
-	line "è dieci minuti al"
+	line "è 255 minuti al"
 
 	para "giorno per ogni"
 	line "giocatore."
@@ -125,20 +125,18 @@ _MobileBattleRulesText::
 	done
 
 _WouldYouLikeToMobileBattleText::
-	text "Oggi hai solo"
-	line "@"
-	text_decimal wStringBuffer2, 1, 2
-	text " min."
+	text "Hai al massimo"
+	line "255 min al giorno,"
 
 	para "Vuoi lottare?"
 	line ""
 	done
 
 _WantAQuickMobileBattleText::
-	text "Oggi hai solo @"
-	text_decimal wStringBuffer2, 1, 2
-	text_start
-	line "min."
+	text "Oggi ti restano"
+	line "solo @"
+	text_decimal wStringBuffer2, 1, 1
+	text " min."
 
 	para "Vuoi fare una"
 	line "lotta veloce?"
@@ -183,7 +181,7 @@ _PickThreeMonForMobileBattleText::
 _MobileBattleRemainingTimeText::
 	text "Oggi mancano"
 	line "@"
-	text_decimal wStringBuffer2, 1, 2
+	text_decimal wStringBuffer2, 1, 3
 	text " min."
 	done
 
@@ -192,21 +190,9 @@ _WouldYouLikeToSaveTheGameText::
 	line "gioco?"
 	done
 
-_SavingDontTurnOffThePowerText::
-	text "SALVATAGGIO…"
-	line "NON SPEGNERE."
-	done
-
 _SavedTheGameText::
 	text "<PLAYER> ha"
 	line "salvato il gioco."
-	done
-
-_AlreadyASaveFileText::
-	text "C'è già un gioco"
-	line "salvato in"
-	cont "memoria. Vuoi"
-	cont "sostituirlo?"
 	done
 
 _AnotherSaveFileText::
@@ -221,29 +207,15 @@ _SaveFileCorruptedText::
 	cont "danneggiato!"
 	prompt
 
-_ChangeBoxSaveText::
-	text "Quando cambi "
-	line "BOX #MON i"
-	cont "dati vengono"
-	cont "salvati. Va bene?"
-	done
-
-_MoveMonWOMailSaveText::
-	text "Quando sposti un"
-	line "#MON i dati"
-	cont "vengono salvati."
-	cont "Va bene?"
-	done
-
 _WindowAreaExceededErrorText:: ; unreferenced
 	text "L'area della"
-	line "finestra "
+	line "finestra è stata"
+	cont "oltrepassata."
 	done
 
 _WindowPoppingErrorText::
 	text "Usate troppe"
-	line "finestra è stata"
-	cont "oltrepassata."
+	line "finestre."
 	done
 
 _CorruptedEventText:: ; unreferenced
@@ -383,6 +355,36 @@ _SeerDoNothingText::
 	line "non farai nulla!"
 	done
 
+_SeerMetEggLevelText::
+	text "Era"
+	line "@"
+	text_ram wSeerTimeOfDay
+	text "!"
+
+	para "Si è schiuso da un"
+	line "UOVO."
+
+	para "Sono brava, vero?"
+	prompt
+
+_SeerMetEggLevelOnlyText::
+	text "Incredibile!"
+
+	para "Non so perché, ma"
+	line "penso che tu sia"
+
+	para "un tipo davvero"
+	line "speciale."
+
+	para "Non so dove l'hai"
+	line "trovato, ma si è"
+	
+	para "schiuso da un"
+	line "UOVO."
+
+	para "Sono brava, vero?"
+	prompt
+
 _SeerMoreCareText::
 	text "A proposito…"
 
@@ -493,6 +495,10 @@ _MartHowManyText::
 	text "Quanti/e?"
 	done
 
+AlreadyHaveTMText::
+	text "Hai già questa MT!"
+	done
+
 _MartFinalPriceText::
 	text_ram wStringBuffer2
 	text ":"
@@ -599,6 +605,9 @@ _BargainShopComeAgainText::
 _PharmacyIntroText::
 	text "Che c'è? Vuoi"
 	line "qualche medicina?"
+	
+	para "Vendo anche"
+	line "pietre speciali!"
 	done
 
 _PharmacyHowManyText::
@@ -758,13 +767,13 @@ _MainMenuTimeUnknownText::
 	done
 
 _DeleteSavedLoginPasswordText::
-     	text "Rimuovere PASSWORD"
-     	line "D'ACCESSO salvata?"
+    text "Rimuovere PASSWORD"
+    line "D'ACCESSO salvata?"
 	done
 
 _DeletedTheLoginPasswordText::
 	text "PASSWORD D'ACCESSO"
-	line "rimossa."
+ 	line "rimossa."
 	done
 
 _MobilePickThreeMonForBattleText::
@@ -935,23 +944,13 @@ _SpaceSpaceColonText:: ; unreferenced
 	done
 
 _PasswordAskResetText::
-	text "Password corretta."
-	line "Seleziona CONTINUA"
-	cont "per modificare le"
+	text "Seleziona CONTINUA"
+	line "per modificare le"
 	cont "impostazioni."
-	prompt
-
-_PasswordWrongText::
-	text "Password errata!"
 	prompt
 
 _PasswordAskResetClockText::
 	text "Regolare l'ora?"
-	done
-
-_PasswordAskEnterText::
-	text "Inserisci la"
-	line "password."
 	done
 
 _ClearAllSaveDataText::
@@ -1120,7 +1119,7 @@ _BuenaIsThatRightText::
 
 _BuenaHereYouGoText::
 	text "Ecco qui!"
-	prompt
+	done
 
 _BuenaNotEnoughPointsText::
 	text "Non hai abbastanza"
@@ -1150,7 +1149,7 @@ _ExcuseMeYoureNotReadyText::
 
 _BattleTowerReturnWhenReadyText::
 	text "Torna dopo aver"
-	line "messo apposto ciò"
+	line "messo a posto ciò"
 	cont "che non va."
 	done
 
@@ -1248,7 +1247,9 @@ _WaitButtonText::
 _BallSentToPCText::
 	text_ram wMonOrItemNameBuffer
 	text " inviato"
-	line "al PC di BILL."
+	line "al @"
+	text_ram wStringBuffer1
+	text "."
 	prompt
 
 _NewDexDataText::
@@ -1256,10 +1257,8 @@ _NewDexDataText::
 	line "@"
 	text_ram wEnemyMonNickname
 	text_start
-	cont "nel #DEX.@"
-	sound_slot_machine_start
-	text_promptbutton
-	text_end
+	cont "nel #DEX."
+	done
 
 	text_end ; unreferenced
 
@@ -1315,8 +1314,12 @@ Text_PlayedPokeFlute::
 _BlueCardBalanceText::
 	text "Ora hai"
 	line "@"
-	text_decimal wBlueCardBalance, 1, 2
+	text_decimal wBlueCardBalance, 1, 3
 	text " punto/i."
+	done
+
+_NoText::
+	text ""
 	done
 
 _CoinCaseCountText::
@@ -1413,11 +1416,27 @@ _ItemCantGetOnText::
 	text " ora."
 	prompt
 
-_BallBoxFullText::
-	text "Il BOX #MON è"
-	line "pieno! Non puoi"
-	cont "usare questo"
+_CurBoxFullText::
+	text "Il @"
+	text_ram wStringBuffer1
+	text " è pieno!"
+	prompt
+
+_StorageFullText::
+	text "Il SISTEMA BOX è"
+	line "pieno!"
+
+	para "Non puoi"
+	line "usare questo"
 	cont "strumento ora."
+	prompt
+
+_DatabaseFullText::
+	text "Il SISTEMA BOX è"
+	line "sovraccarico!"
+	
+	para "Devi salvare il"
+	line "gioco."
 	prompt
 
 _ItemUsedText::

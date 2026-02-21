@@ -15,6 +15,19 @@ _ObtainedFruitText::
 	line "@"
 	text_ram wStringBuffer3
 	text "!"
+	done	
+_ObtainedTwoFruitText::
+	text "Trovate 2"
+	line "@"
+	text_ram wStringBuffer3
+	text "!"
+	done
+	
+_ObtainedThreeFruitText::
+	text "Trovate 3"
+	line "@"
+	text_ram wStringBuffer3
+	text "!"
 	done
 
 _FruitPackIsFullText::
@@ -120,6 +133,7 @@ _PasscodesNotSameText::
 	text "Il numero è"
 	line "diverso dal"
 	cont "precedente."
+	
 	para ""
 	done
 
@@ -137,7 +151,7 @@ _PasscodeSetText::
 
 _FourZerosInvalidText::
 	text "0000 non è valido!"
-	
+
 	para ""
 	done
 
@@ -156,6 +170,11 @@ _CardFolderOpenText::
 	text "ALBUM SCHEDE"
 	line "aperto.@"
 	text_end
+
+_Event666Text::
+	text "Gli starter sono"
+	line "stati invertiti."
+	done
 
 _OakTimeWokeUpText::
 	text "<……><……><……><……><……><……>"
@@ -1326,7 +1345,17 @@ _RepelWoreOffText::
 	text "Finito l'effetto"
 	line "del REPELLENTE."
 	done
+	
+_UseAnotherRepelText::
+	text "@"
+	text_ram wStringBuffer3
+	text " è"
+	line "finito."
 
+	para "Vuoi usarne"
+	line "un altro?"
+	done
+	
 _PlayerFoundItemText::
 	text "<PLAYER> trova"
 	line "@"

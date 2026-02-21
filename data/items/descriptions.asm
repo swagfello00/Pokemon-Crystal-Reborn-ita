@@ -6,7 +6,7 @@ ItemDescriptions:
 	dw BrightpowderDesc
 	dw GreatBallDesc
 	dw PokeBallDesc
-	dw TeruSama1Desc
+	dw TownMapDesc
 	dw BicycleDesc
 	dw MoonStoneDesc
 	dw AntidoteDesc
@@ -136,8 +136,8 @@ ItemDescriptions:
 	dw BasementKeyDesc
 	dw PassDesc
 	dw TeruSama9Desc
-	dw TeruSama10Desc
-	dw TeruSama11Desc
+	dw RockClimbDesc
+	dw MachoBraceDesc
 	dw CharcoalDesc
 	dw BerryJuiceDesc
 	dw ScopeLensDesc
@@ -145,16 +145,16 @@ ItemDescriptions:
 	dw TeruSama13Desc
 	dw MetalCoatDesc
 	dw DragonFangDesc
-	dw TeruSama14Desc
+	dw OvalCharmDesc
 	dw LeftoversDesc
-	dw TeruSama15Desc
-	dw TeruSama16Desc
-	dw TeruSama17Desc
+	dw OldAmberDesc
+	dw DomeFossilDesc
+	dw HelixFossilDesc
 	dw MysteryBerryDesc
 	dw DragonScaleDesc
 	dw BerserkGeneDesc
-	dw TeruSama18Desc
-	dw TeruSama19Desc
+	dw SoetheBellDesc
+	dw SilphScopeDesc
 	dw TeruSama20Desc
 	dw SacredAshDesc
 	dw HeavyBallDesc
@@ -162,7 +162,7 @@ ItemDescriptions:
 	dw LevelBallDesc
 	dw LureBallDesc
 	dw FastBallDesc
-	dw TeruSama21Desc
+	dw MachineryDesc
 	dw LightBallDesc
 	dw FriendBallDesc
 	dw MoonBallDesc
@@ -279,8 +279,9 @@ PokeBallDesc:
 	db   "Si usa per cattu-"
 	next "rare i #MON.@"
 
-TeruSama1Desc:
-	db   "?@"
+TownMapDesc:
+	db   "Una mappa di ogni"
+	next "luogo visitabile.@"
 
 BicycleDesc:
 	db   "Bici pieghevole:"
@@ -792,12 +793,17 @@ TeruSama9Desc:
 TeruSama10Desc:
 	db   "?@"
 
-TeruSama11Desc:
-	db   "?@"
+MachoBraceDesc:
+	db   "Fa crescere di più"
+	next "l'esp.statistiche.@"
 
 CharcoalDesc:
 	db   "Potenzia le mosse"
 	next "di fuoco.(DAI)@"
+
+RockClimbDesc:
+	db "Si usa per scalare"
+	next "le rocce.@"
 
 BerryJuiceDesc:
 	db   "Restituisce al" 
@@ -821,21 +827,25 @@ DragonFangDesc:
 	db   "Potenzia le mosse"
 	next "drago.(DAI)@"
 
-TeruSama14Desc:
-	db   "?@"
+OvalCharmDesc:
+	db   "I #MON fanno"
+	next "più uova.@"
 
 LeftoversDesc:
 	db   "Ridà PS durante la"
 	next "lotta.(DAI)@"
 
-TeruSama15Desc:
-	db   "?@"
+OldAmberDesc:
+	db   "Fossile di un"
+	next "antico #MON.@"
 
-TeruSama16Desc:
-	db   "?@"
-
-TeruSama17Desc:
-	db   "?@"
+DomeFossilDesc:
+	db   "Fossile di un"
+	next "antico #MON.@"
+	
+HelixFossilDesc:
+	db   "Fossile di un"
+	next "antico #MON.@"
 
 MysteryBerryDesc:
 	db   "Autorecupero"
@@ -849,11 +859,13 @@ BerserkGeneDesc:
 	db   "Potenzia ATTACCO"
 	next "ma causa confus.@"
 
-TeruSama18Desc:
-	db   "?@"
+SoetheBellDesc:
+	db   "Rende i #MON"
+	next "più felici.@"
 
-TeruSama19Desc:
-	db   "?@"
+SilphScopeDesc:
+	db   "Per entrare in"
+	next "luoghi spettrali.@"
 
 TeruSama20Desc:
 	db   "?@"
@@ -871,8 +883,8 @@ FlowerMailDesc:
 	next "(DAI)@"
 
 LevelBallDesc:
-	db   "Per #MON di"
-	next "livello basso.@"
+	db   "Per #MON di più"
+	next "basso livello.@"
 
 LureBallDesc:
 	db   "Per catturare i"
@@ -880,10 +892,11 @@ LureBallDesc:
 
 FastBallDesc:
 	db   "Per catturare"
-	next "#MON veloci.@"
+	next "#MON erranti.@"
 
-TeruSama21Desc:
-	db   "?@"
+MachineryDesc:
+  db "Un macchinario"
+  next "rubato.@"
 
 LightBallDesc:
 	db   "Una strana sfera"

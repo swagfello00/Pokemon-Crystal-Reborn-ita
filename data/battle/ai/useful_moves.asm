@@ -1,4 +1,5 @@
-; AI_SMART knows these moves are usable all-around.
+; AI_SMART tries to use Mirror Move, Mimic, and Disable
+; after the player uses these moves.
 
 UsefulMoves:
 	db DOUBLE_EDGE
@@ -8,7 +9,6 @@ UsefulMoves:
 	db SURF
 	db ICE_BEAM
 	db BLIZZARD
-	db HYPER_BEAM
 	db SLEEP_POWDER
 	db THUNDERBOLT
 	db THUNDER
@@ -20,4 +20,29 @@ UsefulMoves:
 	db FIRE_BLAST
 	db SOFTBOILED
 	db SUPER_FANG
+	db MEGA_KICK
+	db BODY_SLAM
+	db THUNDER_WAVE
+	db REFLECT
+	db LIGHT_SCREEN
+	db SAFEGUARD
+	db LOVELY_KISS
+	db REST
+	db CONVERSION2
+	db AEROBLAST
+	db SACRED_FIRE
+	db SLUDGE_BOMB
+	db DESTINY_BOND
+	db MILK_DRINK
+	db MEGAHORN
+	db MORNING_SUN
+	db SYNTHESIS
+	db MOONLIGHT
+	db EXTREMESPEED
+	db ANCIENTPOWER
+	db GLARE
+	db STUN_SPORE
+	db POISONPOWDER
+	db POISON_GAS
+	db CROSS_CHOP
 	db -1 ; end

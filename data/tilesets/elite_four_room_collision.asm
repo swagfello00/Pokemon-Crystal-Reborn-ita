@@ -56,9 +56,12 @@
 	tilecoll WALL, WALL, WALL, WALL ; 37
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 38
 	tilecoll ICE, ICE, ICE, ICE ; 39
-	tilecoll WALL, FLOOR, FLOOR, WALL ; 3a
+	tilecoll PIT, FLOOR, UP_WALL, WALL ; 3a
 	tilecoll WALL, FLOOR, FLOOR, FLOOR ; 3b
 	tilecoll DOOR, DOOR, FLOOR, FLOOR ; 3c
 	tilecoll WALL, FLOOR, WALL, FLOOR ; 3d
 	tilecoll WALL, WALL, WALL, WALL ; 3e
 	tilecoll WALL, WALL, WALL, WALL ; 3f
+	tilecoll FLOOR, FLOOR, WALL, WALL ; 40
+	tilecoll FLOOR, FLOOR, FLOOR, WALL ; 41
+	tilecoll PIT, FLOOR, WALL, WALL ; 42

@@ -170,4 +170,32 @@ KantoWaterWildMons:
 	db 35, TENTACRUEL
 	end_water_wildmons
 
+	def_water_wildmons SAFARI_ZONE_BETA
+	db 6 percent ; encounter rate
+	db 34, DEWGONG
+	db 35, AZUMARILL
+	db 36, LAPRAS
+	end_water_wildmons
+
+	def_water_wildmons SEAFOAM_ISLANDS_B4F
+	db 6 percent ; encounter rate
+	db 34, DEWGONG
+	db 35, SEADRA
+	db 36, SLOWBRO
+	end_water_wildmons
+
+	def_water_wildmons CERULEAN_CAVE_1F
+	db 6 percent ; encounter rate
+	db 45, GOLDUCK
+	db 45, SLOWBRO
+	db 45, DEWGONG
+	end_water_wildmons
+
+	def_water_wildmons CERULEAN_CAVE_B1F
+	db 6 percent ; encounter rate
+	db 50, GOLDUCK
+	db 50, SLOWBRO
+	db 50, DEWGONG
+	end_water_wildmons
+
 	db -1 ; end
