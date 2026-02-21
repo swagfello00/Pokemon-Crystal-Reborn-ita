@@ -1,0 +1,167 @@
+Il progetto si basa su Pokémon - Crystal Mobile ita:
+https://github.com/gb-mobile/pokecrystal-mobile-ita
+
+Pokémon - Crystal Reborn ita, cambiamenti:
+
+- Ripristinate e migliorate tutte le funzionalità e i contenuti del Mobile Adapter GB dalla versione giapponese
+- Aggiunti: profilo mobile, news machine, gts, torre lotta, lotte e scambi p2p, ecc.
+(Ulteriori informazioni sul Mobile System GB disponibili su Discord)
+- Fiordoropoli ha un nuovo centro pokémon e le sfide alla torre lotta ora si richiede il Mobile Adapter GB
+- Sono state aggiunte nuove mappe e sono state modificate e/o espanse alcune mappe già esistenti
+- Modificati alcuni level cap
+(Valerio al 12, Alfredo al 36, Blu al 60)
+- Aggiunti i rematch di tutte le palestre e della lega dopo aver sbloccato il monte argento
+(le palestre solo di domenica)
+- Sono state potenziate di molto le palestre di Kanto e le squadre del rivale a Kanto
+- È possibile ottenere tutti e 251 i pokémon in una singola run
+(2 di essi richiedono il Mobile Adapter GB)
+- Rework completo dei moveset di tutti i pokémon e aggiunta la meccanica delle mosse evolutive
+- Sono stati migliorati i moveset e alcune squadre di molti allenatori del gioco tra cui anche le palestre, il rivale e la lega
+- Aggiunti i 60 fps all'overworld
+- Raddoppiata la velocità della bici
+- Rework completo del sistema dei box
+- Ampliati gli slot di 2 tasche dello zaino, aggiunte 2 nuove tasche e numerosi slot al telefono del pokégear
+- Aggiunti nuovi strumenti base
+- Aggiunti i pokémon selvatici che in Cristallo mancavano rispetto a Oro e Argento nelle loro rispettive location
+- Aggiunti a Johto numerosi pokémon che si trovavano solo a Kanto
+- Aggiunti i fossili di Kanto come strumenti base e un npc per resuscitarli
+- Aggiunti i leggendari di Kanto nelle loro location di 1° generazione
+- Aggiunti gli starter di Kanto nelle loro location di Pokémon Giallo
+- Aggiunti eventi dedicati agli starter di johto rimasti dopo la lega
+- Fixati i punteggi della gara pigliamosche e aggiunta una nuova gara dopo la lega con pokémon più forti e punteggi più alti
+- Aggiunte ad alcuni alberi bacche prima ottenibili solo con altri metodi come il dono segreto
+- Adesso è possibile ottenere fino a 3 bacche o ghicocche dagli alberi
+- Aggiunte alcune pietre evolutive al market di Fiorlisopoli
+- Aumentati di molto i tassi di spawn delle uova alla pensione
+- Raddoppiato il tasso di crescita dell'amicizia con i passi
+- Aumentato il tasso di crescita dell'amicizia per livello di circa il 25%
+(fuori dalla location di cattura)
+- Rimossa la password necessaria a resettare l'orologio del gioco
+- Ridotti i frame di animazione di cura al centro pokémon
+- I pokémon avvelenati ora possono sopravvivere fuori dalle lotte con 1 ps
+- Adesso è possibile fermarsi sulla pista ciclabile premendo B
+- Le MT non si consumano più una volta usate
+(sono di fatto infinite)
+- L'AI nelle battaglie ha ottenuto numerosi miglioramenti
+- Rimosso il 25% di probabilità dell'AI di fallire le mosse di stato
+- Rimossi il Badge Boost e il Badge Type Boost
+- Aggiunta la macchina scambi in una casa a Ebanopoli
+- Aggiunte le icone della squadra e le loro palette peculiari per ogni pokémon e forma di unown
+- Migliorato il sistema di salvataggio
+- È ora possibile attivare un altro repellente appena uno finisce
+- Aggiunto il ricordamosse a Ebanopoli
+- Aggiunta una nuova pagina della scheda allenatore per le medaglie di kanto e le palette per tutte le medaglie
+- Migliorato l'insegnamosse di Fiordoropoli con 25 nuove mosse, potendo insegnarne una a tutta la squadra in una volta
+(adesso è richiesta la carta blu invece del salvadanaio)
+- L'insegnamosse adesso è disponibile dopo aver ripulito la torre radio di Fiordoropoli dal Team Rocket
+- Aggiunti 3 nuovi metodi per ottenere punti sulla carta blu
+(alla casa allenatore di Smeraldopoli, alla torre lotta e allo shop dei punti aggiunto alla torre radio di Fiordoropoli)
+- Aggiunto uno shop alla torre lotta
+(è richiesta la carta blu)
+- Le sfide della torre lotta adesso richiedono la carta blu e si ottengono più punti in base alle serie di vittorie consecutive
+(aumentano solo nella sezione sfida)
+- Aggiunti nuovi spawnpoint e flypoint sia a Johto che a Kanto
+- Aggiunto un pc di Bill alla casa del giocatore
+- Aggiunte nuove informazioni alla pagina delle mosse
+(ora disponibili anche in battaglia)
+- Rimosso il requisito di possedere i cani leggendari per catturare ho-oh
+(basta aver battuto la lega)
+- Rimosso il tasso di fuga degli uccelli leggendari di Kanto
+- Aggiunto un evento del rivale alla Tana del Drago dopo la sfida al Monte Luna
+(solo alcuni giorni della settimana)
+- Aggiunta la velocità dei testi 4
+(istantanea)
+- Aggiunto il text autoscroll con A+B
+- Ripristinata e ritoccata la mappa della zona safari beta
+- Aggiunto un evento segreto e numerosi pokémon rari in base all'ora del giorno alla zona safari
+- Adesso i pokémon nascono al livello 1
+- Fixato l'experience underflow glitch
+- Fixati numerosi bug e glitch di Cristallo originale
+- Fixati gli effetti sul catch rate delle poké ball speciali e delle condizioni di stato
+- Aggiunti gli sprite del player di surf
+- Adesso è possibile pescare durante il surf
+- Aggiunto un nuovo sprite delle poké ball e degli strumenti nell'overworld
+- Aggiunte le palette peculiari per ogni poké ball
+- L'esperienza viene moltiplicata con gli switch dei pokémon in battaglia
+(il condividi esperienza è rimasto intatto)
+- Aggiunta la battle transition del team rocket
+- Aggiunti nuovi colori selezionabili per il pokédex
+- Velocizzata l'animazione della barra dei ps
+- Aggiunti pp-su ai market di Fiordoropoli e Azzurropoli
+- Migliorato il sistema dei rematch degli allenatori
+- Aggiunta una ricompensa per la quest del faro
+- Aggiunti sub e scalaroccia
+(solo fuori dalle lotte)
+- Aggiunta la corsa tenendo premuto B
+(anche durante surf e sub)
+- Aggiunti i messaggi al market di Azzurropoli prima ottenibili solo con altri metodi come il dono segreto
+- I leggendari uber non si possono più usare alla torre lotta
+- Aggiunta la possibilità di spostare gli strumenti dal menu della squadra
+- Adesso è possibile premere b per fuggire dai pokémon selvatici
+- Aggiunta la possibilità di usare le mt e mn dallo zaino fuori dalle lotte
+- Adesso è possibile scordare le mn in ogni momento
+- Aggiunti gli sprite dei pokèmon quando usano mosse fuori dalle lotte
+- Aggiunta una mappa e una grotta sott'acqua
+- Aggiunta una nuova pagina delle statistiche
+- Aumentata la probabilità di trovare strumenti rari sui pokémon selvatici
+- Alcuni pokémon, se primi in squadra, adesso aumentano le probabilità di trovare strumenti sui pokémon selvatici
+(simile alle future generazioni)
+- Alcuni pokémon, se primi in squadra, adesso permettono di pescare con il 100% di successo
+(simile alle future generazioni)
+- Alcuni pokémon, se presenti in squadra, dimezzano i cicli di schiusura delle uova
+(simile alle future generazioni)
+- Adesso è possibile scambiare le uova anche nel gts
+- Alcuni allenatori adesso si girano subito se corri o sei in bici
+- Aggiunta la crescicappa come strumento base ottenibile alla fine del gioco
+(raddoppia la crescita dell'esperienza statistiche, senza influenzare le statistiche in battaglia)
+- Aggiunto un evento segreto al centro pokémon di Violapoli
+(richiede il Mobile Adapter GB, cambia in base al cap inserito nel profilo mobile)
+- Aggiunto lo shop per le decorazioni a Smeraldopoli
+(solo il lunedì, con alcuni articoli diversi in base all'ora del giorno, richiede la carta blu)
+- Aggiunto il respawn dei leggendari battendo la lega se sconfitti e non catturati
+(suicune rinasce alla torre bruciata)
+- Fixato un bug dell'aumento della felicità quando si sale di più livelli in una singola battaglia
+- Aggiunto un metodo segreto per fare nuovo gioco partendo con gli starter di Kanto
+(anche il rivale cambia starter, richiede il Mobile Adapter GB con un cap specifico)
+- Aggiunti numerosi strumenti tenuti dai pokémon selvatici
+- Adesso anche le femmine dei pokémon possono trasmettere le mosse uovo
+(solo se accoppiate con ditto)
+- Aggiunti nuovi strumenti al market della lega
+- Aggiunti gli stati di surf e sub con Lapras
+(anche Pikachu può fare sub)
+- Aggiunto un evento segreto per la veggente di Fiorlisopoli
+- Aggiunta la calmanella ottenibile in una casa a Fiordoropoli come strumento base secondo la felicità del primo pokémon in squadra
+- Aggiunto l'ovamuleto a Biancavilla ottenibile dopo aver completato il pokédex secondo il professor oak
+(senza contare i pokémon evento)
+- Alcuni strumenti ottenuti dalla tempocapsula sono stati modificati
+- È stato inserito lo sprite di Rosso nella tempocapsula
+- Sono state inserite le ost peculiari di molti leggendari
+- Rimosso il requisito di dover visitare Fiordoropoli per poter prendere il pokérus
+- Aggiunto un segreto al casinò di Azzurropoli e un easter egg alla Torre Pokémon
+- È possibile vedere il proprio Secret ID su un muro della centrale elettrica
+(serve scalaroccia)
+- Aggiunto un centro pokémon al percorso 3 con 2 eventi legati ad un npc al suo interno
+- Ripristinati alcuni dialoghi inutilizzati
+- Fix minori al battling
+- Ulteriori aggiunte e fix minori
+
+Cambiamenti e fix rimasti da fare:
+
+- Fix di alcuni glitch grafici minori relativi ai box e al gts
+- Fix di alcuni glitch minori relativi ai 60 fps
+(come la stampante a Fiorlisopoli)
+- Implementazione dei colori peculiari per le icone nel gts e per le bambole della casa del giocatore
+- La battaglia contro Suicune ci mette un po' troppo a caricare
+- Alcuni suoni possono non venire riprodotti durante i testi, soprattutto con velocità testi 4
+(playsound e playsfx, come in alcuni casi quando si raccolgono gli strumenti, segnalate su discord)
+- Ulteriori fix di bug e glitch non ancora scoperti e aggiunte nuove richieste dalla community
+(coerenti con gli obbiettivi del progetto)
+
+Cambiamenti che non verranno fatti:
+
+- Modifiche e fix ulteriori alle meccaniche di battling
+(romperebbero la compatibilità delle lotte con i giochi originali)
+- Modifiche ai typing, statistiche base, crescita dell'esperienza dei pokémon ecc.
+- Esperienza per le catture
+- Modifiche importanti alla grafica del gioco e alla trama
+- Compatibilità dei salvataggi con Cristallo originale e Crystal Mobile

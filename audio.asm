@@ -124,6 +124,7 @@ INCLUDE "audio/music/battletowertheme.asm"
 INCLUDE "audio/music/suicunebattle.asm"
 INCLUDE "audio/music/battletowerlobby.asm"
 INCLUDE "audio/music/mobilecenter.asm"
+INCLUDE "audio/music/dive.asm"
 
 
 SECTION "Extra Songs 1", ROMX
@@ -153,3 +154,11 @@ SECTION "Cries", ROMX
 INCLUDE "data/pokemon/cries.asm"
 
 INCLUDE "audio/cries.asm"
+
+SECTION "Extra Songs 3", ROMX
+
+INCLUDE "audio/music/lugiabattle.asm"
+INCLUDE "audio/music/hoohbattle.asm"
+INCLUDE "audio/music/kantolegendbattle.asm"
+INCLUDE "audio/music/ceruleancave.asm"
+INCLUDE "audio/music/pokemontower.asm"

@@ -1,172 +1,172 @@
-# Instructions
+# Istruzioni
 
-These instructions explain how to set up the tools required to build **pokecrystal**, including [**rgbds**](https://github.com/gbdev/rgbds), which assembles the source files into a ROM.
+Queste istruzioni spiegano come installare i tools richiesti per assemblare  **pokecrystal**, incluso [**rgbds**](https://github.com/gbdev/rgbds), che ricostruisce il codice sorgente in una ROM.
 
-If you run into trouble, ask for help on IRC or Discord (see [README.md](README.md)).
+Se riscontri problemi, chiedi aiuto su Discord (vedi [README.md](README.md)).
 
 
-## Windows 10
+## Windows Subsystem for Linux (WSL)
 
-Download and install [**Windows Subsystem for Linux**](https://docs.microsoft.com/en-us/windows/wsl/install-win10). Then open the **WSL terminal**.
+Scarica e installa [**Windows Subsystem for Linux**](https://docs.microsoft.com/en-us/windows/wsl/install-win10). Quindi apri il **terminale WSL**.
 
-Update WSL's software before continuing. If you chose Debian, Ubuntu, or another distribution that uses `apt-get`, then enter this command:
+Aggiorna i software WSL prima di continuare. Se scegli Debian, Ubuntu, o un'altra distribuzione che utilizza `apt-get`, allora inserisci questo comando:
 
 ```bash
 apt-get update && apt-get upgrade
 ```
 
-WSL has its own file system that's not accessible from Windows, but Windows files *are* accessible from WSL. So you're going to want to install pokecrystal within Windows. You'll have to change the **current working directory** every time you open WSL.
+WSL ha il suo file di sistema che non è accessibile da Windows, ma i file di Windows *sono* accessibili da WSL. Quindi andrai a buildare pokecrystal in Windows. Dovrai cambiare la **cartella corrente** ogni volta che aprirai WSL.
 
-For example, if you want to store pokecrystal in **C:\Users\\*\<user>*\Desktop**, enter this command:
+Per esempio, se vuoi salvare pokecrystal in **C:\Users\\*\<user>*\Desktop**, esegui questo comando:
 
 ```bash
 cd /mnt/c/Users/<user>/Desktop
 ```
 
-(The Windows `C:\` drive is called `/mnt/c/` in WSL. Replace *\<user>* in the example path with your username.)
+(Il disco `C:\` di Windows si chiama `/mnt/c/` in WSL. Rimpiazza *\<user>* nel percorso di esempio con il tuo nome utente.)
 
-If this works, then follow [the instructions for **Linux**](#linux) below for whatever distribution you installed for WSL.
+Se ciò funziona, allora segui [le istruzioni per **Linux**](#linux) sotto per qualsiasi distribuzione che hai installato per WSL.
 
-Otherwise, continue reading below for [the older Windows instructions](#windows).
+Altrimenti, continua leggendo sotto per [le istruzioni per Windows](#windows-Qualsiasi-versione).
 
 
-## Windows
+## Windows (Qualsiasi versione)
 
-Download [**Cygwin**](http://cygwin.com/install.html): **setup-x86_64.exe** for 64-bit Windows, **setup-x86.exe** for 32-bit.
+Scarica [**Cygwin**](http://cygwin.com/install.html): **setup-x86_64.exe** per Windows 64-bit, **setup-x86.exe** per 32-bit.
 
-Run setup and leave the default settings. At the "**Select Packages**" step, choose to install the following, all of which are in the "**Devel**" category:
+Apri il setup e lascia le impostazioni di default. Allo step "**Select Packages**", scegli di installare i seguenti, ognuno di essi nella categoria "**Devel**":
 
 - `make`
 - `git`
 - `gcc-core`
 
-Double click on the text that says "**Skip**" next to each package to select the most recent version to install.
+Doppio click sul testo che dice "**Skip**" davanti a ogni pacchetto per selezionare la versione più recente da installare.
 
-Then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#pre-built) for Windows with Cygwin to install **rgbds 0.6.1**.
+Poi segui le [istruzioni di **rgbds**](https://rgbds.gbdev.io/install#pre-built) per Windows con Cygwin per installare **rgbds 0.6.1**.
 
-**Note:** If you already have an installed rgbds older than 0.6.0, you will need to update to 0.6.0 or 0.6.1. Ignore this if you have never installed rgbds before. If a version newer than 0.6.1 does not work, try downloading 0.6.1.
+**Note:** Se già possiedi un'installazione di rgbds più vecchia di 0.6.0, dovrai aggiornarla a 0.6.0 o 0.6.1. Ignora questa se non hai mai installato rgbds prima. Se una versione più nuova della 0.6.1 non funziona, scarica 0.6.1.
 
-Now open the **Cygwin terminal** and enter the following commands.
+Ora apri il **terminale di Cygwin** e inserisci i seguenti comandi.
 
-Cygwin has its own file system that's within Windows, at **C:\cygwin64\home\\*\<user>***. If you don't want to store pokecrystal there, you'll have to change the **current working directory** every time you open Cygwin.
+Cygwin ha il suo file di sistema dentro Windows, su **C:\cygwin64\home\\*\<user>***. Se non vuoi salvare pokecrystal quì, dovrai cambiare la **cartella corrente** ogni volta che apri Cygwin.
 
-For example, if you want to store pokecrystal in **C:\Users\\*\<user>*\Desktop**:
+Per esempio, se vuoi salvare pokecrystal in **C:\Users\\*\<user>*\Desktop**:
 
 ```bash
 cd /cygdrive/c/Users/<user>/Desktop
 ```
 
-(The Windows `C:\` drive is called `/cygdrive/c/` in Cygwin. Replace *\<user>* in the example path with your username.)
+(Il disco `C:\` di Windows si chiama `/cygdrive/c/` su Cygwin. Rimpiazza  *\<user>* nel percorso di esempio con il tuo nome utente.)
 
-Now you're ready to [build **pokecrystal**](#build-pokecrystal).
+Ora sei pronto per [buildare **pokecrystal**](#buildare-pokecrystal).
 
 
 ## macOS
 
-Install [**Homebrew**](https://brew.sh/). Follow the official instructions.
+Installa [**Homebrew**](https://brew.sh/). Segui le istruzioni ufficiali.
 
-Open **Terminal** and prepare to enter commands.
+Apri **Terminal** e preparati a inserire comandi.
 
-Then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#pre-built) for macOS to install **rgbds 0.6.1**.
+Dopo segui le [istruzioni di **rgbds**](https://rgbds.gbdev.io/install#pre-built) di macOS per installare **rgbds 0.6.1**.
 
-Now you're ready to [build **pokecrystal**](#build-pokecrystal).
+Ora sei pronto per [buildare **pokecrystal**](#buildare-pokecrystal).
 
 
 ## Linux
 
-Open **Terminal** and enter the following commands, depending on which distro you're using.
+Apri **Terminal** e inserisci i seguenti comandi, in base alla distro che usi.
 
-### Debian or Ubuntu
+### Debian o Ubuntu
 
-To install the software required for **pokecrystal**:
+per installare i software richiesti per **pokecrystal**:
 
 ```bash
 sudo apt-get install make gcc git
 ```
 
-Then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#building-from-source) to build **rgbds 0.6.1** from source.
+Quindi segui le [istruzioni di **rgbds**](https://rgbds.gbdev.io/install#building-from-source) per buildare **rgbds 0.6.1** dal codice sorgente.
 
 ### OpenSUSE
 
-To install the software required for **pokecrystal**:
+Per installare il software richiesto per **pokecrystal**:
 
 ```bash
 sudo zypper install make gcc git
 ```
 
-Then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#building-from-source) to build **rgbds 0.6.1** from source.
+Quindi segui le [istruzioni di **rgbds**](https://rgbds.gbdev.io/install#building-from-source) per buildare **rgbds 0.6.1** dal codice sorgente.
 
 ### Arch Linux
 
-To install the software required for **pokecrystal**:
+Per installare il software richiesto per **pokecrystal**:
 
 ```bash
 sudo pacman -S make gcc git rgbds
 ```
 
-Then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#pre-built) for Arch Linux to install **rgbds 0.6.1**.
+Quindi segui le [istruzioni di **rgbds**](https://rgbds.gbdev.io/install#pre-built) di Arch Linux per installare **rgbds 0.6.1**.
 
-If you want to compile and install **rgbds** yourself instead, then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#building-from-source) to build **rgbds 0.6.1** from source.
+Se vuoi compilare e installare **rgbds** manualmente, allora segui le [istruzioni di **rgbds**](https://rgbds.gbdev.io/install#building-from-source) per buildare **rgbds 0.6.1** dal codice sorgente.
 
 ### Termux
 
-To install the software required for **pokecrystal**:
+Per installare il software richiesto per **pokecrystal**:
 
 ```bash
 sudo apt install make clang git sed
 ```
 
-To install **rgbds**:
+per installare **rgbds**:
 
 ```bash
 sudo apt install rgbds
 ```
 
-If you want to compile and install **rgbds** yourself instead, then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#building-from-source) to build **rgbds 0.6.1** from source.
+Se vuoi compilare e installare **rgbds** manualmente, allora segui le [istruzioni di **rgbds**](https://rgbds.gbdev.io/install#building-from-source) per buildare **rgbds 0.6.1** dal codice sorgente.
 
-### Other distros
+### Altre distro
 
-If your distro is not listed here, try to find the required software in its repositories:
+Se la tua distro non è stata elencata quì, prova a cercare i software richiesti nei suoi repository:
 
 - `make`
 - `gcc` (or `clang`)
 - `git`
 - `rgbds`
 
-If `rgbds` is not available, you'll need to follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#building-from-source) to build **rgbds 0.6.1** from source.
+Se `rgbds` non è disponibile, dovrai seguire le [istruzioni di **rgbds**](https://rgbds.gbdev.io/install#building-from-source) per buildare **rgbds 0.6.1** dal codice sorgente.
 
-Now you're ready to [build **pokecrystal**](#build-pokecrystal).
+Ora sei pronto per [buildare **pokecrystal**](#buildare-pokecrystal).
 
 
-## Build pokecrystal
+## Buildare pokecrystal
 
-To download the **pokecrystal** source files:
+Per scaricare i file sorgente di **Pokemon Crystal Reborn ita**:
 
 ```bash
-git clone https://github.com/pret/pokecrystal
-cd pokecrystal
+git clone https://github.com/swagfello00/Pokemon-Crystal-Reborn-ita
+cd Pokemon-Crystal-Reborn-ita
 ```
 
-To build **pokecrystal.gbc**:
+Per buildare **pokecrystal.gbc**:
 
 ```bash
-make
+make -j$(nproc --ignore=1)
 ```
 
-To build **pokecrystal11.gbc**:
+Per buildare **pokecrystal11.gbc** (consigliato):
 
 ```bash
-make crystal11
+make crystal11 -j$(nproc --ignore=1)
 ```
 
-### Build with a local rgbds version
+### Build con una versione locale di rgbds
 
-If you have different projects that require different versions of `rgbds`, it might not be convenient to install rgbds 0.6.1 globally. Instead, you can put its files in a directory within pokecrystal, such as `pokecrystal/rgbds-0.6.1/`. Then specify it when you run `make`:
+Se hai progetti differenti che richiedono versioni diverse di `rgbds`, potrebbe non essere conveniente installare rgbds 0.6.1 globalmente. Invece, puoi inserire i suoi file in una cartella dentro pokecrystal, tipo `pokecrystal/rgbds-0.6.1/`. Poi specificala quando esegui `make`:
 
 ```bash
-make RGBDS=rgbds-0.6.1/
+make RGBDS=rgbds-0.6.1/ -j$(nproc --ignore=1)
 ```
 
 ```bash
-make RGBDS=rgbds-0.6.1/ crystal11
+make RGBDS=rgbds-0.6.1/ crystal11 -j$(nproc --ignore=1)
 ```
