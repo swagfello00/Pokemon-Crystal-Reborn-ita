@@ -177,6 +177,9 @@ endr
 	pop hl
 	ret
 
+WaitPlaySFX::
+	call WaitSFX
+
 PlaySFX::
 ; Play sound effect de.
 ; Sound effects are ordered by priority (highest to lowest)
@@ -217,17 +220,14 @@ PlaySFX::
 	pop hl
 	ret
 
-WaitPlaySFX::
-	call WaitSFX
-	call PlaySFX
-	ret
-
 WaitSFX::
 ; infinite loop until sfx is done playing
 
 	push hl
-
+	jr .handleLoop
 .wait
+	call DelayFrame
+.handleLoop
 	ld hl, wChannel5Flags1
 	bit 0, [hl]
 	jr nz, .wait
@@ -427,6 +427,8 @@ SpecialMapMusic::
 	jr z, .surf
 	cp PLAYER_SURF_PIKA
 	jr z, .surf
+	cp PLAYER_SURF_LAPRAS
+	jr z, .surf
 
 	ld a, [wStatusFlags2]
 	bit STATUSFLAGS2_BUG_CONTEST_TIMER_F, a
@@ -465,40 +467,6 @@ GetMapMusic_MaybeSpecial::
 	call SpecialMapMusic
 	ret c
 	call GetMapMusic
-	ret
-
-PlaceBCDNumberSprite:: ; unreferenced
-; Places a BCD number at the upper center of the screen.
-	ld a, 4 * TILE_WIDTH
-	ld [wShadowOAMSprite38YCoord], a
-	ld [wShadowOAMSprite39YCoord], a
-	ld a, 10 * TILE_WIDTH
-	ld [wShadowOAMSprite38XCoord], a
-	ld a, 11 * TILE_WIDTH
-	ld [wShadowOAMSprite39XCoord], a
-	xor a
-	ld [wShadowOAMSprite38Attributes], a
-	ld [wShadowOAMSprite39Attributes], a
-	ld a, [wUnusedBCDNumber]
-	cp 100
-	jr nc, .max
-	add 1
-	daa
-	ld b, a
-	swap a
-	and $f
-	add "0"
-	ld [wShadowOAMSprite38TileID], a
-	ld a, b
-	and $f
-	add "0"
-	ld [wShadowOAMSprite39TileID], a
-	ret
-
-.max
-	ld a, "9"
-	ld [wShadowOAMSprite38TileID], a
-	ld [wShadowOAMSprite39TileID], a
 	ret
 
 CheckSFX::

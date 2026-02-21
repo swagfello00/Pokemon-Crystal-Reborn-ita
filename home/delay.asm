@@ -12,6 +12,9 @@ DelayFrame::
 	jr nz, .halt
 	ret
 
+Delay3::
+	ld c, 3
+
 DelayFrames::
 ; Wait c frames
 	call DelayFrame

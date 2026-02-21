@@ -7,6 +7,8 @@ IsInJohto::
 	ld c, a
 	call GetWorldMapLocation
 
+	cp LANDMARK_UNDERWATER
+	jr nc, .Johto
 	cp LANDMARK_FAST_SHIP
 	jr z, .Johto
 
