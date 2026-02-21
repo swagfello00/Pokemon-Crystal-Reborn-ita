@@ -1065,4 +1065,21 @@ MACRO checksave
 	db checksave_command
 ENDM
 
+	const divemap_command
+MACRO divemap
+	if _NARG == 1
+		divemap \1, 0, 0
+	else
+		db divemap_command
+		map_id \1 ; map
+		db \2 ; delta x
+		db \3 ; delta y
+	endc
+ENDM
+
+	const divewarp_command
+MACRO divewarp
+	db divewarp_command
+ENDM
+
 DEF NUM_EVENT_COMMANDS EQU const_value
