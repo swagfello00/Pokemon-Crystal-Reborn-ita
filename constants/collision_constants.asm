@@ -10,6 +10,7 @@ DEF COLL_FLOOR             EQU $00
 DEF COLL_01                EQU $01 ; garbage
 DEF COLL_03                EQU $03 ; garbage
 DEF COLL_04                EQU $04 ; garbage
+DEF COLL_ROCKY_WALL        EQU $06
 DEF COLL_WALL              EQU $07
 DEF COLL_CUT_08            EQU $08 ; unused
 DEF COLL_TALL_GRASS_10     EQU $10 ; unused
@@ -26,7 +27,8 @@ DEF COLL_WHIRLPOOL         EQU $24
 DEF COLL_BUOY              EQU $27
 DEF COLL_CUT_28            EQU $28 ; garbage
 DEF COLL_WATER             EQU $29
-DEF COLL_ICE_2B            EQU $2b ; unused
+DEF COLL_DIVE_DOWN         EQU $2a
+DEF COLL_DIVE_UP           EQU $2b
 DEF COLL_WHIRLPOOL_2C      EQU $2c ; unused
 DEF COLL_WATERFALL_RIGHT   EQU $30 ; unused
 DEF COLL_WATERFALL_LEFT    EQU $31 ; unused
@@ -79,6 +81,11 @@ DEF COLL_WARP_PANEL        EQU $7c
 DEF COLL_DOOR_7D           EQU $7d ; unused
 DEF COLL_WARP_CARPET_RIGHT EQU $7e
 DEF COLL_WARP_7F           EQU $7f ; unused
+DEF COLL_STOP_SPIN         EQU $80
+DEF COLL_SPIN_UP           EQU $81
+DEF COLL_SPIN_DOWN         EQU $82
+DEF COLL_SPIN_LEFT         EQU $83
+DEF COLL_SPIN_RIGHT        EQU $84
 DEF COLL_COUNTER           EQU $90
 DEF COLL_BOOKSHELF         EQU $91
 DEF COLL_PC                EQU $93

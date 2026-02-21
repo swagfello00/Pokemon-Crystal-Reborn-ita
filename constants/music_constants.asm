@@ -105,6 +105,13 @@
 	const MUSIC_SUICUNE_BATTLE               ; 64
 	const MUSIC_BATTLE_TOWER_LOBBY           ; 65
 	const MUSIC_MOBILE_CENTER                ; 66
+; new to Crystal Reborn
+	const MUSIC_UNDERWATER					 ; 67
+	const MUSIC_LUGIA_BATTLE				 ; 68
+	const MUSIC_HO_OH_BATTLE				 ; 69
+	const MUSIC_KANTO_LEGENDARY_BATTLE		 ; 70
+	const MUSIC_CERULEAN_CAVE				 ; 71
+	const MUSIC_POKEMON_TOWER				 ; 72
 DEF NUM_MUSIC_SONGS EQU const_value
 
 ; GetMapMusic picks music for this value (see home/map.asm)

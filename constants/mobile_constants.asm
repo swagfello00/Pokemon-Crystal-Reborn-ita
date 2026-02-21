@@ -60,7 +60,7 @@ DEF MOBILE_PHONE_NUMBER_LENGTH EQU 20
 
 ; Maximum amount of time allowed for mobile battles each day
 DEF MOBILE_BATTLE_ALLOWED_SECONDS EQU 0
-DEF MOBILE_BATTLE_ALLOWED_MINUTES EQU 10
+DEF MOBILE_BATTLE_ALLOWED_MINUTES EQU 255
 
 ; Trade corner request size
 ; DION addr $1e + request $8 + Name $5

@@ -98,6 +98,12 @@ DEF KANTO_LANDMARK EQU const_value
 	const LANDMARK_TOHJO_FALLS       ; 5d
 	const LANDMARK_ROUTE_28          ; 5e
 	const LANDMARK_FAST_SHIP         ; 5f
+	const LANDMARK_SAFARI			 ; 60
+	const LANDMARK_VIRIDIAN_FOREST	 ; 61
+	const LANDMARK_CERULEAN_CAVE	 ; 62
+	const LANDMARK_POKEMON_TOWER	 ; 63
+	const LANDMARK_ROUTE_10_SOUTH	 ; 64
+	const LANDMARK_UNDERWATER		 ; 65
 DEF NUM_LANDMARKS EQU const_value
 
 ; used in CaughtData
