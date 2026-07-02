@@ -4230,6 +4230,7 @@ Function17f44f:
 	ld h, a
 	ld de, wc608
 	ld a, [wcd57]
+	and $f
 	ld c, a
 	ld b, 0
 	call CopyBytes

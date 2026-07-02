@@ -354,14 +354,14 @@ DEF NUM_SPRITE_ANIM_FRAMESETS EQU const_value
 	const SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_11           ; 8b
 	const SPRITE_ANIM_OAMSET_PARTY_MON_1                 ; 8c
 	const SPRITE_ANIM_OAMSET_PARTY_MON_2                 ; 8d
-	const SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_8             ; 8c
-	const SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_9             ; 8d
-	const SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_10            ; 8e
-	const SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_CUSTOM_BOX    ; 8f
-	const SPRITE_ANIM_OAMSET_PC_CURSOR                   ; 90
-	const SPRITE_ANIM_OAMSET_PC_CURSOR_ITEM              ; 91
-	const SPRITE_ANIM_OAMSET_PC_QUICK                    ; 92
-	const SPRITE_ANIM_OAMSET_PC_MODE                     ; 93
-	const SPRITE_ANIM_OAMSET_PC_MODE2                    ; 94
-	const SPRITE_ANIM_OAMSET_PC_PACK                     ; 95
+	const SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_8             ; 8e
+	const SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_9             ; 8f
+	const SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_10            ; 90
+	const SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_CUSTOM_BOX    ; 91
+	const SPRITE_ANIM_OAMSET_PC_CURSOR                   ; 92
+	const SPRITE_ANIM_OAMSET_PC_CURSOR_ITEM              ; 93
+	const SPRITE_ANIM_OAMSET_PC_QUICK                    ; 94
+	const SPRITE_ANIM_OAMSET_PC_MODE                     ; 95
+	const SPRITE_ANIM_OAMSET_PC_MODE2                    ; 96
+	const SPRITE_ANIM_OAMSET_PC_PACK                     ; 97
 DEF NUM_SPRITE_ANIM_OAMSETS EQU const_value

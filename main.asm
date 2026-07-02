@@ -711,6 +711,12 @@ SECTION "VWF", ROMX
 INCLUDE "engine/gfx/vwf.asm"
 
 
+SECTION "bank78", ROMX
+
+INCLUDE "engine/items/pack.asm"
+INCLUDE "engine/pokedex/pokedex.asm"
+
+
 SECTION "Stadium 2 Checksums", ROMX[$7DE0], BANK[$7F]
 
 ; The end of the ROM is taken up by checksums of the content, apparently used
@@ -720,8 +726,3 @@ SECTION "Stadium 2 Checksums", ROMX[$7DE0], BANK[$7F]
 ; If it is removed, also remove the "tools/stadium" command in the Makefile.
 
 INCBIN "mobile/stadium/stadium2.bin"
-
-SECTION "bank78", ROMX
-
-INCLUDE "engine/items/pack.asm"
-INCLUDE "engine/pokedex/pokedex.asm"

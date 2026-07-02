@@ -1363,9 +1363,10 @@ Text_WeveBeenWaitingForYou:
 	done
 
 Text_FiveDayBattleLimit_Mobile:
-	text "Puoi entrare solo"
-	line "in venti SALE"
-	cont "LOTTA al giorno."
+	text "Puoi entrare in"
+	line "ogni SALA LOTTA"
+	cont "solo una volta al"
+	cont "giorno."
 
 	para "Torna domani, va"
 	line "bene?"
@@ -1479,12 +1480,6 @@ RadioTower2FBuenaReceptionistNoCardText:
 GotEggTicketText:
 	text "Hai già questo"
 	line "STRUMENTO BASE."
-	done
-
-OneTimeBuyText:
-	text "Questo strumento"
-	line "si può comprare"
-	cont "solo una volta."
 	done
 
 BattleTower1F_MapEvents:

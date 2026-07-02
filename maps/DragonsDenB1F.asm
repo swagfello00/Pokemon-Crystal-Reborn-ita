@@ -515,7 +515,7 @@ TakeThisRivalStarterText:
 	cont "#MON è debole"
 	cont "e non mi serve."
 	
-	para "lo vuoi tu?"
+	para "Lo vuoi tu?"
 	done
 
 RivalStarterImCountingOnYouText:

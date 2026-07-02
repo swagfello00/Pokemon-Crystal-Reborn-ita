@@ -161,7 +161,7 @@ Cambiamenti che non verranno fatti:
 
 - Modifiche e fix ulteriori alle meccaniche di battling
 (romperebbero la compatibilità delle lotte con i giochi originali)
-- Modifiche ai typing, statistiche base, crescita dell'esperienza dei pokémon ecc.
+- Modifiche ai typing, statistiche base, metodi evolutivi, crescita dell'esperienza dei pokémon ecc.
 - Esperienza per le catture
 - Modifiche importanti alla grafica del gioco e alla trama
 - Compatibilità dei salvataggi con Cristallo originale e Crystal Mobile

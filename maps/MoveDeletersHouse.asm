@@ -15,7 +15,7 @@ MoveDeleter:
 	closetext
 	end
 	
-	MoveRelearnerScript:
+MoveRelearnerScript:
 	faceplayer
 	opentext
 	special MoveReminder

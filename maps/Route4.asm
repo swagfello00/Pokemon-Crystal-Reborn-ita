@@ -3,7 +3,7 @@
 	const ROUTE4_LASS1
 	const ROUTE4_LASS2
 	const ROUTE4_POKE_BALL1
-	const ROUTE4_POKEBALL2
+	const ROUTE4_POKE_BALL2
 
 Route4_MapScripts:
 	def_scene_scripts

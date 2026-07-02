@@ -410,7 +410,7 @@ MahoganyGymGuideRematchText:
 	line "l'ora di sfidarti"
 	cont "nuovamente."
 	
-	para "metticela tutta!"
+	para "Metticela tutta!"
 	done
 
 MahoganyGymGuideWinText:

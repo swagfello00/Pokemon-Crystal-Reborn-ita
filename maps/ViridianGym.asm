@@ -127,7 +127,7 @@ LeaderBlueBeforeRematchText:
 	text "BLU: Eccoti"
 	line "finalmente!"
 
-	para "ora sono pronto"
+	para "Ora sono pronto"
 	line "a lottare con te."
 
 	para "Capirò quanto vali"

@@ -1417,7 +1417,7 @@ _ItemCantGetOnText::
 	prompt
 
 _CurBoxFullText::
-	text "Il @"
+	text "@"
 	text_ram wStringBuffer1
 	text " è pieno!"
 	prompt

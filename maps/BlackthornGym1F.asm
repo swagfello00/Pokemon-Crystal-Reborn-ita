@@ -461,7 +461,7 @@ BlackthornGymGuideRematchText:
 	para "allenatore valido"
 	line "come te."
 	
-	para "fagli vedere chi"
+	para "Fagli vedere chi"
 	line "sei!"
 	done
 

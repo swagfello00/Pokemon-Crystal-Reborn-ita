@@ -167,9 +167,6 @@ ErikaBeatenText:
 	line "GLIA ARCOBALENO…"
 	done
 
-	text "ERIKA: Ok, ho"
-	line "perso, lo ammetto…"
-
 ErikaRematchText:
 	text "ERIKA: Ok, ho"
 	line "perso, lo ammetto…"

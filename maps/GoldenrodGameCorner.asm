@@ -28,7 +28,7 @@ GoldenrodGameCorner_MapScripts:
 GoldenrodGameCornerMoveTutorCallback:
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iffalse .finish
-	checkitem COIN_CASE
+	checkitem BLUE_CARD
 	iffalse .move_tutor_inside
 	readvar VAR_WEEKDAY
 	ifequal WEDNESDAY, .move_tutor_outside
