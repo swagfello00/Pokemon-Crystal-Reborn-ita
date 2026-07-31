@@ -4558,6 +4558,16 @@ Function11ac3e:
 	callfar ClearSpriteAnims2
 	call Function11ac51
 	call CloseSubmenu
+	ldh a, [rVBK]
+	push af
+	ld a, $1
+	ldh [rVBK], a
+	ld de, TextboxSpaceGFX
+	lb bc, BANK(TextboxSpaceGFX), 1
+	ld hl, vTiles2 tile " "
+	call Get2bpp
+	pop af
+	ldh [rVBK], a
 	ret
 
 Function11ac51:

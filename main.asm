@@ -148,7 +148,6 @@ INCLUDE "engine/battle/effect_commands.asm"
 
 SECTION "Enemy Trainers", ROMX
 
-INCLUDE "engine/battle/ai/items.asm"
 INCLUDE "engine/battle/ai/scoring.asm"
 INCLUDE "engine/battle/read_trainer_attributes.asm"
 INCLUDE "engine/battle/read_trainer_party.asm"
@@ -164,6 +163,7 @@ SECTION "bank10", ROMX
 
 INCLUDE "data/moves/moves.asm"
 INCLUDE "engine/pokemon/evolve.asm"
+INCLUDE "engine/battle/ai/items.asm"
 
 
 SECTION "bank11", ROMX

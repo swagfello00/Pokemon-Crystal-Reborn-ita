@@ -218,28 +218,28 @@ FossilScientist:
 	end
 
 .NeedMachinery:
-  checkitem MACHINERY
-  iftrue .HaveMachinery
-  writetext AskMachineryText
-  waitbutton
-  closetext
-  end
+	writetext AskMachineryText
+	waitbutton
+	checkitem MACHINERY
+	iftrue .HaveMachinery
+	closetext
+	end
 
 .HaveMachinery
-  writetext AskTakeMachineryText
-  yesorno
-  iffalse .DontTakeMachinery
-  takeitem MACHINERY
-  setevent EVENT_GAVE_SCIENTIST_MACHINERY
-  writetext ThankYouMachineryText
-  promptbutton
-  sjump .GotMachinery
+	writetext AskTakeMachineryText
+	yesorno
+	iffalse .DontTakeMachinery
+	takeitem MACHINERY
+	setevent EVENT_GAVE_SCIENTIST_MACHINERY
+	writetext ThankYouMachineryText
+	promptbutton
+	sjump .GotMachinery
 
 .DontTakeMachinery
-  writetext DontTakeMachineryText
-  waitbutton
-  closetext
-  end
+	writetext DontTakeMachineryText
+	waitbutton
+	closetext
+	end
 
 RocketBaseBossFLeft:
 	moveobject TEAMROCKETBASEB2F_LANCE, 9, 13

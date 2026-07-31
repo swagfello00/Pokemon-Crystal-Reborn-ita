@@ -24,6 +24,8 @@ ReadTrainerParty:
 	ld a, [wOtherTrainerID]
 	cp CAL2
 	jr z, .cal2
+	cp CAL5
+	jr z, .cal2
 	ld a, [wOtherTrainerClass]
 .not_cal2
 

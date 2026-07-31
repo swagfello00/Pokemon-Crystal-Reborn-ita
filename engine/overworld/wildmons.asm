@@ -794,12 +794,13 @@ RandomUnseenWildMon:
 	jr nc, .done
 
 .GetGrassmon:
-	push hl
-	ld bc, 5 + 4 * 2 ; Location of the level of the 5th wild Pokemon in that map
-	add hl, bc
+; BUGfixed: RandomUnseenWildMon always picks a morning Pokémon species (see docs/bugs_and_glitches.md)
 	ld a, [wTimeOfDay]
 	ld bc, NUM_GRASSMON * 2
 	call AddNTimes
+	push hl
+	ld bc, 5 + 4 * 2 ; Location of the level of the 5th wild Pokemon in that map
+	add hl, bc
 .randloop1
 	call Random
 	and %11

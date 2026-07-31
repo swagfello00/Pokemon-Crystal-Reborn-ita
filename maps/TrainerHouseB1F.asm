@@ -46,14 +46,20 @@ TrainerHouseReceptionistScript:
 	iffalse .NoSpecialBattle
 	winlosstext TrainerHouseB1FCalBeatenText, 0
 	setlasttalked TRAINERHOUSEB1F_CHRIS
+	checkevent EVENT_KANTO_STARTERS
+	iftrue .KantoStarters1
 	loadtrainer CAL, CAL2
+.continue1
 	startbattle
 	reloadmapafterbattle
 	iffalse .End
 .NoSpecialBattle:
 	winlosstext TrainerHouseB1FCalBeatenText, 0
 	setlasttalked TRAINERHOUSEB1F_CHRIS
+	checkevent EVENT_KANTO_STARTERS
+	iftrue .KantoStarters2
 	loadtrainer CAL, CAL3
+.continue2
 	startbattle
 	reloadmapafterbattle
 .End:
@@ -70,6 +76,14 @@ TrainerHouseReceptionistScript:
 	writevar VAR_BLUECARDBALANCE
 	applymovement PLAYER, Movement_TrainerHouseTurnBack
 	end
+
+.KantoStarters1
+	loadtrainer CAL, CAL5
+	sjump .continue1
+
+.KantoStarters2
+	loadtrainer CAL, CAL6
+	sjump .continue2
 
 .CardFull
 	farwritetext Text_CardFull

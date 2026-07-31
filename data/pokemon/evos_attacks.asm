@@ -1660,7 +1660,7 @@ HypnoEvosAttacks:
 	db 37, SWAGGER
 	db 40, MEDITATE
 	db 45, DREAM_EATER
-	db 49, PSYCHIC_M
+	db 47, PSYCHIC_M
 	db 55, PSYCH_UP
 	db 60, FUTURE_SIGHT
 	db 0 ; no more level-up moves
@@ -1961,7 +1961,7 @@ TangelaEvosAttacks:
 	db 40, SLAM
 	db 44, AMNESIA
 	db 46, GIGA_DRAIN
-	db 48, BODY_SLAM
+	db 47, BODY_SLAM
 	db 54, SOLARBEAM
 	db 0 ; no more level-up moves
 
@@ -2301,6 +2301,7 @@ VaporeonEvosAttacks:
 	db 27, CHARM
 	db 30, BITE
 	db 33, HAZE
+	db 36, BUBBLEBEAM
 	db 36, AURORA_BEAM
 	db 41, CRUNCH
 	db 45, ICE_BEAM
@@ -2322,6 +2323,7 @@ JolteonEvosAttacks:
 	db 30, BITE
 	db 33, THUNDER_WAVE
 	db 36, PIN_MISSILE
+	db 36, SPARK
 	db 41, CRUNCH
 	db 45, THUNDERBOLT
 	db 47, AGILITY
@@ -2343,6 +2345,7 @@ FlareonEvosAttacks:
 	db 25, SWIFT
 	db 27, CHARM
 	db 30, BITE
+	db 30, FLAME_WHEEL
 	db 33, SCARY_FACE
 	db 36, FLAMETHROWER
 	db 41, CRUNCH
@@ -2795,6 +2798,7 @@ FeraligatrEvosAttacks:
 SentretEvosAttacks:
 	db EVOLVE_LEVEL, 15, FURRET
 	db 0 ; no more evolutions
+	db 1, SCRATCH
 	db 1, TACKLE
 	db 1, FORESIGHT
 	db 5, DEFENSE_CURL
@@ -2810,6 +2814,7 @@ SentretEvosAttacks:
 FurretEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, SCRATCH
+	db 1, TACKLE
 	db 1, FORESIGHT
 	db 1, DEFENSE_CURL
 	db 1, QUICK_ATTACK
@@ -2992,7 +2997,7 @@ LanturnEvosAttacks:
 	db 33, CONFUSE_RAY
 	db 37, BUBBLEBEAM
 	db 45, TAKE_DOWN
-	db 51, THUNDERBOLT
+	db 47, THUNDERBOLT
 	db 53, HYDRO_PUMP
 	db 55, DOUBLE_EDGE
 	db 58, THUNDER
@@ -3324,8 +3329,10 @@ YanmaEvosAttacks:
 	db 1, TACKLE
 	db 1, FORESIGHT
 	db 7, QUICK_ATTACK
+	db 11, PIN_MISSILE
 	db 13, DOUBLE_TEAM
 	db 19, SONICBOOM
+	db 22, TWINEEDLE
 	db 25, DETECT
 	db 27, PURSUIT
 	db 28, SWIFT
@@ -3496,7 +3503,7 @@ PinecoEvosAttacks:
 	db 29, BIDE
 	db 36, EXPLOSION
 	db 43, SPIKES
-	db 50, DOUBLE_EDGE
+	db 47, DOUBLE_EDGE
 	db 0 ; no more level-up moves
 
 ForretressEvosAttacks:
@@ -3583,7 +3590,7 @@ SnubbullEvosAttacks:
 	db 34, RAGE
 	db 37, TAKE_DOWN
 	db 43, CRUNCH
-	db 49, DOUBLE_EDGE
+	db 47, DOUBLE_EDGE
 	db 0 ; no more level-up moves
 
 GranbullEvosAttacks:
@@ -3616,6 +3623,7 @@ QwilfishEvosAttacks:
 	db 19, ROLLOUT
 	db 28, PIN_MISSILE
 	db 33, BUBBLEBEAM
+	db 35, TWINEEDLE
 	db 37, TAKE_DOWN
 	db 46, HYDRO_PUMP
 	db 53, DESTINY_BOND
@@ -3797,6 +3805,7 @@ CorsolaEvosAttacks:
 	db 1, TACKLE
 	db 7, HARDEN
 	db 13, BUBBLE
+	db 17, ROCK_THROW
 	db 19, RECOVER
 	db 25, BUBBLEBEAM
 	db 29, ROCK_SLIDE
@@ -4112,6 +4121,7 @@ BlisseyEvosAttacks:
 
 RaikouEvosAttacks:
 	db 0 ; no more evolutions
+	db 1, THUNDERBOLT
 	db 1, QUICK_ATTACK
 	db 1, ROAR
 	db 1, BITE

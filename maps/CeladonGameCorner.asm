@@ -158,6 +158,12 @@ CeladonGameCornerSodaCanScript:
 	closetext
 	end
 
+CeladonGameCornerMemoryGameScript:
+	refreshscreen
+	special UnusedMemoryGame
+	closetext
+	end
+
 CeladonGameCornerUnusedMovementData: ; unreferenced
 	step RIGHT
 	turn_head LEFT
@@ -320,12 +326,12 @@ CeladonGameCorner_MapEvents:
 	bg_event  6,  9, BGEVENT_READ, CeladonGameCornerSodaCanScript
 	bg_event  6, 10, BGEVENT_READ, CeladonGameCornerCardFlipScript
 	bg_event  6, 11, BGEVENT_RIGHT, CeladonGameCornerCardFlipScript
-	bg_event  7,  6, BGEVENT_READ, CeladonGameCornerLuckySlotMachineScript
-	bg_event  7,  7, BGEVENT_READ, CeladonGameCornerLuckySlotMachineScript
-	bg_event  7,  8, BGEVENT_READ, CeladonGameCornerLuckySlotMachineScript
-	bg_event  7,  9, BGEVENT_READ, CeladonGameCornerLuckySlotMachineScript
-	bg_event  7, 10, BGEVENT_READ, CeladonGameCornerSlotMachineScript
-	bg_event  7, 11, BGEVENT_LEFT, CeladonGameCornerLuckySlotMachineScript
+	bg_event  7,  6, BGEVENT_READ, CeladonGameCornerMemoryGameScript
+	bg_event  7,  7, BGEVENT_READ, CeladonGameCornerMemoryGameScript
+	bg_event  7,  8, BGEVENT_READ, CeladonGameCornerMemoryGameScript
+	bg_event  7,  9, BGEVENT_READ, CeladonGameCornerMemoryGameScript
+	bg_event  7, 10, BGEVENT_READ, CeladonGameCornerMemoryGameScript
+	bg_event  7, 11, BGEVENT_LEFT, CeladonGameCornerMemoryGameScript
 	bg_event 12,  6, BGEVENT_READ, CeladonGameCornerLuckySlotMachineScript
 	bg_event 12,  7, BGEVENT_READ, CeladonGameCornerLuckySlotMachineScript
 	bg_event 12,  8, BGEVENT_READ, CeladonGameCornerLuckySlotMachineScript

@@ -1455,12 +1455,32 @@ _TrainerRankingNoDataText:: ; unreferenced
 	done
 
 _MemoryGameYeahText::
-	text ", sì!"
+	text " ! @"
+	text_decimal wStringBuffer2, 1, 2
+	text " Gettoni!"
 	done
 
 _MemoryGameDarnText::
 	text "Acc…"
 	done
+
+_MemoryGameGameOverText::
+	text "Game over!"
+	done
+
+_MemoryGameExtraTryText::
+	text " ! Un tentativo"
+	line "extra!"
+	done
+
+_MemoryGameNoPrizeText::
+	text " ! Nessun"
+	line "premio…"
+	done
+
+_MemoryGameGameOverCardText::
+	text " ! Game over…"
+	prompt
 
 _StartMenuContestEndText::
 	text "Vuoi terminare la"

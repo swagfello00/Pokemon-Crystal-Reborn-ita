@@ -1536,14 +1536,11 @@ ConvertPercentages:
 	add hl, hl
 	add hl, hl
 
-	; Set the "l" register to 0.5, otherwise the rounded
-	; value may be lower than expected. Round the
-	; high byte to nearest and drop the low byte.
-	ld l, 0.5
-	sla l
-	sbc a
-	and 1
-	add a, h
+	; Round up value of the "h" register by adding 1.
+	; Return the result in the "a" register.
+	; The "l" register is ignored.
+	inc h
+	ld a, h
 	ret
 
 String_MoveType_Top:

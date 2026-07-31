@@ -267,12 +267,12 @@ AI_Types:
 .checkmove3
 	inc hl
 	dec c
-	jr z, .checksun
+	ret z
 
 	ld a, [de]
 	inc de
 	and a
-	jr z, .checksun
+	ret z
 
 	push hl
 	push de
@@ -291,7 +291,6 @@ AI_Types:
 
 ; Encourage moves in the Sunny Day list if it's sunny.
 .checksun
-	ld a, [wBattleWeather]
 	cp WEATHER_SUN
 	ret nz
 

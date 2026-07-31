@@ -330,6 +330,12 @@ GoldenrodGameCornerCardFlipMachineScript:
 	closetext
 	end
 
+GoldenrodGameCornerMemoryGameScript:
+	refreshscreen
+	special UnusedMemoryGame
+	closetext
+	end
+
 GoldenrodGameCornerPrizeVendorIntroText:
 	text "Salve!"
 
@@ -388,9 +394,8 @@ GoldenrodGameCornerPharmacistText:
 	done
 
 GoldenrodGameCornerPokefanM1Text:
-	text "Mi piace questa"
-	line "nuova slot"
-	cont "machine."
+	text "Mi piace questo"
+	line "nuovo memory."
 
 	para "È più divertente"
 	line "delle slot di"
@@ -497,12 +502,12 @@ GoldenrodGameCorner_MapEvents:
 	bg_event  7,  9, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
 	bg_event  7, 10, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
 	bg_event  7, 11, BGEVENT_LEFT, GoldenrodGameCornerSlotsMachineScript
-	bg_event 12,  6, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
-	bg_event 12,  7, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
-	bg_event 12,  8, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
-	bg_event 12,  9, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
-	bg_event 12, 10, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
-	bg_event 12, 11, BGEVENT_RIGHT, GoldenrodGameCornerSlotsMachineScript
+	bg_event 12,  6, BGEVENT_READ, GoldenrodGameCornerMemoryGameScript
+	bg_event 12,  7, BGEVENT_READ, GoldenrodGameCornerMemoryGameScript
+	bg_event 12,  8, BGEVENT_READ, GoldenrodGameCornerMemoryGameScript
+	bg_event 12,  9, BGEVENT_READ, GoldenrodGameCornerMemoryGameScript
+	bg_event 12, 10, BGEVENT_READ, GoldenrodGameCornerMemoryGameScript
+	bg_event 12, 11, BGEVENT_RIGHT, GoldenrodGameCornerMemoryGameScript
 	bg_event 13,  6, BGEVENT_READ, GoldenrodGameCornerCardFlipMachineScript
 	bg_event 13,  7, BGEVENT_READ, GoldenrodGameCornerCardFlipMachineScript
 	bg_event 13,  8, BGEVENT_READ, GoldenrodGameCornerCardFlipMachineScript
