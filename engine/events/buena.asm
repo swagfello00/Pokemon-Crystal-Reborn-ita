@@ -198,7 +198,7 @@ PrintBlueCardBalance:
 	ld [hli], a
 	ld [hld], a
 	pop de
-	lb bc, 1, 2
+	lb bc, 1, 3
 	call PrintNum
 	ret
 
@@ -207,7 +207,7 @@ PrintBlueCardBalance:
 
 BlueCardBalanceMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 0, 11, 10, 13
+	menu_coords 9, 0, 19, 2
 
 Buena_PlacePrizeMenuBox:
 	ld hl, .MenuHeader

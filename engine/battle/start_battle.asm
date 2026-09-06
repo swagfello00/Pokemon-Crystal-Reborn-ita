@@ -16,23 +16,6 @@ FindFirstAliveMonAndStartBattle:
 	xor a
 	ldh [hMapAnims], a
 	call DelayFrame
-	ld b, PARTY_LENGTH
-	ld hl, wPartyMon1HP
-	ld de, PARTYMON_STRUCT_LENGTH - 1
-
-.loop
-	ld a, [hli]
-	or [hl]
-	jr nz, .okay
-	add hl, de
-	dec b
-	jr nz, .loop
-
-.okay
-	ld de, MON_LEVEL - MON_HP
-	add hl, de
-	ld a, [hl]
-	ld [wBattleMonLevel], a
 	predef DoBattleTransition
 	farcall _LoadBattleFontsHPBar
 	ld a, 1
@@ -61,7 +44,7 @@ PlayBattleMusic:
 	ld a, [wBattleType]
 	cp BATTLETYPE_SUICUNE
 	ld de, MUSIC_SUICUNE_BATTLE
-	jp z, .done
+	jp z, .SelectBattleMusic
 	cp BATTLETYPE_ROAMING
 	jp z, .done
 
@@ -93,11 +76,17 @@ PlayBattleMusic:
 	cp RED
 	jr z, .done
 
-; BUG: Team Rocket battle music is not used for Executives or Scientists (see docs/bugs_and_glitches.md)
+; BUGfixed: Team Rocket battle music is not used for Executives or Scientists (see docs/bugs_and_glitches.md)
 	ld de, MUSIC_ROCKET_BATTLE
 	cp GRUNTM
 	jr z, .done
 	cp GRUNTF
+	jr z, .done
+	cp EXECUTIVEM
+	jr z, .done
+	cp EXECUTIVEF
+	jr z, .done
+	cp SCIENTIST
 	jr z, .done
 
 	ld de, MUSIC_KANTO_GYM_LEADER_BATTLE
@@ -147,6 +136,19 @@ PlayBattleMusic:
 	pop de
 	pop hl
 	ret
+
+.SelectBattleMusic
+	ld a, [wTempWildMonSpecies]
+	cp SUICUNE
+	jr z, .done
+	cp LUGIA
+	ld de, MUSIC_LUGIA_BATTLE
+	jr z, .done
+	cp HO_OH
+	ld de, MUSIC_HO_OH_BATTLE
+	jr z, .done
+	ld de, MUSIC_KANTO_LEGENDARY_BATTLE
+	jr .done
 
 ClearBattleRAM:
 	xor a

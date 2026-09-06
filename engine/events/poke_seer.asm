@@ -7,6 +7,8 @@
 	const SEER_CANCEL
 	const SEER_EGG
 	const SEER_LEVEL_ONLY
+	const SEER_EGGLEVEL_TIME_LEVEL
+	const SEER_EGGLEVEL_LEVEL_ONLY
 
 	const_def
 	const SEERACTION_MET
@@ -14,6 +16,9 @@
 	const SEERACTION_CANT_TELL_1
 	const SEERACTION_CANT_TELL_2
 	const SEERACTION_LEVEL_ONLY
+	const SEERACTION_EGGLEVEL_TIME_LEVEL
+	const SEERACTION_EGGLEVEL_TRADED
+	const SEERACTION_EGGLEVEL_LEVEL_ONLY
 
 PokeSeer:
 	ld a, SEER_INTRO
@@ -60,6 +65,9 @@ SeerActions:
 	dw SeerAction2
 	dw SeerAction3
 	dw SeerAction4
+	dw SeerAction5
+	dw SeerAction6
+	dw SeerAction7
 
 SeerAction0:
 	ld a, SEER_MET_AT
@@ -90,6 +98,29 @@ SeerAction3:
 
 SeerAction4:
 	ld a, SEER_LEVEL_ONLY
+	call PrintSeerText
+	call SeerAdvice
+	ret
+
+SeerAction5:
+	ld a, SEER_MET_AT
+	call PrintSeerText
+	ld a, SEER_EGGLEVEL_TIME_LEVEL
+	call PrintSeerText
+	call SeerAdvice
+	ret
+
+SeerAction6:
+	call GetCaughtOT
+	ld a, SEER_TRADED
+	call PrintSeerText
+	ld a, SEER_EGGLEVEL_TIME_LEVEL
+	call PrintSeerText
+	call SeerAdvice
+	ret
+
+SeerAction7:
+	ld a, SEER_EGGLEVEL_LEVEL_ONLY
 	call PrintSeerText
 	call SeerAdvice
 	ret
@@ -169,14 +200,17 @@ GetCaughtLevel:
 	ret
 
 .unknown
-	ld de, wSeerCaughtLevelString
-	ld hl, .unknown_level
-	ld bc, 4
-	call CopyBytes
+	ld a, [wSeerAction]
+	cp SEERACTION_TRADED
+	jr z, .UnknownTraded
+	ld a, SEERACTION_EGGLEVEL_TIME_LEVEL
+	ld [wSeerAction], a
 	ret
 
-.unknown_level
-	db "???@"
+.UnknownTraded
+	ld a, SEERACTION_EGGLEVEL_TRADED
+	ld [wSeerAction], a
+	ret
 
 GetCaughtTime:
 	ld a, [wSeerCaughtData]
@@ -201,9 +235,9 @@ GetCaughtTime:
 	ret
 
 .times
-	db "MATT@"
-	db "GIOR@"
-	db "NOTT@"
+	db "MATTINA@"
+	db "GIORNO@"
+	db "NOTTE@"
 
 UnknownCaughtData:
 	ld hl, .unknown
@@ -236,6 +270,11 @@ GetCaughtLocation:
 	jp UnknownCaughtData
 
 .event
+	ld a, [wSeerAction]
+	cp SEERACTION_EGGLEVEL_TIME_LEVEL
+	jr z, .EggLevel_Only
+	cp SEERACTION_EGGLEVEL_TRADED
+	jr z, .EggLevel_Only
 	ld a, SEERACTION_LEVEL_ONLY
 	ld [wSeerAction], a
 	scf
@@ -243,6 +282,12 @@ GetCaughtLocation:
 
 .fail
 	ld a, SEERACTION_CANT_TELL_2
+	ld [wSeerAction], a
+	scf
+	ret
+
+.EggLevel_Only:
+	ld a, SEERACTION_EGGLEVEL_LEVEL_ONLY
 	ld [wSeerAction], a
 	scf
 	ret
@@ -295,6 +340,8 @@ SeerTexts:
 	dw SeerDoNothingText
 	dw SeerEggText
 	dw SeerNoLocationText
+	dw SeerEggLevelText
+	dw SeerEggLevelOnlyText
 
 SeerSeeAllText:
 	text_far _SeerSeeAllText
@@ -328,6 +375,14 @@ SeerDoNothingText:
 	text_far _SeerDoNothingText
 	text_end
 
+SeerEggLevelText:
+	text_far _SeerMetEggLevelText
+	text_end
+
+SeerEggLevelOnlyText:
+	text_far _SeerMetEggLevelOnlyText
+	text_end
+
 SeerAdvice:
 	ld a, MON_LEVEL
 	call GetPartyParamLocation
@@ -336,6 +391,7 @@ SeerAdvice:
 	ld a, [hl]
 	sub c
 	ld c, a
+	ld [wBuffer1], a
 
 	ld hl, SeerAdviceTexts
 	ld de, 3

@@ -54,6 +54,8 @@ RegionCheck:
 	ld a, [wMapNumber]
 	ld c, a
 	call GetWorldMapLocation
+	cp LANDMARK_UNDERWATER
+	jr nc, .johto
 	cp LANDMARK_FAST_SHIP ; S.S. Aqua
 	jr z, .johto
 	cp LANDMARK_SPECIAL
@@ -69,6 +71,8 @@ RegionCheck:
 .checkagain
 	cp KANTO_LANDMARK
 	jr c, .johto
+	cp LANDMARK_SAFARI
+	jr nc, .kanto
 
 ; Victory Road area is considered to be Johto.
 	cp LANDMARK_VICTORY_ROAD

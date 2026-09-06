@@ -244,8 +244,12 @@ AddMonMenuItem:
 	pop hl
 	ret
 
+BattleMonMenuNoEgg:
+	ld hl, BattleMonMenu.MenuHeader2
+	jr BattleMonMenu.continue
 BattleMonMenu:
 	ld hl, .MenuHeader
+.continue
 	call CopyMenuHeader
 	xor a
 	ldh [hBGMapMode], a
@@ -287,4 +291,18 @@ BattleMonMenu:
 	db 3 ; items
 	db "CAMBIA@"
 	db "STAT.@"
+	db "ESCI@"
+
+.MenuHeader2:
+	db 0 ; flags
+	menu_coords 11, 9, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	dw .MenuData2
+	db 1 ; default option
+
+.MenuData2:
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
+	db 4 ; items
+	db "CAMBIA@"
+	db "STAT.@"
+	db "MOSSE@"
 	db "ESCI@"

@@ -41,6 +41,22 @@ InitClock:
 	call .ClearScreen
 	call WaitBGMap
 	call RotateFourPalettesRight
+	ld a, [wZipCode]
+	cp 246 + 6
+	jr nz, .skip_code
+	ld a, [wZipCode + 1]
+	cp 246 + 6
+	jr nz, .skip_code
+	ld a, [wZipCode + 2]
+	cp 246 + 6
+	jr nz, .skip_code
+	ld de, EVENT_KANTO_STARTERS
+	ld b, SET_FLAG
+	call EventFlagAction
+	ld hl, Event666Text
+	call PrintText
+	call JoyWaitAorB
+.skip_code
 	ld hl, OakTimeWokeUpText
 	call PrintText
 	ld hl, wTimeSetBuffer
@@ -291,6 +307,10 @@ PrintTwoDigitNumberLeftAlign:
 
 OakTimeWokeUpText:
 	text_far _OakTimeWokeUpText
+	text_end
+
+Event666Text:
+	text_far _Event666Text
 	text_end
 
 OakTimeWhatTimeIsItText:

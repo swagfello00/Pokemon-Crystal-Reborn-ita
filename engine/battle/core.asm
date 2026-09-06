@@ -147,8 +147,9 @@ WildFled_EnemyFled_LinkBattleCanceled:
 	call CheckMobileBattleError
 	jr c, .skip_sfx
 
+; BUGfixed: SFX_RUN does not play correctly when a wild Pokemon flees from battle
 	ld de, SFX_RUN
-	call PlaySFX
+	call WaitPlaySFX
 
 .skip_sfx
 	call SetPlayerTurn
@@ -2914,9 +2915,15 @@ LostBattle:
 	bit 0, a
 	jr nz, .battle_tower
 
-	ld a, [wBattleType]
-	cp BATTLETYPE_CANLOSE
-	jr nz, .not_canlose
+	ld a, [wBattleMode]
+	dec a ; wild?
+	jr z, .no_loss_text
+
+	ld hl, wLossTextPointer
+	ld a, [hli]
+	ld h, [hl]
+	or h
+	jr z, .no_loss_text
 
 ; Remove the enemy from the screen.
 	hlcoord 0, 0
@@ -2952,7 +2959,7 @@ LostBattle:
 	call ClearBGPalettes
 	ret
 
-.not_canlose
+.no_loss_text
 	ld a, [wLinkMode]
 	and a
 	jr nz, .LostLinkBattle
@@ -3896,7 +3903,6 @@ InitBattleMon:
 	ld bc, PARTYMON_STRUCT_LENGTH - MON_ATK
 	call CopyBytes
 	call ApplyStatusEffectOnPlayerStats
-	call BadgeStatBoosts
 	ret
 
 BattleCheckPlayerShininess:
@@ -4189,16 +4195,18 @@ PursuitSwitch:
 	or [hl]
 	jr nz, .done
 
-; BUG: A Pokémon that fainted from Pursuit will have its old status condition when revived (see docs/bugs_and_glitches.md)
+; BUGfixed: A Pokémon that fainted from Pursuit will have its old status condition when revived (see docs/bugs_and_glitches.md)
 	ld a, $f0
 	ld [wCryTracks], a
 	ld a, [wBattleMonSpecies]
 	call PlayStereoCry
+	ld a, [wCurBattleMon]
+	push af
 	ld a, [wLastPlayerMon]
-	ld c, a
-	ld hl, wBattleParticipantsNotFainted
-	ld b, RESET_FLAG
-	predef SmallFarFlagAction
+	ld [wCurBattleMon], a
+	call UpdateFaintedPlayerMon
+	pop af
+	ld [wCurBattleMon], a
 	call PlayerMonFaintedAnimation
 	ld hl, BattleText_MonFainted
 	jr .done_fainted
@@ -5063,7 +5071,11 @@ BattleMenuPKMN_Loop:
 	jr c, .Cancel
 .loop
 	farcall FreezeMonIcons
-	call .GetMenu
+	ld a, [wCurPartySpecies]
+	cp EGG
+	jr nz, .NoEggMenu
+	jr .GetMenu
+.continue
 	jr c, .PressedB
 	call PlaceHollowCursor
 	ld a, [wMenuCursorY]
@@ -5086,6 +5098,11 @@ BattleMenuPKMN_Loop:
 	jr c, .Cancel
 	jp BattleMenuPKMN_ReturnFromStats
 
+.Moves
+	farcall ManagePokemonMoves
+	predef GetBattleMonBackpic
+	jr BattleMenuPKMN_Loop
+
 .Cancel:
 	call ClearSprites
 	call ClearPalettes
@@ -5101,11 +5118,31 @@ BattleMenuPKMN_Loop:
 	call IsMobileBattle
 	jr z, .mobile
 	farcall BattleMonMenu
-	ret
+	jr .continue
 
 .mobile
 	farcall MobileBattleMonMenu
-	ret
+	jr .continue
+
+.NoEggMenu
+	call IsMobileBattle
+	jr z, .mobile
+	farcall BattleMonMenuNoEgg
+	jr .ContinueNoEgg
+
+.ContinueNoEgg
+	jr c, .PressedB
+	call PlaceHollowCursor
+	ld a, [wMenuCursorY]
+	cp $1 ; SWITCH
+	jp z, TryPlayerSwitch
+	cp $2 ; STATS
+	jr z, .Stats
+	cp $3 ; MOVES
+	jr z, .Moves
+	cp $4 ; CANCEL
+	jr z, .Cancel
+	jp .loop
 
 Battle_StatsScreen:
 	call DisableLCD
@@ -5763,8 +5800,8 @@ CheckPlayerHasUsableMoves:
 	jr .loop
 
 .done
-; BUG: A Disabled but PP Up–enhanced move may not trigger Struggle (see docs/bugs_and_glitches.md)
-	and a
+; BUGfixed: A Disabled but PP Up–enhanced move may not trigger Struggle (see docs/bugs_and_glitches.md)
+	and PP_MASK
 	ret nz
 
 .force_struggle
@@ -6006,22 +6043,44 @@ LoadEnemyMon:
 	cp BATTLETYPE_FORCEITEM
 	ld a, [wBaseItem1]
 	jr z, .UpdateItem
+	ld a, [wBattleType]
+	cp BATTLETYPE_SUICUNE
+	ld a, [wBaseItem1]
+	jr z, .UpdateItem
+	ld a, [wBattleType]
+	cp BATTLETYPE_FORCEITEM2
+	ld a, [wBaseItem2]
+	jr z, .UpdateItem
+	ld a, [wBattleType]
+	cp BATTLETYPE_FORCENOITEM
+	ld a, NO_ITEM
+	jr z, .UpdateItem
 
 ; Failing that, it's all up to chance
 ;  Effective chances:
 ;    75% None
-;    23% Item1
-;     2% Item2
+;    20% Item1
+;     5% Item2
 
+  ld a, [wPartySpecies]
+  cp BUTTERFREE
+  jr z, .DoubleChance
+  cp VENONAT
+  jr z, .DoubleChance
+  cp VENOMOTH
+  jr z, .DoubleChance
+  cp YANMA
+  jr z, .DoubleChance
 ; 25% chance of getting an item
 	call BattleRandom
 	cp 75 percent + 1
 	ld a, NO_ITEM
 	jr c, .UpdateItem
 
-; From there, an 8% chance for Item2
+; From there, an 20% chance for Item2
+.HasItem
 	call BattleRandom
-	cp 8 percent ; 8% of 25% = 2% Item2
+	cp 20 percent ; 20% of 25% = 5% Item2
 	ld a, [wBaseItem1]
 	jr nc, .UpdateItem
 	ld a, [wBaseItem2]
@@ -6049,6 +6108,14 @@ LoadEnemyMon:
 	ld a, [hl]
 	ld [de], a
 	jp .Happiness
+
+; 50% chance of getting an item if one of these pokemon is first in party
+.DoubleChance
+  call BattleRandom
+	cp 50 percent + 1
+	ld a, NO_ITEM
+	jr c, .UpdateItem
+	jr .HasItem
 
 .InitDVs:
 ; Trainer DVs
@@ -6163,14 +6230,14 @@ LoadEnemyMon:
 	jr nz, .Happiness
 
 ; Get Magikarp's length
-; BUG: Magikarp length limits have a unit conversion error (see docs/bugs_and_glitches.md)
+; BUGfixed: Magikarp length limits have a unit conversion error (see docs/bugs_and_glitches.md)
 	ld de, wEnemyMonDVs
 	ld bc, wPlayerID
 	callfar CalcMagikarpLength
 
 ; No reason to keep going if length > 1536 mm (i.e. if HIGH(length) > 6 feet)
 	ld a, [wMagikarpLength]
-	cp HIGH(1536)
+	cp 5
 	jr nz, .CheckMagikarpArea
 
 ; 5% chance of skipping both size checks
@@ -6179,7 +6246,7 @@ LoadEnemyMon:
 	jr c, .CheckMagikarpArea
 ; Try again if length >= 1616 mm (i.e. if LOW(length) >= 4 inches)
 	ld a, [wMagikarpLength + 1]
-	cp LOW(1616)
+	cp 4
 	jr nc, .GenerateDVs
 
 ; 20% chance of skipping this check
@@ -6188,24 +6255,24 @@ LoadEnemyMon:
 	jr c, .CheckMagikarpArea
 ; Try again if length >= 1600 mm (i.e. if LOW(length) >= 3 inches)
 	ld a, [wMagikarpLength + 1]
-	cp LOW(1600)
+	cp 3
 	jr nc, .GenerateDVs
 
 .CheckMagikarpArea:
-; BUG: Magikarp in Lake of Rage are shorter, not longer (see docs/bugs_and_glitches.md)
+; BUGfixed: Magikarp in Lake of Rage are shorter, not longer (see docs/bugs_and_glitches.md)
 	ld a, [wMapGroup]
 	cp GROUP_LAKE_OF_RAGE
-	jr z, .Happiness
+	jr nz, .Happiness
 	ld a, [wMapNumber]
 	cp MAP_LAKE_OF_RAGE
-	jr z, .Happiness
+	jr nz, .Happiness
 ; 40% chance of not flooring
 	call Random
 	cp 39 percent + 1
 	jr c, .Happiness
 ; Try again if length < 1024 mm (i.e. if HIGH(length) < 3 feet)
 	ld a, [wMagikarpLength]
-	cp HIGH(1024)
+	cp 3
 	jr c, .GenerateDVs ; try again
 
 ; Finally done with DVs
@@ -6407,7 +6474,8 @@ LoadEnemyMon:
 	ld bc, NUM_EXP_STATS * 2
 	call CopyBytes
 
-; BUG: PRZ and BRN stat reductions don't apply to switched Pokémon (see docs/bugs_and_glitches.md)
+; BUGfixed: PRZ and BRN stat reductions don't apply to switched Pokémon (see docs/bugs_and_glitches.md)
+	call ApplyStatusEffectOnEnemyStats
 	ret
 
 CheckSleepingTreeMon:
@@ -6755,95 +6823,6 @@ ApplyStatLevelMultiplier:
 
 INCLUDE "data/battle/stat_multipliers_2.asm"
 
-BadgeStatBoosts:
-; Raise the stats of the battle mon in wBattleMon
-; depending on which badges have been obtained.
-
-; Every other badge boosts a stat, starting from the first.
-; GlacierBadge also boosts Special Defense, although the relevant code is buggy (see below).
-
-; 	ZephyrBadge:  Attack
-; 	PlainBadge:   Speed
-; 	MineralBadge: Defense
-; 	GlacierBadge: Special Attack and Special Defense
-
-; The boosted stats are in order, except PlainBadge and MineralBadge's boosts are swapped.
-
-	ld a, [wLinkMode]
-	and a
-	ret nz
-
-	ld a, [wInBattleTowerBattle]
-	and a
-	ret nz
-
-	ld a, [wJohtoBadges]
-
-; Swap badges 3 (PlainBadge) and 5 (MineralBadge).
-	ld d, a
-	and (1 << PLAINBADGE)
-	add a
-	add a
-	ld b, a
-	ld a, d
-	and (1 << MINERALBADGE)
-	rrca
-	rrca
-	ld c, a
-	ld a, d
-	and ((1 << ZEPHYRBADGE) | (1 << HIVEBADGE) | (1 << FOGBADGE) | (1 << STORMBADGE) | (1 << GLACIERBADGE) | (1 << RISINGBADGE))
-	or b
-	or c
-	ld b, a
-
-	ld hl, wBattleMonAttack
-	ld c, 4
-.CheckBadge:
-; BUG: Glacier Badge may not boost Special Defense depending on the value of Special Attack (see docs/bugs_and_glitches.md)
-	ld a, b
-	srl b
-	call c, BoostStat
-	inc hl
-	inc hl
-; Check every other badge.
-	srl b
-	dec c
-	jr nz, .CheckBadge
-	srl a
-	call c, BoostStat
-	ret
-
-BoostStat:
-; Raise stat at hl by 1/8.
-
-	ld a, [hli]
-	ld d, a
-	ld e, [hl]
-	srl d
-	rr e
-	srl d
-	rr e
-	srl d
-	rr e
-	ld a, [hl]
-	add e
-	ld [hld], a
-	ld a, [hl]
-	adc d
-	ld [hli], a
-
-; Cap at 999.
-	ld a, [hld]
-	sub LOW(MAX_STAT_VALUE)
-	ld a, [hl]
-	sbc HIGH(MAX_STAT_VALUE)
-	ret c
-	ld a, HIGH(MAX_STAT_VALUE)
-	ld [hli], a
-	ld a, LOW(MAX_STAT_VALUE)
-	ld [hld], a
-	ret
-
 _LoadBattleFontsHPBar:
 	callfar LoadBattleFontsHPBar
 	ret
@@ -6981,7 +6960,6 @@ GiveExperiencePoints:
 	bit 0, a
 	ret nz
 
-	call .EvenlyDivideExpAmongParticipants
 	xor a
 	ld [wCurPartyMon], a
 	ld bc, wPartyMon1Species
@@ -7018,6 +6996,26 @@ GiveExperiencePoints:
 	ld a, [de]
 	add [hl]
 	ld [de], a
+	push af
+	push hl
+	ld a, MACHO_BRACE
+	call CheckAnItem
+	jr nc, .no_carry_stat_exp1
+	pop hl
+	pop af
+	jr nc, .no_carry_stat_exp2
+	dec de
+	ld a, [de]
+	inc a
+	jr z, .stat_exp_maxed_out
+	ld [de], a
+	inc de
+
+.no_carry_stat_exp2
+	ld a, [de]
+	add [hl]
+	ld [de], a
+.continue
 	jr nc, .no_carry_stat_exp
 	dec de
 	ld a, [de]
@@ -7039,6 +7037,26 @@ GiveExperiencePoints:
 	ld a, [de]
 	add [hl]
 	ld [de], a
+	push af
+	push hl
+	ld a, MACHO_BRACE
+	call CheckAnItem
+	jr nc, .stat_exp_awarded1
+	pop hl
+	pop af
+	jr nc, .stat_exp_awarded2
+	dec de
+	ld a, [de]
+	inc a
+	jr z, .stat_exp_maxed_out
+	ld [de], a
+	inc de
+
+.stat_exp_awarded2
+	ld a, [de]
+	add [hl]
+	ld [de], a
+.continuepokerus
 	jr nc, .stat_exp_awarded
 	dec de
 	ld a, [de]
@@ -7047,6 +7065,16 @@ GiveExperiencePoints:
 	ld [de], a
 	inc de
 	jr .stat_exp_awarded
+
+.no_carry_stat_exp1
+	pop hl
+	pop af
+	jr .continue
+
+.stat_exp_awarded1
+	pop hl
+	pop af
+	jr .continuepokerus
 
 .stat_exp_maxed_out
 	ld a, $ff
@@ -7059,6 +7087,13 @@ GiveExperiencePoints:
 	inc de
 	dec c
 	jr nz, .stat_exp_loop
+	pop bc
+	ld hl, MON_LEVEL
+	add hl, bc
+	ld a, [hl]
+	cp MAX_LEVEL
+	jp nc, .next_mon
+	push bc
 	xor a
 	ldh [hMultiplicand + 0], a
 	ldh [hMultiplicand + 1], a
@@ -7267,7 +7302,6 @@ GiveExperiencePoints:
 	ld [wApplyStatLevelMultipliersToEnemy], a
 	call ApplyStatLevelMultiplierOnAllStats
 	callfar ApplyStatusEffectOnPlayerStats
-	callfar BadgeStatBoosts
 	callfar UpdatePlayerHUD
 	call EmptyBattleTextbox
 	call LoadTilemapToTempTilemap
@@ -7275,7 +7309,6 @@ GiveExperiencePoints:
 	ldh [hBGMapMode], a
 
 .skip_active_mon_update
-	farcall LevelUpHappinessMod
 	ld a, [wCurBattleMon]
 	ld b, a
 	ld a, [wCurPartyMon]
@@ -7314,6 +7347,9 @@ GiveExperiencePoints:
 	ld b, a
 
 .level_loop
+	push bc
+	farcall LevelUpHappinessMod
+	pop bc
 	inc b
 	ld a, b
 	ld [wCurPartyLevel], a
@@ -7350,38 +7386,10 @@ GiveExperiencePoints:
 .done
 	jp ResetBattleParticipants
 
-.EvenlyDivideExpAmongParticipants:
-; count number of battle participants
-	ld a, [wBattleParticipantsNotFainted]
-	ld b, a
-	ld c, PARTY_LENGTH
-	ld d, 0
-.count_loop
-	xor a
-	srl b
-	adc d
-	ld d, a
-	dec c
-	jr nz, .count_loop
-	cp 2
-	ret c
-
-	ld [wTempByteValue], a
-	ld hl, wEnemyMonBaseStats
-	ld c, wEnemyMonEnd - wEnemyMonBaseStats
-.base_stat_division_loop
-	xor a
-	ldh [hDividend + 0], a
-	ld a, [hl]
-	ldh [hDividend + 1], a
-	ld a, [wTempByteValue]
-	ldh [hDivisor], a
-	ld b, 2
-	call Divide
-	ldh a, [hQuotient + 3]
-	ld [hli], a
-	dec c
-	jr nz, .base_stat_division_loop
+CheckAnItem:
+	ld [wCurItem], a
+	ld hl, wNumItems
+	call CheckItem
 	ret
 
 BoostExp:
@@ -8123,14 +8131,6 @@ InitEnemyTrainer:
 	callfar GetTrainerAttributes
 	callfar ReadTrainerParty
 
-	; RIVAL1's first mon has no held item
-	ld a, [wTrainerClass]
-	cp RIVAL1
-	jr nz, .ok
-	xor a
-	ld [wOTPartyMon1Item], a
-
-.ok
 	ld de, vTiles2
 	callfar GetTrainerPic
 	xor a
@@ -8616,6 +8616,23 @@ BattleEnd_HandleRoamMons:
 	ld [hl], MAP_N_A
 	call GetRoamMonSpecies
 	ld [hl], 0
+	ld a, [wBuffer1]
+	cp RAIKOU
+	jr z, .caught_raikou
+	cp ENTEI
+	jr z, .caught_entei
+	ret
+
+.caught_raikou
+	ld de, EVENT_CAUGHT_RAIKOU
+	ld b, SET_FLAG
+	call EventFlagAction
+	ret
+
+.caught_entei
+	ld de, EVENT_CAUGHT_ENTEI
+	ld b, SET_FLAG
+	call EventFlagAction
 	ret
 
 .not_roaming

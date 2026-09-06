@@ -76,10 +76,36 @@ ChangeHappiness:
 	cp $64 ; why not $80?
 	pop de
 
+	ld a, [wCurItem]
+	push af
+	push hl
+	ld a, SOETHE_BELL
+	ld [wCurItem], a
+	ld hl, wNumItems
+	call CheckItem
+	jr c, .SoetheBell
+	pop hl
+	pop af
+	ld [wCurItem], a
+
 	ld a, [de]
 	jr nc, .negative
 	add [hl]
 	jr nc, .done
+	ld a, -1
+	jr .done
+
+.SoetheBell
+	pop hl
+	pop af
+	ld [wCurItem], a
+	ld a, [de]
+	jr nc, .negative
+	add [hl]
+	jr c, .SkipSoethe
+	add 1
+	jr nc, .done
+.SkipSoethe
 	ld a, -1
 	jr .done
 
@@ -105,14 +131,7 @@ ChangeHappiness:
 INCLUDE "data/events/happiness_changes.asm"
 
 StepHappiness::
-; Raise the party's happiness by 1 point every other step cycle.
-
-	ld hl, wHappinessStepCount
-	ld a, [hl]
-	inc a
-	and 1
-	ld [hl], a
-	ret nz
+; Raise the party's happiness by 1 point every step cycle.
 
 	ld de, wPartyCount
 	ld a, [de]
@@ -193,22 +212,31 @@ DayCareStep::
 	dec [hl]
 	ret nz
 
+	push af
+	push hl
+	ld a, OVAL_CHARM
+	ld [wCurItem], a
+	ld hl, wNumItems
+	call CheckItem
+	jr c, .OvalCharm
+	pop hl
+	pop af
 	call Random
 	ld [hl], a
 	callfar CheckBreedmonCompatibility
 	ld a, [wBreedingCompatibility]
 	cp 230
-	ld b, 31 percent + 1
+	ld b, 70 percent + 1
 	jr nc, .okay
 	ld a, [wBreedingCompatibility]
 	cp 170
-	ld b, 16 percent
+	ld b, 50 percent
 	jr nc, .okay
 	ld a, [wBreedingCompatibility]
 	cp 110
-	ld b, 12 percent
+	ld b, 50 percent
 	jr nc, .okay
-	ld b, 4 percent
+	ld b, 20 percent
 
 .okay
 	call Random
@@ -218,3 +246,24 @@ DayCareStep::
 	res DAYCAREMAN_MONS_COMPATIBLE_F, [hl]
 	set DAYCAREMAN_HAS_EGG_F, [hl]
 	ret
+
+.OvalCharm
+	pop hl
+	pop af
+	call Random
+	ld [hl], a
+	callfar CheckBreedmonCompatibility
+	ld a, [wBreedingCompatibility]
+	cp 230
+	ld b, 88 percent + 1
+	jr nc, .okay
+	ld a, [wBreedingCompatibility]
+	cp 170
+	ld b, 80 percent
+	jr nc, .okay
+	ld a, [wBreedingCompatibility]
+	cp 110
+	ld b, 80 percent
+	jr nc, .okay
+	ld b, 40 percent
+	jr .okay

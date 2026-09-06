@@ -183,6 +183,11 @@ DoEggStep::
 	cp EGG
 	jr nz, .next
 	dec [hl]
+	jr z, .skip_double
+	jr .CheckFlameBody
+.double
+	dec [hl]
+.skip_double
 	jr nz, .next
 	ld a, 1
 	and a
@@ -194,6 +199,47 @@ DoEggStep::
 	add hl, de
 	pop de
 	jr .loop
+
+.CheckFlameBody
+	push hl
+	push de
+	push bc
+	ld a, MAGBY
+	call CheckMon
+	jr c, .return
+	ld a, MAGMAR
+	call CheckMon
+	jr c, .return
+	ld a, SLUGMA
+	call CheckMon
+	jr c, .return
+	ld a, MAGCARGO
+	call CheckMon
+	jr c, .return
+	ld a, PONYTA
+	call CheckMon
+	jr c, .return
+  ld a, RAPIDASH
+	call CheckMon
+	jr c, .return
+  ld a, MOLTRES
+	call CheckMon
+	jr c, .return
+	pop bc
+	pop de
+	pop hl
+	jr .skip_double
+.return
+	pop bc
+	pop de
+	pop hl
+	jr .double
+
+CheckMon:
+	ld hl, wPartySpecies
+	ld de, 1
+	call IsInArray
+	ret
 
 OverworldHatchEgg::
 	call RefreshScreen
@@ -550,7 +596,7 @@ GetHeritableMoves:
 	ld hl, wBreedMon2Moves
 	ld a, [wBreedMon1Species]
 	cp DITTO
-	jr z, .ditto1
+	ret z
 	ld a, [wBreedMon2Species]
 	cp DITTO
 	jr z, .ditto2
@@ -560,47 +606,8 @@ GetHeritableMoves:
 	ld hl, wBreedMon1Moves
 	ret
 
-.ditto1
-	ld a, [wCurPartySpecies]
-	push af
-	ld a, [wBreedMon2Species]
-	ld [wCurPartySpecies], a
-	ld a, [wBreedMon2DVs]
-	ld [wTempMonDVs], a
-	ld a, [wBreedMon2DVs + 1]
-	ld [wTempMonDVs + 1], a
-	ld a, TEMPMON
-	ld [wMonType], a
-	predef GetGender
-	jr c, .inherit_mon2_moves
-	jr nz, .inherit_mon2_moves
-	jr .inherit_mon1_moves
-
 .ditto2
-	ld a, [wCurPartySpecies]
-	push af
-	ld a, [wBreedMon1Species]
-	ld [wCurPartySpecies], a
-	ld a, [wBreedMon1DVs]
-	ld [wTempMonDVs], a
-	ld a, [wBreedMon1DVs + 1]
-	ld [wTempMonDVs + 1], a
-	ld a, TEMPMON
-	ld [wMonType], a
-	predef GetGender
-	jr c, .inherit_mon1_moves
-	jr nz, .inherit_mon1_moves
-
-.inherit_mon2_moves
-	ld hl, wBreedMon2Moves
-	pop af
-	ld [wCurPartySpecies], a
-	ret
-
-.inherit_mon1_moves
 	ld hl, wBreedMon1Moves
-	pop af
-	ld [wCurPartySpecies], a
 	ret
 
 GetBreedmonMovePointer:
@@ -620,12 +627,13 @@ GetBreedmonMovePointer:
 	ret
 
 GetEggFrontpic:
-; BUG: A hatching Unown egg would not show the right letter (see docs/bugs_and_glitches.md)
+; BUGfixed: A hatching Unown egg would not show the right letter (see docs/bugs_and_glitches.md)
 	push de
 	ld [wCurPartySpecies], a
 	ld [wCurSpecies], a
 	call GetBaseData
-	ld hl, wBattleMonDVs
+	ld a, MON_DVS
+	call GetPartyParamLocation
 	predef GetUnownLetter
 	pop de
 	predef_jump GetMonFrontpic
@@ -635,7 +643,8 @@ GetHatchlingFrontpic:
 	ld [wCurPartySpecies], a
 	ld [wCurSpecies], a
 	call GetBaseData
-	ld hl, wBattleMonDVs
+	ld a, MON_DVS
+	call GetPartyParamLocation
 	predef GetUnownLetter
 	pop de
 	predef_jump GetAnimatedFrontpic
