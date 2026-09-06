@@ -146,10 +146,10 @@ LoadMetatiles::
 	ld e, l
 	ld d, h
 	; Set hl to the address of the current metatile data ([wTilesetBlocksAddress] + (a) tiles).
-; BUG: LoadMetatiles wraps around past 128 blocks (see docs/bugs_and_glitches.md)
-	add a
+; BUGfixed: LoadMetatiles wraps around past 128 blocks (see docs/bugs_and_glitches.md)
 	ld l, a
 	ld h, 0
+	add hl, hl
 	add hl, hl
 	add hl, hl
 	add hl, hl
@@ -366,14 +366,6 @@ CheckIndoorMap::
 	cp GATE
 	ret
 
-CheckUnknownMap:: ; unreferenced
-	cp INDOOR
-	ret z
-	cp GATE
-	ret z
-	cp ENVIRONMENT_5
-	ret
-
 LoadMapAttributes::
 	call CopyMapPartialAndAttributes
 	call SwitchToMapScriptsBank
@@ -581,13 +573,14 @@ ReadObjectEvents::
 	ld a, [wCurMapObjectEventCount]
 	call CopyMapObjectEvents
 
-; get NUM_OBJECTS - [wCurMapObjectEventCount]
-; BUG: ReadObjectEvents overflows into wObjectMasks (see docs/bugs_and_glitches.md)
+; get NUM_OBJECTS - [wCurMapObjectEventCount] - 1
+; BUGfixed: ReadObjectEvents overflows into wObjectMasks (see docs/bugs_and_glitches.md)
 	ld a, [wCurMapObjectEventCount]
 	ld c, a
-	ld a, NUM_OBJECTS
+	ld a, NUM_OBJECTS - 1
 	sub c
 	jr z, .skip
+	jr c, .skip
 
 	; could have done "inc hl" instead
 	ld bc, 1
@@ -1330,13 +1323,6 @@ UpdateBGMapColumn::
 	ldh [hBGMapTileCount], a
 	ret
 
-ClearBGMapBuffer:: ; unreferenced
-	ld hl, wBGMapBuffer
-	ld bc, wBGMapBufferEnd - wBGMapBuffer
-	xor a
-	call ByteFill
-	ret
-
 LoadTilesetGFX::
 	ld hl, wTilesetAddress
 	ld a, [hli]
@@ -1927,6 +1913,7 @@ CloseSubmenu::
 ExitAllMenus::
 	call ClearBGPalettes
 	call Call_ExitMenu
+ExitFlyMap::
 	call ReloadTilesetAndPalettes
 	call UpdateSprites
 	call GSReloadPalettes
@@ -2065,11 +2052,6 @@ SwitchToAnyMapAttributesBank::
 	rst Bankswitch
 	ret
 
-GetMapAttributesBank:: ; unreferenced
-	ld a, [wMapGroup]
-	ld b, a
-	ld a, [wMapNumber]
-	ld c, a
 GetAnyMapAttributesBank::
 	push hl
 	push de
