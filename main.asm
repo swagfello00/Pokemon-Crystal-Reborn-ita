@@ -34,7 +34,6 @@ INCLUDE "engine/items/items.asm"
 INCLUDE "engine/overworld/player_step.asm"
 INCLUDE "engine/battle/anim_hp_bar.asm"
 INCLUDE "engine/pokemon/move_mon.asm"
-INCLUDE "engine/pokemon/bills_pc_top.asm"
 INCLUDE "engine/pokemon/breedmon_level_growth.asm"
 INCLUDE "engine/events/bug_contest/caught_mon.asm"
 INCLUDE "engine/items/item_effects.asm"
@@ -44,7 +43,6 @@ INCLUDE "engine/pokemon/knows_move.asm"
 
 SECTION "bank4", ROMX
 
-INCLUDE "engine/items/pack.asm"
 INCLUDE "engine/overworld/time.asm"
 INCLUDE "engine/items/tmhm2.asm"
 INCLUDE "engine/menus/naming_screen.asm"
@@ -134,6 +132,7 @@ INCLUDE "engine/battle/trainer_huds.asm"
 INCLUDE "data/trainers/class_names.asm"
 INCLUDE "engine/battle/ai/redundant.asm"
 INCLUDE "engine/events/move_deleter.asm"
+INCLUDE "engine/events/move_relearner.asm"
 INCLUDE "engine/link/mystery_gift_2.asm"
 INCLUDE "engine/items/tmhm.asm"
 INCLUDE "engine/pokemon/print_move_description.asm"
@@ -149,7 +148,6 @@ INCLUDE "engine/battle/effect_commands.asm"
 
 SECTION "Enemy Trainers", ROMX
 
-INCLUDE "engine/battle/ai/items.asm"
 INCLUDE "engine/battle/ai/scoring.asm"
 INCLUDE "engine/battle/read_trainer_attributes.asm"
 INCLUDE "engine/battle/read_trainer_party.asm"
@@ -163,9 +161,9 @@ INCLUDE "data/battle/effect_command_pointers.asm"
 
 SECTION "bank10", ROMX
 
-INCLUDE "engine/pokedex/pokedex.asm"
 INCLUDE "data/moves/moves.asm"
 INCLUDE "engine/pokemon/evolve.asm"
+INCLUDE "engine/battle/ai/items.asm"
 
 
 SECTION "bank11", ROMX
@@ -230,6 +228,8 @@ INCLUDE "mobile/print_opp_message.asm"
 INCLUDE "engine/battle/check_battle_scene.asm"
 INCLUDE "engine/movie/gbc_only.asm"
 INCLUDE "engine/events/poke_seer.asm"
+INCLUDE "data/pokemon/names.asm"
+INCLUDE "data/pokemon/unused_pic_banks.asm"
 
 
 SECTION "bank14", ROMX
@@ -249,10 +249,7 @@ INCLUDE "engine/link/init_list.asm"
 INCLUDE "engine/pokemon/experience.asm"
 INCLUDE "engine/pokemon/switchpartymons.asm"
 INCLUDE "engine/gfx/load_pics.asm"
-INCLUDE "engine/pokemon/move_mon_wo_mail.asm"
 INCLUDE "data/pokemon/base_stats.asm"
-INCLUDE "data/pokemon/names.asm"
-INCLUDE "data/pokemon/unused_pic_banks.asm"
 
 
 SECTION "Crystal Phone Text", ROMX
@@ -460,7 +457,6 @@ INCLUDE "engine/events/print_unown_2.asm"
 INCLUDE "engine/games/card_flip.asm"
 INCLUDE "engine/games/unown_puzzle.asm"
 INCLUDE "engine/games/memory_game.asm"
-INCLUDE "engine/pokemon/bills_pc.asm"
 
 
 SECTION "bank39", ROMX
@@ -489,7 +485,7 @@ SECTION "bank3F", ROMX
 INCLUDE "engine/tilesets/tileset_anims.asm"
 INCLUDE "engine/events/npc_trade.asm"
 INCLUDE "engine/events/mom_phone.asm"
-
+INCLUDE "engine/events/tradeback_npc.asm"
 
 SECTION "mobile40", ROMX
 
@@ -697,6 +693,28 @@ SECTION "Crystal Events", ROMX
 
 ;INCLUDE "engine/events/battle_tower/load_trainer.asm"
 INCLUDE "engine/events/odd_egg.asm"
+
+
+SECTION "Newbox", ROMX
+
+INCLUDE "engine/pc/bills_pc.asm"
+INCLUDE "engine/pc/bills_pc_ui.asm"
+
+
+SECTION "Prism tilemap copy functions", ROMX
+
+INCLUDE "engine/gfx/copy_tilemap_at_once.asm"
+
+
+SECTION "VWF", ROMX
+
+INCLUDE "engine/gfx/vwf.asm"
+
+
+SECTION "bank78", ROMX
+
+INCLUDE "engine/items/pack.asm"
+INCLUDE "engine/pokedex/pokedex.asm"
 
 
 SECTION "Stadium 2 Checksums", ROMX[$7DE0], BANK[$7F]
