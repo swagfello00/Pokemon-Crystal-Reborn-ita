@@ -21,6 +21,7 @@ CianwoodPharmacist:
 	promptbutton
 	giveitem SECRETPOTION
 	writetext ReceivedSecretpotionText
+	waitsfx
 	playsound SFX_KEY_ITEM
 	waitsfx
 	itemnotify

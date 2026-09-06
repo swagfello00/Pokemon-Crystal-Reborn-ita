@@ -64,6 +64,8 @@ BurnedTowerRivalBattleScript:
 	iftrue .totodile
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue .chikorita
+	checkevent EVENT_KANTO_STARTERS
+	iftrue .charmander
 	winlosstext BurnedTowerRival_WinText, BurnedTowerRival_LossText
 	setlasttalked BURNEDTOWER1F_RIVAL
 	loadtrainer RIVAL1, RIVAL1_3_TOTODILE
@@ -73,6 +75,8 @@ BurnedTowerRivalBattleScript:
 	sjump .returnfrombattle
 
 .totodile
+	checkevent EVENT_KANTO_STARTERS
+	iftrue .squirtle
 	winlosstext BurnedTowerRival_WinText, BurnedTowerRival_LossText
 	setlasttalked BURNEDTOWER1F_RIVAL
 	loadtrainer RIVAL1, RIVAL1_3_CHIKORITA
@@ -82,9 +86,38 @@ BurnedTowerRivalBattleScript:
 	sjump .returnfrombattle
 
 .chikorita
+	checkevent EVENT_KANTO_STARTERS
+	iftrue .bulbasaur
 	winlosstext BurnedTowerRival_WinText, BurnedTowerRival_LossText
 	setlasttalked BURNEDTOWER1F_RIVAL
 	loadtrainer RIVAL1, RIVAL1_3_CYNDAQUIL
+	startbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
+	sjump .returnfrombattle
+
+.charmander
+	winlosstext BurnedTowerRival_WinText, BurnedTowerRival_LossText
+	setlasttalked BURNEDTOWER1F_RIVAL
+	loadtrainer RIVAL1, RIVAL1_3_SQUIRTLE
+	startbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
+	sjump .returnfrombattle
+
+.squirtle
+	winlosstext BurnedTowerRival_WinText, BurnedTowerRival_LossText
+	setlasttalked BURNEDTOWER1F_RIVAL
+	loadtrainer RIVAL1, RIVAL1_3_BULBASAUR
+	startbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
+	sjump .returnfrombattle
+
+.bulbasaur
+	winlosstext BurnedTowerRival_WinText, BurnedTowerRival_LossText
+	setlasttalked BURNEDTOWER1F_RIVAL
+	loadtrainer RIVAL1, RIVAL1_3_CHARMANDER
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle

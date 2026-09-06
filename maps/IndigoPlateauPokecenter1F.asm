@@ -93,6 +93,8 @@ PlateauRivalBattleCommon:
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue .Chikorita
 	; Cyndaquil
+	checkevent EVENT_KANTO_STARTERS
+	iftrue .Charmander
 	winlosstext PlateauRivalWinText, PlateauRivalLoseText
 	setlasttalked INDIGOPLATEAUPOKECENTER1F_RIVAL
 	loadtrainer RIVAL2, RIVAL2_2_TOTODILE
@@ -102,6 +104,8 @@ PlateauRivalBattleCommon:
 	sjump PlateauRivalPostBattle
 
 .Totodile:
+	checkevent EVENT_KANTO_STARTERS
+	iftrue .Squirtle
 	winlosstext PlateauRivalWinText, PlateauRivalLoseText
 	setlasttalked INDIGOPLATEAUPOKECENTER1F_RIVAL
 	loadtrainer RIVAL2, RIVAL2_2_CHIKORITA
@@ -111,9 +115,38 @@ PlateauRivalBattleCommon:
 	sjump PlateauRivalPostBattle
 
 .Chikorita:
+	checkevent EVENT_KANTO_STARTERS
+	iftrue .Bulbasaur
 	winlosstext PlateauRivalWinText, PlateauRivalLoseText
 	setlasttalked INDIGOPLATEAUPOKECENTER1F_RIVAL
 	loadtrainer RIVAL2, RIVAL2_2_CYNDAQUIL
+	startbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
+	sjump PlateauRivalPostBattle
+
+.Charmander
+	winlosstext PlateauRivalWinText, PlateauRivalLoseText
+	setlasttalked INDIGOPLATEAUPOKECENTER1F_RIVAL
+	loadtrainer RIVAL2, RIVAL2_2_SQUIRTLE
+	startbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
+	sjump PlateauRivalPostBattle
+
+.Squirtle:
+	winlosstext PlateauRivalWinText, PlateauRivalLoseText
+	setlasttalked INDIGOPLATEAUPOKECENTER1F_RIVAL
+	loadtrainer RIVAL2, RIVAL2_2_BULBASAUR
+	startbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
+	sjump PlateauRivalPostBattle
+
+.Bulbasaur:
+	winlosstext PlateauRivalWinText, PlateauRivalLoseText
+	setlasttalked INDIGOPLATEAUPOKECENTER1F_RIVAL
+	loadtrainer RIVAL2, RIVAL2_2_CHARMANDER
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
@@ -319,4 +352,4 @@ IndigoPlateauPokecenter1F_MapEvents:
 	object_event 11, 11, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IndigoPlateauPokecenter1FCooltrainerMScript, -1
 	object_event 16,  9, SPRITE_RIVAL, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_INDIGO_PLATEAU_POKECENTER_RIVAL
 	object_event  1,  9, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, TeleportGuyScript, EVENT_TELEPORT_GUY
-	object_event  0,  9, SPRITE_JYNX, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, AbraScript, EVENT_TELEPORT_GUY
+	object_event  0,  9, SPRITE_ABRA, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, AbraScript, EVENT_TELEPORT_GUY

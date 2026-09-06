@@ -17,7 +17,66 @@ VermilionCityFlypointCallback:
 	endcallback
 
 VermilionCityTeacherScript:
-	jumptextfaceplayer VermilionCityTeacherText
+	faceplayer
+	opentext
+	checkevent EVENT_GOT_SQUIRTLE
+	iftrue .GotSquirtle
+	checkevent EVENT_KANTO_STARTERS
+	iftrue .Totodile
+	writetext TakeThisSquirtleText
+	yesorno
+	iffalse .Refused
+	writetext SquirtleImCountingOnYouText
+	promptbutton
+	waitsfx
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, .NoRoom
+	writetext ReceivedSquirtleText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	givepoke SQUIRTLE, 5, BERRY
+	setevent EVENT_GOT_SQUIRTLE
+	writetext SquirtleMayEvolveText
+	waitbutton
+	closetext
+	end
+
+.Totodile
+	writetext TakeThisTotodileText
+	yesorno
+	iffalse .Refused
+	writetext SquirtleImCountingOnYouText
+	promptbutton
+	waitsfx
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, .NoRoom
+	writetext ReceivedTotodileText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	givepoke TOTODILE, 5, BERRY
+	setevent EVENT_GOT_SQUIRTLE
+	writetext SquirtleMayEvolveText
+	waitbutton
+	closetext
+	end
+
+.NoRoom:
+	writetext SquirtlePartyFullText
+	waitbutton
+	closetext
+	end
+
+.Refused:
+	writetext NoSquirtleText
+	waitbutton
+	closetext
+	end
+
+.GotSquirtle:
+	writetext SquirtlePopWontWorkText
+	waitbutton
+	closetext
+	end
 
 VermilionMachopOwner:
 	jumptextfaceplayer VermilionMachopOwnerText
@@ -52,7 +111,7 @@ VermilionSnorlax:
 	pause 15
 	cry SNORLAX
 	closetext
-	loadvar VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
+	loadvar VAR_BATTLETYPE, BATTLETYPE_FORCEITEM2
 	loadwildmon SNORLAX, 50
 	startbattle
 	disappear VERMILIONCITY_BIG_SNORLAX
@@ -122,17 +181,6 @@ VermilionCityMartSign:
 
 VermilionCityHiddenFullHeal:
 	hiddenitem FULL_HEAL, EVENT_VERMILION_CITY_HIDDEN_FULL_HEAL
-
-VermilionCityTeacherText:
-	text "Il PORTO di"
-	line "ARANCIOPOLI è la"
-	cont "finestra sul mare"
-	cont "di KANTO."
-
-	para "Di qui partono"
-	line "navi di lusso per"
-	cont "tutto il mondo."
-	done
 
 VermilionMachopOwnerText:
 	text "Il mio #MON"
@@ -232,7 +280,7 @@ VermilionCityBadgeGuyBattleEdgeText:
 	line "nelle lotte."
 
 	para "Certamente anche"
-	line "le MEDAGLIE di"
+	line "nelle PALESTRE di"
 	cont "KANTO ti"
 	cont "saranno utili."
 	done
@@ -269,6 +317,91 @@ VermilionCityPortSignText:
 	line "INGRESSO"
 	done
 
+TakeThisSquirtleText:
+	text "Hai battuto Lance?"
+	
+	para "Allora sei il"
+	line "nuovo campione!"
+
+	para "Prenderesti questo"
+	line "SQUIRTLE?"
+	
+	para "Non fa altro che"
+	line "dispetti."
+	
+	para "Un allenatore come"
+	line "te non avrebbe"
+	cont "problemi ad"
+	cont "occuparsene."
+	
+	para "Lo vuoi tu?"
+	done
+
+TakeThisTotodileText:
+	text "Hai battuto Lance?"
+	
+	para "Allora sei il"
+	line "nuovo campione!"
+
+	para "Prenderesti questo"
+	line "TOTODILE?"
+	
+	para "Non fa altro che"
+	line "dispetti."
+	
+	para "Un allenatore come"
+	line "te non avrebbe"
+	cont "problemi ad"
+	cont "occuparsene."
+	
+	para "Lo vuoi tu?"
+	done
+
+SquirtleImCountingOnYouText:
+	text "Sapevo che non mi"
+	line "avresti deluso!"
+
+	para "Allora conto"
+	line "su di te."
+	done
+
+ReceivedSquirtleText:
+	text "<PLAYER> riceve"
+	line "SQUIRTLE!"
+	done
+
+ReceivedTotodileText:
+	text "<PLAYER> riceve"
+	line "TOTODILE!"
+	done
+
+SquirtleMayEvolveText:
+	text "Mi raccomando,"
+	line "trattalo bene."
+	done
+
+SquirtlePartyFullText:
+	text "Ah, ma non hai"
+	line "posto per altri"
+	cont "#MON!"
+	done
+
+NoSquirtleText:
+	text "Oh… E ora come"
+	line "faccio?"
+	done
+
+SquirtlePopWontWorkText:
+	text "Il PORTO di"
+	line "ARANCIOPOLI è la"
+	cont "finestra sul mare"
+	cont "di KANTO."
+
+	para "Di qui partono"
+	line "navi di lusso per"
+	cont "tutto il mondo."
+	done
+
 VermilionCity_MapEvents:
 	db 0, 0 ; filler
 
@@ -299,7 +432,7 @@ VermilionCity_MapEvents:
 	def_object_events
 	object_event 18,  9, SPRITE_TEACHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VermilionCityTeacherScript, -1
 	object_event 23,  6, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VermilionMachopOwner, -1
-	object_event 26,  7, SPRITE_MACHOP, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, VermilionMachop, -1
+	object_event 26,  7, SPRITE_MACHOP, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_SILVER, OBJECTTYPE_SCRIPT, 0, VermilionMachop, -1
 	object_event 14, 16, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, VermilionCitySuperNerdScript, -1
 	object_event 34,  8, SPRITE_BIG_SNORLAX, SPRITEMOVEDATA_BIGDOLLSYM, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VermilionSnorlax, EVENT_VERMILION_CITY_SNORLAX
 	object_event 31, 12, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, VermilionGymBadgeGuy, -1

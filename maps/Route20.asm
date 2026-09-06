@@ -2,6 +2,7 @@
 	const ROUTE20_SWIMMER_GIRL1
 	const ROUTE20_SWIMMER_GIRL2
 	const ROUTE20_SWIMMER_GUY
+	const ROUTE20_POKE_BALL
 
 Route20_MapScripts:
 	def_scene_scripts
@@ -12,7 +13,7 @@ Route20_MapScripts:
 Route20ClearRocksCallback:
 	setevent EVENT_CINNABAR_ROCKS_CLEARED
 	endcallback
-
+	
 TrainerSwimmerfNicole:
 	trainer SWIMMERF, NICOLE, EVENT_BEAT_SWIMMERF_NICOLE, SwimmerfNicoleSeenText, SwimmerfNicoleBeatenText, 0, .Script
 
@@ -48,6 +49,9 @@ TrainerSwimmermCameron:
 
 CinnabarGymSign:
 	jumptext CinnabarGymSignText
+
+Route20WaterStone:
+	itemball WATER_STONE
 
 SwimmerfNicoleSeenText:
 	text "In acqua il mio"
@@ -116,6 +120,7 @@ Route20_MapEvents:
 
 	def_warp_events
 	warp_event 38,  7, SEAFOAM_GYM, 1
+	warp_event 30,  5, SEAFOAM_ISLANDS_1F, 1
 
 	def_coord_events
 
@@ -126,3 +131,4 @@ Route20_MapEvents:
 	object_event 52,  8, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerSwimmerfNicole, -1
 	object_event 45, 13, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerSwimmerfLori, -1
 	object_event 12, 13, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerSwimmermCameron, -1
+	object_event 32,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route20WaterStone, EVENT_ROUTE_20_WATER_STONE

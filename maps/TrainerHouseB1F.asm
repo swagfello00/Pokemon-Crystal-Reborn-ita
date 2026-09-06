@@ -14,6 +14,8 @@ TrainerHouseB1FNoopScene:
 TrainerHouseReceptionistScript:
 	turnobject PLAYER, UP
 	opentext
+	checkitem BLUE_CARD
+	iffalse .NoBlueCard
 	checkflag ENGINE_FOUGHT_IN_TRAINER_HALL_TODAY
 	iftrue .FoughtTooManyTimes
 	writetext TrainerHouseB1FIntroText
@@ -44,19 +46,50 @@ TrainerHouseReceptionistScript:
 	iffalse .NoSpecialBattle
 	winlosstext TrainerHouseB1FCalBeatenText, 0
 	setlasttalked TRAINERHOUSEB1F_CHRIS
+	checkevent EVENT_KANTO_STARTERS
+	iftrue .KantoStarters1
 	loadtrainer CAL, CAL2
+.continue1
 	startbattle
 	reloadmapafterbattle
 	iffalse .End
 .NoSpecialBattle:
 	winlosstext TrainerHouseB1FCalBeatenText, 0
 	setlasttalked TRAINERHOUSEB1F_CHRIS
+	checkevent EVENT_KANTO_STARTERS
+	iftrue .KantoStarters2
 	loadtrainer CAL, CAL3
+.continue2
 	startbattle
 	reloadmapafterbattle
 .End:
 	applymovement PLAYER, Movement_ExitTrainerHouseBattleRoom
+	turnobject PLAYER, UP
+	opentext
+	writetext TrainerHouseWinText
+	waitbutton
+	readvar VAR_BLUECARDBALANCE
+	ifgreater 252, .CardFull
+	addval 2
+.continue
+	closetext
+	writevar VAR_BLUECARDBALANCE
+	applymovement PLAYER, Movement_TrainerHouseTurnBack
 	end
+
+.KantoStarters1
+	loadtrainer CAL, CAL5
+	sjump .continue1
+
+.KantoStarters2
+	loadtrainer CAL, CAL6
+	sjump .continue2
+
+.CardFull
+	farwritetext Text_CardFull
+	waitbutton
+	setval 255
+	sjump .continue
 
 .Declined:
 	writetext TrainerHouseB1FPleaseComeAgainText
@@ -67,6 +100,13 @@ TrainerHouseReceptionistScript:
 
 .FoughtTooManyTimes:
 	writetext TrainerHouseB1FSecondChallengeDeniedText
+	waitbutton
+	closetext
+	applymovement PLAYER, Movement_TrainerHouseTurnBack
+	end
+
+.NoBlueCard
+	writetext NoBlueCardTrainerHouseText
 	waitbutton
 	closetext
 	applymovement PLAYER, Movement_TrainerHouseTurnBack
@@ -101,13 +141,38 @@ Movement_ExitTrainerHouseBattleRoom:
 	step RIGHT
 	step RIGHT
 	step RIGHT
-	step RIGHT
 	step_end
 
 Movement_TrainerHouseTurnBack:
 	step RIGHT
-	turn_head LEFT
 	step_end
+
+NoBlueCardTrainerHouseText:
+	text "Spiacente, non è"
+	line "possibile accedere"
+	
+	para "alla SALA"
+	line "ALLENAMENTI senza"
+	cont "la CARTA BLU."
+	
+	para "Puoi procurartela"
+	line "alla TORRE RADIO"
+	cont "di FIORDOROPOLI."
+	done
+
+TrainerHouseWinText:
+	text "Congratulazioni!"
+	
+	para "Hai vinto la sfida"
+	line "di oggi alla SALA"
+	cont "ALLENAMENTI."
+	
+	para "Tieni, questo è un"
+	line "regalo per te."
+	
+	para "Hai vinto 2 punti"
+	line "sulla CARTA BLU."
+	done
 
 TrainerHouseB1FIntroText:
 	text "Ti do il benvenuto"

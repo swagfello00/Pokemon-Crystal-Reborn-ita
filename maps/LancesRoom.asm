@@ -57,7 +57,10 @@ LancesRoomLanceScript:
 	closetext
 	winlosstext LanceBattleWinText, 0
 	setlasttalked LANCESROOM_LANCE
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .Rematch
 	loadtrainer CHAMPION, LANCE
+.continue
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
@@ -126,7 +129,65 @@ LancesRoomLanceScript:
 	special FadeOutPalettes
 	pause 15
 	warpfacing UP, HALL_OF_FAME, 4, 13
+	checkevent EVENT_CAUGHT_RAIKOU
+	iftrue .SkipRaikou
+	readmem wRoamMon1MapGroup
+	ifnotequal GROUP_N_A, .SkipRaikou
+	special InitRoamRaikou
+.SkipRaikou
+	checkevent EVENT_CAUGHT_ENTEI
+	iftrue .SkipEntei
+	readmem wRoamMon2MapGroup
+	ifnotequal GROUP_N_A, .SkipEntei
+	special InitRoamEntei
+.SkipEntei
+	checkevent EVENT_CAUGHT_SUICUNE
+	iftrue .SkipSuicune
+	checkevent EVENT_FOUGHT_SUICUNE
+	iffalse .SkipSuicune
+	clearevent EVENT_KANTO_SUICUNE
+.SkipSuicune
+	checkevent EVENT_CAUGHT_MOLTRES
+	iftrue .SkipMoltres
+	clearevent EVENT_VICTORY_ROAD_MOLTRES
+.SkipMoltres
+	checkevent EVENT_CAUGHT_ARTICUNO
+	iftrue .SkipArticuno
+	clearevent EVENT_ROUTE_20_ARTICUNO
+.SkipArticuno
+	checkevent EVENT_CAUGHT_ZAPDOS
+	iftrue .SkipZapdos
+	clearevent EVENT_ROCK_TUNNEL_B1F_ZAPDOS
+.SkipZapdos
+	checkevent EVENT_CAUGHT_HO_OH
+	iftrue .SkipHooh
+	clearevent EVENT_TIN_TOWER_ROOF_HO_OH
+	clearevent EVENT_FOUGHT_HO_OH
+.SkipHooh
+	checkevent EVENT_CAUGHT_LUGIA
+	iftrue .SkipLugia
+	clearevent EVENT_WHIRL_ISLAND_LUGIA_CHAMBER_LUGIA
+	clearevent EVENT_FOUGHT_LUGIA
+.SkipLugia
+	checkevent EVENT_CAUGHT_MEWTWO
+	iftrue .SkipMewtwo
+	clearevent EVENT_SILVER_CAVE_OUTSIDE_MEWTWO
+.SkipMewtwo
+	checkevent EVENT_CAUGHT_MEW
+	iftrue .SkipMew
+	clearevent EVENT_SAFARI_ZONE_BETA_MEW
+.SkipMew
+	checkevent EVENT_CAUGHT_CELEBI
+	iftrue .SkipCelebi
+	setevent EVENT_REMATCH_CELEBI
+	setevent EVENT_ROUTE_34_ILEX_FOREST_GATE_LASS
+	clearevent EVENT_ILEX_FOREST_LASS
+.SkipCelebi
 	end
+
+.Rematch
+	loadtrainer CHAMPION, LANCE2
+	sjump .continue
 
 LancesRoom_EnterMovement:
 	step UP

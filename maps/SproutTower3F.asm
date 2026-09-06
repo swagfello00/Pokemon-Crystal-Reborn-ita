@@ -250,11 +250,12 @@ SageLiFlashExplanationText:
 	text "FLASH illumina"
 	line "anche i luoghi"
 	cont "più oscuri."
+	
+	para "Usa l'opzione"
+	line "SEL per attivarla"
+	cont "fuori dalle lotte."
 
-	para "Ma per usarlo"
-	line "fuori dalla lotta,"
-
-	para "ti serve la"
+	para "Ma ti servirà la"	
 	line "MEDAGLIA della"
 	cont "PALESTRA di"
 	cont "VIOLAPOLI."

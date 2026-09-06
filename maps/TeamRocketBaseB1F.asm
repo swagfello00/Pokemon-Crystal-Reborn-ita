@@ -511,6 +511,7 @@ TeamRocketBaseB1FSecretSwitch:
 	checkevent EVENT_TURNED_OFF_SECURITY_CAMERAS
 	iftrue .SecretSwitchOff
 	writetext TeamRocketBaseB1FSecretSwitchText
+	waitsfx
 	playsound SFX_TALLY
 	waitbutton
 	closetext

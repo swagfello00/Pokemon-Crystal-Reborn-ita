@@ -13,6 +13,14 @@ CeladonGameCorner_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
+	callback MAPCALLBACK_TILES, RocketHideoutOpenCallback
+
+RocketHideoutOpenCallback:	
+	checkevent EVENT_OPENED_ROCKET_HIDEOUT
+	iffalse .end
+	changeblock 18, 0, $31
+.end
+	endcallback
 
 CeladonGameCornerClerkScript:
 	jumpstd GameCornerCoinVendorScript
@@ -74,7 +82,7 @@ CeladonGameCornerFisherScript:
 	end
 
 .coinname
-	db "GETT.@"
+	db "18 GETTONI@"
 
 .NoCoinCase:
 	writetext CeladonGameCornerFisherNoCoinCaseText
@@ -106,7 +114,16 @@ CeladonGameCornerPoster1Script:
 	jumptext CeladonGameCornerPoster1Text
 
 CeladonGameCornerPoster2Script:
-	jumptext CeladonGameCornerPoster2Text
+	opentext
+	writetext CeladonGameCornerPoster2Text
+	waitbutton
+	refreshscreen
+	playsound SFX_ENTER_DOOR
+	changeblock 18, 0, $31
+	reloadmappart
+	setevent EVENT_OPENED_ROCKET_HIDEOUT
+	closetext
+	end
 
 CeladonGameCornerLuckySlotMachineScript:
 	random 6
@@ -138,6 +155,12 @@ CeladonGameCornerSodaCanScript:
 	writetext CeladonGameCornerSodaCanText
 	waitbutton
 	special CardFlip
+	closetext
+	end
+
+CeladonGameCornerMemoryGameScript:
+	refreshscreen
+	special UnusedMemoryGame
 	closetext
 	end
 
@@ -263,7 +286,8 @@ CeladonGameCornerPoster2Text:
 	para "Sotto a questo"
 	line "poster…"
 
-	para "Non c'è nulla!"
+	para "C'è un pulsante,"
+	line "premiamolo!"
 	done
 
 CeladonGameCornerLighterText:
@@ -285,6 +309,7 @@ CeladonGameCorner_MapEvents:
 	def_warp_events
 	warp_event 14, 13, CELADON_CITY, 6
 	warp_event 15, 13, CELADON_CITY, 6
+	warp_event 19,  1, ROCKET_HIDEOUT_B1F, 1
 
 	def_coord_events
 
@@ -301,12 +326,12 @@ CeladonGameCorner_MapEvents:
 	bg_event  6,  9, BGEVENT_READ, CeladonGameCornerSodaCanScript
 	bg_event  6, 10, BGEVENT_READ, CeladonGameCornerCardFlipScript
 	bg_event  6, 11, BGEVENT_RIGHT, CeladonGameCornerCardFlipScript
-	bg_event  7,  6, BGEVENT_READ, CeladonGameCornerLuckySlotMachineScript
-	bg_event  7,  7, BGEVENT_READ, CeladonGameCornerLuckySlotMachineScript
-	bg_event  7,  8, BGEVENT_READ, CeladonGameCornerLuckySlotMachineScript
-	bg_event  7,  9, BGEVENT_READ, CeladonGameCornerLuckySlotMachineScript
-	bg_event  7, 10, BGEVENT_READ, CeladonGameCornerSlotMachineScript
-	bg_event  7, 11, BGEVENT_LEFT, CeladonGameCornerLuckySlotMachineScript
+	bg_event  7,  6, BGEVENT_READ, CeladonGameCornerMemoryGameScript
+	bg_event  7,  7, BGEVENT_READ, CeladonGameCornerMemoryGameScript
+	bg_event  7,  8, BGEVENT_READ, CeladonGameCornerMemoryGameScript
+	bg_event  7,  9, BGEVENT_READ, CeladonGameCornerMemoryGameScript
+	bg_event  7, 10, BGEVENT_READ, CeladonGameCornerMemoryGameScript
+	bg_event  7, 11, BGEVENT_LEFT, CeladonGameCornerMemoryGameScript
 	bg_event 12,  6, BGEVENT_READ, CeladonGameCornerLuckySlotMachineScript
 	bg_event 12,  7, BGEVENT_READ, CeladonGameCornerLuckySlotMachineScript
 	bg_event 12,  8, BGEVENT_READ, CeladonGameCornerLuckySlotMachineScript

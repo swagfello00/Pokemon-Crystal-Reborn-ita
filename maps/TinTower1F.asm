@@ -31,8 +31,14 @@ TinTower1FNPCsCallback:
 	iftrue .GotRainbowWing
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iffalse .FaceBeasts
-	special BeastsCheck
-	iffalse .FaceBeasts
+  checkevent EVENT_CAUGHT_RAIKOU
+  iffalse .skipraikou
+  disappear TINTOWER1F_RAIKOU
+.skipraikou
+	checkevent EVENT_CAUGHT_ENTEI
+  iffalse .skipentei
+  disappear TINTOWER1F_ENTEI
+.skipentei
 	clearevent EVENT_TIN_TOWER_1F_WISE_TRIO_2
 	setevent EVENT_TIN_TOWER_1F_WISE_TRIO_1
 .GotRainbowWing:
@@ -46,8 +52,7 @@ TinTower1FNPCsCallback:
 	checkevent EVENT_FOUGHT_SUICUNE
 	iftrue .FoughtSuicune
 	appear TINTOWER1F_SUICUNE
-	setval RAIKOU
-	special MonCheck
+	checkevent EVENT_CAUGHT_RAIKOU
 	iftrue .NoRaikou
 	appear TINTOWER1F_RAIKOU
 	sjump .CheckEntei
@@ -55,8 +60,7 @@ TinTower1FNPCsCallback:
 .NoRaikou:
 	disappear TINTOWER1F_RAIKOU
 .CheckEntei:
-	setval ENTEI
-	special MonCheck
+	checkevent EVENT_CAUGHT_ENTEI
 	iftrue .NoEntei
 	appear TINTOWER1F_ENTEI
 	sjump .BeastsDone
@@ -82,10 +86,10 @@ TinTower1FStairsCallback:
 	endcallback
 
 TinTower1FSuicuneBattleScript:
+	loadmem wBuffer1, 0
 	applymovement PLAYER, TinTower1FPlayerEntersMovement
 	pause 15
-	setval RAIKOU
-	special MonCheck
+	checkevent EVENT_CAUGHT_RAIKOU
 	iftrue .Next1 ; if player caught Raikou, it doesn't appear in Tin Tower
 	applymovement TINTOWER1F_RAIKOU, TinTower1FRaikouApproachesMovement
 	turnobject PLAYER, LEFT
@@ -97,8 +101,7 @@ TinTower1FSuicuneBattleScript:
 	playsound SFX_EXIT_BUILDING
 	waitsfx
 .Next1:
-	setval ENTEI
-	special MonCheck
+	checkevent EVENT_CAUGHT_ENTEI
 	iftrue .Next2 ; if player caught Entei, it doesn't appear in Tin Tower
 	applymovement TINTOWER1F_ENTEI, TinTower1FEnteiApproachesMovement
 	turnobject PLAYER, RIGHT
@@ -131,6 +134,10 @@ TinTower1FSuicuneBattleScript:
 	setscene SCENE_TINTOWER1F_NOOP
 	clearevent EVENT_SET_WHEN_FOUGHT_HO_OH
 	reloadmapafterbattle
+	readmem wBuffer1
+	ifnotequal SUICUNE, .continue
+	setevent EVENT_CAUGHT_SUICUNE
+.continue
 	pause 20
 	turnobject PLAYER, DOWN
 	playmusic MUSIC_MYSTICALMAN_ENCOUNTER

@@ -25,7 +25,7 @@ FuchsiaMartFisherText:
 	line "qualche ricordino"
 
 	para "della ZONA SAFARI,"
-	line "ma è chiusa…"
+	line "ma è chiusa o no?"
 	done
 
 FuchsiaMartCooltrainerFText:

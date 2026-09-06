@@ -12,6 +12,8 @@ FuchsiaGym_MapScripts:
 	def_callbacks
 
 FuchsiaGymJanineScript:
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .Rematch
 	checkflag ENGINE_SOULBADGE
 	iftrue .FightDone
 	applymovement FUCHSIAGYM_JANINE, Movement_NinjaSpin
@@ -55,6 +57,24 @@ FuchsiaGymJanineScript:
 	writetext JanineText_ApplyMyself
 	waitbutton
 	closetext
+	end
+
+.Rematch
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .FightDone
+	checkflag ENGINE_JANINE_REMATCH_DONE
+	iftrue .FightDone
+	applymovement FUCHSIAGYM_JANINE, Movement_NinjaSpin
+	faceplayer
+	opentext
+	writetext JanineText_DisappointYou
+	waitbutton
+	closetext
+	winlosstext JanineText_Rematch, 0
+	loadtrainer JANINE, JANINE1
+	startbattle
+	reloadmapafterbattle
+	setflag ENGINE_JANINE_REMATCH_DONE
 	end
 
 LassAliceScript:
@@ -196,6 +216,8 @@ CamperBarryScript:
 FuchsiaGymGuideScript:
 	faceplayer
 	opentext
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .FuchsiaGymGuideRematchScript
 	checkevent EVENT_BEAT_JANINE
 	iftrue .FuchsiaGymGuideWinScript
 	writetext FuchsiaGymGuideText
@@ -205,6 +227,16 @@ FuchsiaGymGuideScript:
 
 .FuchsiaGymGuideWinScript:
 	writetext FuchsiaGymGuideWinText
+	waitbutton
+	closetext
+	end
+
+.FuchsiaGymGuideRematchScript:
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .FuchsiaGymGuideWinScript
+	checkflag ENGINE_JANINE_REMATCH_DONE
+	iftrue .FuchsiaGymGuideWinScript
+	writetext FuchsiaGymGuideRematchText
 	waitbutton
 	closetext
 	end
@@ -254,6 +286,12 @@ JanineText_ToughOne:
 
 	para "Eccoti la MEDAGLIA"
 	line "ANIMA."
+	done
+
+JanineText_Rematch:
+	text "NINA: Sei un"
+	line "tipo in gamba: hai"
+	cont "vinto…"
 	done
 
 Text_ReceivedSoulBadge:
@@ -382,6 +420,17 @@ FuchsiaGymGuideWinText:
 	line "lottare contro gli"
 	cont "allenatori di"
 	cont "JOHTO!"
+	done
+
+FuchsiaGymGuideRematchText:
+	text "NINA oggi è pronta"
+	line "per nuove sfide!"
+	
+	para "È a tua"
+	line "disposizione."
+	
+	para "Mostrale di che"
+	line "pasta sei fatto."
 	done
 
 FuchsiaGym_MapEvents:

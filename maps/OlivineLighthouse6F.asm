@@ -72,6 +72,10 @@ OlivineLighthouseJasmine:
 	ifequal RIGHT, .FacingRight
 	applymovement OLIVINELIGHTHOUSE6F_JASMINE, OlivineLighthouseJasmineLeavesUpMovement
 	disappear OLIVINELIGHTHOUSE6F_JASMINE
+	opentext
+	writetext AmphyAskGiftText
+	pause 30
+	closetext
 	end
 
 .FacingDown:
@@ -123,6 +127,17 @@ OlivineLighthouseAmphy:
 	special FadeInPalettes
 	special FadeOutPalettes
 	special FadeInPalettes
+	checkevent EVENT_AMPHY_LUCKY_EGG
+	iftrue .closetext
+	opentext
+	writetext AmphyGiftText
+	yesorno
+	iffalse .closetext
+	verbosegiveitem LUCKY_EGG
+	iffalse .closetext
+	setevent EVENT_AMPHY_LUCKY_EGG
+.closetext	
+	closetext
 	end
 
 OlivineLighthouse6FSuperPotion:
@@ -257,6 +272,17 @@ AmphyPaluPaluluText:
 	line "Palulu!"
 	done
 
+AmphyAskGiftText:
+	text "AMPHY gradirebbe"
+	line "ringraziarti."
+	done
+
+AmphyGiftText:
+	text "AMPHY vuole farti"
+	line "un regalo."
+	cont "Lo accetti?"
+	done
+
 OlivineLighthouse6F_MapEvents:
 	db 0, 0 ; filler
 
@@ -271,5 +297,5 @@ OlivineLighthouse6F_MapEvents:
 
 	def_object_events
 	object_event  8,  8, SPRITE_JASMINE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineLighthouseJasmine, EVENT_OLIVINE_LIGHTHOUSE_JASMINE
-	object_event  9,  8, SPRITE_MONSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, OlivineLighthouseAmphy, -1
+	object_event  9,  8, SPRITE_AMPHY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, OlivineLighthouseAmphy, -1
 	object_event  3,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, OlivineLighthouse6FSuperPotion, EVENT_OLIVINE_LIGHTHOUSE_6F_SUPER_POTION

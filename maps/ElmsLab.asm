@@ -157,10 +157,14 @@ LabTryToLeaveScript:
 	end
 
 CyndaquilPokeBallScript:
+	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
+	iftrue CyndaquilAfterLeagueScript
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue LookAtElmPokeBallScript
 	turnobject ELMSLAB_ELM, DOWN
 	refreshscreen
+	checkevent EVENT_KANTO_STARTERS
+	iftrue CharmanderPokeBallScript
 	pokepic CYNDAQUIL
 	cry CYNDAQUIL
 	waitbutton
@@ -185,12 +189,42 @@ CyndaquilPokeBallScript:
 	ifequal RIGHT, ElmDirectionsScript
 	applymovement PLAYER, AfterCyndaquilMovement
 	sjump ElmDirectionsScript
+	
+CyndaquilAfterLeagueScript:
+	refreshscreen
+	checkevent EVENT_KANTO_STARTERS
+	iftrue CharmanderAfterLeagueScript
+	pokepic CYNDAQUIL
+	cry CYNDAQUIL
+	waitbutton
+	closepokepic
+	opentext
+	writetext TakeCyndaquilAfterLeagueText
+	yesorno
+	iffalse .closetext
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, NoRoom
+	disappear ELMSLAB_POKE_BALL1
+	waitsfx
+	getmonname STRING_BUFFER_3, CYNDAQUIL
+	writetext ReceivedStarterText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	promptbutton
+	givepoke CYNDAQUIL, 5, BERRY
+.closetext
+	closetext
+	end
 
 TotodilePokeBallScript:
+	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
+	iftrue TotodileAfterLeagueScript
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue LookAtElmPokeBallScript
 	turnobject ELMSLAB_ELM, DOWN
 	refreshscreen
+	checkevent EVENT_KANTO_STARTERS
+	iftrue SquirtlePokeBallScript
 	pokepic TOTODILE
 	cry TOTODILE
 	waitbutton
@@ -214,11 +248,41 @@ TotodilePokeBallScript:
 	applymovement PLAYER, AfterTotodileMovement
 	sjump ElmDirectionsScript
 
+TotodileAfterLeagueScript:
+	refreshscreen
+	checkevent EVENT_KANTO_STARTERS
+	iftrue SquirtleAfterLeagueScript
+	pokepic TOTODILE
+	cry TOTODILE
+	waitbutton
+	closepokepic
+	opentext
+	writetext TakeTotodileAfterLeagueText
+	yesorno
+	iffalse .closetext
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, NoRoom
+	disappear ELMSLAB_POKE_BALL2
+	waitsfx
+	getmonname STRING_BUFFER_3, TOTODILE
+	writetext ReceivedStarterText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	promptbutton
+	givepoke TOTODILE, 5, BERRY
+.closetext
+	closetext
+	end
+	
 ChikoritaPokeBallScript:
+	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
+	iftrue ChikoritaAfterLeagueScript
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue LookAtElmPokeBallScript
 	turnobject ELMSLAB_ELM, DOWN
 	refreshscreen
+	checkevent EVENT_KANTO_STARTERS
+	iftrue BulbasaurPokeBallScript
 	pokepic CHIKORITA
 	cry CHIKORITA
 	waitbutton
@@ -242,6 +306,181 @@ ChikoritaPokeBallScript:
 	applymovement PLAYER, AfterChikoritaMovement
 	sjump ElmDirectionsScript
 
+ChikoritaAfterLeagueScript:
+	refreshscreen
+	checkevent EVENT_KANTO_STARTERS
+	iftrue BulbasaurAfterLeagueScript
+	pokepic CHIKORITA
+	cry CHIKORITA
+	waitbutton
+	closepokepic
+	opentext
+	writetext TakeChikoritaAfterLeagueText
+	yesorno
+	iffalse .closetext
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, NoRoom
+	disappear ELMSLAB_POKE_BALL3
+	waitsfx
+	getmonname STRING_BUFFER_3, CHIKORITA
+	writetext ReceivedStarterText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	promptbutton
+	givepoke CHIKORITA, 5, BERRY
+.closetext
+	closetext
+	end
+
+CharmanderPokeBallScript:
+	pokepic CHARMANDER
+	cry CHARMANDER
+	waitbutton
+	closepokepic
+	opentext
+	writetext TakeCharmanderText
+	yesorno
+	iffalse DidntChooseStarterScript
+	disappear ELMSLAB_POKE_BALL1
+	setevent EVENT_GOT_CYNDAQUIL_FROM_ELM
+	writetext ChoseStarterText
+	promptbutton
+	waitsfx
+	getmonname STRING_BUFFER_3, CHARMANDER
+	writetext ReceivedStarterText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	promptbutton
+	givepoke CHARMANDER, 5, BERRY
+	closetext
+	readvar VAR_FACING
+	ifequal RIGHT, ElmDirectionsScript
+	applymovement PLAYER, AfterCyndaquilMovement
+	sjump ElmDirectionsScript
+	
+CharmanderAfterLeagueScript:
+	pokepic CHARMANDER
+	cry CHARMANDER
+	waitbutton
+	closepokepic
+	opentext
+	writetext TakeCharmanderAfterLeagueText
+	yesorno
+	iffalse .closetext
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, NoRoom
+	disappear ELMSLAB_POKE_BALL1
+	waitsfx
+	getmonname STRING_BUFFER_3, CHARMANDER
+	writetext ReceivedStarterText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	promptbutton
+	givepoke CHARMANDER, 5, BERRY
+.closetext
+	closetext
+	end
+
+SquirtlePokeBallScript:
+	pokepic SQUIRTLE
+	cry SQUIRTLE
+	waitbutton
+	closepokepic
+	opentext
+	writetext TakeSquirtleText
+	yesorno
+	iffalse DidntChooseStarterScript
+	disappear ELMSLAB_POKE_BALL2
+	setevent EVENT_GOT_TOTODILE_FROM_ELM
+	writetext ChoseStarterText
+	promptbutton
+	waitsfx
+	getmonname STRING_BUFFER_3, SQUIRTLE
+	writetext ReceivedStarterText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	promptbutton
+	givepoke SQUIRTLE, 5, BERRY
+	closetext
+	applymovement PLAYER, AfterTotodileMovement
+	sjump ElmDirectionsScript
+
+SquirtleAfterLeagueScript:
+	pokepic SQUIRTLE
+	cry SQUIRTLE
+	waitbutton
+	closepokepic
+	opentext
+	writetext TakeSquirtleAfterLeagueText
+	yesorno
+	iffalse .closetext
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, NoRoom
+	disappear ELMSLAB_POKE_BALL2
+	waitsfx
+	getmonname STRING_BUFFER_3, SQUIRTLE
+	writetext ReceivedStarterText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	promptbutton
+	givepoke SQUIRTLE, 5, BERRY
+.closetext
+	closetext
+	end
+	
+BulbasaurPokeBallScript:
+	pokepic BULBASAUR
+	cry BULBASAUR
+	waitbutton
+	closepokepic
+	opentext
+	writetext TakeBulbasaurText
+	yesorno
+	iffalse DidntChooseStarterScript
+	disappear ELMSLAB_POKE_BALL3
+	setevent EVENT_GOT_CHIKORITA_FROM_ELM
+	writetext ChoseStarterText
+	promptbutton
+	waitsfx
+	getmonname STRING_BUFFER_3, BULBASAUR
+	writetext ReceivedStarterText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	promptbutton
+	givepoke BULBASAUR, 5, BERRY
+	closetext
+	applymovement PLAYER, AfterChikoritaMovement
+	sjump ElmDirectionsScript
+
+BulbasaurAfterLeagueScript:
+	pokepic BULBASAUR
+	cry BULBASAUR
+	waitbutton
+	closepokepic
+	opentext
+	writetext TakeBulbasaurAfterLeagueText
+	yesorno
+	iffalse .closetext
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, NoRoom
+	disappear ELMSLAB_POKE_BALL3
+	waitsfx
+	getmonname STRING_BUFFER_3, BULBASAUR
+	writetext ReceivedStarterText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	promptbutton
+	givepoke BULBASAUR, 5, BERRY
+.closetext
+	closetext
+	end
+
+NoRoom:
+	writetext ElmsLabPartyFullText
+	waitbutton
+	closetext
+	end
+
 DidntChooseStarterScript:
 	writetext DidntChooseStarterText
 	waitbutton
@@ -257,6 +496,7 @@ ElmDirectionsScript:
 	addcellnum PHONE_ELM
 	opentext
 	writetext GotElmsNumberText
+	waitsfx
 	playsound SFX_REGISTER_PHONE_NUMBER
 	waitsfx
 	waitbutton
@@ -873,6 +1113,25 @@ TakeChikoritaText:
 	cont "di tipo erba?"
 	done
 
+TakeCharmanderText:
+	text "ELM: Vuoi"
+	line "CHARMANDER,"
+	cont "#MON di tipo"
+	cont "fuoco?"
+	done
+
+TakeSquirtleText:
+	text "ELM: Prendi"
+	line "SQUIRTLE, #MON"
+	cont "di tipo acqua?"
+	done
+
+TakeBulbasaurText:
+	text "ELM: Scegli"
+	line "BULBASAUR, #MON"
+	cont "di tipo erba?"
+	done
+
 DidntChooseStarterText:
 	text "ELM: Pensaci con"
 	line "attenzione."
@@ -1212,6 +1471,16 @@ ElmGiveTicketText2:
 	para "Con i tuoi #MON"
 	line "hai viaggiato"
 	cont "ovunque."
+	
+	para "Se vuoi puoi"
+	line "prendere il"
+	cont "#MON che è"
+	
+	para "rimasto sul"
+	line "tavolo."
+	
+	para "È tuo,"
+	line "te lo meriti!"
 
 	para "Salutami il"
 	line "PROF.OAK a KANTO!"
@@ -1383,6 +1652,35 @@ ElmsLabPCText:
 	para "OSSERVAZIONI SULL'"
 	line "EVOLUZIONE DEI"
 	cont "#MON"
+	done
+	
+TakeTotodileAfterLeagueText:
+	text "Prendi TOTODILE?"
+	done
+	
+TakeCyndaquilAfterLeagueText:
+	text "Prendi CYNDAQUIL?"
+	done
+
+TakeChikoritaAfterLeagueText:
+	text "Prendi CHIKORITA?"
+	done
+	
+ElmsLabPartyFullText:
+	text "Non puoi portare"
+	line "altri #MON."
+	done
+
+TakeSquirtleAfterLeagueText:
+	text "Prendi SQUIRTLE?"
+	done
+
+TakeCharmanderAfterLeagueText:
+	text "Prendi CHARMANDER?"
+	done
+
+TakeBulbasaurAfterLeagueText:
+	text "Prendi BULBASAUR?"
 	done
 
 ElmsLab_MapEvents:

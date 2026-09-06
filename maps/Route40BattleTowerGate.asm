@@ -32,8 +32,8 @@ Route40BattleTowerGateUnusedText1:
 	line "visitare la TORRE"
 	cont "LOTTA anche tu?"
 
-	para "Credo che sia"
-	line "ancora chiusa."
+	para "Credo che non sia"
+	line "ancora operativa."
 	done
 
 Route40BattleTowerGateUnusedText2:
@@ -56,7 +56,7 @@ Route40BattleTowerGateRockerText:
 	line "ma se vinci molte"
 
 	para "lotte ricevi"
-	line "regali speciali."
+	line "punti speciali."
 	done
 
 Route40BattleTowerGateUnusedText3:

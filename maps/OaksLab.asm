@@ -32,13 +32,31 @@ Oak:
 	writetext OakLabDexCheckText
 	waitbutton
 	special ProfOaksPCBoot
+	setval OVAL_CHARM
+	special UnusedFindItemInPCOrBag
+	iftrue .skip
+	readmem wTempPokedexCaughtCount
+	ifgreater 248, .OvalCharm
+.skip
 	writetext OakLabGoodbyeText
+	waitbutton
+	closetext
+	end
+
+.OvalCharm
+	writetext PokedexCompleteText
+	waitbutton
+	verbosegiveitem OVAL_CHARM
+	writetext OvalCharmText
 	waitbutton
 	closetext
 	end
 
 .OpenMtSilver:
 	writetext OakOpenMtSilverText
+	waitbutton
+	verbosegiveitem MACHO_BRACE
+	writetext OakNewsMachineText
 	promptbutton
 	setevent EVENT_OPENED_MT_SILVER
 	sjump .CheckPokedex
@@ -98,6 +116,23 @@ OakLabDexCheckText:
 	para "Vediamo…"
 	done
 
+PokedexCompleteText:
+	text "Come premio per il"
+	line "tuo straordinario"
+
+	para "risultato, ti"
+	line "meriti un oggetto"
+	cont "speciale!"
+	done
+	
+OvalCharmText:
+	text "Questo strumento"
+	line "ti permetterà di"
+	
+	para "ottenere più UOVA"
+	line "alla pensione."
+	done
+
 OakLabGoodbyeText:
 	text "Se passi di qui,"
 	line "torna a trovarmi!"
@@ -135,12 +170,51 @@ OakOpenMtSilverText:
 	para "Ma per te faremo"
 	line "un'eccezione,"
 	cont "<PLAY_G>."
+	
+	para "Inoltre ogni"
+	line "DOMENICA tutti i"
+	
+	para "CAPOPALESTRA"
+	line "sono disponibili a"
+	
+	para "sfidare nuovamente"
+	line "allenatori"
+	
+	para "straordinari,"
+	line "proprio come te."
+
+	para "Tieni, questo"
+	line "strumento, ti sarà"
+	cont "utile."
+	done
+
+OakNewsMachineText:
+	text "Serve a migliorare"
+	line "la crescita delle"
+	
+	para "statistiche, senza"
+	line "alcuna influenza"
+	cont "in battaglia."
 
 	para "Vai fino ad"
 	line "ALTOPIANO BLU."
 
 	para "Di lì si raggiunge"
 	line "il MONTE ARGENTO."
+	
+	para "Hai mai usato la"
+	line "macchina delle"
+	cont "notizie a"
+	cont "FIORDOROPOLI?"
+	
+	para "Potrebbero"
+	line "distribuire eventi"
+	cont "speciali!"
+	
+	para "Sei riuscito a"
+	line "fare il mio quiz?"
+	
+	para "È una vera sfida!"
 	done
 
 OakNoKantoBadgesText:

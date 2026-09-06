@@ -52,19 +52,20 @@ Route6UndergroundPathSignText:
 	done
 
 PokefanmRexSeenText:
-	text "Il mio PHANPY è il"
-	line "più dolce del"
+	text "Il mio DONPHAN è"
+	line "il più dolce del"
 	cont "mondo."
 	done
 
 PokefanmRexBeatenText:
-	text "Oh, il mio PHANPY!"
+	text "Oh, il mio"
+	line "DONPHAN!"
 	done
 
 PokefanmRexAfterBattleText:
 	text "Guarda com'è"
 	line "dolce il mio"
-	cont "PHANPY!"
+	cont "DONPHAN!"
 
 	para "A guardarlo ci"
 	line "si sente più"
@@ -72,19 +73,19 @@ PokefanmRexAfterBattleText:
 	done
 
 PokefanmAllanSeenText:
-	text "Il mio TEDDIURSA è"
+	text "Il mio URSARING è"
 	line "il più dolce del"
 	cont "mondo."
 	done
 
 PokefanmAllanBeatenText:
-	text "Il mio TEDDIURSA!"
+	text "Il mio URSARING!"
 	done
 
 PokefanmAllanAfterBattleText:
 	text "Guarda com'è"
 	line "dolce il mio"
-	cont "TEDDIURSA!"
+	cont "URSARING!"
 
 	para "A guardarlo ci"
 	line "si sente più"

@@ -24,8 +24,8 @@ CeladonDeptStore6FYoungsterScript:
 
 CeladonDeptStore6FVendingMachine:
 	opentext
-	writetext CeladonVendingText
 .Start:
+	writetext CeladonVendingText
 	special PlaceMoneyTopRight
 	loadmenu .MenuHeader
 	verticalmenu

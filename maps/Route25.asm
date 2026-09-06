@@ -18,6 +18,68 @@ Route25_MapScripts:
 
 	def_callbacks
 
+TrainerCooltrainermDamian:
+	faceplayer
+	opentext
+	checkevent EVENT_GOT_CHARMANDER
+	iftrue .GotCharmander
+	checkevent EVENT_KANTO_STARTERS
+	iftrue .Cyndaquil
+	writetext TakeThisCharmanderText
+	yesorno
+	iffalse .Refused
+	writetext CharmanderImCountingOnYouText
+	promptbutton
+	waitsfx
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, .NoRoom
+	writetext ReceivedCharmanderText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	givepoke CHARMANDER, 5, BERRY
+	setevent EVENT_GOT_CHARMANDER
+	writetext CharmanderMayEvolveText
+	waitbutton
+	closetext
+	end
+
+.Cyndaquil
+	writetext TakeThisCyndaquilText
+	yesorno
+	iffalse .Refused
+	writetext CharmanderImCountingOnYouText
+	promptbutton
+	waitsfx
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, .NoRoom
+	writetext ReceivedCyndaquilText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	givepoke CYNDAQUIL, 5, BERRY
+	setevent EVENT_GOT_CHARMANDER
+	writetext CharmanderMayEvolveText
+	waitbutton
+	closetext
+	end
+
+.NoRoom:
+	writetext CharmanderPartyFullText
+	waitbutton
+	closetext
+	end
+
+.Refused:
+	writetext NoCharmanderText
+	waitbutton
+	closetext
+	end
+
+.GotCharmander:
+	writetext CharmanderPopWontWorkText
+	waitbutton
+	closetext
+	end
+
 Route25Noop1Scene:
 	end
 
@@ -433,6 +495,79 @@ UnusedBillsHouseSignText: ; unreferenced
 	text "CASA DI BILL"
 	done
 
+TakeThisCharmanderText:
+	text "Non sono un bravo"
+	line "allenatore."
+	
+	para "Ti prenderesti"
+	line "cura del mio"
+	cont "CHARMANDER?"
+	
+	para "Non riesco proprio"
+	line "ad allenarlo."
+	
+	para "Un allenatore come"
+	line "te non avrebbe"
+	cont "alcun problema."
+	
+	para "Lo vuoi?"
+	done
+
+TakeThisCyndaquilText:
+	text "Non sono un bravo"
+	line "allenatore."
+	
+	para "Ti prenderesti"
+	line "cura del mio"
+	cont "CYNDAQUIL?"
+	
+	para "Non riesco proprio"
+	line "ad allenarlo."
+	
+	para "Un allenatore come"
+	line "te non avrebbe"
+	cont "alcun problema."
+	
+	para "Lo vuoi?"
+	done
+
+CharmanderImCountingOnYouText:
+	text "Sapevo che non mi"
+	line "avresti deluso!"
+	done
+
+ReceivedCharmanderText:
+	text "<PLAYER> riceve"
+	line "CHARMANDER!"
+	done
+
+ReceivedCyndaquilText:
+	text "<PLAYER> riceve"
+	line "CYNDAQUIL!"
+	done
+
+CharmanderMayEvolveText:
+	text "Mi raccomando,"
+	line "allenalo bene."
+	done
+
+CharmanderPartyFullText:
+	text "Ah, ma non hai"
+	line "posto per altri"
+	cont "#MON!"
+	done
+
+NoCharmanderText:
+	text "Oh… E ora come"
+	line "faccio?"
+	done
+
+CharmanderPopWontWorkText:
+	text "Com'è diventato"
+	line "forte?"
+	para "Si è evoluto?"
+	done
+
 Route25_MapEvents:
 	db 0, 0 ; filler
 
@@ -459,3 +594,4 @@ Route25_MapEvents:
 	object_event 31,  7, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 1, TrainerSupernerdPat, -1
 	object_event 37,  8, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, TrainerCooltrainermKevin, -1
 	object_event 32,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route25Protein, EVENT_ROUTE_25_PROTEIN
+	object_event  7,  5, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, TrainerCooltrainermDamian, -1

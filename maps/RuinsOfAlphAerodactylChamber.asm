@@ -54,6 +54,9 @@ RuinsOfAlphAerodactylChamberPuzzle:
 	end
 
 .PuzzleComplete:
+	opentext
+	verbosegiveitem OLD_AMBER
+	closetext
 	setevent EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
 	setevent EVENT_SOLVED_AERODACTYL_PUZZLE
 	setflag ENGINE_UNLOCKED_UNOWNS_S_TO_W

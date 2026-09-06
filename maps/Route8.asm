@@ -157,8 +157,8 @@ SupernerdTomBeatenText:
 	done
 
 SupernerdTomAfterBattleText:
-	text "Le MEDAGLIE ti"
-	line "danno vantaggi"
+	text "ma le MEDAGLIE non"
+	line "ti danno vantaggi"
 	cont "nella lotta."
 	done
 

@@ -27,18 +27,6 @@ CeladonEusine:
 	opentext
 	writetext CeladonEusineText1
 	promptbutton
-	setval SUICUNE
-	special MonCheck
-	iffalse .NoSuicune
-	special BeastsCheck
-	iftrue .HoOh
-	writetext NoBeastsText
-	waitbutton
-.NoSuicune:
-	closetext
-	end
-
-.HoOh:
 	writetext EusineLeavesCeladonText
 	waitbutton
 	closetext
@@ -85,9 +73,6 @@ CeladonPokecenter1FPharmacistText:
 
 	para "nell'interrato del"
 	line "CASINÒ."
-
-	para "Anzi, era così tre"
-	line "anni fa."
 	done
 
 CeladonEusineText1:

@@ -60,7 +60,7 @@ GoldenrodPokecenter1FTradeCornerAttendantScript:
 	iftrue PlayerHasEggTicket ; $7c68
 	special Function11b879 ; check save file?
 	ifequal $01, PokemonInTradeCorner ; $F667
-	ifequal $02, LeftPokemonInTradeCornerRecently ; $6968
+	ifequal $02, PokemonInTradeCorner ; $6968
 	readvar $01
 	ifequal $01, .onlyHaveOnePokemon ; $CF67 ; 56772
 	writetext GoldenrodPokecomCenterWeMustHoldYourMonText ; $726A
@@ -76,18 +76,21 @@ GoldenrodPokecenter1FTradeCornerAttendantScript:
 	waitbutton ; 53 in jp crystal?
 	special BillsGrandfather ; 56792
 	ifequal $00, PlayerCancelled ; $D567
-	ifequal $FD, CantAcceptEgg ; $EA67
+	ifequal $FD, .continue ; $EA67
 	ifgreater $FB, PokemonAbnormal ; $F067
+.continue
 	special Function11ba38 ; check party pokemon fainted
 	ifnotequal $00, CantTradeLastPokemon ; $E467
 	writetext GoldenrodPokecomCenterWhatMonDoYouWantText ; $9E6A
 	waitbutton
 	special Function11ac3e
-	ifequal $00, PlayerCancelled ; $D567
+	ifequal $00, .AskForEgg ; $D567
 	ifequal $02, .tradePokemonNeverSeen ; $BB67
+.texttrademon
 	writetext GoldenrodPokecomCenterWeWillTradeYourMonForMonText ; $B96A ; 567B5
 	sjump  .tradePokemon ; $BE67
 .tradePokemonNeverSeen
+	loadmem wcd30, 3
 	writetext GoldenrodPokecomCenterWeWillTradeYourMonForNewText ; $1E6B
 .tradePokemon
 	special TradeCornerHoldMon ; create data to send?
@@ -97,6 +100,14 @@ GoldenrodPokecenter1FTradeCornerAttendantScript:
 	waitbutton
 	closetext
 	end
+
+.AskForEgg
+	writetext AskEggText
+	yesorno
+	iffalse PlayerCancelled
+	loadmem wd265, EGG
+	getmonname STRING_BUFFER_4, EGG
+	sjump .texttrademon
 
 .onlyHaveOnePokemon
 	writetext GoldenrodPokecomCenterYouHaveOnlyOneMonText ; $D76B
@@ -197,7 +208,7 @@ ContinueHoldingPokemon:
 	closetext
 	end
 
-LeftPokemonInTradeCornerRecently:
+LeftPokemonInTradeCornerRecently: ; unreferenced now
 	writetext GoldenrodPokecomCenterRecentlyLeftYourMonText ; $306E ; 56869
 	waitbutton
 	closetext
@@ -551,6 +562,11 @@ GoldenrodPokecomCenterWeWillTradeYourMonForMonText:
 	para "Per favore attendi"
 	line "mentre prepariamo"
 	cont "la SALA."
+	done
+
+AskEggText:
+	text "Vorresti in cambio"
+	line "un UOVO?"
 	done
 
 GoldenrodPokecomCenterWeWillTradeYourMonForNewText:
@@ -1011,8 +1027,8 @@ GoldenrodPokecenter1FMobileOnYoungsterText:
 	line "nelle NOTIZIE di"
 
 	para "un po' di tempo"
-	line "fa. Mi ha proprio"
-	cont "sorpreso!"
+ 	line "fa. Mi ha proprio"
+ 	cont "sorpreso!"
 	done
 
 GoldenrodPokecenter1FMobileOnTeacherText:

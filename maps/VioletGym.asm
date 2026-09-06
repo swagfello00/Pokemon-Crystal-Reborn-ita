@@ -12,6 +12,8 @@ VioletGym_MapScripts:
 VioletGymFalknerScript:
 	faceplayer
 	opentext
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .Rematch
 	checkevent EVENT_BEAT_FALKNER
 	iftrue .FightDone
 	writetext FalknerIntroText
@@ -53,6 +55,21 @@ VioletGymFalknerScript:
 	closetext
 	end
 
+.Rematch
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .FightDone
+	checkflag ENGINE_FALKNER_REMATCH_DONE
+	iftrue .FightDone
+	writetext FalknerIntroText
+	waitbutton
+	closetext
+	winlosstext FalknerWinLossRematchText, 0
+	loadtrainer FALKNER, FALKNER2
+	startbattle
+	reloadmapafterbattle
+	setflag ENGINE_FALKNER_REMATCH_DONE
+	end
+
 VioletGymActivateRockets:
 	ifequal 7, .RadioTowerRockets
 	ifequal 6, .GoldenrodRockets
@@ -89,6 +106,8 @@ TrainerBirdKeeperAbe:
 VioletGymGuideScript:
 	faceplayer
 	opentext
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .VioletGymGuideRematchScript
 	checkevent EVENT_BEAT_FALKNER
 	iftrue .VioletGymGuideWinScript
 	writetext VioletGymGuideText
@@ -98,6 +117,16 @@ VioletGymGuideScript:
 
 .VioletGymGuideWinScript:
 	writetext VioletGymGuideWinText
+	waitbutton
+	closetext
+	end
+
+.VioletGymGuideRematchScript:
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .VioletGymGuideWinScript
+	checkflag ENGINE_FALKNER_REMATCH_DONE
+	iftrue .VioletGymGuideWinScript
+	writetext VioletGymGuideRematchText
 	waitbutton
 	closetext
 	end
@@ -147,6 +176,12 @@ FalknerWinLossText:
 	cont "#MON!"
 	done
 
+FalknerWinLossRematchText:
+	text "…No! Gli"
+	line "amati #MON"
+	cont "di mio padre…"
+	done
+
 ReceivedZephyrBadgeText:
 	text "<PLAYER> riceve la"
 	line "MEDAGLIA ZEFIRO."
@@ -154,10 +189,9 @@ ReceivedZephyrBadgeText:
 
 FalknerZephyrBadgeText:
 	text "La MEDAGLIA ZEFIRO"
-	line "migliora l'ATTACCO"
-	cont "dei #MON."
+	line "è tua!"
 
-	para "Inoltre, permette"
+	para "Permette"
 	line "ai #MON che"
 
 	para "hanno FLASH di"
@@ -176,8 +210,8 @@ FalknerTMMudSlapText:
 	line "una nuova mossa."
 
 	para "Attenzione, però:"
-	line "ogni MT si usa"
-	cont "solo una volta!"
+	line "ogni MT che si usa"
+	cont "non si consuma!"
 
 	para "La MT31 contiene"
 	line "FANGOSBERLA."
@@ -274,6 +308,15 @@ VioletGymGuideText:
 
 	para "tipo volante. Non"
 	line "dimenticarlo!"
+	done
+
+VioletGymGuideRematchText:
+	text "Oggi VALERIO è in"
+	line "cerca di una vera"
+	cont "sfida!"
+	
+	para "Sei pronto a"
+	line "batterti di nuovo?"
 	done
 
 VioletGymGuideWinText:

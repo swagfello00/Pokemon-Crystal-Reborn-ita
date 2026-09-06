@@ -21,6 +21,8 @@ GoldenrodGymNoop2Scene:
 
 GoldenrodGymWhitneyScript:
 	faceplayer
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .Rematch
 	checkevent EVENT_BEAT_WHITNEY
 	iftrue .FightDone
 	opentext
@@ -77,6 +79,22 @@ GoldenrodGymWhitneyScript:
 	waitbutton
 .NoRoomForAttract:
 	closetext
+	end
+
+.Rematch
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .FightDone
+	checkflag ENGINE_WHITNEY_REMATCH_DONE
+	iftrue .FightDone
+	opentext
+	writetext WhitneyBeforeText
+	waitbutton
+	closetext
+	winlosstext WhitneyShouldntBeSoSeriousText, 0
+	loadtrainer WHITNEY, WHITNEY2
+	startbattle
+	reloadmapafterbattle
+	setflag ENGINE_WHITNEY_REMATCH_DONE
 	end
 
 GoldenrodGymActivateRockets:
@@ -149,6 +167,8 @@ TrainerBeautySamantha:
 
 GoldenrodGymGuideScript:
 	faceplayer
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .GoldenrodGymGuideRematchScript
 	checkevent EVENT_BEAT_WHITNEY
 	iftrue .GoldenrodGymGuideWinScript
 	opentext
@@ -160,6 +180,17 @@ GoldenrodGymGuideScript:
 .GoldenrodGymGuideWinScript:
 	opentext
 	writetext GoldenrodGymGuideWinText
+	waitbutton
+	closetext
+	end
+
+.GoldenrodGymGuideRematchScript:
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .GoldenrodGymGuideWinScript
+	checkflag ENGINE_WHITNEY_REMATCH_DONE
+	iftrue .GoldenrodGymGuideWinScript
+	opentext
+	writetext GoldenrodGymGuideRematchText
 	waitbutton
 	closetext
 	end
@@ -240,10 +271,6 @@ WhitneyPlainBadgeText:
 	para "possono usare"
 	line "FORZA anche fuori"
 	cont "dalla lotta."
-
-	para "Inoltre, potenzia"
-	line "la VELOCITÀ dei "
-	cont "#MON."
 
 	para "Ho ancora qualcosa"
 	line "per te: tieni!"
@@ -381,6 +408,15 @@ GoldenrodGymGuideWinText:
 	line "Io ero occupato ad"
 	cont "ammirare queste"
 	cont "signorine."
+	done
+
+GoldenrodGymGuideRematchText:
+	text "CHIARA oggi è più"
+	line "agguerrita che"
+	cont "mai!"
+	
+	para "Sfidala di nuovo,"
+	line "coraggio!"
 	done
 
 GoldenrodGym_MapEvents:

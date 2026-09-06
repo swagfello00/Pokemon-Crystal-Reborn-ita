@@ -30,6 +30,8 @@ MountMoonRivalBattleScript:
 	iftrue .Totodile
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue .Chikorita
+	checkevent EVENT_KANTO_STARTERS
+	iftrue .Charmander
 	winlosstext MountMoonRivalTextWin, MountMoonRivalTextLoss
 	setlasttalked MOUNTMOON_RIVAL
 	loadtrainer RIVAL2, RIVAL2_1_TOTODILE
@@ -39,6 +41,8 @@ MountMoonRivalBattleScript:
 	sjump .FinishBattle
 
 .Totodile:
+	checkevent EVENT_KANTO_STARTERS
+	iftrue .Squirtle
 	winlosstext MountMoonRivalTextWin, MountMoonRivalTextLoss
 	setlasttalked MOUNTMOON_RIVAL
 	loadtrainer RIVAL2, RIVAL2_1_CHIKORITA
@@ -48,9 +52,38 @@ MountMoonRivalBattleScript:
 	sjump .FinishBattle
 
 .Chikorita:
+	checkevent EVENT_KANTO_STARTERS
+	iftrue .Bulbasaur
 	winlosstext MountMoonRivalTextWin, MountMoonRivalTextLoss
 	setlasttalked MOUNTMOON_RIVAL
 	loadtrainer RIVAL2, RIVAL2_1_CYNDAQUIL
+	startbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
+	sjump .FinishBattle
+
+.Charmander
+	winlosstext MountMoonRivalTextWin, MountMoonRivalTextLoss
+	setlasttalked MOUNTMOON_RIVAL
+	loadtrainer RIVAL2, RIVAL2_1_SQUIRTLE
+	startbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
+	sjump .FinishBattle
+
+.Squirtle:
+	winlosstext MountMoonRivalTextWin, MountMoonRivalTextLoss
+	setlasttalked MOUNTMOON_RIVAL
+	loadtrainer RIVAL2, RIVAL2_1_BULBASAUR
+	startbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
+	sjump .FinishBattle
+
+.Bulbasaur:
+	winlosstext MountMoonRivalTextWin, MountMoonRivalTextLoss
+	setlasttalked MOUNTMOON_RIVAL
+	loadtrainer RIVAL2, RIVAL2_1_CHARMANDER
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
@@ -60,6 +93,9 @@ MountMoonRivalBattleScript:
 	playmusic MUSIC_RIVAL_AFTER
 	opentext
 	writetext MountMoonRivalTextAfter
+	waitbutton
+	verbosegiveitem ROCK_CLIMB
+	writetext MountMoonRivalTextAfter2
 	waitbutton
 	closetext
 	applymovement MOUNTMOON_RIVAL, MountMoonRivalMovementAfter
@@ -134,8 +170,14 @@ MountMoonRivalTextAfter:
 
 	para "Perché loro sono"
 	line "dalla mia parte."
+	
+	para "Tieni, ti regalo"
+	line "questo strumento,"
+	cont "non mi serve più."
+	done
 
-	para "Ascolta, <PLAYER>!"
+MountMoonRivalTextAfter2:
+	text "Ascolta, <PLAYER>!"
 
 	para "Un giorno o"
 	line "l'altro ti batterò"

@@ -32,6 +32,7 @@ FastShipB1FSailorBlocksLeft:
 	moveobject FASTSHIPB1F_SAILOR1, 30, 6
 	appear FASTSHIPB1F_SAILOR1
 	pause 5
+	callasm UpdateSprites
 	disappear FASTSHIPB1F_SAILOR2
 	end
 
@@ -42,6 +43,7 @@ FastShipB1FSailorBlocksRight:
 	moveobject FASTSHIPB1F_SAILOR2, 31, 6
 	appear FASTSHIPB1F_SAILOR2
 	pause 5
+	callasm UpdateSprites
 	disappear FASTSHIPB1F_SAILOR1
 	end
 

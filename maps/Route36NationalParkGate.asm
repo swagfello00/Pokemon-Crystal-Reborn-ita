@@ -195,6 +195,7 @@ Route36OfficerScriptContest:
 	writetext Route36NationalParkGateOfficer1WellHoldYourMonText
 	promptbutton
 	writetext Route36NationalParkGatePlayersMonLeftWithHelperText
+	waitsfx
 	playsound SFX_GOT_SAFARI_BALLS
 	waitsfx
 	promptbutton

@@ -117,6 +117,8 @@ CherrygroveRivalSceneNorth:
 	iftrue .Totodile
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue .Chikorita
+	checkevent EVENT_KANTO_STARTERS
+	iftrue .Charmander
 	winlosstext RivalCherrygroveWinText, RivalCherrygroveLossText
 	setlasttalked CHERRYGROVECITY_RIVAL
 	loadtrainer RIVAL1, RIVAL1_1_TOTODILE
@@ -128,6 +130,8 @@ CherrygroveRivalSceneNorth:
 	sjump .AfterYourDefeat
 
 .Totodile:
+	checkevent EVENT_KANTO_STARTERS
+	iftrue .Squirtle
 	winlosstext RivalCherrygroveWinText, RivalCherrygroveLossText
 	setlasttalked CHERRYGROVECITY_RIVAL
 	loadtrainer RIVAL1, RIVAL1_1_CHIKORITA
@@ -139,9 +143,44 @@ CherrygroveRivalSceneNorth:
 	sjump .AfterYourDefeat
 
 .Chikorita:
+	checkevent EVENT_KANTO_STARTERS
+	iftrue .Bulbasaur
 	winlosstext RivalCherrygroveWinText, RivalCherrygroveLossText
 	setlasttalked CHERRYGROVECITY_RIVAL
 	loadtrainer RIVAL1, RIVAL1_1_CYNDAQUIL
+	loadvar VAR_BATTLETYPE, BATTLETYPE_CANLOSE
+	startbattle
+	dontrestartmapmusic
+	reloadmap
+	iftrue .AfterVictorious
+	sjump .AfterYourDefeat
+
+.Charmander
+	winlosstext RivalCherrygroveWinText, RivalCherrygroveLossText
+	setlasttalked CHERRYGROVECITY_RIVAL
+	loadtrainer RIVAL1, RIVAL1_1_SQUIRTLE
+	loadvar VAR_BATTLETYPE, BATTLETYPE_CANLOSE
+	startbattle
+	dontrestartmapmusic
+	reloadmap
+	iftrue .AfterVictorious
+	sjump .AfterYourDefeat
+
+.Squirtle
+	winlosstext RivalCherrygroveWinText, RivalCherrygroveLossText
+	setlasttalked CHERRYGROVECITY_RIVAL
+	loadtrainer RIVAL1, RIVAL1_1_BULBASAUR
+	loadvar VAR_BATTLETYPE, BATTLETYPE_CANLOSE
+	startbattle
+	dontrestartmapmusic
+	reloadmap
+	iftrue .AfterVictorious
+	sjump .AfterYourDefeat
+
+.Bulbasaur
+	winlosstext RivalCherrygroveWinText, RivalCherrygroveLossText
+	setlasttalked CHERRYGROVECITY_RIVAL
+	loadtrainer RIVAL1, RIVAL1_1_CHARMANDER
 	loadvar VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
 	dontrestartmapmusic
@@ -574,3 +613,4 @@ CherrygroveCity_MapEvents:
 	object_event 27, 12, SPRITE_TEACHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CherrygroveTeacherScript, -1
 	object_event 23,  7, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CherrygroveYoungsterScript, -1
 	object_event  7, 12, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, MysticWaterGuy, -1
+	object_event -2, 10, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route32ScopeLens, EVENT_ROUTE_32_SCOPE_LENS

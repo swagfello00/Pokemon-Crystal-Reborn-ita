@@ -8,18 +8,12 @@ BattleTowerOutside_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, BattleTowerOutsideDoorsCallback
+	callback MAPCALLBACK_NEWMAP, .Flypoint
 	callback MAPCALLBACK_OBJECTS, BattleTowerOutsideShowCiviliansCallback
 
-BattleTowerOutsideDoorsCallback:
-	special Mobile_DummyReturnFalse
-	iftrue .doorsopen;$7CE6
-	changeblock 8, 8, $2C
-	endcallback
-
-.doorsopen
-	changeblock 8, 8, $12
-	endcallback
+.Flypoint:
+	setflag ENGINE_FLYPOINT_BATTLE_TOWER
+	return
 
 BattleTowerOutsideShowCiviliansCallback:
 	special Mobile_DummyReturnFalse
@@ -156,9 +150,8 @@ BattleTowerOutsideSignText:
 
 BattleTowerOutsideText_DoorsClosed: ; unreferenced
 ; originally shown when the Battle Tower was closed
-	text "Le porte della"
-	line "TORRE LOTTA"
-	cont "sono chiuse…"
+	text "È aperta!"
+	line "Non operativa."
 	done
 
 BattleTowerOutsideText_DoorsOpen: ; unreferenced

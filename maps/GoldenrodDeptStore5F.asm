@@ -73,6 +73,8 @@ GoldenrodDeptStore5FReceptionistScript:
 .VeryHappy:
 	writetext GoldenrodDeptStore5FReceptionistThisMoveShouldBePerfectText
 	promptbutton
+	checkitem TM_RETURN
+	iftrue .AlreadyGotTM
 	verbosegiveitem TM_RETURN
 	iffalse .Done
 	setflag ENGINE_GOLDENROD_DEPT_STORE_TM27_RETURN
@@ -88,9 +90,17 @@ GoldenrodDeptStore5FReceptionistScript:
 .NotVeryHappy:
 	writetext GoldenrodDeptStore5FReceptionistItLooksEvilHowAboutThisTMText
 	promptbutton
+	checkitem TM_FRUSTRATION
+	iftrue .AlreadyGotTM
 	verbosegiveitem TM_FRUSTRATION
 	iffalse .Done
 	setflag ENGINE_GOLDENROD_DEPT_STORE_TM27_RETURN
+	closetext
+	end
+	
+.AlreadyGotTM:
+	writetext GoldenrodDeptStore5FAlreadyGotTMText
+	waitbutton
 	closetext
 	end
 
@@ -172,6 +182,10 @@ GoldenrodDeptStore5FReceptionistThereAreTMsPerfectForMonText:
 
 	para "adatte al tuo"
 	line "#MON."
+	done
+
+GoldenrodDeptStore5FAlreadyGotTMText:
+	text "Hai già questa MT!"
 	done
 
 GoldenrodDeptStore5FCarrieMysteryGiftExplanationText:

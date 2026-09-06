@@ -27,8 +27,8 @@ CeladonGameCornerPrizeRoomTMVendor:
 	waitbutton
 	checkitem COIN_CASE
 	iffalse CeladonPrizeRoom_NoCoinCase
-	writetext CeladonPrizeRoom_AskWhichPrizeText
 CeladonPrizeRoom_tmcounterloop:
+	writetext CeladonPrizeRoom_AskWhichPrizeText
 	special DisplayCoinCaseBalance
 	loadmenu CeladonPrizeRoom_TMMenuHeader
 	verticalmenu
@@ -39,10 +39,12 @@ CeladonPrizeRoom_tmcounterloop:
 	sjump CeladonPrizeRoom_CancelPurchaseScript
 
 .DoubleTeam:
+	checkitem TM_DOUBLE_TEAM
+	iftrue CeladonPrizeRoom_alreadyhavetm
 	checkcoins CELADONGAMECORNERPRIZEROOM_TM32_COINS
 	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
-	getitemname STRING_BUFFER_3, TM_DOUBLE_TEAM
-	scall CeladonPrizeRoom_askbuy
+	writetext CeladonPrizeRoom_DoubleTeamPurchaseText
+	yesorno
 	iffalse CeladonPrizeRoom_CancelPurchaseScript
 	giveitem TM_DOUBLE_TEAM
 	iffalse CeladonPrizeRoom_notenoughroom
@@ -50,10 +52,12 @@ CeladonPrizeRoom_tmcounterloop:
 	sjump CeladonPrizeRoom_purchased
 
 .Psychic:
+	checkitem TM_PSYCHIC_M
+	iftrue CeladonPrizeRoom_alreadyhavetm
 	checkcoins CELADONGAMECORNERPRIZEROOM_TM29_COINS
 	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
-	getitemname STRING_BUFFER_3, TM_PSYCHIC_M
-	scall CeladonPrizeRoom_askbuy
+	writetext CeladonPrizeRoom_PsychicPurchaseText
+	yesorno
 	iffalse CeladonPrizeRoom_CancelPurchaseScript
 	giveitem TM_PSYCHIC_M
 	iffalse CeladonPrizeRoom_notenoughroom
@@ -61,10 +65,12 @@ CeladonPrizeRoom_tmcounterloop:
 	sjump CeladonPrizeRoom_purchased
 
 .HyperBeam:
+	checkitem TM_HYPER_BEAM
+	iftrue CeladonPrizeRoom_alreadyhavetm
 	checkcoins CELADONGAMECORNERPRIZEROOM_TM15_COINS
 	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
-	getitemname STRING_BUFFER_3, TM_HYPER_BEAM
-	scall CeladonPrizeRoom_askbuy
+	writetext CeladonPrizeRoom_HyperBeamPurchaseText
+	yesorno
 	iffalse CeladonPrizeRoom_CancelPurchaseScript
 	giveitem TM_HYPER_BEAM
 	iffalse CeladonPrizeRoom_notenoughroom
@@ -80,6 +86,11 @@ CeladonPrizeRoom_purchased:
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext CeladonPrizeRoom_HereYouGoText
+	waitbutton
+	sjump CeladonPrizeRoom_tmcounterloop
+
+CeladonPrizeRoom_alreadyhavetm:
+	writetext CeladonPrizeRoom_AlreadyHaveTMText
 	waitbutton
 	sjump CeladonPrizeRoom_tmcounterloop
 
@@ -249,6 +260,10 @@ CeladonPrizeRoom_HereYouGoText:
 	text "Ecco qui!"
 	done
 
+CeladonPrizeRoom_AlreadyHaveTMText:
+	text "Hai già questa MT!"
+	done
+
 CeladonPrizeRoom_NotEnoughCoinsText:
 	text "Non hai abbastanza"
 	line "gettoni."
@@ -267,6 +282,21 @@ CeladonPrizeRoom_ComeAgainText:
 CeladonPrizeRoom_NoCoinCaseText:
 	text "Non hai un"
 	line "SALVADANAIO!"
+	done
+
+CeladonPrizeRoom_DoubleTeamPurchaseText:
+	text "Allora vuoi"
+	line "MT32 DOPPIOTEAM?"
+	done
+
+CeladonPrizeRoom_PsychicPurchaseText:
+	text "Allora vuoi"
+	line "MT29 PSICHICO?"
+	done
+
+CeladonPrizeRoom_HyperBeamPurchaseText:
+	text "Allora vuoi"
+	line "MT15 IPER-RAGGIO?"
 	done
 
 CeladonGameCornerPrizeRoom_MapEvents:
