@@ -50,4 +50,6 @@ Tilesets::
 	tileset TilesetKabutoWordRoom
 	tileset TilesetOmanyteWordRoom
 	tileset TilesetAerodactylWordRoom
+	tileset TilesetUnderwater
+	tileset TilesetPokemonTower
 	assert_table_length NUM_TILESETS + 1

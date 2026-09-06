@@ -29,6 +29,12 @@ UnownWalls:
 ; UNOWNWORDS_HO_OH
 	; db $0e, $2c, $64, $2c, $0e, -1
 	unownwall "HO-OH"
+; UNOWNWORDS_LAST
+	unownwall "ULTIMO"
+; UNOWNWORDS_MAROWAK
+	unownwall "MAROWAK"
+; UNOWNWORDS_OVAL_CHARM
+	unownwall "OVAMULETO"
 
 MenuHeaders_UnownWalls:
 ; UNOWNWORDS_ESCAPE
@@ -43,3 +49,12 @@ MenuHeaders_UnownWalls:
 ; UNOWNWORDS_HO_OH
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 4, 4, 15, 9
+; UNOWNWORDS_LAST
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 3, 4, 16, 9
+; UNOWNWORDS_MAROWAK
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 2, 4, 17, 9
+; UNOWNWORDS_OVAL_CHARM
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 4, 19, 9

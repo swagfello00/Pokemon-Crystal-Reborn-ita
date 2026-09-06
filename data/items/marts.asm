@@ -82,12 +82,16 @@ MartAzalea:
 	db -1 ; end
 
 MartCianwood:
-	db 5 ; # items
+	db 9 ; # items
 	db POTION
 	db SUPER_POTION
 	db HYPER_POTION
 	db FULL_HEAL
 	db REVIVE
+	db FIRE_STONE
+	db WATER_STONE
+	db THUNDERSTONE
+	db LEAF_STONE
 	db -1 ; end
 
 MartGoldenrod2F1:
@@ -125,12 +129,13 @@ MartGoldenrod3F:
 	db -1 ; end
 
 MartGoldenrod4F:
-	db 5 ; # items
+	db 6 ; # items
 	db PROTEIN
 	db IRON
 	db CARBOS
 	db CALCIUM
 	db HP_UP
+	db PP_UP
 	db -1 ; end
 
 MartGoldenrod5F1:
@@ -322,19 +327,29 @@ MartCeladon3F:
 	db -1 ; end
 
 MartCeladon4F:
-	db 3 ; # items
+	db 12 ; # items
 	db POKE_DOLL
+	db FIRE_STONE
+	db THUNDERSTONE
+	db WATER_STONE
+	db LEAF_STONE
 	db LOVELY_MAIL
 	db SURF_MAIL
+	db BLUESKY_MAIL
+	db EON_MAIL
+	db MIRAGE_MAIL
+	db MORPH_MAIL
+	db MUSIC_MAIL
 	db -1 ; end
 
 MartCeladon5F1:
-	db 5 ; # items
+	db 6 ; # items
 	db HP_UP
 	db PROTEIN
 	db IRON
 	db CARBOS
 	db CALCIUM
+	db PP_UP
 	db -1 ; end
 
 MartCeladon5F2:
@@ -382,7 +397,7 @@ MartMtMoon:
 	db -1 ; end
 
 MartIndigoPlateau:
-	db 7 ; # items
+	db 12 ; # items
 	db ULTRA_BALL
 	db MAX_REPEL
 	db HYPER_POTION
@@ -390,6 +405,11 @@ MartIndigoPlateau:
 	db FULL_RESTORE
 	db REVIVE
 	db FULL_HEAL
+	db ETHER
+	db ELIXER
+	db MAX_ETHER
+	db MAX_ELIXER
+	db MAX_REVIVE
 	db -1 ; end
 
 MartUnderground:
