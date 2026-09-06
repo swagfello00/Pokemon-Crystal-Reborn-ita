@@ -104,6 +104,17 @@
 	const SPRITE_ENTEI ; 64
 	const SPRITE_RAIKOU ; 65
 	const SPRITE_STANDING_YOUNGSTER ; 66
+; New to Crystal Reborn
+	const SPRITE_DIAL ; 67
+	const SPRITE_CHRIS_SURF ; 68
+	const SPRITE_KRIS_SURF ; 69
+	const SPRITE_CHRIS_RUN ; 6a
+	const SPRITE_KRIS_RUN ; 6b
+	const SPRITE_AMPHY ; 6c
+	const SPRITE_EARLYGAME_RATTATA ; 6d
+	const SPRITE_SURFING_LAPRAS ; 6e
+	const SPRITE_WALKING_PIDGEY ; 6f
+	const SPRITE_RUNNING_FARFETCH_D ; 70
 DEF NUM_OVERWORLD_SPRITES EQU const_value - 1
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
@@ -144,6 +155,34 @@ DEF SPRITE_POKEMON EQU const_value
 	const SPRITE_GYARADOS ; a0
 	const SPRITE_LUGIA ; a1
 	const SPRITE_HO_OH ; a2
+	const SPRITE_ARTICUNO ; a3
+	const SPRITE_ZAPDOS ; a4
+	const SPRITE_MEWTWO ; a5
+	const SPRITE_MEW ; a6
+	const SPRITE_DRATINI ; a7
+	const SPRITE_POLIWRATH ; a8
+	const SPRITE_MEOWTH ; a9
+	const SPRITE_NIDORAN_F ; aa
+	const SPRITE_SLOWBRO ; ab
+	const SPRITE_KANGASKHAN ; ac
+	const SPRITE_FARFETCH_D ; ad
+	const SPRITE_BLISSEY ; ae
+	const SPRITE_DODRIO ; af
+	const SPRITE_MACHOKE ; b0
+	const SPRITE_ABRA ; b1
+	const SPRITE_PIDGEY ; b2
+	const SPRITE_NIDORINO ; b3
+	const SPRITE_PSYDUCK ; b4
+	const SPRITE_PERSIAN ; b5
+	const SPRITE_NIDORAN_M ; b6
+	const SPRITE_BAYLEEF ; b7
+	const SPRITE_FEAROW ; b8
+	const SPRITE_MILTANK ; b9
+	const SPRITE_ELECTRODE ; ba
+	const SPRITE_MURKROW ; bb
+	const SPRITE_RATTATA ; bc
+	const SPRITE_SPEAROW ; bd
+	const SPRITE_STARYU ; be
 DEF NUM_POKEMON_SPRITES EQU const_value - SPRITE_POKEMON
 
 ; special GetMonSprite values (see engine/overworld/overworld.asm)
@@ -167,3 +206,4 @@ DEF SPRITE_VARS EQU const_value
 	const SPRITE_FUCHSIA_GYM_4 ; fa
 	const SPRITE_COPYCAT ; fb
 	const SPRITE_JANINE_IMPERSONATOR ; fc
+	const SPRITE_DIALVAR ; fd

@@ -112,7 +112,7 @@ DEF MAPOBJECT_SCRIPT_POINTER   rw ; a
 DEF MAPOBJECT_EVENT_FLAG       rw ; c
                                rb_skip 2
 DEF MAPOBJECT_LENGTH EQU _RS
-DEF NUM_OBJECTS EQU 16
+DEF NUM_OBJECTS EQU 18
 DEF PLAYER_OBJECT EQU 0
 
 ; SpriteMovementData struct members (see data/sprites/map_objects.asm)
@@ -250,6 +250,7 @@ DEF NUM_STEP_TYPES EQU const_value
 	const OBJECT_ACTION_BOULDER_DUST  ; 0e
 	const OBJECT_ACTION_GRASS_SHAKE   ; 0f
 	const OBJECT_ACTION_SKYFALL       ; 10
+	const OBJECT_ACTION_RUN			  ; 11
 DEF NUM_OBJECT_ACTIONS EQU const_value
 
 ; Facings indexes (see data/sprites/facings.asm)
@@ -292,10 +293,12 @@ DEF NUM_FACINGS EQU const_value
 	const_def
 	const STEP_SLOW          ; 0
 	const STEP_WALK          ; 1
-	const STEP_BIKE          ; 2
-	const STEP_LEDGE         ; 3
-	const STEP_ICE           ; 4
-	const STEP_TURN          ; 5
-	const STEP_BACK_LEDGE    ; 6
-	const STEP_WALK_IN_PLACE ; 7
+	const STEP_RUN           ; 2
+	const STEP_BIKE          ; 3
+	const STEP_LEDGE         ; 4
+	const STEP_ICE           ; 5
+	const STEP_TURN          ; 6
+	const STEP_BACK_LEDGE    ; 7
+	const STEP_WALK_IN_PLACE ; 8
+	const STEP_SPIN    		 ; 9
 DEF NUM_STEPS EQU const_value

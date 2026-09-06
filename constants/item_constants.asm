@@ -141,8 +141,8 @@
 	const BASEMENT_KEY ; 85
 	const PASS         ; 86
 	const ITEM_87      ; 87
-	const ITEM_88      ; 88
-	const ITEM_89      ; 89
+	const ROCK_CLIMB   ; 88
+	const MACHO_BRACE  ; 89
 	const CHARCOAL     ; 8a
 	const BERRY_JUICE  ; 8b
 	const SCOPE_LENS   ; 8c
@@ -150,16 +150,16 @@
 	const ITEM_8E      ; 8e
 	const METAL_COAT   ; 8f
 	const DRAGON_FANG  ; 90
-	const ITEM_91      ; 91
+	const OVAL_CHARM   ; 91
 	const LEFTOVERS    ; 92
-	const ITEM_93      ; 93
-	const ITEM_94      ; 94
-	const ITEM_95      ; 95
+	const OLD_AMBER    ; 93
+	const DOME_FOSSIL  ; 94
+	const HELIX_FOSSIL ; 95
 	const MYSTERYBERRY ; 96
 	const DRAGON_SCALE ; 97
 	const BERSERK_GENE ; 98
-	const ITEM_99      ; 99
-	const ITEM_9A      ; 9a
+	const SOETHE_BELL  ; 99
+	const SILPH_SCOPE  ; 9a
 	const ITEM_9B      ; 9b
 	const SACRED_ASH   ; 9c
 	const HEAVY_BALL   ; 9d
@@ -167,7 +167,7 @@
 	const LEVEL_BALL   ; 9f
 	const LURE_BALL    ; a0
 	const FAST_BALL    ; a1
-	const ITEM_A2      ; a2
+	const MACHINERY    ; a2
 	const LIGHT_BALL   ; a3
 	const FRIEND_BALL  ; a4
 	const MOON_BALL    ; a5
@@ -302,9 +302,34 @@ MACRO add_mt
 ENDM
 
 DEF MT01 EQU const_value
-	add_mt FLAMETHROWER
-	add_mt THUNDERBOLT
+	add_mt MEGA_PUNCH
+	add_mt SWORDS_DANCE
+	add_mt WHIRLWIND
+	add_mt MEGA_KICK
+	add_mt BODY_SLAM
+	add_mt DOUBLE_EDGE
 	add_mt ICE_BEAM
+	add_mt SUBMISSION
+	add_mt COUNTER
+	add_mt SEISMIC_TOSS
+	add_mt THUNDERBOLT
+	add_mt MIMIC
+	add_mt REFLECT
+	add_mt METRONOME
+	add_mt SOFTBOILED
+	add_mt SKY_ATTACK
+	add_mt THUNDER_WAVE
+	add_mt EXPLOSION
+	add_mt ROCK_SLIDE
+	add_mt TRI_ATTACK
+	add_mt SUBSTITUTE
+	add_mt FLAMETHROWER
+	add_mt LIGHT_SCREEN
+	add_mt OUTRAGE
+	add_mt PAIN_SPLIT
+	add_mt HEAL_BELL
+	add_mt MIRROR_COAT
+	add_mt FALSE_SWIPE
 DEF NUM_TUTORS = __tmhm_value__ - NUM_TMS - NUM_HMS - 1
 
 DEF NUM_TM_HM_TUTOR EQU NUM_TMS + NUM_HMS + NUM_TUTORS
