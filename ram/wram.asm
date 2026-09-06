@@ -933,22 +933,71 @@ wGameboyPrinterRAMEnd::
 SECTION UNION "Overworld Map", WRAM0
 
 ; bill's pc data
-wBillsPCData::
-wBillsPCPokemonList::
-; (species, box number, list index) x30
-	ds 3 * 30
-	ds 720
-wBillsPC_ScrollPosition:: db
-wBillsPC_CursorPosition:: db
-wBillsPC_NumMonsInBox:: db
-wBillsPC_NumMonsOnScreen:: db
-wBillsPC_LoadedBox:: db ; 0 if party, 1 - 14 if box, 15 if active box
-wBillsPC_BackupScrollPosition:: db
-wBillsPC_BackupCursorPosition:: db
-wBillsPC_BackupLoadedBox:: db
-wBillsPC_MonHasMail:: db
-	ds 5
-wBillsPCDataEnd::
+
+; If you change ordering of this, remember to fix LCD hblank code too.
+; Note that (as of when comment was written), hblank can't always keep up
+; if doing 4 pals in one go during party shifting.
+wBillsPC_CurPals::
+wBillsPC_CurPartyPals:: ds 2 * 2 * 2 ; 2 bytes per color, 2 colors, 2 mons
+wBillsPC_CurMonPals:: ds 2 * 2 * 4 ; 2 bytes per color, 2 colors, 4 mons
+
+; Stores palettes used for party+box.
+wBillsPC_PalList::
+wBillsPC_PokepicPal:: ds 2 * 2 * 1
+
+	ds 2 * 2 * 1 ; unused BG3 for shiny+pokerus icons
+
+wBillsPC_MonPals1:: ds 2 * 2 * 4
+
+	ds 2 * 2 * 2 ; unused row2 BG2-3
+
+wBillsPC_MonPals2:: ds 2 * 2 * 4
+wBillsPC_PartyPals3:: ds 2 * 2 * 2
+wBillsPC_MonPals3:: ds 2 * 2 * 4
+wBillsPC_PartyPals4:: ds 2 * 2 * 2
+wBillsPC_MonPals4:: ds 2 * 2 * 4
+wBillsPC_PartyPals5:: ds 2 * 2 * 2
+wBillsPC_MonPals5:: ds 2 * 2 * 4
+
+; Species lists
+wBillsPC_PartyList:: ds 6
+wBillsPC_BoxList:: ds 20
+
+wBillsPC_HeldIcon:: db
+wBillsPC_QuickIcon:: db
+
+; Cursor data
+wBillsPC_CursorItem:: db ; what item is selected.
+wBillsPC_CursorPos:: db ; 0-3 * 4*row, row 0 is title. Bit 7 means in party.
+wBillsPC_CursorHeldBox:: db ; 0 for party, 1-16 otherwise
+wBillsPC_CursorHeldSlot:: db ; 0 for nothing held, or 1-20 (1-6 if party)
+wBillsPC_CursorDestBox:: db ; 0 for party, 1-16 otherwise
+wBillsPC_CursorDestSlot:: db ; 0 for release, or 1-20 (1-6 if party)
+wBillsPC_CursorMode:: db ; 0 for regular mode (red), 1 for swap mode (blue), 2 for item mode (green)
+wBillsPC_CursorAnimFlag:: db ; manage cursor behaviour
+
+; Quick-move sprite data
+wBillsPC_QuickFrom::
+wBillsPC_QuickFromBox:: db
+wBillsPC_QuickFromSlot:: db
+wBillsPC_QuickFromX:: db
+wBillsPC_QuickFromY:: db
+
+wBillsPC_QuickTo::
+wBillsPC_QuickToBox:: db
+wBillsPC_QuickToSlot:: db
+wBillsPC_QuickToX:: db
+wBillsPC_QuickToY:: db
+wBillsPC_QuickFrames:: db
+
+wBillsPC_ApplyThemePals:: db ; used by _CGB_BillsPC
+
+	ds 2
+
+wBillsPC_Blank2bppTiles::
+; Since we need GDMA for fast blank copy, reserve blank tiles here.
+	ds 4 tiles
+wBillsPC_ItemVWF:: ds 10 tiles
 
 
 SECTION UNION "Overworld Map", WRAM0
@@ -1862,7 +1911,7 @@ wOBP1:: db
 
 wNumHits:: db
 
-	ds 1
+wFlyingWithHMItem:: db
 
 wOptions::
 ; bit 0-2: number of frames to delay when printing text
@@ -1902,6 +1951,7 @@ wMinutesSince:: db
 wHoursSince:: db
 wDaysSince:: db
 
+wUsingHMItem:: db
 
 SECTION "WRAM 1", WRAMX
 
@@ -1917,10 +1967,21 @@ wDefaultSpawnpoint:: db
 SECTION UNION "Miscellaneous WRAM 1", WRAMX
 
 ; mon buffer
+UNION
+wBufferMon:: party_struct wBufferMon
+wBufferMonAltSpecies:: db ; the 2nd (usually redundant) species byte, for eggs
 wBufferMonNickname:: ds MON_NAME_LENGTH
 wBufferMonOT:: ds NAME_LENGTH
-wBufferMon:: party_struct wBufferMon
-	ds 8
+NEXTU
+wEncodedBufferMon:: savemon_struct wEncodedBufferMon
+ENDU
+
+; Points towards box + slot if using GetStorageBoxMon. Slot set to 0 if empty.
+wBufferMonBox:: db
+wBufferMonSlot:: db
+
+wLuckyNumberDigitsBuffer:: ds 5
+
 wMonOrItemNameBuffer:: ds NAME_LENGTH
 	ds NAME_LENGTH
 
@@ -2005,12 +2066,6 @@ wNumRadioLinesPrinted:: db
 wOaksPKMNTalkSegmentCounter:: db
 	ds 5
 wRadioText:: ds 2 * SCREEN_WIDTH
-
-
-SECTION UNION "Miscellaneous WRAM 1", WRAMX
-
-; lucky number show
-wLuckyNumberDigitsBuffer:: ds 5
 
 
 SECTION UNION "Miscellaneous WRAM 1", WRAMX
@@ -2345,7 +2400,7 @@ wStringBuffer5:: ds STRING_BUFFER_LENGTH
 
 wBattleMenuCursorPosition:: db
 
-	ds 1
+wBuffer1:: db
 
 wCurBattleMon::
 ; index of the player's mon currently in battle (0-5)
@@ -2361,6 +2416,8 @@ wItemsPocketCursor::    db
 wKeyItemsPocketCursor:: db
 wBallsPocketCursor::    db
 wTMHMPocketCursor::     db
+wBerryPocketCursor::    db
+wMedPocketCursor::     db
 
 wPCItemsScrollPosition::        db
 	ds 1
@@ -2368,6 +2425,8 @@ wItemsPocketScrollPosition::    db
 wKeyItemsPocketScrollPosition:: db
 wBallsPocketScrollPosition::    db
 wTMHMPocketScrollPosition::     db
+wBerryPocketScrollPosition::    db
+wMedPocketScrollPosition::     db
 
 wSwitchMon::
 wSwitchItem::
@@ -2435,6 +2494,7 @@ wMartItemID::
 	db
 
 wCurPartySpecies:: db
+wCurPartyMobileSpecies:: db
 
 wCurPartyMon::
 ; index of mon's party location (0-5)
@@ -2462,7 +2522,7 @@ wSpriteFlags:: db
 
 wHandlePlayerStep:: db
 
-	ds 1
+wCurIconMonHasItemOrMail:: db
 
 wPartyMenuActionText:: db
 
@@ -2471,8 +2531,6 @@ wItemAttributeValue:: db
 wCurPartyLevel:: db
 
 wScrollingMenuListSize:: db
-
-	ds 1
 
 ; used when following a map warp
 wNextWarp:: db
@@ -2490,6 +2548,8 @@ wPlayerStepVectorX:: db
 wPlayerStepVectorY:: db
 wPlayerStepFlags:: db
 wPlayerStepDirection:: db
+
+wSpinning:: db
 
 wBGMapAnchor:: dw
 
@@ -2870,6 +2930,8 @@ NEXTU
 wDudeNumItems:: db
 wDudeItems:: ds 2 * 4 + 1
 
+wDudeNumBerries::
+wDudeNumMeds::
 wDudeNumKeyItems:: db
 wDudeKeyItems:: ds 18 + 1
 
@@ -3031,11 +3093,11 @@ endr
 
 wCmdQueue:: ds CMDQUEUE_CAPACITY * CMDQUEUE_ENTRY_SIZE
 
-	ds 40
+	ds 6
 
 wMapObjects::
 wPlayerObject:: map_object wPlayer ; player is map object 0
-; wMap1Object - wMap15Object
+; wMap1Object - wMap17Object
 for n, 1, NUM_OBJECTS
 wMap{d:n}Object:: map_object wMap{d:n}
 endr
@@ -3104,6 +3166,12 @@ wKeyItems:: ds MAX_KEY_ITEMS + 1
 wNumBalls:: db
 wBalls:: ds MAX_BALLS * 2 + 1
 
+wNumBerries:: db
+wBerries:: ds MAX_BERRIES * 2 + 1
+
+wNumMeds:: db
+wMeds:: ds MAX_MEDS * 2 + 1
+
 wNumPCItems:: db
 wPCItems:: ds MAX_PC_ITEMS * 2 + 1
 
@@ -3116,7 +3184,7 @@ wPokegearFlags::
 	db
 wRadioTuningKnob:: db
 wLastDexMode:: db
-	ds 1
+wCurPokedexColor:: db ; current dex color
 wWhichRegisteredItem:: db
 wRegisteredItem:: db
 
@@ -3129,8 +3197,9 @@ wTradeFlags:: flag_array NUM_NPC_TRADES
 wMooMooBerries:: db
 wUndergroundSwitchPositions:: db
 wFarfetchdPosition:: db
+wBattleTowerStreak:: db
 
-	ds 13
+	ds 12
 
 ; map scene ids
 wPokecenter2FSceneID::                            db
@@ -3213,47 +3282,13 @@ wMountMoonSquareSceneID::                         db
 wMobileTradeRoomSceneID::                         db
 wMobileBattleRoomSceneID::                        db
 
-	ds 49
-
-; fight counts
-wJackFightCount::    db
-wBeverlyFightCount:: db ; unreferenced
-wHueyFightCount::    db
-wGavenFightCount::   db
-wBethFightCount::    db
-wJoseFightCount::    db
-wReenaFightCount::   db
-wJoeyFightCount::    db
-wWadeFightCount::    db
-wRalphFightCount::   db
-wLizFightCount::     db
-wAnthonyFightCount:: db
-wToddFightCount::    db
-wGinaFightCount::    db
-wIrwinFightCount::   db ; unreferenced
-wArnieFightCount::   db
-wAlanFightCount::    db
-wDanaFightCount::    db
-wChadFightCount::    db
-wDerekFightCount::   db ; unreferenced
-wTullyFightCount::   db
-wBrentFightCount::   db
-wTiffanyFightCount:: db
-wVanceFightCount::   db
-wWiltonFightCount::  db
-wKenjiFightCount::   db ; unreferenced
-wParryFightCount::   db
-wErinFightCount::    db
-
-	ds 100
+	ds 6
 
 wEventFlags:: flag_array NUM_EVENTS
 
 wCurBox:: db
 
-	ds 2
-
-wBoxNames:: ds BOX_NAME_LENGTH * NUM_BOXES
+	ds 12
 
 wCelebiEvent::
 ; bit 2: forest is restless
@@ -3351,10 +3386,10 @@ wSafariTimeRemaining:: dw
 
 wPhoneList:: ds CONTACT_LIST_SIZE + 1
 
-	ds 22
+	ds 21
 
 wLuckyNumberShowFlag:: db
-	ds 1
+	wRepelType:: db
 wLuckyIDNumber:: dw
 
 wRepelEffect:: db ; If a Repel is in use, it contains the nr of steps it's still active
@@ -3377,7 +3412,10 @@ wBackupWarpNumber:: db
 wBackupMapGroup::   db
 wBackupMapNumber::  db
 
-	ds 3
+wDiveMapGroup:: db
+wDiveMapNumber:: db
+wDiveDeltaX:: db
+wDiveDeltaY:: db
 
 wLastSpawnMapGroup:: db
 wLastSpawnMapNumber:: db
@@ -3627,6 +3665,14 @@ wMagnetTrainPlayerSpriteInitX:: db
 	align 8
 wLYOverridesBackup:: ds SCREEN_HEIGHT_PX
 wLYOverridesBackupEnd::
+
+
+SECTION "Used Storage", WRAMX
+
+wPokeDBUsedEntries::
+wPokeDB1UsedEntries:: flag_array MONDB_ENTRIES
+wPokeDB2UsedEntries:: flag_array MONDB_ENTRIES
+wPokeDBUsedEntriesEnd::
 
 
 SECTION "Battle Animations", WRAMX
