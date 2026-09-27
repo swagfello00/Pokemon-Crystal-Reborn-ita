@@ -73,7 +73,7 @@ MovingPhoneText:
 	line "sembra muoversi!"
 	
 	para "Vuoi collegare"
-	line "l'adattatore?"
+	line "l'ADATTATORE?"
 	done
 	
 MewRevealText:

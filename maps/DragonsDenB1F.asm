@@ -507,7 +507,7 @@ Text_NoRoomForDragonFang:
 	
 TakeThisRivalStarterText:
 	text "Senti, alla"
-	line "pensione mi hanno"
+	line "PENSIONE mi hanno"
 	cont "dato un UOVO."
 	
 	para "Si è schiuso da"

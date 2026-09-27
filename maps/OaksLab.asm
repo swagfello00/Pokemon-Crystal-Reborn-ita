@@ -130,7 +130,7 @@ OvalCharmText:
 	line "ti permetterà di"
 	
 	para "ottenere più UOVA"
-	line "alla pensione."
+	line "alla PENSIONE."
 	done
 
 OakLabGoodbyeText:
@@ -203,8 +203,8 @@ OakNewsMachineText:
 	line "il MONTE ARGENTO."
 	
 	para "Hai mai usato la"
-	line "macchina delle"
-	cont "notizie a"
+	line "MACCHINA delle"
+	cont "NOTIZIE a"
 	cont "FIORDOROPOLI?"
 	
 	para "Potrebbero"
